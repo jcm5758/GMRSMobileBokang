@@ -1,7 +1,7 @@
 package com.geurimsoft.bokangnew.view.etc;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.conf.AppConfig;
+import com.geurimsoft.bokangnew.conf.AppConfig;
 
 import android.app.Activity;
 import android.content.Context;

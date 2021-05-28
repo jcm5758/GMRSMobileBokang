@@ -17,7 +17,7 @@ import android.view.Window;
 import androidx.annotation.NonNull;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.data.GSConfig;
+import com.geurimsoft.bokangnew.data.GSConfig;
 
 public class ApiLoadingDialog extends Dialog
 {

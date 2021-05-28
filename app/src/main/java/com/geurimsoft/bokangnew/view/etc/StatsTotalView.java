@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.data.StatsTotalData;
+import com.geurimsoft.bokangnew.data.StatsTotalData;
 
 public class StatsTotalView {
 	

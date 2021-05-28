@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.view.etc.MonthDatePickerDialog;
-import com.geurimsoft.conf.AppConfig;
+import com.geurimsoft.bokangnew.conf.AppConfig;
 
 public class YonginMonthPagerFragment extends Fragment {
 	

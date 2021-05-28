@@ -5,6 +5,6 @@
         android:id="@+id/wheelYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        class="com.geurimsoft.widget.WheelView" />
+        class="com.geurimsoft.bokangnew.widget.WheelView" />
 
 </merge>

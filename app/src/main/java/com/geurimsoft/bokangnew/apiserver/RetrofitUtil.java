@@ -10,7 +10,7 @@
 package com.geurimsoft.bokangnew.apiserver;
 
 import android.util.Log;
-import com.geurimsoft.data.GSConfig;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;

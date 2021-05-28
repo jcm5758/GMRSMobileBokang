@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.view.etc.DayDatePickerDialog;
-import com.geurimsoft.conf.AppConfig;
+import com.geurimsoft.bokangnew.conf.AppConfig;
 
 public class TotalDailyPagerFragment extends Fragment {
 	

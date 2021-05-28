@@ -11,9 +11,9 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.widget.OnWheelChangedListener;
-import com.geurimsoft.widget.WheelView;
-import com.geurimsoft.widget.adapter.YearNumericWheelAdapter;
+import com.geurimsoft.bokangnew.widget.OnWheelChangedListener;
+import com.geurimsoft.bokangnew.widget.WheelView;
+import com.geurimsoft.bokangnew.widget.adapter.YearNumericWheelAdapter;
 
 /**
  * @author igor.kostromin

@@ -11,7 +11,7 @@ import android.view.Window;
 import android.widget.Button;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.conf.AppConfig;
+import com.geurimsoft.bokangnew.conf.AppConfig;
 
 
 public class MonthDatePickerDialog extends Dialog implements OnClickListener{

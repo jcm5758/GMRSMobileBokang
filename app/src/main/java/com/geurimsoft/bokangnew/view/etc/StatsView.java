@@ -11,10 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.conf.AppConfig;
-import com.geurimsoft.grms.data.GSDailyInOut;
-import com.geurimsoft.grms.data.GSDailyInOutDetail;
-import com.geurimsoft.grms.data.GSDailyInOutGroup;
+import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.GSDailyInOut;
+import com.geurimsoft.bokangnew.data.GSDailyInOutDetail;
+import com.geurimsoft.bokangnew.data.GSDailyInOutGroup;
 
 public class StatsView
 {

@@ -84,16 +84,16 @@
         "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GRMSMobleBokang\\app\\src\\main\\res\\layout\\page_layout.xml"
     },
     {
-        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GRMSMobleBokang\\app\\build\\intermediates\\res\\merged\\debug\\menu_main.xml.flat",
-        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GRMSMobleBokang\\app\\src\\main\\res\\menu\\main.xml"
+        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GRMSMobleBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_test_statistic.xml.flat",
+        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GRMSMobleBokang\\app\\src\\main\\res\\layout\\test_statistic.xml"
     },
     {
         "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GRMSMobleBokang\\app\\build\\intermediates\\res\\merged\\debug\\drawable_enterprise_popup_background.xml.flat",
         "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GRMSMobleBokang\\app\\src\\main\\res\\drawable\\enterprise_popup_background.xml"
     },
     {
-        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GRMSMobleBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_test_statistic.xml.flat",
-        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GRMSMobleBokang\\app\\src\\main\\res\\layout\\test_statistic.xml"
+        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GRMSMobleBokang\\app\\build\\intermediates\\res\\merged\\debug\\menu_main.xml.flat",
+        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GRMSMobleBokang\\app\\src\\main\\res\\menu\\main.xml"
     },
     {
         "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GRMSMobleBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_custom_progress_dialog.xml.flat",

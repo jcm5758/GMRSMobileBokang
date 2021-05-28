@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.conf.AppConfig;
-import com.geurimsoft.data.XmlConverter;
-import com.geurimsoft.grms.data.GSDataStatisticMonthChart;
-import com.geurimsoft.grms.data.GSMonthInOut;
-import com.geurimsoft.socket.client.SocketClient;
+import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.XmlConverter;
+import com.geurimsoft.bokangnew.data.GSDataStatisticMonthChart;
+import com.geurimsoft.bokangnew.data.GSMonthInOut;
+import com.geurimsoft.bokangnew.client.SocketClient;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.model.XYMultipleSeriesDataset;

@@ -1,3 +1,12 @@
+/**
+ * Main Activity
+ *
+ * 2021. 05. 28 리뉴얼
+ *
+ * Written by jcm5758
+ *
+ */
+
 package com.geurimsoft.bokangnew;
 
 import java.io.BufferedReader;
@@ -35,13 +44,13 @@ import com.geurimsoft.bokangnew.view.etc.GwangjuTabActivity;
 import com.geurimsoft.bokangnew.view.etc.JoomyungTabActivity;
 import com.geurimsoft.bokangnew.view.etc.TotalTabActivity;
 import com.geurimsoft.bokangnew.view.etc.YonginTabActivity;
-import com.geurimsoft.conf.AppConfig;
-import com.geurimsoft.data.CCTV;
-import com.geurimsoft.data.Place;
-import com.geurimsoft.data.XmlConverter;
-import com.geurimsoft.grms.data.GSUser;
-import com.geurimsoft.socket.client.SocketClient;
-import com.geurimsoft.util.ItemXmlParser;
+import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.CCTV;
+import com.geurimsoft.bokangnew.data.Place;
+import com.geurimsoft.bokangnew.data.XmlConverter;
+import com.geurimsoft.bokangnew.data.GSUser;
+import com.geurimsoft.bokangnew.client.SocketClient;
+import com.geurimsoft.bokangnew.util.ItemXmlParser;
 
 public class AppMain extends Activity
 {
@@ -92,36 +101,172 @@ public class AppMain extends Activity
 
 	}
 
+	/**
+	 * 위젯 받아오기
+	 */
 	public void setUserInterface()
 	{
 
 		pref = getSharedPreferences("user_account", Context.MODE_PRIVATE);
-		
+
+		// 아이디
 		edtLogin = (EditText) this.findViewById(R.id.edtlogin);
 		edtLogin.setImeOptions(EditorInfo.IME_ACTION_NEXT);
 		edtLogin.setPrivateImeOptions("defaultInputmode=english");
 
+		// 비밀번호
 		edtPasswd = (EditText) this.findViewById(R.id.edtpasswd);
 		edtPasswd.setImeOptions(EditorInfo.IME_ACTION_DONE);
 		edtPasswd.setPrivateImeOptions("defaultInputmode=english");
 
+		// 자동 로그인
 		chkAutoLogin = (CheckBox) this.findViewById(R.id.chkAutoLogin);
+
+		// 로그인 레이아웃
 		layoutlogin = (LinearLayout) this.findViewById(R.id.layoutlogin);
 		btnlayout = (LinearLayout) this.findViewById(R.id.btnlayout);
+		
+		// 로그인 버튼
 		btnlogin = (Button) this.findViewById(R.id.btnlogin);
+		
+		// 이미지 뷰
 		ivMenu01 = (ImageView) this.findViewById(R.id.ivMenu01);
 		ivMenu02 = (ImageView) this.findViewById(R.id.ivMenu02);
 
 		change_site_btn = (Button) this.findViewById(R.id.change_site_btn);
 		change_site_title = (TextView) this.findViewById(R.id.change_site_title);
-		
-		btnlogin.setOnClickListener(clickListener);
-		ivMenu01.setOnClickListener(clickListener);
-		ivMenu02.setOnClickListener(clickListener);
-		change_site_btn.setOnClickListener(clickListener);
 
 		change_site_btn.setVisibility(View.INVISIBLE);
 		change_site_title.setVisibility(View.INVISIBLE);
+
+		// 이벤트 등록
+		btnlogin.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(edtPasswd.getWindowToken(), 0);
+
+				if (checkUser())
+				{
+					changeView(false);
+				}
+
+			}
+
+		});
+
+		ivMenu01.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				pref = getSharedPreferences("user_account", Context.MODE_PRIVATE);
+				int department = pref.getInt("user_department", 0);
+
+				if(department != 1)
+					return;
+
+				PackageManager packageManager = getPackageManager();
+
+				try
+				{
+					packageManager.getApplicationInfo("com.samsung.ipolis", PackageManager.GET_META_DATA);
+
+					Intent intent = mContext.getPackageManager().getLaunchIntentForPackage("com.samsung.ipolis");
+					startActivity(intent);
+
+				}
+				catch (Exception e)
+				{
+					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.samsung.ipolis"));
+					startActivity(intent);
+				}
+
+			}
+
+		});
+
+		ivMenu02.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				Log.d(AppConfig.TAG, "R.id.ivMenu02 is clicked.");
+
+				pref = getSharedPreferences("user_account", Context.MODE_PRIVATE);
+				int branchID = pref.getInt("branch_id", 0);
+
+//				Log.d(AppConfig.TAG, "BranchID : " + branchID);
+
+				if(branchID == 1)
+				{
+					Intent intent = new Intent(AppMain.this, YonginTabActivity.class);
+					startActivity(intent);
+				}
+				else if(branchID == 2)
+				{
+					Intent intent = new Intent(AppMain.this, GwangjuTabActivity.class);
+					startActivity(intent);
+				}
+				else if(branchID == 3)
+				{
+					Intent intent = new Intent(AppMain.this, JoomyungTabActivity.class);
+					startActivity(intent);
+				}
+				else if(branchID == 4)
+				{
+					Intent intent = new Intent(AppMain.this, TotalTabActivity.class);
+					startActivity(intent);
+				}
+
+			}
+
+		});
+
+		// 현장 선택 버튼 이벤트
+		change_site_btn.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+				Log.d(AppConfig.TAG, "R.id.change_site_btn is clicked.");
+
+				int branchID = pref.getInt("branch_id", 0);
+
+				if(branchID == 1)
+				{
+					SharedPreferences.Editor editor = pref.edit();
+					editor.putInt("branch_id", 1);
+					editor.commit();
+					change_site_title.setText(getString(R.string.site_yo));
+				}
+				else if(branchID == 2)
+				{
+					SharedPreferences.Editor editor = pref.edit();
+					editor.putInt("branch_id", 2);
+					editor.commit();
+					change_site_title.setText(getString(R.string.site_gw));
+				}
+				else if(branchID == 3)
+				{
+					SharedPreferences.Editor editor = pref.edit();
+					editor.putInt("branch_id", 3);
+					editor.commit();
+					change_site_title.setText(getString(R.string.site_ju));
+				}
+				else if(branchID == 4)
+				{
+					SharedPreferences.Editor editor = pref.edit();
+					editor.putInt("branch_id", 4);
+					editor.commit();
+					change_site_title.setText(getString(R.string.site_total));
+				}
+
+			}
+
+		});
 
 		this.changeView(isLogin);
 
@@ -134,9 +279,12 @@ public class AppMain extends Activity
 	{
 
 		pref = getSharedPreferences("user_account", Context.MODE_PRIVATE);
+
 		String sId = pref.getString("sId", null);
 		String sPass = pref.getString("sPass", null);
+
 		boolean auto_chcek = pref.getBoolean("outo_chcek", false);
+
 		chkAutoLogin.setChecked(auto_chcek);
 		
 		if (auto_chcek == true)
@@ -149,8 +297,6 @@ public class AppMain extends Activity
 			SharedPreferences.Editor removeEditor = pref.edit();
 			removeEditor.remove("sId");
 			removeEditor.remove("sPass");
-			removeEditor.remove("user_grade");
-			removeEditor.remove("user_department");
 			removeEditor.remove("outo_chcek");
 			removeEditor.commit();
 		}
@@ -413,128 +559,6 @@ public class AppMain extends Activity
 
 	}
 
-	View.OnClickListener clickListener = new View.OnClickListener() {
-
-		@Override
-		public void onClick(View v) {
-
-			// 로그인 버튼
-			if (v.getId() == R.id.btnlogin)
-			{
-
-				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-				imm.hideSoftInputFromWindow(edtPasswd.getWindowToken(), 0);
-
-				if (checkUser())
-				{
-					changeView(false);
-				}
-
-			}
-			// CCTV 버튼
-			else if (v.getId() == R.id.ivMenu01)
-			{
-				
-				pref = getSharedPreferences("user_account", Context.MODE_PRIVATE);
-				int department = pref.getInt("user_department", 0);
-				
-				if(department != 1)
-					return;
-				
-				PackageManager packageManager = getPackageManager();
-				
-				try
-				{
-					packageManager.getApplicationInfo("com.samsung.ipolis", PackageManager.GET_META_DATA);
-					
-					Intent intent = mContext.getPackageManager().getLaunchIntentForPackage("com.samsung.ipolis");
-					startActivity(intent);
-					
-				}
-				catch (Exception e)
-				{
-					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.samsung.ipolis"));
-					startActivity(intent);
-				}
-
-				
-			}
-			// 통계 버튼
-			else if (v.getId() == R.id.ivMenu02)
-			{
-
-//				Log.d(AppConfig.TAG, "R.id.ivMenu02 is clicked.");
-
-				pref = getSharedPreferences("user_account", Context.MODE_PRIVATE);
-				int branchID = pref.getInt("branch_id", 0);
-
-//				Log.d(AppConfig.TAG, "BranchID : " + branchID);
-				
-				if(branchID == 1)
-				{
-					Intent intent = new Intent(AppMain.this, YonginTabActivity.class);
-					startActivity(intent);
-				}
-				else if(branchID == 2)
-				{
-					Intent intent = new Intent(AppMain.this, GwangjuTabActivity.class);
-					startActivity(intent);
-				}
-				else if(branchID == 3)
-				{
-					Intent intent = new Intent(AppMain.this, JoomyungTabActivity.class);
-					startActivity(intent);
-				}
-				else if(branchID == 4)
-				{
-					Intent intent = new Intent(AppMain.this, TotalTabActivity.class);
-					startActivity(intent);
-				}
-
-			}
-			// 지점 선택 버튼
-			else if(v.getId() == R.id.change_site_btn)
-			{
-
-				Log.d(AppConfig.TAG, "R.id.change_site_btn is clicked.");
-
-				int branchID = pref.getInt("branch_id", 0);
-				
-				if(branchID == 1)
-				{
-					SharedPreferences.Editor editor = pref.edit();
-					editor.putInt("branch_id", 1);
-					editor.commit();
-					change_site_title.setText(getString(R.string.site_yo));
-				}
-				else if(branchID == 2)
-				{
-					SharedPreferences.Editor editor = pref.edit();
-					editor.putInt("branch_id", 2);
-					editor.commit();
-					change_site_title.setText(getString(R.string.site_gw));
-				}
-				else if(branchID == 3)
-				{
-					SharedPreferences.Editor editor = pref.edit();
-					editor.putInt("branch_id", 3);
-					editor.commit();
-					change_site_title.setText(getString(R.string.site_ju));
-				}
-				else if(branchID == 4)
-				{
-					SharedPreferences.Editor editor = pref.edit();
-					editor.putInt("branch_id", 4);
-					editor.commit();
-					change_site_title.setText(getString(R.string.site_total));
-				}
-
-			} 
-
-		}
-
-	};
-	
 	private void appVersionCheck()
 	{
 		new VersionCheckTask().execute();

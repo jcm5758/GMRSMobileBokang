@@ -6,13 +6,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        class="com.geurimsoft.widget.WheelView" />
+        class="com.geurimsoft.bokangnew.widget.WheelView" />
 
     <view
         android:id="@+id/wheelMonth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        class="com.geurimsoft.widget.WheelView" />
+        class="com.geurimsoft.bokangnew.widget.WheelView" />
 
 </merge>

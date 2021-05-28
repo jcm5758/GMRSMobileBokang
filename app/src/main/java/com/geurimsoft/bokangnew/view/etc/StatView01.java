@@ -19,15 +19,14 @@ import org.achartengine.renderer.XYSeriesRenderer;
 import com.geurimsoft.bokangnew.AppMain;
 import com.geurimsoft.bokangnew.AppSetting;
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.bokangnew.view.etc.CCTVMain;
-import com.geurimsoft.conf.AppConfig;
-import com.geurimsoft.data.Customer;
-import com.geurimsoft.data.DownloadInterface;
-import com.geurimsoft.data.Product;
-import com.geurimsoft.data.SearchResult;
-import com.geurimsoft.data.Vehicle;
-import com.geurimsoft.util.AppFunc;
-import com.geurimsoft.util.ItemXmlParser;
+import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.Customer;
+import com.geurimsoft.bokangnew.data.DownloadInterface;
+import com.geurimsoft.bokangnew.data.Product;
+import com.geurimsoft.bokangnew.data.SearchResult;
+import com.geurimsoft.bokangnew.data.Vehicle;
+import com.geurimsoft.bokangnew.util.AppFunc;
+import com.geurimsoft.bokangnew.util.ItemXmlParser;
  
 
 import android.app.Activity;

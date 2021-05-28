@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.conf.AppConfig;
-import com.geurimsoft.data.StatsListData;
-import com.geurimsoft.data.XmlConverter;
-import com.geurimsoft.socket.client.SocketClient;
+import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.StatsListData;
+import com.geurimsoft.bokangnew.data.XmlConverter;
+import com.geurimsoft.bokangnew.client.SocketClient;
 
 public class YonginYearGraphFragment extends Fragment{
 

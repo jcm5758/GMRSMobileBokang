@@ -15,11 +15,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.bokangnew.view.etc.TotalTabActivity;
 import com.geurimsoft.bokangnew.view.dailyfragment.JoomyungDailyPagerFragment;
 import com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthPagerFragment;
 import com.geurimsoft.bokangnew.view.yearfragment.JoomyungYearPagerFragment;
-import com.geurimsoft.conf.AppConfig;
+import com.geurimsoft.bokangnew.conf.AppConfig;
 
 public class JoomyungTabActivity extends FragmentActivity
 {

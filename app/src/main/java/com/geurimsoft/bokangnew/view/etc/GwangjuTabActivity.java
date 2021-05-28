@@ -15,7 +15,7 @@ import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.view.dailyfragment.GwangjuDailyPagerFragment;
 import com.geurimsoft.bokangnew.view.monthfragment.GwangjuMonthPagerFragment;
 import com.geurimsoft.bokangnew.view.yearfragment.GwangjuYearPagerFragment;
-import com.geurimsoft.conf.AppConfig;
+import com.geurimsoft.bokangnew.conf.AppConfig;
 
 public class GwangjuTabActivity extends FragmentActivity {
 

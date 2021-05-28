@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.view.etc.YearDatePickerDialog;
-import com.geurimsoft.conf.AppConfig;
+import com.geurimsoft.bokangnew.conf.AppConfig;
 
 public class YonginYearPagerFragment extends Fragment {
 	

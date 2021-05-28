@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.view.etc.StatsTotalView;
-import com.geurimsoft.conf.AppConfig;
-import com.geurimsoft.data.StatsTotalData;
-import com.geurimsoft.data.XmlConverter;
-import com.geurimsoft.socket.client.SocketClient;
+import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.StatsTotalData;
+import com.geurimsoft.bokangnew.data.XmlConverter;
+import com.geurimsoft.bokangnew.client.SocketClient;
 
 public class TotalDailyAmountFragment extends Fragment {
 	

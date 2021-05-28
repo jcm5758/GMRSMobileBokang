@@ -8,12 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.conf.AppConfig;
-import com.geurimsoft.data.StatsListData;
-import com.geurimsoft.grms.data.GSMonthInOut;
-import com.geurimsoft.grms.data.GSMonthInOutDetail;
-
-import java.util.ArrayList;
+import com.geurimsoft.bokangnew.data.GSMonthInOut;
+import com.geurimsoft.bokangnew.data.GSMonthInOutDetail;
 
 public class StatsHeaderAndFooterView
 {

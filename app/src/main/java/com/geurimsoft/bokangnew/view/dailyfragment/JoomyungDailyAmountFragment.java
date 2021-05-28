@@ -15,11 +15,11 @@ import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.view.etc.StatsView;
-import com.geurimsoft.conf.AppConfig;
-import com.geurimsoft.data.XmlConverter;
-import com.geurimsoft.grms.data.GSDailyInOut;
-import com.geurimsoft.grms.data.GSDailyInOutGroup;
-import com.geurimsoft.socket.client.SocketClient;
+import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.XmlConverter;
+import com.geurimsoft.bokangnew.data.GSDailyInOut;
+import com.geurimsoft.bokangnew.data.GSDailyInOutGroup;
+import com.geurimsoft.bokangnew.client.SocketClient;
 
 public class JoomyungDailyAmountFragment extends Fragment
 {

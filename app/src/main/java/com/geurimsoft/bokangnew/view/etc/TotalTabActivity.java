@@ -15,7 +15,7 @@ import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.view.dailyfragment.TotalDailyPagerFragment;
 import com.geurimsoft.bokangnew.view.monthfragment.TotalMonthPagerFragment;
 import com.geurimsoft.bokangnew.view.yearfragment.TotalYearPagerFragment;
-import com.geurimsoft.conf.AppConfig;
+import com.geurimsoft.bokangnew.conf.AppConfig;
 
 public class TotalTabActivity extends FragmentActivity {
 

@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.conf.AppConfig;
-import com.geurimsoft.data.StatsData;
-import com.geurimsoft.socket.client.SocketClient;
+import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.StatsData;
+import com.geurimsoft.bokangnew.client.SocketClient;
 
 public class GwangjuDailyAmountFragment extends Fragment
 {

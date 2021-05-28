@@ -9,9 +9,9 @@ import org.achartengine.renderer.SimpleSeriesRenderer;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.chart.GChart01;
-import com.geurimsoft.chart.Result;
-import com.geurimsoft.conf.AppConfig;
+import com.geurimsoft.bokangnew.chart.GChart01;
+import com.geurimsoft.bokangnew.chart.Result;
+import com.geurimsoft.bokangnew.conf.AppConfig;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;

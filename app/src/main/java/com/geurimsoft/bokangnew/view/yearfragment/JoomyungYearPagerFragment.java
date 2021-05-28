@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.view.etc.YearDatePickerDialog;
-import com.geurimsoft.conf.AppConfig;
+import com.geurimsoft.bokangnew.conf.AppConfig;
 
 import java.util.ArrayList;
 import java.util.Calendar;

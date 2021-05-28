@@ -18,7 +18,7 @@ import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.view.dailyfragment.YonginDailyPagerFragment;
 import com.geurimsoft.bokangnew.view.monthfragment.YonginMonthPagerFragment;
 import com.geurimsoft.bokangnew.view.yearfragment.YonginYearPagerFragment;
-import com.geurimsoft.conf.AppConfig;
+import com.geurimsoft.bokangnew.conf.AppConfig;
 
 public class YonginTabActivity extends FragmentActivity
 {

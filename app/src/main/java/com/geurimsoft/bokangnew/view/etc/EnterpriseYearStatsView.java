@@ -25,13 +25,13 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.conf.AppConfig;
-import com.geurimsoft.data.StAdapter;
-import com.geurimsoft.data.XmlConverter;
-import com.geurimsoft.grms.data.GSDailyInOutDetail;
-import com.geurimsoft.grms.data.GSDailyInOutGroup;
-import com.geurimsoft.grms.data.GSMonthInOut;
-import com.geurimsoft.socket.client.SocketClient;
+import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.StAdapter;
+import com.geurimsoft.bokangnew.data.XmlConverter;
+import com.geurimsoft.bokangnew.data.GSDailyInOutDetail;
+import com.geurimsoft.bokangnew.data.GSDailyInOutGroup;
+import com.geurimsoft.bokangnew.data.GSMonthInOut;
+import com.geurimsoft.bokangnew.client.SocketClient;
 
 import java.util.ArrayList;
 

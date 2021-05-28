@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">(주)주명개발 출하관리</string>
+    <string name="app_name">출하관리시스템</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="settingtext">자주보는 CCTV를 선택하며 우선으로 선택 됩니다.</string>
