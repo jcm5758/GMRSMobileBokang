@@ -90,10 +90,10 @@ public class YonginDailyPriceFragment extends Fragment
 		
 		String str = _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일 입출고 현황";
 
-		Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : makeDailyAmountData() : " + str);
+		Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : makeDailyAmountData() : " + str);
 
 		if(stats_daily_date == null)
-			Log.e(AppConfig.TAG, "YonginDailyPriceFragment : makeDailyPriceData : stats_daily_date is null");
+			Log.e(GSConfig.APP_DEBUG, "YonginDailyPriceFragment : makeDailyPriceData : stats_daily_date is null");
 
 		this.stats_daily_date.setText(str);
 
@@ -117,17 +117,17 @@ public class YonginDailyPriceFragment extends Fragment
 	private void setDisplayData(GSDailyInOut dio)
 	{
 
-		Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : setDisplayData() is called.");
+		Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : setDisplayData() is called.");
 
 		if(getActivity() == null)
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : Activity is null.");
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : Activity is null.");
 			return;
 		}
 
 		if (dio == null)
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : dio is null.");
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : dio is null.");
 			return;
 		}
 		
@@ -202,7 +202,7 @@ public class YonginDailyPriceFragment extends Fragment
 
 			if(mss.equals("Fail"))
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Response is Fail.");
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Response is Fail.");
 				return null;
 			}
 

@@ -11,8 +11,7 @@ public class AppConfig
 
 	public static ArrayList<Activity> activities = new ArrayList<Activity>();
 	
-	public static final String TAG = "BokangNewApp";
-	
+
 	/**
 	 * XML 파일 저장 관련된 정보 
 	 */

@@ -60,11 +60,16 @@ public class FragmentDailyAmount extends Fragment
 	{
 
 		super.onResume();
+
+		String functionName = "onResume()";
 		
 		View view = this.getView();
 
 		if(view == null)
-			Log.e(AppConfig.TAG, "StatsDailyAmountFragment onResume View is null");
+		{
+			Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " StatsDailyAmountFragment onResume View is null");
+			return;
+		}
 		
 		this.income_empty_layout = (LinearLayout)view.findViewById(R.id.income_empty_layout);
 		this.release_empty_layout = (LinearLayout)view.findViewById(R.id.release_empty_layout);
@@ -80,7 +85,6 @@ public class FragmentDailyAmount extends Fragment
 		this.daily_petosa_title = (TextView) view.findViewById(R.id.daily_petosa_title);
 
 		// 일일 입고/출고/토사 수량 조회
-		// 연/월/일
 		makeDailyAmountData(GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_MONTH,GSConfig.DAY_STATS_DAY);
 
 	}
@@ -94,6 +98,7 @@ public class FragmentDailyAmount extends Fragment
 
     /**
      * 일일 입고/출고/토사 수량 조회
+	 *
 	 * @param _year				연도
 	 * @param _monthOfYear		월
 	 * @param _dayOfMonth		일
@@ -103,10 +108,8 @@ public class FragmentDailyAmount extends Fragment
 
 		String str = _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일 입출고 현황";
 
-//		Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : makeDailyAmountData() : " + str);
-		
 		if(stats_daily_date == null)
-			Log.e(AppConfig.TAG, "StatsDailyAmountFragment makeDailyAmountData stats_daily_date is null");
+			Log.e(GSConfig.APP_DEBUG, "StatsDailyAmountFragment makeDailyAmountData stats_daily_date is null");
 		
 		this.stats_daily_date.setText(str);
 
@@ -130,17 +133,15 @@ public class FragmentDailyAmount extends Fragment
 	private void setDisplayData(GSDailyInOut dio)
 	{
 
-//		Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : setDisplayData() is called.");
-
 		if(getActivity() == null)
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : Activity is null.");
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : Activity is null.");
 			return;
 		}
 
 		if (dio == null)
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : dio is null.");
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : dio is null.");
 			return;
 		}
 
@@ -212,14 +213,11 @@ public class FragmentDailyAmount extends Fragment
 
 			if(mss.equals("Fail"))
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Response is Fail.");
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Response is Fail.");
 				return null;
 			}
 
-//			Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : doInBackground() : " + mss);
-
             dio = XmlConverter.parseDaily(mss);
-//			dio.print();
 
 			return dio;
 

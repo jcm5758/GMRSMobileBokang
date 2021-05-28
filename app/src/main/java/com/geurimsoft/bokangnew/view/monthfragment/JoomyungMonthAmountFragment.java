@@ -150,13 +150,13 @@ public class JoomyungMonthAmountFragment extends Fragment
 			}
 			catch (Exception e)
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
 				return null;
 			}
 
 			if (responseMessage == null || responseMessage.equals("Fail"))
 			{
-				Log.d(AppConfig.TAG, "Returned xml is null.");
+				Log.d(GSConfig.APP_DEBUG, "Returned xml is null.");
 				return null;
 			}
 
@@ -168,7 +168,7 @@ public class JoomyungMonthAmountFragment extends Fragment
 			}
 			catch (Exception e)
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
 				return null;
 			}
 

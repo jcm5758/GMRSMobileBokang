@@ -150,7 +150,7 @@ public class JoomyungYearEnterprisePriceFragment extends Fragment
 			String message = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>YEAR_CUSTOMER_MONEY</GCType><GCQuery>" + branchID + queryDate + "</GCQuery></GEURIMSOFT>\n";
 			responseMessage = null;
 
-//			Log.d(AppConfig.TAG, "YearEnterprisePriceTask is called.");
+//			Log.d(GSConfig.APP_DEBUG, "YearEnterprisePriceTask is called.");
 
 			Socket soc = null;
 			BufferedReader in = null;
@@ -191,7 +191,7 @@ public class JoomyungYearEnterprisePriceFragment extends Fragment
 			}
 			catch (Exception e)
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
 				return null;
 			}
 
@@ -207,7 +207,7 @@ public class JoomyungYearEnterprisePriceFragment extends Fragment
 			
 			if(result == null)
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : onPostExecute() : result is null.");
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : onPostExecute() : result is null.");
 				yi_month_enterprise_price_loading_fail.setVisibility(View.VISIBLE);
 			}
 			else

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.data.GSDailyInOut;
 import com.geurimsoft.bokangnew.data.GSDailyInOutDetail;
 import com.geurimsoft.bokangnew.data.GSDailyInOutGroup;
@@ -88,7 +89,7 @@ public class StatsView
 		// 입고 리스트 미존재시 패스
 		if(this.inputList == null || this.inputList.size() <= 0)
 		{
-			Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : inputList is null.");
+			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : inputList is null.");
 			return;
 		}
 
@@ -174,7 +175,7 @@ public class StatsView
 		// 출고 데이터 미존재시 패스
 		if(this.outputList == null || this.outputList.size() <= 0)
 		{
-			Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : makeReleaseStatsView : outputList is null.");
+			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : makeReleaseStatsView : outputList is null.");
 			return;
 		}
 
@@ -260,7 +261,7 @@ public class StatsView
 		// 토사 데이터 미존재시 패스
 		if(this.slugeList == null || this.slugeList.size() <= 0)
 		{
-			Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : makePetosaStatsView : slugeList is null.");
+			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : makePetosaStatsView : slugeList is null.");
 			return;
 		}
 

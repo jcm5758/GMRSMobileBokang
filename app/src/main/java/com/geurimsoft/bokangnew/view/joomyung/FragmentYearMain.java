@@ -1,8 +1,6 @@
-package com.geurimsoft.bokangnew.view.monthfragment;
+package com.geurimsoft.bokangnew.view.joomyung;
 
 import android.app.Dialog;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -10,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerTabStrip;
 import androidx.viewpager.widget.ViewPager;
+
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,37 +20,34 @@ import android.widget.Toast;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.view.etc.MonthDatePickerDialog;
+import com.geurimsoft.bokangnew.view.etc.YearDatePickerDialog;
 import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.view.yearfragment.JoomyungYearAmountFragment;
+import com.geurimsoft.bokangnew.view.yearfragment.JoomyungYearEnterpriseAmountFragment;
+import com.geurimsoft.bokangnew.view.yearfragment.JoomyungYearEnterprisePriceFragment;
+import com.geurimsoft.bokangnew.view.yearfragment.JoomyungYearGraphFragment;
+import com.geurimsoft.bokangnew.view.yearfragment.JoomyungYearPriceFragment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class JoomyungMonthPagerFragment extends Fragment
+public class FragmentYearMain extends Fragment
 {
 	
 	private Calendar calendar = Calendar.getInstance();
-	private int currentYear, currentMonth;
+	private int currentYear;
 	
 	private PagerTabStrip statsTabStrip;
 	private ViewPager statsPager;
 	private StatsPagerAdapter statsPagerAdapter;
 	
 	private ArrayList<Fragment> fragments;
-	
-	private SharedPreferences pref;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
-
 		super.onCreate(savedInstanceState);
-		
 		this.currentYear =  calendar.get(Calendar.YEAR);
-		this.currentMonth = calendar.get(Calendar.MONTH) + 1;
-		
-		pref = getActivity().getSharedPreferences("user_account", Context.MODE_PRIVATE);
-	
 	}
 	
 	@Override
@@ -63,7 +59,6 @@ public class JoomyungMonthPagerFragment extends Fragment
 		if(GSConfig.DAY_STATS_YEAR == 0 || GSConfig.DAY_STATS_MONTH == 0 ||GSConfig.DAY_STATS_DAY == 0)
 		{
 			GSConfig.DAY_STATS_YEAR = this.currentYear;
-			GSConfig.DAY_STATS_MONTH = this.currentMonth;
 		}
 		
 		makeFragmentList();
@@ -71,7 +66,6 @@ public class JoomyungMonthPagerFragment extends Fragment
 		setHasOptionsMenu(true);
 		
 		return v;
-
 	}
 	
 	@Override
@@ -83,10 +77,10 @@ public class JoomyungMonthPagerFragment extends Fragment
 		getActivity().invalidateOptionsMenu();
 		
 		View view = this.getView();
-		
-		this.statsTabStrip = (PagerTabStrip)view.findViewById(R.id.stats_tab);
+
 		this.statsPager = (ViewPager)view.findViewById(R.id.stats_pager);
-		
+
+		this.statsTabStrip = (PagerTabStrip)view.findViewById(R.id.stats_tab);
 		this.statsTabStrip.setDrawFullUnderline(false);
 		this.statsTabStrip.setTabIndicatorColor(Color.WHITE);
 		this.statsTabStrip.setBackgroundColor(Color.GRAY);
@@ -100,17 +94,18 @@ public class JoomyungMonthPagerFragment extends Fragment
 		this.statsPager.setAdapter(statsPagerAdapter);
 
 	}
-
+	
+	
 	private void makeFragmentList()
 	{
 		
 		fragments = new ArrayList<Fragment>();
 		
-		fragments.add(new JoomyungMonthAmountFragment());
-		fragments.add(new JoomyungMonthPriceFragment());
-		fragments.add(new JoomyungMonthEnterpriseAmountFragment());
-		fragments.add(new JoomyungMonthEnterprisePriceFragment());
-		fragments.add(new JoomyungMonthGraphFragment());
+		fragments.add(new JoomyungYearAmountFragment());
+		fragments.add(new JoomyungYearPriceFragment());
+		fragments.add(new JoomyungYearEnterpriseAmountFragment());
+		fragments.add(new JoomyungYearEnterprisePriceFragment());
+		fragments.add(new JoomyungYearGraphFragment());
 
 	}
 	
@@ -129,33 +124,20 @@ public class JoomyungMonthPagerFragment extends Fragment
 
 		 	case R.id.stats_change_date_menu:
 		    	   
-		 		MonthDatePickerDialog monthDatePickerDialog = new MonthDatePickerDialog(getActivity(), GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_YEAR+10,  GSConfig.DAY_STATS_MONTH, new MonthDatePickerDialog.DialogListner() {
+		 		YearDatePickerDialog yearDatePickerDialog = new YearDatePickerDialog(getActivity(), GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_YEAR+10, new YearDatePickerDialog.DialogListner() {
 					
 					@Override
-					public void OnConfirmButton(Dialog dialog, int selectYear, int selectMonth) {
+					public void OnConfirmButton(Dialog dialog, int selectYear) {
 
 						if(AppConfig.LIMIT_YEAR > selectYear || selectYear > currentYear)
 						{
 							Toast.makeText(getActivity(), getString(R.string.change_date_year_error), Toast.LENGTH_SHORT).show();
 							return;
 						} 
-						
-						if(AppConfig.LIMIT_YEAR == selectYear && AppConfig.LIMIT_MONTH > selectMonth )
-						{
-							Toast.makeText(getActivity(), getString(R.string.change_date_month_error), Toast.LENGTH_SHORT).show();
-							return;
-						}
-						
-						if( currentYear == selectYear  && selectMonth > currentMonth )
-						{
-							Toast.makeText(getActivity(), getString(R.string.change_date_month_error), Toast.LENGTH_SHORT).show();
-							return;
-						}
 
-						if(GSConfig.DAY_STATS_YEAR != selectYear || GSConfig.DAY_STATS_MONTH != selectMonth)
+						if(GSConfig.DAY_STATS_YEAR != selectYear)
 						{
 							GSConfig.DAY_STATS_YEAR = selectYear;
-							GSConfig.DAY_STATS_MONTH = selectMonth;
 							statsPagerAdapter.notifyDataSetChanged();
 						}
 						
@@ -164,8 +146,8 @@ public class JoomyungMonthPagerFragment extends Fragment
 					}
 				});
 
-		 		monthDatePickerDialog.show();
-		 		
+		 		yearDatePickerDialog.show();
+
 		 		return true;
 
 		 	default:
@@ -179,11 +161,11 @@ public class JoomyungMonthPagerFragment extends Fragment
 	{
 
 		private final String[] TITLES;
-		
+
 		public StatsPagerAdapter(FragmentManager fm)
 		{
 			super(fm);
-			TITLES = getResources().getStringArray(R.array.stats_month_tab_array1);
+			TITLES = getResources().getStringArray(R.array.stats_year_tab_array1);
 		}
 
 		@Override
@@ -206,9 +188,7 @@ public class JoomyungMonthPagerFragment extends Fragment
 		@Override
 		public Fragment getItem(int position)
 		{
-			Fragment newFragment = null;
-			newFragment =  fragments.get(position);
-			return newFragment;
+			return fragments.get(position);
 		}
 
 		@Override

@@ -29,11 +29,11 @@ public class XmlConverter
 
 			if (json == null || json.equals(""))
 			{
-				Log.d(AppConfig.TAG, "XmlConverter.parseUserInfo() : Returned JSON is null");
+				Log.d(GSConfig.APP_DEBUG, "XmlConverter.parseUserInfo() : Returned JSON is null");
 				return null;
 			}
 
-//			Log.d(AppConfig.TAG, json);
+//			Log.d(GSConfig.APP_DEBUG, json);
 
 			GSUser user = new GSUser();
 			List<GSBranch> branchList = new ArrayList();
@@ -64,7 +64,7 @@ public class XmlConverter
 
 			}
 
-//			Log.d(AppConfig.TAG, "Size of branchList : " + branchList.size());
+//			Log.d(GSConfig.APP_DEBUG, "Size of branchList : " + branchList.size());
 
 			user.setBranchList(branchList);
 
@@ -73,7 +73,7 @@ public class XmlConverter
 		}
 		catch(Exception ex)
 		{
-			Log.e(AppConfig.TAG, "XmlConverter.parseUserInfo() : " + ex.toString());
+			Log.e(GSConfig.APP_DEBUG, "XmlConverter.parseUserInfo() : " + ex.toString());
 			return null;
 		}
 		
@@ -91,11 +91,11 @@ public class XmlConverter
 
 		if (xml == null || xml.equals(""))
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + XmlConverter.class.getName() + " : parseDaily() : XML is null.");
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + XmlConverter.class.getName() + " : parseDaily() : XML is null.");
 			return null;
 		}
 
-//		Log.d(AppConfig.TAG, "DEBUGGING : " + XmlConverter.class.getName() + " : parseDaily() : XML : " + xml);
+//		Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + XmlConverter.class.getName() + " : parseDaily() : XML : " + xml);
 
 		Gson gson = new Gson();
 
@@ -103,11 +103,11 @@ public class XmlConverter
 
 		if (diog == null)
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + XmlConverter.class.getName() + " : parseDaily() : dio is null.");
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + XmlConverter.class.getName() + " : parseDaily() : dio is null.");
 			return null;
 		}
 
-//		Log.d(AppConfig.TAG, "DEBUGGING : " + XmlConverter.class.getName() + " : parseDaily() : Length of dio : " + diog.length);
+//		Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + XmlConverter.class.getName() + " : parseDaily() : Length of dio : " + diog.length);
 
 		dio.list = new ArrayList<>(Arrays.asList(diog));
 
@@ -123,15 +123,15 @@ public class XmlConverter
 	public static GSMonthInOut parseMonth(String xml)
 	{
 
-//		Log.d(AppConfig.TAG, "DEBUGGING : " + XmlConverter.class.getName() + " : parseMonth() is called.");
+//		Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + XmlConverter.class.getName() + " : parseMonth() is called.");
 
 		if (xml == null || xml.equals(""))
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + XmlConverter.class.getName() + " : parseMonth() : XML is null.");
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + XmlConverter.class.getName() + " : parseMonth() : XML is null.");
 			return null;
 		}
 
-//		Log.d(AppConfig.TAG, "DEBUGGING : " + XmlConverter.class.getName() + " : parseMonth() : XML : " + xml);
+//		Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + XmlConverter.class.getName() + " : parseMonth() : XML : " + xml);
 
 		Gson gson = new Gson();
 
@@ -139,7 +139,7 @@ public class XmlConverter
 
 		if (data == null)
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + XmlConverter.class.getName() + " : parseMonth() : dio is null.");
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + XmlConverter.class.getName() + " : parseMonth() : dio is null.");
 			return null;
 		}
 

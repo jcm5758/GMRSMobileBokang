@@ -35,14 +35,17 @@ import java.util.Calendar;
 
 public class FragmentDailyMain extends Fragment
 {
-	
+
+	// 날짜 관련
 	private Calendar calendar = Calendar.getInstance();
 	private int currentYear, currentMonth, currentDay;
-	
+
+	// 슬라이딩 구현용
 	private PagerTabStrip statsTabStrip;
 	private ViewPager statsPager;
 	private StatsPagerAdapter statsPagerAdapter;
-	
+
+	// 세부 프로그먼트
 	private ArrayList<Fragment> fragments;
 	
 	@Override
@@ -50,7 +53,8 @@ public class FragmentDailyMain extends Fragment
 	{
 
 		super.onCreate(savedInstanceState);
-		
+
+		// 현재 연월일 찾기
 		this.currentYear =  calendar.get(Calendar.YEAR);
 		this.currentMonth = calendar.get(Calendar.MONTH) + 1;
 		this.currentDay = calendar.get(Calendar.DAY_OF_MONTH);
@@ -63,6 +67,7 @@ public class FragmentDailyMain extends Fragment
 
 		View v = inflater.inflate(R.layout.stats_pager_layout, container, false);
 
+		// 전역변수에 날짜 정보 지정
 		if(GSConfig.DAY_STATS_YEAR == 0 || GSConfig.DAY_STATS_MONTH == 0 || GSConfig.DAY_STATS_DAY == 0)
 		{
 			GSConfig.DAY_STATS_YEAR = this.currentYear;
@@ -70,8 +75,10 @@ public class FragmentDailyMain extends Fragment
 			GSConfig.DAY_STATS_DAY = this.currentDay;
 		}
 
+		// 프래그먼트 리스트 생성
 		makeFragmentList();
-		
+
+		// 메뉴 설정
 		setHasOptionsMenu(true);
 		
 		return v;
@@ -105,6 +112,10 @@ public class FragmentDailyMain extends Fragment
 
 	}
 
+	/**
+	 * 프래그먼트 리스트 만들기
+	 * 일보 수량, 금액
+	 */
 	private void makeFragmentList()
 	{
 		

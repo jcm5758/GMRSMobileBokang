@@ -38,7 +38,7 @@ public class GSDailyInOut
     public void print()
     {
 
-        Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : Size of list : " + this.list.size());
+        Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : Size of list : " + this.list.size());
 
         for(GSDailyInOutGroup group : this.list)
         {

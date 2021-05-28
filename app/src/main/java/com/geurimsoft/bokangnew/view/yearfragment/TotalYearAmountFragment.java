@@ -135,14 +135,14 @@ private void setDisplay(StatsListData statsListData) {
 				responseMessage = sc.getReturnString();
 
 			} catch (Exception e) {
-				Log.e(AppConfig.TAG, "StatViewDetailDaily.makeDailyData() : " + e.toString());
+				Log.e(GSConfig.APP_DEBUG, "StatViewDetailDaily.makeDailyData() : " + e.toString());
 				return null;
 			}
 
 			StatsListData data = null;
 			
 			if (responseMessage == null || responseMessage.equals("Fail")) {
-				Log.d(AppConfig.TAG, "Returned xml is null.");
+				Log.d(GSConfig.APP_DEBUG, "Returned xml is null.");
 				return data;
 			}
 			

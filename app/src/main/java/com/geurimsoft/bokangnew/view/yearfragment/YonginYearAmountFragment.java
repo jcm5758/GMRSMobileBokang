@@ -136,14 +136,14 @@ public class YonginYearAmountFragment extends Fragment{
 				responseMessage = sc.getReturnString();
 
 			} catch (Exception e) {
-				Log.e(AppConfig.TAG, "StatViewDetailDaily.doInBackground() : " + e.toString());
+				Log.e(GSConfig.APP_DEBUG, "StatViewDetailDaily.doInBackground() : " + e.toString());
 				return null;
 			}
 
 			StatsListData data = null;
 			
 			if (responseMessage == null || responseMessage.equals("Fail")) {
-				Log.d(AppConfig.TAG, "Returned xml is null.");
+				Log.d(GSConfig.APP_DEBUG, "Returned xml is null.");
 				return data;
 			}
 			

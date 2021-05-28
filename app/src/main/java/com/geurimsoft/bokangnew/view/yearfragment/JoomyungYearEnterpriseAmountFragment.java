@@ -97,7 +97,7 @@ public class JoomyungYearEnterpriseAmountFragment extends Fragment
 
 		if (data == null || data.list == null)
 		{
-			Log.d(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : setDisplay() is data is null.");
+			Log.d(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplay() is data is null.");
 			return;
 		}
 
@@ -137,7 +137,7 @@ public class JoomyungYearEnterpriseAmountFragment extends Fragment
 		}
 		catch(Exception ex)
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : setDisplay() : " + ex.toString());
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplay() : " + ex.toString());
 			return;
 		}
 
@@ -171,7 +171,7 @@ public class JoomyungYearEnterpriseAmountFragment extends Fragment
 			String message = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>YEAR_CUSTOMER_UNIT</GCType><GCQuery>" + department + queryDate + "</GCQuery></GEURIMSOFT>\n";
 			responseMessage = null;
 
-//			Log.d(AppConfig.TAG, "YearEnterpriseAmountTask is called.");
+//			Log.d(GSConfig.APP_DEBUG, "YearEnterpriseAmountTask is called.");
 
 			Socket soc = null;
 			BufferedReader in = null;
@@ -212,7 +212,7 @@ public class JoomyungYearEnterpriseAmountFragment extends Fragment
 			}
 			catch (Exception e)
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
 				return null;
 			}
 
@@ -228,7 +228,7 @@ public class JoomyungYearEnterpriseAmountFragment extends Fragment
 			
 			if(result == null)
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : onPostExecute() : result is null.");
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : onPostExecute() : result is null.");
 				yi_month_enterprise_amount_loading_fail.setVisibility(View.VISIBLE);
 			}
 			else

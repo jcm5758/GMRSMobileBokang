@@ -109,7 +109,7 @@ public class JoomyungYearAmountFragment extends Fragment
 		}
 		catch(Exception ex)
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : setDisplay() : " + ex.toString());
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplay() : " + ex.toString());
 			return;
 		}
 
@@ -154,13 +154,13 @@ public class JoomyungYearAmountFragment extends Fragment
 			}
 			catch (Exception e)
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
 				return null;
 			}
 
 			if (responseMessage == null || responseMessage.equals("Fail"))
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Returend XML is null.");
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Returend XML is null.");
 				return null;
 			}
 
@@ -172,7 +172,7 @@ public class JoomyungYearAmountFragment extends Fragment
 			}
 			catch (Exception e)
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
 			}
 
 			return data;

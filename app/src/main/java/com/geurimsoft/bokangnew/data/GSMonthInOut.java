@@ -91,7 +91,7 @@ public class GSMonthInOut {
         }
         catch(Exception ex)
         {
-            Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : getMonthChartData() : " + ex.toString());
+            Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : getMonthChartData() : " + ex.toString());
             return null;
         }
 

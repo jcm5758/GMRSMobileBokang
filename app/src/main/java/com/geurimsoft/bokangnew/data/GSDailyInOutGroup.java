@@ -75,13 +75,13 @@ public class GSDailyInOutGroup
     public void print()
     {
 
-        Log.d(AppConfig.TAG, "ServiceType : " + this.serviceType);
-        Log.d(AppConfig.TAG, "recordCount : " + this.recordCount);
-        Log.d(AppConfig.TAG, "headerCount : " + this.headerCount);
-        Log.d(AppConfig.TAG, "totalCount : " + this.totalCount);
-        Log.d(AppConfig.TAG, "totalUnit : " + this.totalUnit);
+        Log.d(GSConfig.APP_DEBUG, "ServiceType : " + this.serviceType);
+        Log.d(GSConfig.APP_DEBUG, "recordCount : " + this.recordCount);
+        Log.d(GSConfig.APP_DEBUG, "headerCount : " + this.headerCount);
+        Log.d(GSConfig.APP_DEBUG, "totalCount : " + this.totalCount);
+        Log.d(GSConfig.APP_DEBUG, "totalUnit : " + this.totalUnit);
 
-        Log.d(AppConfig.TAG, "Size of list : " + this.list.size());
+        Log.d(GSConfig.APP_DEBUG, "Size of list : " + this.list.size());
 
         for(GSDailyInOutDetail detail : this.list)
         {

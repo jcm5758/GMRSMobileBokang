@@ -57,12 +57,12 @@ public class GSDailyInOutDetail
     public void print()
     {
 
-        Log.d(AppConfig.TAG, "customerName : " + this.customerName);
-        Log.d(AppConfig.TAG, "valueSize : " + this.valueSize);
+        Log.d(GSConfig.APP_DEBUG, "customerName : " + this.customerName);
+        Log.d(GSConfig.APP_DEBUG, "valueSize : " + this.valueSize);
 
         for(double value : this.values)
         {
-            Log.d(AppConfig.TAG, "valueSize : " + value);
+            Log.d(GSConfig.APP_DEBUG, "valueSize : " + value);
         }
 
     }

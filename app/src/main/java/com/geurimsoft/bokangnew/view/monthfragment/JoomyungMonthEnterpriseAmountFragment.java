@@ -98,7 +98,7 @@ public class JoomyungMonthEnterpriseAmountFragment extends Fragment
 
 		if (data == null)
 		{
-			Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : setDisplay() is data is null.");
+			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : setDisplay() is data is null.");
 			return;
 		}
 
@@ -129,7 +129,7 @@ public class JoomyungMonthEnterpriseAmountFragment extends Fragment
 		}
 		catch(Exception ex)
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : setDisplay() : " + ex.toString());
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplay() : " + ex.toString());
 			return;
 		}
 
@@ -176,13 +176,13 @@ public class JoomyungMonthEnterpriseAmountFragment extends Fragment
 			}
 			catch (Exception e)
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
 				return null;
 			}
 
 			if (responseMessage == null || responseMessage.equals("Fail"))
 			{
-				Log.d(AppConfig.TAG, "Returned xml is null.");
+				Log.d(GSConfig.APP_DEBUG, "Returned xml is null.");
 				return null;
 			}
 
@@ -194,7 +194,7 @@ public class JoomyungMonthEnterpriseAmountFragment extends Fragment
 			}
 			catch (Exception e)
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
 				return null;
 			}
 

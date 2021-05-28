@@ -134,7 +134,7 @@ public class GSDataStatisticYearChart
 		}
 		catch(Exception ex)
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : makeChart() : " + ex.toString());
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : makeChart() : " + ex.toString());
 			return;
 		}
 

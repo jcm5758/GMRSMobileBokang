@@ -92,16 +92,21 @@ public class FragmentDailyPrice extends Fragment
 		super.onPause();
 		dailyPriceTask.cancel(true);
 	}
-	
+
+	/**
+	 * 일보 금액 조회
+	 *
+	 * @param _year 연도
+	 * @param _monthOfYear 월
+	 * @param _dayOfMonth 일
+	 */
 	public void makeDailyPriceData(int _year, int _monthOfYear, int _dayOfMonth)
 	{
 		
 		String str = _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일 입출고 현황";
 
-//		Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : makeDailyAmountData() : " + str);
-
 		if(stats_daily_date == null)
-			Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : makeDailyPriceData : stats_daily_date is null");
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : makeDailyPriceData : stats_daily_date is null");
 
 		this.stats_daily_date.setText(str);
 
@@ -121,21 +126,24 @@ public class FragmentDailyPrice extends Fragment
 		dailyPriceTask.execute();
 		
 	}
-	
+
+	/**
+	 * 검색 결과로 채우기
+	 *
+	 * @param dio 입출고 내역
+	 */
 	private void setDisplayData(GSDailyInOut dio)
 	{
 
-//		Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : setDisplayData() is called.");
-
 		if(getActivity() == null)
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : Activity is null.");
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : Activity is null.");
 			return;
 		}
 
 		if (dio == null)
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : dio is null.");
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : dio is null.");
 			return;
 		}
 		
@@ -210,7 +218,7 @@ public class FragmentDailyPrice extends Fragment
 
 			if(mss.equals("Fail"))
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Response is Fail.");
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Response is Fail.");
 				return null;
 			}
 

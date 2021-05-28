@@ -58,7 +58,7 @@ public class YonginDailyAmountFragment extends Fragment
 		View view = this.getView();
 
 		if(view == null)
-			Log.e(AppConfig.TAG, "StatsDailyAmountFragment onResume View is null");
+			Log.e(GSConfig.APP_DEBUG, "StatsDailyAmountFragment onResume View is null");
 		
 		this.income_empty_layout = (LinearLayout)view.findViewById(R.id.income_empty_layout);
 		this.release_empty_layout = (LinearLayout)view.findViewById(R.id.release_empty_layout);
@@ -97,10 +97,10 @@ public class YonginDailyAmountFragment extends Fragment
 
 		String str = _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일 입출고 현황";
 
-		Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : makeDailyAmountData() : " + str);
+		Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : makeDailyAmountData() : " + str);
 		
 		if(stats_daily_date == null)
-			Log.e(AppConfig.TAG, "StatsDailyAmountFragment makeDailyAmountData stats_daily_date is null");
+			Log.e(GSConfig.APP_DEBUG, "StatsDailyAmountFragment makeDailyAmountData stats_daily_date is null");
 		
 		this.stats_daily_date.setText(str);
 
@@ -124,17 +124,17 @@ public class YonginDailyAmountFragment extends Fragment
 	private void setDisplayData(GSDailyInOut dio)
 	{
 
-		Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : setDisplayData() is called.");
+		Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : setDisplayData() is called.");
 
 		if(getActivity() == null)
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : Activity is null.");
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : Activity is null.");
 			return;
 		}
 
 		if (dio == null)
 		{
-			Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : dio is null.");
+			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : dio is null.");
 			return;
 		}
 
@@ -206,11 +206,11 @@ public class YonginDailyAmountFragment extends Fragment
 
 			if(mss.equals("Fail"))
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Response is Fail.");
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Response is Fail.");
 				return null;
 			}
 
-//			Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : doInBackground() : " + mss);
+//			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : doInBackground() : " + mss);
 
             dio = XmlConverter.parseDaily(mss);
 			//dio.print();

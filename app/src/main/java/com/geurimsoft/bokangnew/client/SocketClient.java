@@ -7,7 +7,8 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 import com.geurimsoft.bokangnew.conf.AppConfig;
- 
+import com.geurimsoft.bokangnew.data.GSConfig;
+
 import android.util.Log;
 
 public class SocketClient extends Thread
@@ -44,7 +45,7 @@ public class SocketClient extends Thread
 	private void connect()
 	{
 	
-//		Log.d(AppConfig.TAG, "connect() is called.");
+//		Log.d(GSConfig.APP_DEBUG, "connect() is called.");
 		
 		Socket soc = null;
 		BufferedReader in = null;
@@ -83,7 +84,7 @@ public class SocketClient extends Thread
 		}
 		catch (Exception ex)
 		{
-			Log.d(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : connect() : " + ex.toString());
+			Log.d(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : connect() : " + ex.toString());
 			return;
 		}
 		

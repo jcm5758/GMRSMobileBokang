@@ -28,6 +28,7 @@ import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.data.StAdapter;
 import com.geurimsoft.bokangnew.data.XmlConverter;
 import com.geurimsoft.bokangnew.data.GSDailyInOutDetail;
@@ -80,7 +81,7 @@ public class EnterpriseMonthStatsView
 
 			if (group == null)
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : makeStatsView() : group is null.");
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : makeStatsView() : group is null.");
 				return;
 			}
 
@@ -91,7 +92,7 @@ public class EnterpriseMonthStatsView
 
 			if(detailList == null || detailList.size() == 0)
 			{
-				Log.d(AppConfig.TAG, "DEBUGGING : " + this.getClass().getName() + " : makeStatsView() : detailList is null.");
+				Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : makeStatsView() : detailList is null.");
 				return;
 			}
 
@@ -187,7 +188,7 @@ public class EnterpriseMonthStatsView
 		}
 		catch(Exception ex)
 		{
-			Log.d(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : setDisplay() : " + ex.toString());
+			Log.d(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplay() : " + ex.toString());
 			return;
 		}
 
@@ -302,13 +303,13 @@ public class EnterpriseMonthStatsView
 			}
 			catch (Exception e)
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
 				return null;
 			}
 
 			if (responseMessage == null || responseMessage.equals("Fail"))
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Returned XML is null.");
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Returned XML is null.");
 				return null;
 			}
 			
@@ -320,7 +321,7 @@ public class EnterpriseMonthStatsView
 			}
 			catch (Exception e)
 			{
-				Log.e(AppConfig.TAG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
+				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
 				return null;
 			}
 
