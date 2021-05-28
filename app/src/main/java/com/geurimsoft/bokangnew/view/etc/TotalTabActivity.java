@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.geurimsoft.bokangnew.R;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.dailyfragment.TotalDailyPagerFragment;
 import com.geurimsoft.bokangnew.view.monthfragment.TotalMonthPagerFragment;
 import com.geurimsoft.bokangnew.view.yearfragment.TotalYearPagerFragment;
@@ -35,9 +36,9 @@ public class TotalTabActivity extends FragmentActivity {
 		
 		AppConfig.activities.add(TotalTabActivity.this);
 		
-		AppConfig.DAY_STATS_YEAR = 0;
-		AppConfig.DAY_STATS_MONTH = 0;
-		AppConfig.DAY_STATS_DAY = 0;
+		GSConfig.DAY_STATS_YEAR = 0;
+		GSConfig.DAY_STATS_MONTH = 0;
+		GSConfig.DAY_STATS_DAY = 0;
 		
 		preferences = getSharedPreferences("user_account", Context.MODE_PRIVATE);
 		

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.geurimsoft.bokangnew.R;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.etc.StatsView;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.XmlConverter;
@@ -73,7 +74,7 @@ public class YonginDailyPriceFragment extends Fragment
 		this.daily_release_title = (TextView) view.findViewById(R.id.daily_release_title);
 		this.daily_petosa_title = (TextView) view.findViewById(R.id.daily_petosa_title);
 		
-		makeDailyPriceData(AppConfig.DAY_STATS_YEAR, AppConfig.DAY_STATS_MONTH, AppConfig.DAY_STATS_DAY);
+		makeDailyPriceData(GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_MONTH,GSConfig.DAY_STATS_DAY);
 
 	}
 	

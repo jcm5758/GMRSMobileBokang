@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.etc.StatsHeaderAndFooterView;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.StAdapter;
@@ -61,7 +62,7 @@ public class JoomyungYearPriceFragment extends Fragment
 		
 		this.yi_year_price_listview.setDividerHeight(0);
 		
-		makeYearPriceData(AppConfig.DAY_STATS_YEAR);
+		makeYearPriceData(GSConfig.DAY_STATS_YEAR);
 
 	}
 	

@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.etc.StatsView;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.XmlConverter;
@@ -74,7 +75,7 @@ public class YonginDailyAmountFragment extends Fragment
 
 		// 일일 입고/출고/토사 수량 조회
 		// 연/월/일
-		makeDailyAmountData(AppConfig.DAY_STATS_YEAR, AppConfig.DAY_STATS_MONTH, AppConfig.DAY_STATS_DAY);
+		makeDailyAmountData(GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_MONTH,GSConfig.DAY_STATS_DAY);
 
 	}
 	

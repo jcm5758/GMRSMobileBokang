@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.data.StatsData;
 import com.geurimsoft.bokangnew.client.SocketClient;
 
@@ -62,7 +63,7 @@ public class GwangjuMonthEnterprisePriceFragment extends Fragment{
 		this.gj_month_enterprise_price_petosa_title = (TextView)view.findViewById(R.id.gj_month_enterprise_price_petosa_title);
 		
 		
-		makeMonthEnterprisepriceData(AppConfig.DAY_STATS_YEAR, AppConfig.DAY_STATS_MONTH);
+		makeMonthEnterprisepriceData(GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_MONTH);
 	}
 	
 	@Override

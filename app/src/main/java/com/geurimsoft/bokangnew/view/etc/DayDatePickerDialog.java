@@ -17,6 +17,7 @@ import com.geurimsoft.bokangnew.conf.AppConfig;
 public class DayDatePickerDialog extends Dialog implements OnClickListener{
 
 	private DayWheelDatePicker dayWheelDatePicker;
+
 	private int currentYear;
 	private int currentMonth;
 	private int currentDay;
@@ -32,9 +33,9 @@ public class DayDatePickerDialog extends Dialog implements OnClickListener{
 	private int maxYear;
 	
 	public DayDatePickerDialog(Context context, int _currentYear, int _maxYear, int _currentMonth, int _currentDay, DialogListner _dialogListner) {
+
 		super(context);
-		// TODO Auto-generated constructor stub
-		
+
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
 		setContentView(R.layout.day_datepicker_dialog);
@@ -58,12 +59,13 @@ public class DayDatePickerDialog extends Dialog implements OnClickListener{
 		
 	}
 	
-	private void setInterface() {
+	private void setInterface()
+	{
+
 		this.confirm_button = (Button)findViewById(R.id.confirm_button);
 		this.confirm_button.setOnClickListener(this);
-		
-		this.dayWheelDatePicker =  (DayWheelDatePicker)findViewById(R.id.day_datepicker);
-		
+
+		this.dayWheelDatePicker = (DayWheelDatePicker)findViewById(R.id.day_datepicker);
 		this.dayWheelDatePicker.setVisibleItems(8);
 		this.dayWheelDatePicker.setMinMaxYears(AppConfig.LIMIT_YEAR, maxYear);
 		
@@ -77,29 +79,30 @@ public class DayDatePickerDialog extends Dialog implements OnClickListener{
 		
 		this.dayWheelDatePicker.addDateChangedListener(new DayWheelDatePicker.IDateChangedListener() {
 
-
 			@Override
 			public void onChanged(DayWheelDatePicker sender, int oldDay, int oldMonth, int oldYear, int day, int month, int year) {
-				// TODO Auto-generated method stub
+
 				selectYear = year;
 				selectMonth = month;
 				selectDay = day;
 			}
 		});
+
 	}
+
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+
 		switch(v.getId()) {
-		case R.id.confirm_button :
-			dialogListner.OnConfirmButton(DayDatePickerDialog.this, selectYear, selectMonth, selectDay);
-			break;
-//			
+			case R.id.confirm_button :
+				dialogListner.OnConfirmButton(DayDatePickerDialog.this, selectYear, selectMonth, selectDay);
+				break;
 		}
+
 	}
 	
 	public interface DialogListner {
 		public void OnConfirmButton(Dialog dialog, int selectYear, int selectMonth, int selectDay);
-
 	}
+
 }

@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.data.XmlConverter;
 import com.geurimsoft.bokangnew.data.GSDataStatisticYearChart;
 import com.geurimsoft.bokangnew.data.GSMonthInOut;
@@ -55,7 +56,7 @@ public class JoomyungYearGraphFragment extends Fragment
 		this.stats_year_graph_loading_indicator = (LinearLayout)view.findViewById(R.id.chart_loading_indicator);
 		this.stats_year_graph_loading_fail = (LinearLayout)view.findViewById(R.id.chart_loading_fail);
 
-		makeYearGraphData(AppConfig.DAY_STATS_YEAR);
+		makeYearGraphData(GSConfig.DAY_STATS_YEAR);
 
 	}
 	

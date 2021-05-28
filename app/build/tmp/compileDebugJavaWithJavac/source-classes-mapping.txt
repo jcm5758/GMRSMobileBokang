@@ -2,15 +2,12 @@ com/geurimsoft/bokangnew/data/Customer.java
  com.geurimsoft.bokangnew.data.Customer
 com/geurimsoft/bokangnew/chart/IDemoChart.java
  com.geurimsoft.bokangnew.chart.IDemoChart
-com/geurimsoft/bokangnew/view/dailyfragment/JoomyungDailyPagerFragment.java
- com.geurimsoft.bokangnew.view.dailyfragment.JoomyungDailyPagerFragment
- com.geurimsoft.bokangnew.view.dailyfragment.JoomyungDailyPagerFragment$1
- com.geurimsoft.bokangnew.view.dailyfragment.JoomyungDailyPagerFragment$StatsPagerAdapter
 com/geurimsoft/bokangnew/view/dailyfragment/GwangjuDailyPriceFragment.java
  com.geurimsoft.bokangnew.view.dailyfragment.GwangjuDailyPriceFragment
  com.geurimsoft.bokangnew.view.dailyfragment.GwangjuDailyPriceFragment$DailyPriceTask
-com/geurimsoft/bokangnew/apiserver/data/UserRightData.java
- com.geurimsoft.bokangnew.apiserver.data.UserRightData
+com/geurimsoft/bokangnew/view/joomyung/ActivityMain.java
+ com.geurimsoft.bokangnew.view.joomyung.ActivityMain
+ com.geurimsoft.bokangnew.view.joomyung.ActivityMain$1
 com/geurimsoft/bokangnew/dialog/ApiReconnectDialog.java
  com.geurimsoft.bokangnew.dialog.ApiReconnectDialog
  com.geurimsoft.bokangnew.dialog.ApiReconnectDialog$1
@@ -92,11 +89,9 @@ com/geurimsoft/bokangnew/data/toDay.java
  com.geurimsoft.bokangnew.data.toDay
 com/geurimsoft/bokangnew/data/StatsListData.java
  com.geurimsoft.bokangnew.data.StatsListData
-com/geurimsoft/bokangnew/view/dailyfragment/JoomyungDailyPriceFragment.java
- com.geurimsoft.bokangnew.view.dailyfragment.JoomyungDailyPriceFragment
- com.geurimsoft.bokangnew.view.dailyfragment.JoomyungDailyPriceFragment$DailyPriceTask
-com/geurimsoft/bokangnew/apiserver/data/UserInfo.java
- com.geurimsoft.bokangnew.apiserver.data.UserInfo
+com/geurimsoft/bokangnew/view/monthfragment/JoomyungMonthEnterpriseAmountFragment.java
+ com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthEnterpriseAmountFragment
+ com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthEnterpriseAmountFragment$MonthEnterpriseAmountTask
 com/geurimsoft/bokangnew/widget/WheelView.java
  com.geurimsoft.bokangnew.widget.WheelView
  com.geurimsoft.bokangnew.widget.WheelView$1
@@ -130,14 +125,8 @@ com/geurimsoft/bokangnew/data/GSDataStatisticYearChart.java
 com/geurimsoft/bokangnew/view/dailyfragment/YonginDailyAmountFragment.java
  com.geurimsoft.bokangnew.view.dailyfragment.YonginDailyAmountFragment
  com.geurimsoft.bokangnew.view.dailyfragment.YonginDailyAmountFragment$DailyAmountTask
-com/geurimsoft/bokangnew/AppMain.java
- com.geurimsoft.bokangnew.AppMain
- com.geurimsoft.bokangnew.AppMain$1
- com.geurimsoft.bokangnew.AppMain$2
- com.geurimsoft.bokangnew.AppMain$3
- com.geurimsoft.bokangnew.AppMain$4
- com.geurimsoft.bokangnew.AppMain$5
- com.geurimsoft.bokangnew.AppMain$VersionCheckTask
+com/geurimsoft/bokangnew/data/StatsTotalData.java
+ com.geurimsoft.bokangnew.data.StatsTotalData
 com/geurimsoft/bokangnew/view/monthfragment/JoomyungMonthPriceFragment.java
  com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthPriceFragment
  com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthPriceFragment$MonthPriceTask
@@ -240,9 +229,6 @@ com/geurimsoft/bokangnew/data/DownloadInterface.java
  com.geurimsoft.bokangnew.data.DownloadInterface
 com/geurimsoft/bokangnew/view/ViewPagerAdapter.java
  com.geurimsoft.bokangnew.view.ViewPagerAdapter
-com/geurimsoft/bokangnew/view/dailyfragment/JoomyungDailyAmountFragment.java
- com.geurimsoft.bokangnew.view.dailyfragment.JoomyungDailyAmountFragment
- com.geurimsoft.bokangnew.view.dailyfragment.JoomyungDailyAmountFragment$DailyAmountTask
 com/geurimsoft/bokangnew/apiserver/data/UserInfoData.java
  com.geurimsoft.bokangnew.apiserver.data.UserInfoData
 com/geurimsoft/bokangnew/view/yearfragment/JoomyungYearPriceFragment.java
@@ -301,6 +287,13 @@ com/geurimsoft/bokangnew/view/etc/StatsHeaderAndFooterView.java
 com/geurimsoft/bokangnew/view/yearfragment/TotalYearPriceFragment.java
  com.geurimsoft.bokangnew.view.yearfragment.TotalYearPriceFragment
  com.geurimsoft.bokangnew.view.yearfragment.TotalYearPriceFragment$YearPriceTask
+com/geurimsoft/bokangnew/view/joomyung/FragmentDailyPrice.java
+ com.geurimsoft.bokangnew.view.joomyung.FragmentDailyPrice
+ com.geurimsoft.bokangnew.view.joomyung.FragmentDailyPrice$DailyPriceTask
+com/geurimsoft/bokangnew/view/joomyung/FragmentDailyMain.java
+ com.geurimsoft.bokangnew.view.joomyung.FragmentDailyMain
+ com.geurimsoft.bokangnew.view.joomyung.FragmentDailyMain$1
+ com.geurimsoft.bokangnew.view.joomyung.FragmentDailyMain$StatsPagerAdapter
 com/geurimsoft/bokangnew/view/monthfragment/YonginMonthEnterpriseAmountFragment.java
  com.geurimsoft.bokangnew.view.monthfragment.YonginMonthEnterpriseAmountFragment
  com.geurimsoft.bokangnew.view.monthfragment.YonginMonthEnterpriseAmountFragment$MonthEnterpriseAmountTask
@@ -323,6 +316,9 @@ com/geurimsoft/bokangnew/view/etc/EnterpriseYearStatsView.java
  com.geurimsoft.bokangnew.view.etc.EnterpriseYearStatsView$EnterpriseDetailTask
 com/geurimsoft/bokangnew/chart/GChart01.java
  com.geurimsoft.bokangnew.chart.GChart01
+com/geurimsoft/bokangnew/view/joomyung/FragmentDailyAmount.java
+ com.geurimsoft.bokangnew.view.joomyung.FragmentDailyAmount
+ com.geurimsoft.bokangnew.view.joomyung.FragmentDailyAmount$DailyAmountTask
 com/geurimsoft/bokangnew/view/yearfragment/GwangjuYearAmountFragment.java
  com.geurimsoft.bokangnew.view.yearfragment.GwangjuYearAmountFragment
  com.geurimsoft.bokangnew.view.yearfragment.GwangjuYearAmountFragment$YearAmountTask
@@ -385,12 +381,17 @@ com/geurimsoft/bokangnew/view/yearfragment/JoomyungYearEnterpriseAmountFragment.
 com/geurimsoft/bokangnew/view/monthfragment/JoomyungMonthEnterprisePriceFragment.java
  com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthEnterprisePriceFragment
  com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthEnterprisePriceFragment$MonthEnterprisePriceTask
-com/geurimsoft/bokangnew/data/StatsTotalData.java
- com.geurimsoft.bokangnew.data.StatsTotalData
-com/geurimsoft/bokangnew/view/monthfragment/JoomyungMonthEnterpriseAmountFragment.java
- com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthEnterpriseAmountFragment
- com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthEnterpriseAmountFragment$MonthEnterpriseAmountTask
-com/geurimsoft/bokangnew/view/joomyung/ActivityMain.java
- com.geurimsoft.bokangnew.view.joomyung.ActivityMain
+com/geurimsoft/bokangnew/AppMain.java
+ com.geurimsoft.bokangnew.AppMain
+ com.geurimsoft.bokangnew.AppMain$1
+ com.geurimsoft.bokangnew.AppMain$2
+ com.geurimsoft.bokangnew.AppMain$3
+ com.geurimsoft.bokangnew.AppMain$4
+ com.geurimsoft.bokangnew.AppMain$5
+ com.geurimsoft.bokangnew.AppMain$VersionCheckTask
+com/geurimsoft/bokangnew/apiserver/data/UserRightData.java
+ com.geurimsoft.bokangnew.apiserver.data.UserRightData
+com/geurimsoft/bokangnew/apiserver/data/UserInfo.java
+ com.geurimsoft.bokangnew.apiserver.data.UserInfo
 com/geurimsoft/bokangnew/data/GSConfig.java
  com.geurimsoft.bokangnew.data.GSConfig

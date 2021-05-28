@@ -368,7 +368,10 @@ public class AppMain extends Activity
 
 				GSConfig.CURRENT_BRANCH = urData.get(which).getBranID();
 
+				String branName = urData.get(which).getBranShortName();
+
 				Intent intent = new Intent(AppMain.this, GSConfig.Activity_LIST[which]);
+				intent.putExtra("branName", branName);
 
 				startActivity(intent);
 

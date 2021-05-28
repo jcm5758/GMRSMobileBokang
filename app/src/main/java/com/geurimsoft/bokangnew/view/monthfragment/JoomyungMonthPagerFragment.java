@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.geurimsoft.bokangnew.R;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.etc.MonthDatePickerDialog;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 
@@ -59,10 +60,10 @@ public class JoomyungMonthPagerFragment extends Fragment
 
 		View v = inflater.inflate(R.layout.stats_pager_layout, container, false);
 		
-		if(AppConfig.DAY_STATS_YEAR == 0 || AppConfig.DAY_STATS_MONTH == 0 || AppConfig.DAY_STATS_DAY == 0)
+		if(GSConfig.DAY_STATS_YEAR == 0 || GSConfig.DAY_STATS_MONTH == 0 ||GSConfig.DAY_STATS_DAY == 0)
 		{
-			AppConfig.DAY_STATS_YEAR = this.currentYear;
-			AppConfig.DAY_STATS_MONTH = this.currentMonth;
+			GSConfig.DAY_STATS_YEAR = this.currentYear;
+			GSConfig.DAY_STATS_MONTH = this.currentMonth;
 		}
 		
 		makeFragmentList();
@@ -128,7 +129,7 @@ public class JoomyungMonthPagerFragment extends Fragment
 
 		 	case R.id.stats_change_date_menu:
 		    	   
-		 		MonthDatePickerDialog monthDatePickerDialog = new MonthDatePickerDialog(getActivity(), AppConfig.DAY_STATS_YEAR, AppConfig.DAY_STATS_YEAR+10,  AppConfig.DAY_STATS_MONTH, new MonthDatePickerDialog.DialogListner() {
+		 		MonthDatePickerDialog monthDatePickerDialog = new MonthDatePickerDialog(getActivity(), GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_YEAR+10,  GSConfig.DAY_STATS_MONTH, new MonthDatePickerDialog.DialogListner() {
 					
 					@Override
 					public void OnConfirmButton(Dialog dialog, int selectYear, int selectMonth) {
@@ -151,10 +152,10 @@ public class JoomyungMonthPagerFragment extends Fragment
 							return;
 						}
 
-						if(AppConfig.DAY_STATS_YEAR != selectYear || AppConfig.DAY_STATS_MONTH != selectMonth)
+						if(GSConfig.DAY_STATS_YEAR != selectYear || GSConfig.DAY_STATS_MONTH != selectMonth)
 						{
-							AppConfig.DAY_STATS_YEAR = selectYear;
-							AppConfig.DAY_STATS_MONTH = selectMonth;
+							GSConfig.DAY_STATS_YEAR = selectYear;
+							GSConfig.DAY_STATS_MONTH = selectMonth;
 							statsPagerAdapter.notifyDataSetChanged();
 						}
 						

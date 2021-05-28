@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.geurimsoft.bokangnew.R;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.etc.DayDatePickerDialog;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 
@@ -59,10 +60,10 @@ public class GwangjuDailyPagerFragment extends Fragment {
 		// TODO Auto-generated method stub
 		View v = inflater.inflate(R.layout.stats_pager_layout, container, false);
 		
-		if(AppConfig.DAY_STATS_YEAR == 0 || AppConfig.DAY_STATS_MONTH == 0 || AppConfig.DAY_STATS_DAY == 0) {
-			AppConfig.DAY_STATS_YEAR = this.currentYear;
-			AppConfig.DAY_STATS_MONTH = this.currentMonth;
-			AppConfig.DAY_STATS_DAY = this.currentDay;
+		if(GSConfig.DAY_STATS_YEAR == 0 || GSConfig.DAY_STATS_MONTH == 0 ||GSConfig.DAY_STATS_DAY == 0) {
+			GSConfig.DAY_STATS_YEAR = this.currentYear;
+			GSConfig.DAY_STATS_MONTH = this.currentMonth;
+			GSConfig.DAY_STATS_DAY = this.currentDay;
 		}
 		
 		makeFragmentList(userGrade);
@@ -124,7 +125,7 @@ public class GwangjuDailyPagerFragment extends Fragment {
 		 switch (item.getItemId()) {
 		 	case R.id.stats_change_date_menu:
 				
-		 		DayDatePickerDialog dayDatePickerDialog = new DayDatePickerDialog(getActivity(), AppConfig.DAY_STATS_YEAR, AppConfig.DAY_STATS_YEAR+10,  AppConfig.DAY_STATS_MONTH, AppConfig.DAY_STATS_DAY, new DayDatePickerDialog.DialogListner() {
+		 		DayDatePickerDialog dayDatePickerDialog = new DayDatePickerDialog(getActivity(), GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_YEAR+10,  GSConfig.DAY_STATS_MONTH,GSConfig.DAY_STATS_DAY, new DayDatePickerDialog.DialogListner() {
 					@Override
 					public void OnConfirmButton(Dialog dialog, int selectYear, int selectMonth, int selectDay) {
 						// TODO Auto-generated method stub
@@ -150,14 +151,14 @@ public class GwangjuDailyPagerFragment extends Fragment {
 						}
 						
 						
-						if(AppConfig.DAY_STATS_YEAR != selectYear || AppConfig.DAY_STATS_MONTH != selectMonth || AppConfig.DAY_STATS_DAY != selectDay) {
+						if(GSConfig.DAY_STATS_YEAR != selectYear || GSConfig.DAY_STATS_MONTH != selectMonth ||GSConfig.DAY_STATS_DAY != selectDay) {
 //							calendar.set(Calendar.YEAR, selectYear);
 //							calendar.set(Calendar.MONTH, selectMonth-1);
 //							calendar.set(Calendar.DAY_OF_MONTH, selectDay);
 							
-							AppConfig.DAY_STATS_YEAR = selectYear;
-							AppConfig.DAY_STATS_MONTH = selectMonth;
-							AppConfig.DAY_STATS_DAY = selectDay;
+							GSConfig.DAY_STATS_YEAR = selectYear;
+							GSConfig.DAY_STATS_MONTH = selectMonth;
+							GSConfig.DAY_STATS_DAY = selectDay;
 							
 							statsPagerAdapter.notifyDataSetChanged();
 						}

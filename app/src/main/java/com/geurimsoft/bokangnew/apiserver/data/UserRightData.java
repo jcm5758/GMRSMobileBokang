@@ -72,9 +72,12 @@ public class UserRightData implements Serializable {
     @SerializedName("branName")
     private String branName;
 
+    @SerializedName("branShortName")
+    private String branShortName;
+
     public UserRightData(int ur01, int ur02, int ur03, int ur04, int ur05, int ur06,
                          int ur07, int ur08, int ur09, int ur10, int ur11, int ur12,
-                         int ur13, int ur14, int ur15, int ur16, int ur17, int branID, String branName)
+                         int ur13, int ur14, int ur15, int ur16, int ur17, int branID, String branName, String branShortName)
     {
 
         this.ur01 = ur01;
@@ -96,6 +99,7 @@ public class UserRightData implements Serializable {
         this.ur17 = ur17;
         this.branID = branID;
         this.branName = branName;
+        this.branShortName = branShortName;
 
     }
 
@@ -249,6 +253,10 @@ public class UserRightData implements Serializable {
 
     public void setBranName(String branName) {
         this.branName = branName;
+    }
+
+    public String getBranShortName() {
+        return branShortName;
     }
 
 }

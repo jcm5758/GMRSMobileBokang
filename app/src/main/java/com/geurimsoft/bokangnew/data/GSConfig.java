@@ -3,6 +3,7 @@ package com.geurimsoft.bokangnew.data;
 import androidx.fragment.app.FragmentActivity;
 
 import com.geurimsoft.bokangnew.apiserver.data.UserInfo;
+import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.view.etc.GwangjuTabActivity;
 import com.geurimsoft.bokangnew.view.etc.JoomyungTabActivity;
 
@@ -39,5 +40,9 @@ public class GSConfig
     {
         return className + "." + funcName + " : ";
     }
+
+    public static int DAY_STATS_YEAR = 0;
+    public static int DAY_STATS_MONTH = 0;
+    public static int DAY_STATS_DAY = 0;
 
 }

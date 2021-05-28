@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/tab1"
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:title="일보"/>
+
+    <item android:id="@+id/tab2"
+        app:showAsAction="ifRoom"
+        android:title="월보"/>
+
+    <item android:id="@+id/tab3"
+        app:showAsAction="ifRoom"
+        android:title="년보"/>
+
+</menu>

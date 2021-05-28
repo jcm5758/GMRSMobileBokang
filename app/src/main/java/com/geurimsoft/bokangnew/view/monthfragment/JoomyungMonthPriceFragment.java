@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.etc.StatsHeaderAndFooterView;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.StAdapter;
@@ -62,7 +63,7 @@ public class JoomyungMonthPriceFragment extends Fragment
 		
 		this.yi_month_price_listview.setDividerHeight(0);
 		
-		makeMonthpriceData(AppConfig.DAY_STATS_YEAR, AppConfig.DAY_STATS_MONTH);
+		makeMonthpriceData(GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_MONTH);
 
 	}
 	

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.data.StatsListData;
 import com.geurimsoft.bokangnew.data.XmlConverter;
 import com.geurimsoft.bokangnew.client.SocketClient;
@@ -60,7 +61,7 @@ public class TotalMonthPriceFragment extends Fragment {
 		
 		this.tt_month_price_listview.setDividerHeight(0);
 		
-		makeMonthpriceData(AppConfig.DAY_STATS_YEAR, AppConfig.DAY_STATS_MONTH);
+		makeMonthpriceData(GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_MONTH);
 	}
 	
 	@Override

@@ -15,7 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.bokangnew.view.dailyfragment.JoomyungDailyPagerFragment;
+import com.geurimsoft.bokangnew.data.GSConfig;
+import com.geurimsoft.bokangnew.view.joomyung.FragmentDailyMain;
 import com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthPagerFragment;
 import com.geurimsoft.bokangnew.view.yearfragment.JoomyungYearPagerFragment;
 import com.geurimsoft.bokangnew.conf.AppConfig;
@@ -40,9 +41,9 @@ public class JoomyungTabActivity extends FragmentActivity
 		
 		AppConfig.activities.add(JoomyungTabActivity.this);
 		
-		AppConfig.DAY_STATS_YEAR = 0;
-		AppConfig.DAY_STATS_MONTH = 0;
-		AppConfig.DAY_STATS_DAY = 0;
+		GSConfig.DAY_STATS_YEAR = 0;
+		GSConfig.DAY_STATS_MONTH = 0;
+		GSConfig.DAY_STATS_DAY = 0;
 		
 		this.preferences = getSharedPreferences("user_account", Context.MODE_PRIVATE);
 
@@ -56,7 +57,7 @@ public class JoomyungTabActivity extends FragmentActivity
 
 		this.tabHost = (FragmentTabHost)findViewById(android.R.id.tabhost);
 		this.tabHost.setup(this, getSupportFragmentManager(), R.id.tab_content_layout);
-		this.tabHost.addTab(tabHost.newTabSpec("day").setIndicator("일보"), JoomyungDailyPagerFragment.class, null);
+		this.tabHost.addTab(tabHost.newTabSpec("day").setIndicator("일보"), FragmentDailyMain.class, null);
 		this.tabHost.addTab(tabHost.newTabSpec("month").setIndicator("월보"), JoomyungMonthPagerFragment.class, null);
 		this.tabHost.addTab(tabHost.newTabSpec("year").setIndicator("연보"), JoomyungYearPagerFragment.class, null);
 		this.tabHost.setCurrentTab(0);

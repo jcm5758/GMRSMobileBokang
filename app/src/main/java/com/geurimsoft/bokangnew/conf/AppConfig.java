@@ -73,10 +73,6 @@ public class AppConfig
 	public static int LIMIT_YEAR = 2020;
 	public static int LIMIT_MONTH = 5;
 	
-	public static int DAY_STATS_YEAR = 0;
-	public static int DAY_STATS_MONTH = 0;
-	public static int DAY_STATS_DAY = 0;
-	
 	public static int MONTH_STATS_YEAR = 0;
 	public static int MONTH_STATS_MONTH = 0;
 	

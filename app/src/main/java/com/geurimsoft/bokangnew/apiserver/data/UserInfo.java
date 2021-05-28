@@ -76,6 +76,8 @@ public class UserInfo implements Serializable
 
     }
 
+    public UserRightData getUserRightData(int ind) { return userright.get(ind);}
+    
     public ArrayList<UserRightData> getUserright() {
         return userright;
     }

@@ -1,29 +1,21 @@
 package com.geurimsoft.bokangnew.view.joomyung;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.bokangnew.view.BackPressHandler;
-import com.geurimsoft.bokangnew.view.ViewPagerAdapter;
-import com.geurimsoft.bokangnew.view.dailyfragment.JoomyungDailyPagerFragment;
 
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
+import com.geurimsoft.bokangnew.data.GSConfig;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ActivityMain extends AppCompatActivity {
-
-    private ViewPager2 mViewPager;
-    private ViewPagerAdapter myPagerAdapter;
-    private TabLayout tabLayout;
-
-    private String[] titles = new String[]{"리스트", "웹뷰", "연락처"};
-
-    String code;
-    private BackPressHandler backPressHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,24 +23,51 @@ public class ActivityMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.branch_main);
 
-        backPressHandler = new BackPressHandler(this);
+        Intent intent = getIntent();
+        String branName = intent.getStringExtra("branName");
 
-        Fragment frag1 = new JoomyungDailyPagerFragment();
-        Fragment frag2 = new JoomyungDailyPagerFragment();
-        Fragment frag3 = new JoomyungDailyPagerFragment();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(branName);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
-        mViewPager = findViewById(R.id.viewPager);
-        tabLayout = findViewById(R.id.tab_layout);
+        Fragment frag1 = new FragmentDailyMain();
+        Fragment frag2 = new FragmentDailyMain();
+        Fragment frag3 = new FragmentDailyMain();
 
-        myPagerAdapter = new ViewPagerAdapter(this);
-        myPagerAdapter.addFrag(frag1);
-        myPagerAdapter.addFrag(frag2);
-        myPagerAdapter.addFrag(frag3);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag1).commit();
 
-        mViewPager.setAdapter(myPagerAdapter);
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottom_navigation);
+        bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-        //displaying tabs
-        new TabLayoutMediator(tabLayout, mViewPager, (tab, position) -> tab.setText(titles[position])).attach();
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+
+                    case R.id.tab1:
+                        Toast.makeText(getApplicationContext(),"첫번째",Toast.LENGTH_SHORT).show();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag1).commit();
+                        return true;
+
+                    case R.id.tab2:
+                        Toast.makeText(getApplicationContext(),"두번째",Toast.LENGTH_SHORT).show();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag2).commit();
+                        return true;
+
+                    case R.id.tab3:
+                        Toast.makeText(getApplicationContext(),"세번째",Toast.LENGTH_SHORT).show();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag3).commit();
+                        return true;
+
+                }
+
+                return false;
+
+            }
+
+        });
 
     }
 

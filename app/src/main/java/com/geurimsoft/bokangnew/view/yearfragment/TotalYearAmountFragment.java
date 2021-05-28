@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.data.StatsListData;
 import com.geurimsoft.bokangnew.data.XmlConverter;
 import com.geurimsoft.bokangnew.client.SocketClient;
@@ -60,7 +61,7 @@ public class TotalYearAmountFragment extends Fragment{
 		
 		this.tt_year_amount_listview.setDividerHeight(0);
 		
-		makeYearAmountData(AppConfig.DAY_STATS_YEAR);
+		makeYearAmountData(GSConfig.DAY_STATS_YEAR);
 	}
 	
 	@Override

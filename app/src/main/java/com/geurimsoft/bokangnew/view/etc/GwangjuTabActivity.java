@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.geurimsoft.bokangnew.R;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.dailyfragment.GwangjuDailyPagerFragment;
 import com.geurimsoft.bokangnew.view.monthfragment.GwangjuMonthPagerFragment;
 import com.geurimsoft.bokangnew.view.yearfragment.GwangjuYearPagerFragment;
@@ -40,9 +41,9 @@ public class GwangjuTabActivity extends FragmentActivity {
 		
 		AppConfig.activities.add(GwangjuTabActivity.this);
 		
-		AppConfig.DAY_STATS_YEAR = 0;
-		AppConfig.DAY_STATS_MONTH = 0;
-		AppConfig.DAY_STATS_DAY = 0;
+		GSConfig.DAY_STATS_YEAR = 0;
+		GSConfig.DAY_STATS_MONTH = 0;
+		GSConfig.DAY_STATS_DAY = 0;
 		
 		preferences = getSharedPreferences("user_account", Context.MODE_PRIVATE);
 		

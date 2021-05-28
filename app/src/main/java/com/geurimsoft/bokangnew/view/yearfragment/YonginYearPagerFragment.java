@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.geurimsoft.bokangnew.R;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.etc.YearDatePickerDialog;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 
@@ -58,8 +59,8 @@ public class YonginYearPagerFragment extends Fragment {
 		// TODO Auto-generated method stub
 		View v = inflater.inflate(R.layout.stats_pager_layout, container, false);
 		
-		if(AppConfig.DAY_STATS_YEAR == 0 || AppConfig.DAY_STATS_MONTH == 0 || AppConfig.DAY_STATS_DAY == 0) {
-			AppConfig.DAY_STATS_YEAR = this.currentYear;
+		if(GSConfig.DAY_STATS_YEAR == 0 || GSConfig.DAY_STATS_MONTH == 0 ||GSConfig.DAY_STATS_DAY == 0) {
+			GSConfig.DAY_STATS_YEAR = this.currentYear;
 		}
 		
 		makeFragmentList(userGrade);
@@ -123,7 +124,7 @@ public class YonginYearPagerFragment extends Fragment {
 		 switch (item.getItemId()) {
 		 	case R.id.stats_change_date_menu:
 		    	   
-		 		YearDatePickerDialog yearDatePickerDialog = new YearDatePickerDialog(getActivity(), AppConfig.DAY_STATS_YEAR, AppConfig.DAY_STATS_YEAR+10, new YearDatePickerDialog.DialogListner() {
+		 		YearDatePickerDialog yearDatePickerDialog = new YearDatePickerDialog(getActivity(), GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_YEAR+10, new YearDatePickerDialog.DialogListner() {
 					
 					@Override
 					public void OnConfirmButton(Dialog dialog, int selectYear) {
@@ -135,10 +136,10 @@ public class YonginYearPagerFragment extends Fragment {
 						} 
 						
 						
-						if(AppConfig.DAY_STATS_YEAR != selectYear) {
+						if(GSConfig.DAY_STATS_YEAR != selectYear) {
 //							calendar.set(Calendar.YEAR, selectYear);
 							
-							AppConfig.DAY_STATS_YEAR = selectYear;
+							GSConfig.DAY_STATS_YEAR = selectYear;
 						
 							statsPagerAdapter.notifyDataSetChanged();
 						}

@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.etc.EnterpriseYearStatsView;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.XmlConverter;
@@ -69,7 +70,7 @@ public class JoomyungYearEnterpriseAmountFragment extends Fragment
 		this.yi_month_enterprise_amount_release_title = (TextView)view.findViewById(R.id.yi_month_enterprise_amount_release_title); 
 		this.yi_month_enterprise_amount_petosa_title = (TextView)view.findViewById(R.id.yi_month_enterprise_amount_petosa_title);
 
-		makeMonthEnterpriseAmountData(AppConfig.DAY_STATS_YEAR);
+		makeMonthEnterpriseAmountData(GSConfig.DAY_STATS_YEAR);
 
 	}
 	

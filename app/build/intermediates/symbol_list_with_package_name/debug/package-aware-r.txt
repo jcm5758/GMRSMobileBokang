@@ -1913,6 +1913,7 @@ id beginning
 id blocking
 id bluelayout
 id bottom
+id bottom_navigation
 id bounce
 id bt_oneFragment
 id bt_threeFragment
@@ -2387,10 +2388,12 @@ id stop
 id stretch
 id submenuarrow
 id submit_area
+id tab1
+id tab2
+id tab3
 id tabMode
 id tab_content_layout
 id tab_imageview
-id tab_layout
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
 id tag_accessibility_heading
@@ -2512,10 +2515,8 @@ id unlabeled
 id up
 id useLogo
 id videoView
-id viewPager
 id view_offset_helper
 id visible
-id vp_layout
 id vvL1
 id vvL401
 id vvL402
@@ -2792,6 +2793,7 @@ layout yi_year_price
 menu etc_menu
 menu gwangju_menu
 menu main
+menu menu_bottom
 menu stats_menu
 menu stats_month_menu
 menu stats_year_menu

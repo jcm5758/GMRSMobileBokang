@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.data.StatsData;
 import com.geurimsoft.bokangnew.client.SocketClient;
 
@@ -66,7 +67,7 @@ public class GwangjuDailyPriceFragment extends Fragment
 		this.gwangju_daily_release_title = (TextView) view.findViewById(R.id.gwangju_daily_release_title);
 		this.gwangju_daily_petosa_title = (TextView) view.findViewById(R.id.gwangju_daily_petosa_title);
 		
-		makeDailyAmountData(AppConfig.DAY_STATS_YEAR, AppConfig.DAY_STATS_MONTH, AppConfig.DAY_STATS_DAY);
+		makeDailyAmountData(GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_MONTH,GSConfig.DAY_STATS_DAY);
 	}
 	
 	@Override
