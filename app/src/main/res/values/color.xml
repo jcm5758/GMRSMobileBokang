@@ -38,4 +38,6 @@
     <color name="blue">#0000FF</color>
     <color name="violet">#7F00FF</color>
     <color name="magenta">#FF00FF</color>
+    <color name="colorDarkGray">#4c4c4e</color>
+    <color name="colorMint">#ff00c0aa</color>
 </resources>

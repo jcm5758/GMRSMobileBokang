@@ -51,6 +51,7 @@ import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.dialog.ApiLoadingDialog;
 import com.geurimsoft.bokangnew.dialog.ApiReconnectDialog;
 import com.geurimsoft.bokangnew.dialog.DialogListener;
+import com.geurimsoft.bokangnew.view.BackPressHandler;
 import com.geurimsoft.bokangnew.view.etc.GwangjuTabActivity;
 import com.geurimsoft.bokangnew.view.etc.JoomyungTabActivity;
 import com.geurimsoft.bokangnew.view.etc.TotalTabActivity;
@@ -98,6 +99,8 @@ public class AppMain extends Activity
 	private long backKeyPressedTime = 0;
 	
 	private Toast appFinishedToast;
+
+	private BackPressHandler backPressHandler;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -108,7 +111,7 @@ public class AppMain extends Activity
 		
 		AppConfig.activities.add(AppMain.this);
 		
-		this.mContext = this;
+		backPressHandler = new BackPressHandler(this);
 		
 		setUserInterface();
 
@@ -430,34 +433,34 @@ public class AppMain extends Activity
 
 	}
 
-	/**
-	 * 뒤로가기 버튼 클릭시
-	 */
-	@Override
-	public void onBackPressed()
-	{
-		
-		if(System.currentTimeMillis() > backKeyPressedTime + 2000)
-		{
-			backKeyPressedTime = System.currentTimeMillis();
-			appFinishedToast = Toast.makeText(this, getString(R.string.app_finished_msg), Toast.LENGTH_LONG);
-			appFinishedToast.show();
-			return;
-		}
-		
-		if(System.currentTimeMillis() <= backKeyPressedTime + 2000)
-		{
-			
-			if(AppConfig.activities.size() > 0)
-			{
-				for(int actIndex = 0; actIndex < AppConfig.activities.size(); actIndex++)
-					AppConfig.activities.get(actIndex).finish();
-			}
-			
-			appFinishedToast.cancel();
-			
-		}
-	}
+//	/**
+//	 * 뒤로가기 버튼 클릭시
+//	 */
+//	@Override
+//	public void onBackPressed()
+//	{
+//
+//		if(System.currentTimeMillis() > backKeyPressedTime + 2000)
+//		{
+//			backKeyPressedTime = System.currentTimeMillis();
+//			appFinishedToast = Toast.makeText(this, getString(R.string.app_finished_msg), Toast.LENGTH_LONG);
+//			appFinishedToast.show();
+//			return;
+//		}
+//
+//		if(System.currentTimeMillis() <= backKeyPressedTime + 2000)
+//		{
+//
+//			if(AppConfig.activities.size() > 0)
+//			{
+//				for(int actIndex = 0; actIndex < AppConfig.activities.size(); actIndex++)
+//					AppConfig.activities.get(actIndex).finish();
+//			}
+//
+//			appFinishedToast.cancel();
+//
+//		}
+//	}
 
 	/**
 	 * 앱 버전 확인

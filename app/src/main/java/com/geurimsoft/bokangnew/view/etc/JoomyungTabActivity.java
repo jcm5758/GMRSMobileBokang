@@ -46,7 +46,7 @@ public class JoomyungTabActivity extends FragmentActivity
 		
 		this.preferences = getSharedPreferences("user_account", Context.MODE_PRIVATE);
 
-		this.actionBar= getActionBar();
+		this.actionBar = getActionBar();
 		this.actionBar.setTitle("통계(주명)");
 		this.actionBar.setHomeButtonEnabled(true);
 		this.actionBar.setDisplayShowHomeEnabled(false);

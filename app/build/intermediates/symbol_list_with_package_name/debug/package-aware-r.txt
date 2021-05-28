@@ -1007,6 +1007,8 @@ color cardview_shadow_start_color
 color chartreuse
 color checkbox_themeable_attribute_color
 color colorAccent
+color colorDarkGray
+color colorMint
 color colorPrimary
 color colorPrimaryGrey
 color colorPrimaryLight
@@ -1794,6 +1796,7 @@ drawable setting_01bt
 drawable setting_02bt
 drawable setting_bt
 drawable stattopbg
+drawable tab_color_selector
 drawable test_custom_background
 drawable time
 drawable time_bt
@@ -2387,6 +2390,7 @@ id submit_area
 id tabMode
 id tab_content_layout
 id tab_imageview
+id tab_layout
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
 id tag_accessibility_heading
@@ -2508,8 +2512,10 @@ id unlabeled
 id up
 id useLogo
 id videoView
+id viewPager
 id view_offset_helper
 id visible
+id vp_layout
 id vvL1
 id vvL401
 id vvL402
@@ -2623,6 +2629,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout branch_main
 layout cctv_layout
 layout cctv_layout4
 layout cctv_view_layout

@@ -20,24 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AppSetting" android:screenOrientation="portrait" ></activity>
-        <activity android:name=".view.StatView01"></activity>
-        <activity
-            android:name=".view.YonginTabActivity"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
-            android:configChanges="orientation|screenSize|keyboardHidden">
-        </activity>
         <activity
             android:name=".view.etc.JoomyungTabActivity"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
             android:configChanges="orientation|screenSize|keyboardHidden">
         </activity>
-        <activity android:name=".view.TestStatistic" ></activity>
-        <activity
-            android:name=".view.TotalTabActivity"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
-            android:configChanges="orientation|screenSize|keyboardHidden" >
-        </activity>
+        <activity android:name=".view.joomyung.ActivityMain"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"/>
+
         <activity android:name="org.achartengine.GraphicalActivity" />
 
     </application>
