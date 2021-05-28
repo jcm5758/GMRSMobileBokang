@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    <RelativeLayout
+        android:id="@+id/cctvTopLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/stattopbg"
+        android:padding="5dp" >
+
+        <Button
+            android:id="@+id/btntophome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/btntophome" />
+
+        <Button
+            android:id="@+id/btntopsetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btntopsetting" />
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@id/btntopsetting"
+            android:background="@drawable/bt_1"
+            android:text=" " />
+        <Button
+            android:id="@+id/btnselcctv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="false"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@id/btnSearch"
+            android:background="@drawable/btntopcctv" />
+
+        <Button
+            android:id="@+id/btnSelOnedisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/btnselcctv"
+            android:background="@drawable/bt_0"
+            android:text="1"
+            android:textColor="#ff0000"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnSelFourDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@+id/btnSelOnedisplay"
+            android:background="@drawable/bt_0"
+            android:text="4"
+            android:textColor="#ff0000"
+            android:textColorLink="#ff0000"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/cctvTopLayout" >
+
+<LinearLayout
+    android:id="@+id/cctvlayout04"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="gone" >
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvL4Title01"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#000000"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="TextView"
+                android:textColor="#ffffff" />
+
+            <VideoView
+                android:id="@+id/vvL401"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvL4Title02"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#000000"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="ccrtv"
+                android:textColor="#ffffff" />
+
+            <VideoView
+                android:id="@+id/vvL402"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvL4Title03"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#000000"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="TextView"
+                android:textColor="#ffffff" />
+
+            <VideoView
+                android:id="@+id/vvL403"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvL4Title04"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="#000000"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="ccrtv"
+                android:textColor="#ffffff" />
+
+            <VideoView
+                android:id="@+id/vvL404"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
+<LinearLayout
+    android:id="@+id/cctvlayout01"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="visible" >
+
+    <TextView
+        android:id="@+id/tvVideoTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#000000"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="cctv01"
+        android:textColor="#ffffff" />
+
+    <VideoView
+        android:id="@+id/vvL1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageButton
+        android:id="@+id/btnLeftMove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:background="#ffffff"
+        android:src="@drawable/arrow_left_on" />
+
+    <ImageButton
+        android:id="@+id/btnRightMove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:background="#ffffffff"
+        android:src="@drawable/arrow_right_on" />
+
+</RelativeLayout>
+
+    </FrameLayout>
+
+</RelativeLayout>

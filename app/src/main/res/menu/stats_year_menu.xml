@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <item
+        android:id="@+id/stats_change_year_menu"
+        android:showAsAction="ifRoom"
+        android:title="@string/stats_change_date">
+    </item>
+    
+    <item
+        android:id="@+id/action_settings"
+        android:showAsAction="ifRoom"
+        android:title="@string/stats_change_show">
+        <menu>
+            <item
+                android:id="@+id/stats_year_chart_menu"
+                android:orderInCategory="1"
+                android:title="@string/stats_show_chart"/>
+            <item
+                android:id="@+id/stats_year_graph_menu"
+                android:orderInCategory="2"
+                android:title="@string/stats_show_graph"/>
+        </menu>
+    </item>
+</menu>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/yongin_site_change"
+        android:showAsAction="ifRoom"
+        android:title="@string/site_gw">
+    </item>
+
+    <item
+        android:id="@+id/total_site_change"
+        android:showAsAction="ifRoom"
+        android:title="@string/site_total">
+    </item>
+</menu>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    <RelativeLayout
+        android:id="@+id/cctvTopLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/stattopbg"
+        android:padding="5dp" >
+
+        <Button
+            android:id="@+id/btntophome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/btntophome" />
+
+        <Button
+            android:id="@+id/btntopsetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btntopsetting" />
+
+        <Button
+            android:id="@+id/btnselcctv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="false"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/btntopsetting"
+            android:background="@drawable/btnselcctv" />
+
+    </RelativeLayout>
+    
+ <androidx.viewpager.widget.ViewPager
+     android:id="@+id/pager"
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent"
+     android:layout_below="@id/cctvTopLayout" />
+
+</RelativeLayout>

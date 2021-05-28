@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?><writerlist>
+<placelist>
+    <place>
+		<name><![CDATA[A현장]]></name>        
+        <cctvlistfile>cctvlist.xml</cctvlistfile>
+    </place>
+    <place>
+		<name><![CDATA[B현장]]></name>        
+        <cctvlistfile>cctvlist02.xml</cctvlistfile>
+    </place>
+        <place>
+		<name><![CDATA[C현장]]></name>        
+        <cctvlistfile>cctvlist03.xml</cctvlistfile>
+    </place>
+        <place>
+		<name><![CDATA[D현장]]></name>        
+        <cctvlistfile>cctvlist04.xml</cctvlistfile>
+    </place>    
+</cctvlist>

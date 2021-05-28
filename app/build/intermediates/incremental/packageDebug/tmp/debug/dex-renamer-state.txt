@@ -1,0 +1,4 @@
+#Fri May 28 10:26:31 KST 2021
+base.0=D\:\\sources\\GRMS_Inventory_Office\\MobileApp\\BokangNew\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

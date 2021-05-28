@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">(주)주명개발 출하관리</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="settingtext">자주보는 CCTV를 선택하며 우선으로 선택 됩니다.</string>
+    <string name="chartTitle">테스트</string>
+    <string name="date">날짜</string>
+    <string name="value">vaeee</string>
+    <string name="btn_statistic_daily">일보</string>
+    <string name="btn_statistic_week">주보</string>
+    <string name="btn_statistic_month">월보</string>
+    <string name="btn_statistic_year">연보</string>
+    <string name="str_statistic_date">날짜</string>
+    <string name="title_activity_main">AChartEngineBarChart</string>
+    <string name="str_btn_chart">Income vs Expense Bar Chart</string>
+    <string name="str_statistic_title_daily">일보</string>
+    <string name="str_statistic_title_month">월보</string>
+    <string name="str_statistic_title_year">연보</string>
+    <string name="site_gw">광주</string>
+    <string name="site_yo">용인</string>
+    <string name="site_ju">주명</string>
+    <string name="site_total">통합</string>
+    <string name="site_msg">현장을 선택하여 주시기 바랍니다.</string>
+    <string name="login_success">님 환영합니다.</string>
+    
+    <string name="login_error_id_title">아이디 입력</string>
+    <string name="login_error_id_msg">아이디를 입력해주세요. </string>
+    <string name="login_error_pw_title">비밀번호 입력</string>
+    <string name="login_error_pw_msg">비밀번호를 입력해주세요.</string>
+    
+    
+    <string name="login_error_idpw">아이디와 비밀번호를 확인하세요.</string>
+    <string name="login_error_idpw2">사용자의 정보를 확인할 수 없습니다. 관리자에게 문의 하시기 바랍니다.</string>
+    <string name="login_error_autho">어플레케이션을 사용할 수 있는 권한이 없습니다.</string>
+
+    <string-array name="stats_tab_array">
+        <item>일보</item>
+        <item>월보</item>
+        <item>연보</item>
+    </string-array>
+    <string-array name="stats_day_tab_array1">
+        <item>수량</item>
+        <item>금액</item>
+    </string-array>
+    <string-array name="stats_day_tab_array2">
+        <item>수량</item>
+    </string-array>
+    <string-array name="stats_month_tab_array1">
+        <item>수량</item>
+        <item>금액</item>
+        <item>수량(업체별)</item>
+        <item>금액(업체별)</item>
+        <item>그래프</item>
+    </string-array>
+    <string-array name="stats_month_tab_array2">
+        <item>수량</item>
+        <item>수량(업체별)</item>
+        <item>그래프</item>
+    </string-array>
+    <string-array name="stats_year_tab_array1">
+        <item>수량</item>
+        <item>금액</item>
+        <item>수량(업체별)</item>
+        <item>금액(업체별)</item>
+        <item>그래프</item>
+    </string-array>
+    <string-array name="stats_year_tab_array2">
+        <item>수량</item>
+        <item>그래프</item>
+    </string-array>
+
+    <string-array name="super_grade_site_array">
+        <item>용인 현장</item>
+        <item>광주 현장</item>
+        <item>주명 현장</item>
+        <item>통합</item>
+    </string-array>
+    
+    <string-array name="general_grade_site_array">
+        <item>용인 현장</item>
+        <item>광주 현장</item>
+    </string-array>
+    
+     <string-array name="total_month_tab_array">
+        <item>수량</item>
+        <item>금액</item>
+        <item>그래프</item>
+    </string-array>
+    
+	<string-array name="total_year_tab_array">
+        <item>수량</item>
+        <item>금액</item>
+        <item>그래프</item>
+    </string-array>
+    
+    <string name="update_check">버전 정보 확인 중 입니다.</string>
+    <string name="update_msg">새로운 버전의 앱이 등록되었습니다. \n업데이트를 위해 구글 플레이 스토어로 이동 하시겠습니까?</string>
+    <string name="update_yesbutton">이동</string>
+    <string name="update_canclebutton">취소</string>
+    <string name="stats_change_date">날짜 변경</string>
+    <string name="stats_change_show">보기 설정</string>
+    <string name="stats_show_graph">그래프</string>
+    <string name="stats_show_chart">표</string>
+    <string name="stats_show_enterprise">업체별</string>
+    <string name="change_date_year_error">선택하신 년도가 초과 되었습니다. 다시 선택하여 주시기 바랍니다.</string>
+    <string name="change_date_month_error">선택하신 월이 초과 되었습니다. 다시 선택하여 주시기 바랍니다.</string>
+    <string name="change_date_day_error">선택하신 일이 초과 되었습니다. 다시 선택하여 주시기 바랍니다.</string>
+
+    <string name="dialog_confirm_button">확인</string>
+    
+    <!-- App Finished Message -->
+    <string name="app_finished_msg">종료 버튼을 한번 더 누르시면 종료됩니다.</string>
+    <string name="loding_progress_dialog">정보를 불러오는 중입니다.</string>
+    <string name="loding_fail_msg">데이터가 존재하지 않습니다.</string>
+    <string name="unit_won">천원</string>
+    <string name="unit_lube">루베</string>
+
+    
+    <string name="unit_day">일</string>
+    <string name="unit_month">월</string>
+    
+   	<string-array name="etc_tab_array">
+        <item>ETC1</item>
+        <item>ETC2</item>
+        <item>ETC3</item>
+        <item>ETC4</item>
+    </string-array>
+</resources>

@@ -1,0 +1,10 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="textleft">5dp</dimen>
+    <color name="textcolor">#ffffff</color>
+    <color name="menutop">#6d6f71</color>
+    <color name="menutext">#00314c</color>
+</resources>

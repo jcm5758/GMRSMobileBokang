@@ -1,0 +1,9 @@
+<!--?xml version="1.0" encoding="utf-8"?-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+ 
+    <!--  Pressed Button -->
+    <item android:state_selected="true" android:drawable="@drawable/day_press"/>
+    <!--  UnPressed Button -->
+    <item android:state_selected="false" android:drawable="@drawable/day_normal"/>
+ 
+</selector>

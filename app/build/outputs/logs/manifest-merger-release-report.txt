@@ -1,0 +1,237 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:2:1-75:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\7f3fa8d587d4363e1ca9ee9b95b784e2\appcompat-v7-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-v4:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\c009a5722a0be9476b5b3db7ef172e15\support-v4-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\7c6a262b4f50579ecad6b3724ebe08d9\support-fragment-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\c5686b24c8adfbfccbfe61068ac7c49f\animated-vector-drawable-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\b72fa9ed369d9858d0fb5986bb7236fe\support-core-ui-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\b625545188a320e0d23b3e969019b092\support-core-utils-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\231bd3f62d452c1686a86dceddb50a92\support-vector-drawable-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\69a5a1de08dfe08bfe2a8b98a051a6f6\support-media-compat-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\e6f4a04e02163bf11ecda043117f3475\loader-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\799752f7ab5f42ed6349356992c384fc\viewpager-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\5929825c857518f2798a6a55425fb08f\coordinatorlayout-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\20678bdc8e9825d9276479d130c67d2a\drawerlayout-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\08e734783fefb2b47d7d06e73aba0ffc\slidingpanelayout-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\e9cc0f0e0dd2503b113a6576aef0520c\customview-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\04e6b76b6ad86ad2089fb68021b94ebc\swiperefreshlayout-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\3331232a1d0540faeecd5909d3ddf883\asynclayoutinflater-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\2a6c121eda6c2cbe33230f54b72bbbd4\support-compat-28.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\e02f1a1ec5b55e7809581065612f1348\versionedparcelable-28.0.0\AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\20dfc6e575b6f0806a233fe16bf403a6\cursoradapter-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\47a6a4cbe650527abafad251a3895de1\runtime-1.1.1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\b29536638db7292f2819422afa21694f\documentfile-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\75a0fb48320195389de42f99e74f0605\localbroadcastmanager-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\097f413583d095274abac7a6ab27aa97\print-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\4f0233fffabe21144e50178f9cde4274\viewmodel-1.1.1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\5c13844dbd3b484f42417ccecca0e693\interpolator-28.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\3ff1dcd229f05d3ed6ea73e9bcec5fe8\livedata-1.1.1\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\8dca7e011b2c99528440907406c0541e\livedata-core-1.1.1\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\6798853c956e78fbccb8ca635a9e6671\runtime-1.1.1\AndroidManifest.xml:17:1-22:12
+INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:2:1-75:12
+	package
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:3:5-39
+		INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+		INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:5:5-32
+		INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+		INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:4:5-30
+		INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+		INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:7:5-67
+	android:name
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:7:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:8:5-79
+	android:name
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:8:22-76
+application
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:10:5-73:19
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\2a6c121eda6c2cbe33230f54b72bbbd4\support-compat-28.0.0\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\2a6c121eda6c2cbe33230f54b72bbbd4\support-compat-28.0.0\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\e02f1a1ec5b55e7809581065612f1348\versionedparcelable-28.0.0\AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\e02f1a1ec5b55e7809581065612f1348\versionedparcelable-28.0.0\AndroidManifest.xml:22:5-23:19
+	android:appComponentFactory
+		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\2a6c121eda6c2cbe33230f54b72bbbd4\support-compat-28.0.0\AndroidManifest.xml:22:18-91
+	android:label
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:13:9-41
+	android:icon
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:12:9-45
+	android:allowBackup
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:11:9-35
+	android:theme
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:14:9-73
+	android:networkSecurityConfig
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:15:9-69
+activity#com.geurimsoft.bokangnew.AppMain
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:17:9-26:20
+	android:screenOrientation
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:20:13-49
+	android:label
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:19:13-45
+	android:name
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:18:13-36
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:21:13-25:29
+action#android.intent.action.MAIN
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:22:17-69
+	android:name
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:22:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:24:17-77
+	android:name
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:24:27-74
+activity#com.geurimsoft.bokangnew.CCTVMain
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:27:9-31:20
+	android:screenOrientation
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:30:13-50
+	android:label
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:29:13-45
+	android:name
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:28:13-37
+activity#com.geurimsoft.bokangnew.AppSetting
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:32:9-36:20
+	android:screenOrientation
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:35:13-49
+	android:label
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:34:13-45
+	android:name
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:33:13-39
+activity#com.geurimsoft.bokangnew.StatView01
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:37:9-40:20
+	android:label
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:39:13-45
+	android:name
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:38:13-39
+activity#com.geurimsoft.bokangnew.YonginTabActivity
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:41:9-46:20
+	android:label
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:43:13-45
+	android:configChanges
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:45:13-74
+	android:theme
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:44:13-74
+	android:name
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:42:13-46
+activity#com.geurimsoft.bokangnew.JoomyungTabActivity
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:47:9-52:20
+	android:label
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:49:13-45
+	android:configChanges
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:51:13-74
+	android:theme
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:50:13-74
+	android:name
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:48:13-48
+activity#com.geurimsoft.bokangnew.TestStatistic
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:54:9-57:20
+	android:label
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:56:13-45
+	android:name
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:55:13-42
+activity#com.geurimsoft.bokangnew.GwangjuTabActivity
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:58:9-63:20
+	android:label
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:60:13-45
+	android:configChanges
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:62:13-74
+	android:theme
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:61:13-74
+	android:name
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:59:13-47
+activity#com.geurimsoft.bokangnew.TotalTabActivity
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:64:9-69:20
+	android:label
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:66:13-45
+	android:configChanges
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:68:13-74
+	android:theme
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:67:13-74
+	android:name
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:65:13-45
+activity#org.achartengine.GraphicalActivity
+ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:72:9-71
+	android:name
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml:72:19-68
+uses-sdk
+INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\7f3fa8d587d4363e1ca9ee9b95b784e2\appcompat-v7-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\7f3fa8d587d4363e1ca9ee9b95b784e2\appcompat-v7-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\c009a5722a0be9476b5b3db7ef172e15\support-v4-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\c009a5722a0be9476b5b3db7ef172e15\support-v4-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\7c6a262b4f50579ecad6b3724ebe08d9\support-fragment-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\7c6a262b4f50579ecad6b3724ebe08d9\support-fragment-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\c5686b24c8adfbfccbfe61068ac7c49f\animated-vector-drawable-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\c5686b24c8adfbfccbfe61068ac7c49f\animated-vector-drawable-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\b72fa9ed369d9858d0fb5986bb7236fe\support-core-ui-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\b72fa9ed369d9858d0fb5986bb7236fe\support-core-ui-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\b625545188a320e0d23b3e969019b092\support-core-utils-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\b625545188a320e0d23b3e969019b092\support-core-utils-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\231bd3f62d452c1686a86dceddb50a92\support-vector-drawable-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\231bd3f62d452c1686a86dceddb50a92\support-vector-drawable-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\69a5a1de08dfe08bfe2a8b98a051a6f6\support-media-compat-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\69a5a1de08dfe08bfe2a8b98a051a6f6\support-media-compat-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\e6f4a04e02163bf11ecda043117f3475\loader-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\e6f4a04e02163bf11ecda043117f3475\loader-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\799752f7ab5f42ed6349356992c384fc\viewpager-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\799752f7ab5f42ed6349356992c384fc\viewpager-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\5929825c857518f2798a6a55425fb08f\coordinatorlayout-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\5929825c857518f2798a6a55425fb08f\coordinatorlayout-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\20678bdc8e9825d9276479d130c67d2a\drawerlayout-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\20678bdc8e9825d9276479d130c67d2a\drawerlayout-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\08e734783fefb2b47d7d06e73aba0ffc\slidingpanelayout-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\08e734783fefb2b47d7d06e73aba0ffc\slidingpanelayout-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\e9cc0f0e0dd2503b113a6576aef0520c\customview-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\e9cc0f0e0dd2503b113a6576aef0520c\customview-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\04e6b76b6ad86ad2089fb68021b94ebc\swiperefreshlayout-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\04e6b76b6ad86ad2089fb68021b94ebc\swiperefreshlayout-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\3331232a1d0540faeecd5909d3ddf883\asynclayoutinflater-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\3331232a1d0540faeecd5909d3ddf883\asynclayoutinflater-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\2a6c121eda6c2cbe33230f54b72bbbd4\support-compat-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\2a6c121eda6c2cbe33230f54b72bbbd4\support-compat-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\e02f1a1ec5b55e7809581065612f1348\versionedparcelable-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\e02f1a1ec5b55e7809581065612f1348\versionedparcelable-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\20dfc6e575b6f0806a233fe16bf403a6\cursoradapter-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\20dfc6e575b6f0806a233fe16bf403a6\cursoradapter-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\47a6a4cbe650527abafad251a3895de1\runtime-1.1.1\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\47a6a4cbe650527abafad251a3895de1\runtime-1.1.1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\b29536638db7292f2819422afa21694f\documentfile-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\b29536638db7292f2819422afa21694f\documentfile-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\75a0fb48320195389de42f99e74f0605\localbroadcastmanager-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\75a0fb48320195389de42f99e74f0605\localbroadcastmanager-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\097f413583d095274abac7a6ab27aa97\print-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\097f413583d095274abac7a6ab27aa97\print-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\4f0233fffabe21144e50178f9cde4274\viewmodel-1.1.1\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\4f0233fffabe21144e50178f9cde4274\viewmodel-1.1.1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\5c13844dbd3b484f42417ccecca0e693\interpolator-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\5c13844dbd3b484f42417ccecca0e693\interpolator-28.0.0\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\3ff1dcd229f05d3ed6ea73e9bcec5fe8\livedata-1.1.1\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\3ff1dcd229f05d3ed6ea73e9bcec5fe8\livedata-1.1.1\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\8dca7e011b2c99528440907406c0541e\livedata-core-1.1.1\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\8dca7e011b2c99528440907406c0541e\livedata-core-1.1.1\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\6798853c956e78fbccb8ca635a9e6671\runtime-1.1.1\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\jcm5758Main\.gradle\caches\transforms-2\files-2.1\6798853c956e78fbccb8ca635a9e6671\runtime-1.1.1\AndroidManifest.xml:20:5-44
+INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+		INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+		ADDED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
+		INJECTED from D:\sources\GRMS_Inventory_Office\MobileApp\BokangNew\app\src\main\AndroidManifest.xml
