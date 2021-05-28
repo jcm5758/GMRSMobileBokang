@@ -14,6 +14,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -40,6 +42,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.geurimsoft.bokangnew.apiserver.RetrofitService;
+import com.geurimsoft.bokangnew.apiserver.RetrofitUtil;
+import com.geurimsoft.bokangnew.apiserver.data.RequestData;
+import com.geurimsoft.bokangnew.apiserver.data.UserInfo;
+import com.geurimsoft.bokangnew.apiserver.data.UserRightData;
+import com.geurimsoft.bokangnew.data.GSConfig;
+import com.geurimsoft.bokangnew.dialog.ApiLoadingDialog;
+import com.geurimsoft.bokangnew.dialog.ApiReconnectDialog;
+import com.geurimsoft.bokangnew.dialog.DialogListener;
 import com.geurimsoft.bokangnew.view.etc.GwangjuTabActivity;
 import com.geurimsoft.bokangnew.view.etc.JoomyungTabActivity;
 import com.geurimsoft.bokangnew.view.etc.TotalTabActivity;
@@ -52,8 +63,19 @@ import com.geurimsoft.bokangnew.data.GSUser;
 import com.geurimsoft.bokangnew.client.SocketClient;
 import com.geurimsoft.bokangnew.util.ItemXmlParser;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 public class AppMain extends Activity
 {
+
+	private RetrofitService service = RetrofitUtil.getService();
+	private Disposable disposable;
+
+	private ApiLoadingDialog loadingDialog;
+	private ApiReconnectDialog reconnectDialog;
 
 	// User Layout 변수
 	EditText edtLogin, edtPasswd;
@@ -93,9 +115,6 @@ public class AppMain extends Activity
 		// 자동 로그인 체크시
 		autoCheck();
 
-		// CCTV 정보 가져오기
-		getServerContents();
-
 		// 앱 버전 확인
 		appVersionCheck();
 
@@ -106,6 +125,9 @@ public class AppMain extends Activity
 	 */
 	public void setUserInterface()
 	{
+
+		reconnectDialog = new ApiReconnectDialog(this);
+		loadingDialog = new ApiLoadingDialog(this);
 
 		pref = getSharedPreferences("user_account", Context.MODE_PRIVATE);
 
@@ -122,23 +144,9 @@ public class AppMain extends Activity
 		// 자동 로그인
 		chkAutoLogin = (CheckBox) this.findViewById(R.id.chkAutoLogin);
 
-		// 로그인 레이아웃
-		layoutlogin = (LinearLayout) this.findViewById(R.id.layoutlogin);
-		btnlayout = (LinearLayout) this.findViewById(R.id.btnlayout);
-		
 		// 로그인 버튼
 		btnlogin = (Button) this.findViewById(R.id.btnlogin);
 		
-		// 이미지 뷰
-		ivMenu01 = (ImageView) this.findViewById(R.id.ivMenu01);
-		ivMenu02 = (ImageView) this.findViewById(R.id.ivMenu02);
-
-		change_site_btn = (Button) this.findViewById(R.id.change_site_btn);
-		change_site_title = (TextView) this.findViewById(R.id.change_site_title);
-
-		change_site_btn.setVisibility(View.INVISIBLE);
-		change_site_title.setVisibility(View.INVISIBLE);
-
 		// 이벤트 등록
 		btnlogin.setOnClickListener(new View.OnClickListener() {
 
@@ -148,127 +156,11 @@ public class AppMain extends Activity
 				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 				imm.hideSoftInputFromWindow(edtPasswd.getWindowToken(), 0);
 
-				if (checkUser())
-				{
-					changeView(false);
-				}
+				checkUser();
 
 			}
 
 		});
-
-		ivMenu01.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				pref = getSharedPreferences("user_account", Context.MODE_PRIVATE);
-				int department = pref.getInt("user_department", 0);
-
-				if(department != 1)
-					return;
-
-				PackageManager packageManager = getPackageManager();
-
-				try
-				{
-					packageManager.getApplicationInfo("com.samsung.ipolis", PackageManager.GET_META_DATA);
-
-					Intent intent = mContext.getPackageManager().getLaunchIntentForPackage("com.samsung.ipolis");
-					startActivity(intent);
-
-				}
-				catch (Exception e)
-				{
-					Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.samsung.ipolis"));
-					startActivity(intent);
-				}
-
-			}
-
-		});
-
-		ivMenu02.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				Log.d(AppConfig.TAG, "R.id.ivMenu02 is clicked.");
-
-				pref = getSharedPreferences("user_account", Context.MODE_PRIVATE);
-				int branchID = pref.getInt("branch_id", 0);
-
-//				Log.d(AppConfig.TAG, "BranchID : " + branchID);
-
-				if(branchID == 1)
-				{
-					Intent intent = new Intent(AppMain.this, YonginTabActivity.class);
-					startActivity(intent);
-				}
-				else if(branchID == 2)
-				{
-					Intent intent = new Intent(AppMain.this, GwangjuTabActivity.class);
-					startActivity(intent);
-				}
-				else if(branchID == 3)
-				{
-					Intent intent = new Intent(AppMain.this, JoomyungTabActivity.class);
-					startActivity(intent);
-				}
-				else if(branchID == 4)
-				{
-					Intent intent = new Intent(AppMain.this, TotalTabActivity.class);
-					startActivity(intent);
-				}
-
-			}
-
-		});
-
-		// 현장 선택 버튼 이벤트
-		change_site_btn.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				Log.d(AppConfig.TAG, "R.id.change_site_btn is clicked.");
-
-				int branchID = pref.getInt("branch_id", 0);
-
-				if(branchID == 1)
-				{
-					SharedPreferences.Editor editor = pref.edit();
-					editor.putInt("branch_id", 1);
-					editor.commit();
-					change_site_title.setText(getString(R.string.site_yo));
-				}
-				else if(branchID == 2)
-				{
-					SharedPreferences.Editor editor = pref.edit();
-					editor.putInt("branch_id", 2);
-					editor.commit();
-					change_site_title.setText(getString(R.string.site_gw));
-				}
-				else if(branchID == 3)
-				{
-					SharedPreferences.Editor editor = pref.edit();
-					editor.putInt("branch_id", 3);
-					editor.commit();
-					change_site_title.setText(getString(R.string.site_ju));
-				}
-				else if(branchID == 4)
-				{
-					SharedPreferences.Editor editor = pref.edit();
-					editor.putInt("branch_id", 4);
-					editor.commit();
-					change_site_title.setText(getString(R.string.site_total));
-				}
-
-			}
-
-		});
-
-		this.changeView(isLogin);
 
 	}
 
@@ -280,8 +172,8 @@ public class AppMain extends Activity
 
 		pref = getSharedPreferences("user_account", Context.MODE_PRIVATE);
 
-		String sId = pref.getString("sId", null);
-		String sPass = pref.getString("sPass", null);
+		String sId = pref.getString("userID", null);
+		String sPass = pref.getString("userPWD", null);
 
 		boolean auto_chcek = pref.getBoolean("outo_chcek", false);
 
@@ -295,8 +187,8 @@ public class AppMain extends Activity
 		else
 		{
 			SharedPreferences.Editor removeEditor = pref.edit();
-			removeEditor.remove("sId");
-			removeEditor.remove("sPass");
+			removeEditor.remove("userID");
+			removeEditor.remove("userPWD");
 			removeEditor.remove("outo_chcek");
 			removeEditor.commit();
 		}
@@ -306,18 +198,7 @@ public class AppMain extends Activity
 	@Override
 	protected void onResume()
 	{
-
 		super.onResume();
-		
-//		int site = pref.getInt("user_department", 0);
-//
-//		if(site == 0)
-//			change_site_title.setText(getString(R.string.site_yo));
-//		else if(site == 1)
-//			change_site_title.setText(getString(R.string.site_gw));
-//		else if(site == 2)
-//			change_site_title.setText(getString(R.string.site_total));
-
 	}
 
 	/**
@@ -332,13 +213,13 @@ public class AppMain extends Activity
 
 		if (sId == null || sId.trim().length() == 0)
 		{
-			alert(getString(R.string.login_error_id_title), getString(R.string.login_error_id_msg));
+			Toast.makeText(getApplicationContext(), "아이디를 입력하세요.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 
 		if (sPass == null || sPass.trim().length() == 0)
 		{
-			alert(getString(R.string.login_error_pw_title), getString(R.string.login_error_pw_msg));
+			Toast.makeText(getApplicationContext(), "비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 
@@ -348,217 +229,157 @@ public class AppMain extends Activity
 
 	/**
 	 * 로그인 권한 확인
-	 * @param sId    	User ID
-	 * @param sPass		User PWD
+	 * @param userID    	User ID
+	 * @param userPWD		User PWD
 	 * @return
 	 */
-	private boolean LoginCheck(String sId, String sPass)
-	{
-		
-		try
-		{
-
-			String message = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>LOGIN</GCType><GCQuery>"+ sId + "," + sPass + "</GCQuery></GEURIMSOFT>\n";
-
-			SocketClient sc = new SocketClient(AppConfig.SERVER_IP, AppConfig.SERVER_PORT, message, AppConfig.SOCKET_KEY);
-
-			sc.start();
-			sc.join();
-
-			String msg = sc.getReturnString();
-
-			if (msg == null || msg.equals(""))
-			{
-				Log.d(AppConfig.TAG, "Returned xml is null.");
-				return false;
-			}
-
-			if (msg.equals("Fail"))
-			{
-				Log.d(AppConfig.TAG, "Id & pwd is wrong");
-				alert("Login Fail", getString(R.string.login_error_idpw));
-				return false;
-			}
-
-			GSUser user = XmlConverter.parseUserInfo(msg);
-			
-			if (user == null)
-			{
-
-				Toast.makeText(getApplicationContext(), getString(R.string.login_error_idpw2), Toast.LENGTH_SHORT);
-				Log.d(AppConfig.TAG, "user is null.");
-				
-				return false;
-				
-			}
-
-			SharedPreferences.Editor editor = pref.edit();
-			editor.putString("sId", sId);
-			editor.putString("sPass", sPass);
-			editor.putBoolean("outo_chcek", chkAutoLogin.isChecked());
-			editor.commit();
-
-			Toast.makeText(getApplicationContext(),user.getName() + getString(R.string.login_success), Toast.LENGTH_SHORT).show();
-
-			// 현장 선택
-			siteAlert();
-
-			return true;
-
-		}
-		catch (Exception e)
-		{
-			Log.e(AppConfig.TAG, "checkLogin() : " + e.toString());
-			return false;
-		}
-
-	}
-	/**
-	 * 알람 다이얼로그
-	 * 
-	 * @param title
-	 * @param mesg
-	 */
-	public void alert(String title, String mesg)
+	private boolean LoginCheck(String userID, String userPWD)
 	{
 
-		AlertDialog.Builder alert = new AlertDialog.Builder(AppMain.this);
-		alert.setPositiveButton(title, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss(); // 닫기
-			}
-		});
+		String functionName = "getLogin()";
 
-		alert.setMessage(mesg);
-		alert.show();
+		HashMap<String, String> map = new HashMap<>();
+		map.put("UserID", userID);
+		map.put("UserPWD", userPWD);
+
+		RequestData jData = new RequestData("LOGIN", map);
+
+		this.disposable = service.apiLogin(jData)
+
+		.retryWhen(throwableObservable -> throwableObservable
+
+				.zipWith(Observable.range(1, 2), (throwable, count) -> count)
+
+				.flatMap(count -> {
+
+					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : connect retry " + count + " times");
+
+					if (count < 2) {
+						Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : server reconnecting...");
+						return Observable.timer(GSConfig.API_RECONNECT, TimeUnit.SECONDS);
+					}
+
+					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : server disconnected...");
+
+					return Observable.error(new Exception());
+
+				})
+		)
+		.subscribeOn(Schedulers.io())
+		.observeOn(AndroidSchedulers.mainThread())
+		.doOnSubscribe(disposable1 -> {
+			loadingDialog.show();
+		})
+		.doOnTerminate(() -> {
+			loadingDialog.dismiss();
+		})
+		.subscribe(
+
+				item -> {
+
+					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : status : " + item.getStatus());
+
+					GSConfig.CURRENT_USER = item;
+
+					if (GSConfig.CURRENT_USER.isUserInfoNull() || GSConfig.CURRENT_USER.isUserRightNull())
+						return;
+
+					SharedPreferences.Editor editor = pref.edit();
+					editor.putString("userID", userID);
+					editor.putString("userPWD", userPWD);
+					editor.putBoolean("outo_chcek", chkAutoLogin.isChecked());
+					editor.commit();
+
+					Toast.makeText(getApplicationContext(),GSConfig.CURRENT_USER.getUserinfo().get(0).getName() + getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+
+					// 현장 선택
+					showBranch();
+
+				},
+				e -> {
+
+					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : onError : " + e);
+
+					reconnectDialog.setDialogListener(new DialogListener()
+					{
+
+						@Override
+						public void onPositiveClicked()
+						{
+							LoginCheck(userID, userPWD);
+						}
+
+						@Override
+						public void onNegativeClicked()
+						{
+							loadingDialog.dismiss();
+						}
+
+					});
+
+					reconnectDialog.show();
+
+				},
+				() -> {
+					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : onComplete");
+				}
+
+		);
+
+		return true;
 
 	}
+
 
 	/**
 	 * 현장 선택
 	 */
-	private void siteAlert()
+	private void showBranch()
 	{
-		
-//		String[] commandArray = null;
-//
-//		commandArray = getResources().getStringArray(R.array.super_grade_site_array);
-//
-//		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//		builder.setCancelable(false);
-//		builder.setTitle(getString(R.string.site_msg));
-//		builder.setItems(commandArray, new DialogInterface.OnClickListener()
-//		{
-//
-//			@Override
-//			public void onClick(DialogInterface dialog, int which)
-//			{
-//
-//				if(which == 0)
-//				{
-//
-//					SharedPreferences.Editor editor = pref.edit();
-//					editor.putInt("branch_id", 1);
-//					editor.commit();
-//
-//					dialog.dismiss();
-//
-//					change_site_title.setText(getString(R.string.site_yo));
-//
-//				}
-//				else if(which == 1)
-//				{
-//
-//					SharedPreferences.Editor editor = pref.edit();
-//					editor.putInt("branch_id", 2);
-//					editor.commit();
-//					dialog.dismiss();
-//
-//					change_site_title.setText(getString(R.string.site_gw));
-//
-//				}
-//				else if(which == 2)
-//				{
-//
-//					SharedPreferences.Editor editor = pref.edit();
-//					editor.putInt("branch_id", 3);
-//					editor.commit();
-//					dialog.dismiss();
-//
-//					change_site_title.setText(getString(R.string.site_ju));
-//
-//				}
-//				else if(which == 3)
-//				{
-//
-//					SharedPreferences.Editor editor = pref.edit();
-//					editor.putInt("branch_id", 4);
-//					editor.commit();
-//					dialog.dismiss();
-//
-//					change_site_title.setText(getString(R.string.site_total));
-//
-//				}
-//
-//				dialog.dismiss();
-//
-//			}
-//
-//		});
-//
-//		AlertDialog alert = builder.create();
-//		alert.show();
 
-		SharedPreferences.Editor editor = pref.edit();
-		editor.putInt("branch_id", 3);
-		editor.commit();
+		if (GSConfig.CURRENT_USER == null || GSConfig.CURRENT_USER.isUserInfoNull() || GSConfig.CURRENT_USER.isUserRightNull())
+			return;
+
+		String functionName = "siteAlert()";
+
+		ArrayList<UserRightData> urData = GSConfig.CURRENT_USER.getUserright();
+
+		String[] commandArray = new String[ urData.size() ];
+
+		for(int i = 0; i < urData.size(); i++)
+		{
+			commandArray[i] = urData.get(i).getBranName();
+		}
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setCancelable(false);
+		builder.setTitle(getString(R.string.site_msg));
+		builder.setItems(commandArray, new DialogInterface.OnClickListener()
+		{
+
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+
+				Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : which : " + which);
+
+				GSConfig.CURRENT_BRANCH = urData.get(which).getBranID();
+
+				Intent intent = new Intent(AppMain.this, GSConfig.Activity_LIST[which]);
+
+				startActivity(intent);
+
+				dialog.dismiss();
+
+			}
+
+		});
+
+		AlertDialog alert = builder.create();
+		alert.show();
 
 	}
 	
-	/*
-	 * 서버로부터 컨텐츠를 가지고 온다.
-	 */
-	public void getServerContents()
-	{
-
-		PLACE_LIST = ItemXmlParser.getPlaceList(getApplicationContext(), AppConfig.XML_DIR + "/" + AppConfig.PLACE_LIST_FILE);
-
-		for (int idx = 0; idx < PLACE_LIST.size(); idx++)
-		{
-
-			Place thisPlace = PLACE_LIST.get(idx);
-			ArrayList<CCTV> thisCCTVList = ItemXmlParser.getCCTVList(getApplicationContext(), AppConfig.XML_DIR + "/"
-							+ thisPlace.getCctvListFile());
-			thisPlace.setCctvList(thisCCTVList);
-
-		}
-
-	}
-
-	/**
-	 * selLayout - true : 로그인 화면 false : 메뉴화면
-	 * 
-	 * @param selLayout
-	 */
-	private void changeView(boolean selLayout)
-	{
-
-		isLogin = selLayout;
-
-		if (selLayout)
-		{
-			layoutlogin.setVisibility(View.VISIBLE);
-			btnlayout.setVisibility(View.GONE);
-		}
-		else
-		{
-			layoutlogin.setVisibility(View.GONE);
-			btnlayout.setVisibility(View.VISIBLE);
-		}
-
-	}
-
 	private void appVersionCheck()
 	{
 		new VersionCheckTask().execute();

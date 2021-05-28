@@ -1927,7 +1927,6 @@ id btnSelOnedisplay
 id btnStatSearch
 id btnStatisticDaily
 id btnStatisticWeek
-id btnlayout
 id btnlogin
 id btnselcctv
 id btntopcctv
@@ -1948,8 +1947,6 @@ id center_horizontal
 id center_vertical
 id chain
 id chains
-id change_site_btn
-id change_site_title
 id chart
 id chart_loading_fail
 id chart_loading_indicator
@@ -2150,8 +2147,6 @@ id invisible
 id inward
 id italic
 id item_touch_helper_previous_elevation
-id ivMenu01
-id ivMenu02
 id ivWarning
 id jumpToEnd
 id jumpToStart

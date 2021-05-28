@@ -58,12 +58,22 @@ public class UserInfo implements Serializable
         this.message = message;
     }
 
+    public void setUserinfo(ArrayList<UserInfoData> userinfo) {
+        this.userinfo = userinfo;
+    }
+
     public ArrayList<UserInfoData> getUserinfo() {
         return userinfo;
     }
 
-    public void setUserinfo(ArrayList<UserInfoData> userinfo) {
-        this.userinfo = userinfo;
+    public boolean isUserInfoNull()
+    {
+
+        if (this.userinfo == null || this.userinfo.size() == 0)
+            return true;
+        else
+            return false;
+
     }
 
     public ArrayList<UserRightData> getUserright() {
@@ -72,6 +82,16 @@ public class UserInfo implements Serializable
 
     public void setUserright(ArrayList<UserRightData> userright) {
         this.userright = userright;
+    }
+
+    public boolean isUserRightNull()
+    {
+
+        if (this.userright == null || this.userright.size() == 0)
+            return true;
+        else
+            return false;
+
     }
 
 }

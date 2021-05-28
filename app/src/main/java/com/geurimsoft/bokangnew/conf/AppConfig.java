@@ -16,9 +16,9 @@ public class AppConfig
 	/**
 	 * XML 파일 저장 관련된 정보 
 	 */
-	public static String SDCARD_FOLDER 	= 	"BokangNewApp";
-	public static String SAVE_DIR 		= 	 Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + SDCARD_FOLDER + "/";
-	
+//	public static String SDCARD_FOLDER 	= 	"BokangNewApp";
+//	public static String SAVE_DIR 		= 	 Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + SDCARD_FOLDER + "/";
+//
 	/**
 	 * 서버 정보 
 	 */
@@ -36,10 +36,10 @@ public class AppConfig
 	 * XML Config File 수정본 
 	 * 
 	 * */
-	public static String XML_DIR = "xml";
-	public static String PLACE_LIST_FILE = "placelist.xml";	
-	public static int LAYOUT_TYPE_1 = 1;
-	public static int LAYOUT_TYPE_4 = 4;
+//	public static String XML_DIR = "xml";
+//	public static String PLACE_LIST_FILE = "placelist.xml";
+//	public static int LAYOUT_TYPE_1 = 1;
+//	public static int LAYOUT_TYPE_4 = 4;
 	
 	
 	// 해당일 전체 데이터 (start date, end date)

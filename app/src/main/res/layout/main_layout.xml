@@ -104,76 +104,79 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/btnlayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:gravity="bottom"
-            android:orientation="vertical"
-            android:visibility="gone" >
+<!--        <LinearLayout-->
+<!--            android:id="@+id/btnlayout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="bottom"-->
+<!--            android:gravity="bottom"-->
+<!--            android:orientation="vertical"-->
+<!--            android:visibility="gone" >-->
 
-            <LinearLayout
-                android:layout_margin="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical|right" >
+<!--            <LinearLayout-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_vertical|right" >-->
 
-                <TextView
-                    android:id="@+id/change_site_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" 
-                    android:text=""
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:paddingRight="10dp"/>
+<!--                <TextView-->
+<!--                    android:id="@+id/change_site_title"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content" -->
+<!--                    android:text=""-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textSize="15sp"-->
+<!--                    android:paddingRight="10dp"/>-->
 
-                <Button
-                    android:background="@drawable/background_corner"
-                    android:text="변경하기"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    android:id="@+id/change_site_btn"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp" />
-            </LinearLayout>
-            
+<!--                <Button-->
+<!--                    android:background="@drawable/background_corner"-->
+<!--                    android:text="변경하기"-->
+<!--                    android:textColor="@android:color/white"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:id="@+id/change_site_btn"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="40dp" />-->
+
+<!--            </LinearLayout>-->
            
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal" >-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/btncctvbg"
-                    android:gravity="center_vertical|center_horizontal" >
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/btncctvbg"-->
+<!--                    android:gravity="center_vertical|center_horizontal" >-->
 
-                    <ImageView
-                        android:id="@+id/ivMenu01"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/btncctvtitle" />
-                </LinearLayout>
+<!--                    <ImageView-->
+<!--                        android:id="@+id/ivMenu01"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/btncctvtitle" />-->
+<!--                </LinearLayout>-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/btnstatbg"
-                    android:gravity="center_vertical|center_horizontal" >
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/btnstatbg"-->
+<!--                    android:gravity="center_vertical|center_horizontal" >-->
 
-                    <ImageView
-                        android:id="@+id/ivMenu02"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/btnstattitle" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+<!--                    <ImageView-->
+<!--                        android:id="@+id/ivMenu02"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/btnstattitle" />-->
+<!--                </LinearLayout>-->
+<!--                -->
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
     </FrameLayout>
 
 </RelativeLayout>
