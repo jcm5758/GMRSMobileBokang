@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.geurimsoft.bokangnew"
-    android:versionCode="101"
-    android:versionName="1.0.1" >
+    package="com.geurimsoft.bokangnew">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -10,66 +8,38 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
         android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
-        android:networkSecurityConfig="@xml/network_security_config">
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:usesCleartextTraffic="true">
 
         <activity
             android:name=".AppMain"
-            android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AppSetting" android:screenOrientation="portrait" ></activity>
+        <activity android:name=".view.StatView01"></activity>
         <activity
-            android:name=".CCTVMain"
-            android:label="@string/app_name"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
-            android:name=".AppSetting"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".StatView01"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name=".YonginTabActivity"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" 
-            android:configChanges="orientation|screenSize|keyboardHidden">
-        </activity>
-        <activity
-            android:name=".JoomyungTabActivity"
-            android:label="@string/app_name"
+            android:name=".view.YonginTabActivity"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
             android:configChanges="orientation|screenSize|keyboardHidden">
         </activity>
-
         <activity
-            android:name=".TestStatistic"
-            android:label="@string/app_name" >
+            android:name=".view.etc.JoomyungTabActivity"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
+            android:configChanges="orientation|screenSize|keyboardHidden">
         </activity>
+        <activity android:name=".view.TestStatistic" ></activity>
         <activity
-            android:name=".GwangjuTabActivity"
-            android:label="@string/app_name"
+            android:name=".view.TotalTabActivity"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
             android:configChanges="orientation|screenSize|keyboardHidden" >
         </activity>
-        <activity
-            android:name=".TotalTabActivity"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar"
-            android:configChanges="orientation|screenSize|keyboardHidden" >
-        </activity>
-
-        
         <activity android:name="org.achartengine.GraphicalActivity" />
+
     </application>
 
 </manifest>

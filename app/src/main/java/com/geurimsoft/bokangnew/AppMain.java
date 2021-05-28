@@ -31,6 +31,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.geurimsoft.bokangnew.view.etc.GwangjuTabActivity;
+import com.geurimsoft.bokangnew.view.etc.JoomyungTabActivity;
+import com.geurimsoft.bokangnew.view.etc.TotalTabActivity;
+import com.geurimsoft.bokangnew.view.etc.YonginTabActivity;
 import com.geurimsoft.conf.AppConfig;
 import com.geurimsoft.data.CCTV;
 import com.geurimsoft.data.Place;

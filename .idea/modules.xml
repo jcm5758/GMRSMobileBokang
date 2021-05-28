@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BokangNew.iml" filepath="$PROJECT_DIR$/BokangNew.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BokangNew.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BokangNew.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GRMSMobleBokang.iml" filepath="$PROJECT_DIR$/.idea/modules/GRMSMobleBokang.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GRMSMobleBokang.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GRMSMobleBokang.app.iml" />
     </modules>
   </component>
 </project>
