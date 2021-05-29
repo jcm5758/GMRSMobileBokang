@@ -25,6 +25,8 @@ public class GSUtil {
             if (str.equals(""))
                 return true;
 
+            return false;
+
         }
         catch(Exception ex)
         {

@@ -21,6 +21,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.apiserver.RetrofitService;
 import com.geurimsoft.bokangnew.apiserver.RetrofitUtil;
@@ -38,6 +45,7 @@ import com.geurimsoft.bokangnew.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.client.SocketClient;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -203,80 +211,132 @@ public class FragmentDailyAmount extends Fragment
 
 		String functionName = "getData()";
 
-		HashMap<String, String> map = new HashMap<>();
-		map.put("branchID", String.valueOf(GSConfig.CURRENT_BRANCH.getBranchID()));
-		map.put("serchDate", serchDate);
-		map.put("qryContent", qryContent);
+		String url = GSConfig.API_SERVER_ADDR + "API";
+		RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
 
-		RequestData jData = new RequestData("DAY", map);
-
-		this.disposable = service.apiLogin(jData)
-
-		.retryWhen(throwableObservable -> throwableObservable
-
-				.zipWith(Observable.range(1, 2), (throwable, count) -> count)
-
-				.flatMap(count -> {
-
-					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : connect retry " + count + " times");
-
-					if (count < 2) {
-						Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : server reconnecting...");
-						return Observable.timer(GSConfig.API_RECONNECT, TimeUnit.SECONDS);
+		StringRequest request = new StringRequest(
+				Request.Method.POST,
+				url,
+				//응답을 잘 받았을 때 이 메소드가 자동으로 호출
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response) {
+//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(FragmentDailyAmount.class.getName(), functionName) + "응답 -> " + response);
+						parseData(response);
 					}
-
-					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : server disconnected...");
-
-					return Observable.error(new Exception());
-
-				})
-		)
-		.subscribeOn(Schedulers.io())
-		.observeOn(AndroidSchedulers.mainThread())
-		.doOnSubscribe(disposable1 -> {
-			loadingDialog.show();
-		})
-		.doOnTerminate(() -> {
-			loadingDialog.dismiss();
-		})
-		.subscribe(
-
-				item -> {
-
-					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : status : " + item.getStatus());
-
 				},
-				e -> {
-
-					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : onError : " + e);
-
-					reconnectDialog.setDialogListener(new DialogListener()
-					{
-
-						@Override
-						public void onPositiveClicked()
-						{
-							getData(serchDate, qryContent);
-						}
-
-						@Override
-						public void onNegativeClicked()
-						{
-							loadingDialog.dismiss();
-						}
-
-					});
-
-					reconnectDialog.show();
-
-				},
-				() -> {
-					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : onComplete");
+				//에러 발생시 호출될 리스너 객체
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(FragmentDailyAmount.class.getName(), functionName) + "에러 -> " + error.getMessage());
+					}
 				}
+		) {
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String,String> params = new HashMap<String,String>();
+				params.put("GSType", "DAY");
+				params.put("GSQuery", "{ \"branchID\" : 3, \"searchDate\": 20210528, \"qryContent\" : \"Unit\" }");
+				return params;
+			}
+		};
 
-		);
+		request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
+		//requestQueue = Volley.newRequestQueue(GSConfig.context); // requestQueue 초기화 필수
+		requestQueue.add(request);
+
+		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(FragmentDailyAmount.class.getName(), functionName) + "요청 보냄.");
 
 	}
+
+	public void parseData(String msg)
+	{
+
+		String functionName = "parseData()";
+
+
+	}
+
+//	private void getData(String serchDate, String qryContent)
+//	{
+//
+//		String functionName = "getData()";
+//
+//		HashMap<String, String> map = new HashMap<>();
+//		map.put("branchID", String.valueOf(GSConfig.CURRENT_BRANCH.getBranchID()));
+//		map.put("serchDate", serchDate);
+//		map.put("qryContent", qryContent);
+//
+//		RequestData jData = new RequestData("DAY", map);
+//
+//		this.disposable = service.apiLogin(jData)
+//
+//		.retryWhen(throwableObservable -> throwableObservable
+//
+//				.zipWith(Observable.range(1, 2), (throwable, count) -> count)
+//
+//				.flatMap(count -> {
+//
+//					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : connect retry " + count + " times");
+//
+//					if (count < 2) {
+//						Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : server reconnecting...");
+//						return Observable.timer(GSConfig.API_RECONNECT, TimeUnit.SECONDS);
+//					}
+//
+//					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : server disconnected...");
+//
+//					return Observable.error(new Exception());
+//
+//				})
+//		)
+//		.subscribeOn(Schedulers.io())
+//		.observeOn(AndroidSchedulers.mainThread())
+//		.doOnSubscribe(disposable1 -> {
+//			loadingDialog.show();
+//		})
+//		.doOnTerminate(() -> {
+//			loadingDialog.dismiss();
+//		})
+//		.subscribe(
+//
+//				item -> {
+//
+//					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : status : " + item.getStatus());
+//
+//				},
+//				e -> {
+//
+//					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : onError : " + e);
+//
+//					reconnectDialog.setDialogListener(new DialogListener()
+//					{
+//
+//						@Override
+//						public void onPositiveClicked()
+//						{
+//							getData(serchDate, qryContent);
+//						}
+//
+//						@Override
+//						public void onNegativeClicked()
+//						{
+//							loadingDialog.dismiss();
+//						}
+//
+//					});
+//
+//					reconnectDialog.show();
+//
+//				},
+//				() -> {
+//					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : onComplete");
+//				}
+//
+//		);
+//
+//	}
 
 	/**
 	 * 일일 입고/출고/토사 수량 조회 태스크

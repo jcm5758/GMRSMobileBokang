@@ -14,7 +14,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
@@ -42,6 +44,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.apiserver.RetrofitService;
 import com.geurimsoft.bokangnew.apiserver.RetrofitUtil;
 import com.geurimsoft.bokangnew.apiserver.data.RequestData;
@@ -49,6 +58,8 @@ import com.geurimsoft.bokangnew.apiserver.data.UserInfo;
 import com.geurimsoft.bokangnew.apiserver.data.UserRightData;
 import com.geurimsoft.bokangnew.data.GSBranch;
 import com.geurimsoft.bokangnew.data.GSConfig;
+import com.geurimsoft.bokangnew.data.GSDailyInOut;
+import com.geurimsoft.bokangnew.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.dialog.ApiLoadingDialog;
 import com.geurimsoft.bokangnew.dialog.ApiReconnectDialog;
 import com.geurimsoft.bokangnew.dialog.DialogListener;
@@ -64,6 +75,8 @@ import com.geurimsoft.bokangnew.data.XmlConverter;
 import com.geurimsoft.bokangnew.data.GSUser;
 import com.geurimsoft.bokangnew.client.SocketClient;
 import com.geurimsoft.bokangnew.util.ItemXmlParser;
+import com.geurimsoft.bokangnew.view.joomyung.FragmentDailyAmount;
+import com.google.gson.Gson;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -244,95 +257,78 @@ public class AppMain extends Activity
 
 		String functionName = "getLogin()";
 
-		HashMap<String, String> map = new HashMap<>();
-		map.put("UserID", userID);
-		map.put("UserPWD", userPWD);
+		String url = GSConfig.API_SERVER_ADDR + "API";
+		RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
 
-		RequestData jData = new RequestData("LOGIN", map);
-
-		this.disposable = service.apiLogin(jData)
-
-		.retryWhen(throwableObservable -> throwableObservable
-
-				.zipWith(Observable.range(1, 2), (throwable, count) -> count)
-
-				.flatMap(count -> {
-
-					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : connect retry " + count + " times");
-
-					if (count < 2) {
-						Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : server reconnecting...");
-						return Observable.timer(GSConfig.API_RECONNECT, TimeUnit.SECONDS);
+		StringRequest request = new StringRequest(
+				Request.Method.POST,
+				url,
+				//응답을 잘 받았을 때 이 메소드가 자동으로 호출
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response) {
+						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(FragmentDailyAmount.class.getName(), functionName) + "응답 -> " + response);
+						parseData(userID, userPWD, response);
 					}
-
-					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : server disconnected...");
-
-					return Observable.error(new Exception());
-
-				})
-		)
-		.subscribeOn(Schedulers.io())
-		.observeOn(AndroidSchedulers.mainThread())
-		.doOnSubscribe(disposable1 -> {
-			loadingDialog.show();
-		})
-		.doOnTerminate(() -> {
-			loadingDialog.dismiss();
-		})
-		.subscribe(
-
-				item -> {
-
-					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : status : " + item.getStatus());
-
-					GSConfig.CURRENT_USER = item;
-
-					if (GSConfig.CURRENT_USER.isUserInfoNull() || GSConfig.CURRENT_USER.isUserRightNull())
-						return;
-
-					SharedPreferences.Editor editor = pref.edit();
-					editor.putString("userID", userID);
-					editor.putString("userPWD", userPWD);
-					editor.putBoolean("outo_chcek", chkAutoLogin.isChecked());
-					editor.commit();
-
-					Toast.makeText(getApplicationContext(),GSConfig.CURRENT_USER.getUserinfo().get(0).getName() + getString(R.string.login_success), Toast.LENGTH_SHORT).show();
-
-					// 현장 선택
-					showBranch();
-
 				},
-				e -> {
-
-					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : onError : " + e);
-
-					reconnectDialog.setDialogListener(new DialogListener()
-					{
-
-						@Override
-						public void onPositiveClicked()
-						{
-							LoginCheck(userID, userPWD);
-						}
-
-						@Override
-						public void onNegativeClicked()
-						{
-							loadingDialog.dismiss();
-						}
-
-					});
-
-					reconnectDialog.show();
-
-				},
-				() -> {
-					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : onComplete");
+				//에러 발생시 호출될 리스너 객체
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(FragmentDailyAmount.class.getName(), functionName) + "에러 -> " + error.getMessage());
+					}
 				}
+		) {
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String,String> params = new HashMap<String,String>();
+				params.put("GSType", "LOGIN");
+				params.put("GSQuery", "{ \"UserID\" : \"" + userID + "\", \"UserPWD\" : \"" + userPWD + "\"}");
+				return params;
+			}
+		};
 
-		);
+		request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
+		requestQueue.add(request);
+
+		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(FragmentDailyAmount.class.getName(), functionName) + "요청 보냄.");
 
 		return true;
+
+	}
+
+	public void parseData(String userID, String userPWD, String msg)
+	{
+
+		String functionName = "parseData()";
+
+		Gson gson = new Gson();
+
+		UserInfo userInfo = gson.fromJson(msg, UserInfo.class);
+
+		if (userInfo == null)
+		{
+			Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "userInfo is null.");
+			return;
+		}
+
+//		Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + userInfo.getUserinfo().get(0).getName());
+
+		GSConfig.CURRENT_USER = userInfo;
+
+		if (GSConfig.CURRENT_USER.isUserInfoNull() || GSConfig.CURRENT_USER.isUserRightNull())
+			return;
+
+		SharedPreferences.Editor editor = pref.edit();
+		editor.putString("userID", userID);
+		editor.putString("userPWD", userPWD);
+		editor.putBoolean("outo_chcek", chkAutoLogin.isChecked());
+		editor.commit();
+
+		Toast.makeText(getApplicationContext(),GSConfig.CURRENT_USER.getUserinfo().get(0).getName() + getString(R.string.login_success), Toast.LENGTH_SHORT).show();
+
+		// 현장 선택
+		showBranch();
 
 	}
 
@@ -368,6 +364,12 @@ public class AppMain extends Activity
 			{
 
 				Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : which : " + which);
+
+				if (GSConfig.CURRENT_USER.getUserRightData(which).getUr01() != 1)
+				{
+					Toast.makeText(getApplicationContext(),"지점에 로그인 권한이 없습니다.", Toast.LENGTH_SHORT).show();
+					return;
+				}
 
 				GSConfig.CURRENT_BRANCH = new GSBranch(urData.get(which).getBranID(), urData.get(which).getBranName(), urData.get(which).getBranShortName());
 

@@ -24,59 +24,60 @@ public class XmlConverter
 	public static GSUser parseUserInfo(String json)
 	{
 
-		try
-		{
+//		try
+//		{
+//
+//			if (json == null || json.equals(""))
+//			{
+//				Log.d(GSConfig.APP_DEBUG, "XmlConverter.parseUserInfo() : Returned JSON is null");
+//				return null;
+//			}
+//
+////			Log.d(GSConfig.APP_DEBUG, json);
+//
+//			GSUser user = new GSUser();
+//			List<GSBranch> branchList = new ArrayList();
+//
+//			JSONObject jsonObject = new JSONObject(json);
+//			user.setID(jsonObject.getInt("id"));
+//			user.setName(jsonObject.getString("name"));
+//
+//			JSONArray listArray = jsonObject.getJSONArray("branchList");
+//
+//			for(int i = 0 ; i < listArray.length() ; i++)
+//			{
+//
+//				JSONObject listObject = listArray.getJSONObject(i);
+//
+//				GSBranch branch = new GSBranch();
+//
+//				branch.setBranchID(listObject.getInt("branch_id"));
+//				branch.setBranchName(listObject.getString("name"));
+//				branch.setDbName(listObject.getInt("db_name"));
+//				branch.setBranchType(listObject.getInt("branch_type"));
+//				branch.setAddMode_type(listObject.getInt("addMode_type"));
+//				branch.setAuth_day(new int[]{ 1, 1, 1, 1 });
+//				branch.setAuth_month(new int[]{ 1, 1, 1});
+//				branch.setAuth_year(new int[]{ 1 });
+//
+//				branchList.add(branch);
+//
+//			}
+//
+////			Log.d(GSConfig.APP_DEBUG, "Size of branchList : " + branchList.size());
+//
+//			user.setBranchList(branchList);
+//
+//			return user;
+//
+//		}
+//		catch(Exception ex)
+//		{
+//			Log.e(GSConfig.APP_DEBUG, "XmlConverter.parseUserInfo() : " + ex.toString());
+//			return null;
+//		}
 
-			if (json == null || json.equals(""))
-			{
-				Log.d(GSConfig.APP_DEBUG, "XmlConverter.parseUserInfo() : Returned JSON is null");
-				return null;
-			}
-
-//			Log.d(GSConfig.APP_DEBUG, json);
-
-			GSUser user = new GSUser();
-			List<GSBranch> branchList = new ArrayList();
-
-			JSONObject jsonObject = new JSONObject(json);
-			user.setID(jsonObject.getInt("id"));
-			user.setName(jsonObject.getString("name"));
-
-			JSONArray listArray = jsonObject.getJSONArray("branchList");
-
-			for(int i = 0 ; i < listArray.length() ; i++)
-			{
-
-				JSONObject listObject = listArray.getJSONObject(i);
-
-				GSBranch branch = new GSBranch();
-
-				branch.setBranchID(listObject.getInt("branch_id"));
-				branch.setBranchName(listObject.getString("name"));
-				branch.setDbName(listObject.getInt("db_name"));
-				branch.setBranchType(listObject.getInt("branch_type"));
-				branch.setAddMode_type(listObject.getInt("addMode_type"));
-				branch.setAuth_day(new int[]{ 1, 1, 1, 1 });
-				branch.setAuth_month(new int[]{ 1, 1, 1});
-				branch.setAuth_year(new int[]{ 1 });
-
-				branchList.add(branch);
-
-			}
-
-//			Log.d(GSConfig.APP_DEBUG, "Size of branchList : " + branchList.size());
-
-			user.setBranchList(branchList);
-
-			return user;
-
-		}
-		catch(Exception ex)
-		{
-			Log.e(GSConfig.APP_DEBUG, "XmlConverter.parseUserInfo() : " + ex.toString());
-			return null;
-		}
-		
+		return null;
 	}
 
 	/**
