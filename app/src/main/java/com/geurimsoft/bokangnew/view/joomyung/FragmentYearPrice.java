@@ -1,4 +1,4 @@
-package com.geurimsoft.bokangnew.view.yearfragment;
+package com.geurimsoft.bokangnew.view.joomyung;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,7 +20,7 @@ import com.geurimsoft.bokangnew.data.XmlConverter;
 import com.geurimsoft.bokangnew.data.GSMonthInOut;
 import com.geurimsoft.bokangnew.client.SocketClient;
 
-public class JoomyungYearPriceFragment extends Fragment
+public class FragmentYearPrice extends Fragment
 {
 
 	private ListView yi_year_price_listview;
@@ -29,7 +29,7 @@ public class JoomyungYearPriceFragment extends Fragment
 
 	private YearPriceTask yearPriceTask;
 
-	public JoomyungYearPriceFragment() {}
+	public FragmentYearPrice() {}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)

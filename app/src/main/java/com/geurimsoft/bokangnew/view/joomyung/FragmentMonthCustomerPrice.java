@@ -1,4 +1,4 @@
-package com.geurimsoft.bokangnew.view.monthfragment;
+package com.geurimsoft.bokangnew.view.joomyung;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ import com.geurimsoft.bokangnew.data.GSDailyInOut;
 import com.geurimsoft.bokangnew.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.client.SocketClient;
 
-public class JoomyungMonthEnterprisePriceFragment extends Fragment
+public class FragmentMonthCustomerPrice extends Fragment
 {
 
 	private LinearLayout yi_month_enterprise_price_income_empty_layout, yi_month_enterprise_price_release_empty_layout, yi_month_enterprise_price_petosa_empty_layout;
@@ -29,7 +29,7 @@ public class JoomyungMonthEnterprisePriceFragment extends Fragment
 
 	private MonthEnterprisePriceTask monthEnterprisePriceTask;
 
-	public JoomyungMonthEnterprisePriceFragment() { }
+	public FragmentMonthCustomerPrice() { }
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)

@@ -1,4 +1,4 @@
-package com.geurimsoft.bokangnew.view.monthfragment;
+package com.geurimsoft.bokangnew.view.joomyung;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,13 +21,13 @@ import org.achartengine.ChartFactory;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 
-public class JoomyungMonthGraphFragment extends Fragment
+public class FragmentMonthGraph extends Fragment
 {
 
 	private LinearLayout stats_month_graph_container, stats_month_graph_loading_indicator, stats_month_graph_loading_fail;
 	private MonthGraphTask monthGraphTask;
 
-	public JoomyungMonthGraphFragment() { }
+	public FragmentMonthGraph() { }
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)

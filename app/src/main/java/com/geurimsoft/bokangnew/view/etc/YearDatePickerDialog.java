@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.GSConfig;
 
 
 public class YearDatePickerDialog extends Dialog implements OnClickListener{
@@ -56,7 +57,7 @@ public class YearDatePickerDialog extends Dialog implements OnClickListener{
 		this.yearWheelDatePicker =  (YearWheelDatePicker)findViewById(R.id.year_datepicker);
 		
 		this.yearWheelDatePicker.setVisibleItems(8);
-		this.yearWheelDatePicker.setMinMaxYears(AppConfig.LIMIT_YEAR, maxYear);
+		this.yearWheelDatePicker.setMinMaxYears(GSConfig.LIMIT_YEAR, maxYear);
 		
 		this.yearWheelDatePicker.setYear(currentYear);
 		

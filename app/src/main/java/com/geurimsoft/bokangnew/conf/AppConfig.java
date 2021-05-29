@@ -68,9 +68,7 @@ public class AppConfig
 	public static String GET_VEHICLE_LIST_URL= "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>VEHICLE</GCType></GEURIMSOFT>\n";
 	public static String GET_USER_LIST_URL= "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>USER</GCType></GEURIMSOFT>\n";
 	
-	// 통계에서 날짜 변경 시 년, 월 제한 (2020-05-01 추가)
-	public static int LIMIT_YEAR = 2020;
-	public static int LIMIT_MONTH = 5;
+
 	
 	public static int MONTH_STATS_YEAR = 0;
 	public static int MONTH_STATS_MONTH = 0;

@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.view.etc.MonthDatePickerDialog;
+import com.geurimsoft.bokangnew.view.util.MonthDatePickerDialog;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 
 public class YonginMonthPagerFragment extends Fragment {
@@ -135,12 +135,12 @@ public class YonginMonthPagerFragment extends Fragment {
 					public void OnConfirmButton(Dialog dialog, int selectYear, int selectMonth) {
 						// TODO Auto-generated method stub
 						
-						if(AppConfig.LIMIT_YEAR > selectYear || selectYear > currentYear) {
+						if(GSConfig.LIMIT_YEAR > selectYear || selectYear > currentYear) {
 							Toast.makeText(getActivity(), getString(R.string.change_date_year_error), Toast.LENGTH_SHORT).show();
 							return;
 						} 
 						
-						if(AppConfig.LIMIT_YEAR == selectYear && AppConfig.LIMIT_MONTH > selectMonth ) {
+						if(GSConfig.LIMIT_YEAR == selectYear && GSConfig.LIMIT_MONTH > selectMonth ) {
 							Toast.makeText(getActivity(), getString(R.string.change_date_month_error), Toast.LENGTH_SHORT).show();
 							return;
 						}

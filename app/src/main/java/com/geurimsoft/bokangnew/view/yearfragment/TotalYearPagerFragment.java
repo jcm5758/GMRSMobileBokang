@@ -118,7 +118,7 @@ public class TotalYearPagerFragment extends Fragment {
 					public void OnConfirmButton(Dialog dialog, int selectYear) {
 						// TODO Auto-generated method stub
 						
-						if(AppConfig.LIMIT_YEAR > selectYear || selectYear > currentYear) {
+						if(GSConfig.LIMIT_YEAR > selectYear || selectYear > currentYear) {
 							Toast.makeText(getActivity(), getString(R.string.change_date_year_error), Toast.LENGTH_SHORT).show();
 							return;
 						} 

@@ -1,4 +1,4 @@
-package com.geurimsoft.bokangnew.view.etc;
+package com.geurimsoft.bokangnew.view.util;
 
 import java.util.ArrayList;
 import java.util.List;

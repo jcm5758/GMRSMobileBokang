@@ -1,4 +1,4 @@
-package com.geurimsoft.bokangnew.view.yearfragment;
+package com.geurimsoft.bokangnew.view.joomyung;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,7 +25,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-public class JoomyungYearEnterpriseAmountFragment extends Fragment
+public class FragmentYearCustomerAmount extends Fragment
 {
 
 	private LinearLayout yi_month_enterprise_amount_income_empty_layout, yi_month_enterprise_amount_release_empty_layout, yi_month_enterprise_amount_petosa_empty_layout;
@@ -35,7 +35,7 @@ public class JoomyungYearEnterpriseAmountFragment extends Fragment
 
 	private YearEnterpriseAmountTask  monthEnterpriseAmountTask;
 
-	public JoomyungYearEnterpriseAmountFragment() {}
+	public FragmentYearCustomerAmount() {}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)

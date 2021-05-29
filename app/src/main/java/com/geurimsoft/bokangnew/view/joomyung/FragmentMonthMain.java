@@ -21,13 +21,8 @@ import android.widget.Toast;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.view.etc.MonthDatePickerDialog;
+import com.geurimsoft.bokangnew.view.util.MonthDatePickerDialog;
 import com.geurimsoft.bokangnew.conf.AppConfig;
-import com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthAmountFragment;
-import com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthEnterpriseAmountFragment;
-import com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthEnterprisePriceFragment;
-import com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthGraphFragment;
-import com.geurimsoft.bokangnew.view.monthfragment.JoomyungMonthPriceFragment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -111,11 +106,11 @@ public class FragmentMonthMain extends Fragment
 		
 		fragments = new ArrayList<Fragment>();
 		
-		fragments.add(new JoomyungMonthAmountFragment());
-		fragments.add(new JoomyungMonthPriceFragment());
-		fragments.add(new JoomyungMonthEnterpriseAmountFragment());
-		fragments.add(new JoomyungMonthEnterprisePriceFragment());
-		fragments.add(new JoomyungMonthGraphFragment());
+		fragments.add(new FragmentMonthAmount());
+		fragments.add(new FragmentMonthPrice());
+		fragments.add(new FragmentMonthCustomerAmount());
+		fragments.add(new FragmentMonthCustomerPrice());
+		fragments.add(new FragmentMonthGraph());
 
 	}
 	
@@ -139,13 +134,13 @@ public class FragmentMonthMain extends Fragment
 					@Override
 					public void OnConfirmButton(Dialog dialog, int selectYear, int selectMonth) {
 
-						if(AppConfig.LIMIT_YEAR > selectYear || selectYear > currentYear)
+						if(GSConfig.LIMIT_YEAR > selectYear || selectYear > currentYear)
 						{
 							Toast.makeText(getActivity(), getString(R.string.change_date_year_error), Toast.LENGTH_SHORT).show();
 							return;
 						} 
 						
-						if(AppConfig.LIMIT_YEAR == selectYear && AppConfig.LIMIT_MONTH > selectMonth )
+						if(GSConfig.LIMIT_YEAR == selectYear && GSConfig.LIMIT_MONTH > selectMonth )
 						{
 							Toast.makeText(getActivity(), getString(R.string.change_date_month_error), Toast.LENGTH_SHORT).show();
 							return;

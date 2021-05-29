@@ -1,4 +1,4 @@
-package com.geurimsoft.bokangnew.view.etc;
+package com.geurimsoft.bokangnew.view.util;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -12,13 +12,16 @@ import android.widget.Button;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.GSConfig;
 
 
-public class MonthDatePickerDialog extends Dialog implements OnClickListener{
+public class DayDatePickerDialog extends Dialog implements OnClickListener{
 
-	private MonthWheelDatePicker MonthWheelDatePicker;
+	private DayWheelDatePicker dayWheelDatePicker;
+
 	private int currentYear;
 	private int currentMonth;
+	private int currentDay;
 	
 	private Button confirm_button;
 	
@@ -26,15 +29,17 @@ public class MonthDatePickerDialog extends Dialog implements OnClickListener{
 	
 	private int selectYear;
 	private int selectMonth;
+	private int selectDay;
+	
 	private int maxYear;
 	
-	public MonthDatePickerDialog(Context context, int _currentYear, int _maxYear, int _currentMonth, DialogListner _dialogListner) {
+	public DayDatePickerDialog(Context context, int _currentYear, int _maxYear, int _currentMonth, int _currentDay, DialogListner _dialogListner) {
+
 		super(context);
-		// TODO Auto-generated constructor stub
-		
+
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
-		setContentView(R.layout.month_datepicker_dialog);
+		setContentView(R.layout.day_datepicker_dialog);
 		
 		getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 		
@@ -46,7 +51,8 @@ public class MonthDatePickerDialog extends Dialog implements OnClickListener{
 	    
 		this.currentYear = _currentYear;
 		this.currentMonth = _currentMonth;
-		
+		this.currentDay = _currentDay;
+				
 		this.dialogListner = _dialogListner;
 		this.maxYear = _maxYear;
 		
@@ -54,45 +60,50 @@ public class MonthDatePickerDialog extends Dialog implements OnClickListener{
 		
 	}
 	
-	private void setInterface() {
+	private void setInterface()
+	{
+
 		this.confirm_button = (Button)findViewById(R.id.confirm_button);
 		this.confirm_button.setOnClickListener(this);
+
+		this.dayWheelDatePicker = (DayWheelDatePicker)findViewById(R.id.day_datepicker);
+		this.dayWheelDatePicker.setVisibleItems(8);
+		this.dayWheelDatePicker.setMinMaxYears(GSConfig.LIMIT_YEAR, maxYear);
 		
-		this.MonthWheelDatePicker =  (MonthWheelDatePicker)findViewById(R.id.month_datepicker);
-		
-		this.MonthWheelDatePicker.setVisibleItems(8);
-		this.MonthWheelDatePicker.setMinMaxYears(AppConfig.LIMIT_YEAR, maxYear);
-		
-		this.MonthWheelDatePicker.setYear(currentYear);
-		this.MonthWheelDatePicker.setMonth(currentMonth);
+		this.dayWheelDatePicker.setYear(currentYear);
+		this.dayWheelDatePicker.setMonth(currentMonth);
+		this.dayWheelDatePicker.setDay(currentDay);
 		
 		this.selectYear = currentYear;
 		this.selectMonth = currentMonth;
+		this.selectDay = currentDay;
 		
-		this.MonthWheelDatePicker.addDateChangedListener(new MonthWheelDatePicker.IDateChangedListener() {
+		this.dayWheelDatePicker.addDateChangedListener(new DayWheelDatePicker.IDateChangedListener() {
 
 			@Override
-			public void onChanged(MonthWheelDatePicker sender, int oldYear, int year, int oldMonth, int newMonth) {
-				// TODO Auto-generated method stub
+			public void onChanged(DayWheelDatePicker sender, int oldDay, int oldMonth, int oldYear, int day, int month, int year) {
+
 				selectYear = year;
-				selectMonth = newMonth;
-				
+				selectMonth = month;
+				selectDay = day;
 			}
 		});
+
 	}
+
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+
 		switch(v.getId()) {
-		case R.id.confirm_button :
-			dialogListner.OnConfirmButton(MonthDatePickerDialog.this, selectYear, selectMonth);
-			break;
-//			
+			case R.id.confirm_button :
+				dialogListner.OnConfirmButton(DayDatePickerDialog.this, selectYear, selectMonth, selectDay);
+				break;
 		}
+
 	}
 	
 	public interface DialogListner {
-		public void OnConfirmButton(Dialog dialog, int selectYear, int selectMonth);
-
+		public void OnConfirmButton(Dialog dialog, int selectYear, int selectMonth, int selectDay);
 	}
+
 }

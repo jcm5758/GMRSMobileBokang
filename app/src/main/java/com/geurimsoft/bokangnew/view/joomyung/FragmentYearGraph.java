@@ -1,4 +1,4 @@
-package com.geurimsoft.bokangnew.view.yearfragment;
+package com.geurimsoft.bokangnew.view.joomyung;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,7 +21,7 @@ import org.achartengine.ChartFactory;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 
-public class JoomyungYearGraphFragment extends Fragment
+public class FragmentYearGraph extends Fragment
 {
 
 	private LinearLayout stats_year_graph_container, stats_year_graph_loading_indicator,
@@ -29,7 +29,7 @@ public class JoomyungYearGraphFragment extends Fragment
 
 	private yearGraphTask graphTask;
 
-	public JoomyungYearGraphFragment() { }
+	public FragmentYearGraph() { }
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)

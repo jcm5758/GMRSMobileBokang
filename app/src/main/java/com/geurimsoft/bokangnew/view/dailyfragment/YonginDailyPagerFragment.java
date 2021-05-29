@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.view.etc.DayDatePickerDialog;
+import com.geurimsoft.bokangnew.view.util.DayDatePickerDialog;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 
 public class YonginDailyPagerFragment extends Fragment
@@ -134,13 +134,13 @@ public class YonginDailyPagerFragment extends Fragment
 					@Override
 					public void OnConfirmButton(Dialog dialog, int selectYear, int selectMonth, int selectDay) {
 
-					if(AppConfig.LIMIT_YEAR > selectYear || selectYear > currentYear)
+					if(GSConfig.LIMIT_YEAR > selectYear || selectYear > currentYear)
 					{
 						Toast.makeText(getActivity(), getString(R.string.change_date_year_error), Toast.LENGTH_SHORT).show();
 						return;
 					}
 
-					if(AppConfig.LIMIT_YEAR == selectYear && AppConfig.LIMIT_MONTH > selectMonth )
+					if(GSConfig.LIMIT_YEAR == selectYear && GSConfig.LIMIT_MONTH > selectMonth )
 					{
 						Toast.makeText(getActivity(), getString(R.string.change_date_month_error), Toast.LENGTH_SHORT).show();
 						return;

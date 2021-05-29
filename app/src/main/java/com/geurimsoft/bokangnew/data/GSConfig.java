@@ -41,8 +41,13 @@ public class GSConfig
         return className + "." + funcName + " : ";
     }
 
+    // 현재의 연월일
     public static int DAY_STATS_YEAR = 0;
     public static int DAY_STATS_MONTH = 0;
     public static int DAY_STATS_DAY = 0;
+
+    // 통계에서 날짜 변경 시 년, 월 제한 (2020-05-01 추가)
+    public static int LIMIT_YEAR = 2020;
+    public static int LIMIT_MONTH = 5;
 
 }

@@ -21,12 +21,6 @@ import android.widget.Toast;
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.etc.YearDatePickerDialog;
-import com.geurimsoft.bokangnew.conf.AppConfig;
-import com.geurimsoft.bokangnew.view.yearfragment.JoomyungYearAmountFragment;
-import com.geurimsoft.bokangnew.view.yearfragment.JoomyungYearEnterpriseAmountFragment;
-import com.geurimsoft.bokangnew.view.yearfragment.JoomyungYearEnterprisePriceFragment;
-import com.geurimsoft.bokangnew.view.yearfragment.JoomyungYearGraphFragment;
-import com.geurimsoft.bokangnew.view.yearfragment.JoomyungYearPriceFragment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -101,11 +95,11 @@ public class FragmentYearMain extends Fragment
 		
 		fragments = new ArrayList<Fragment>();
 		
-		fragments.add(new JoomyungYearAmountFragment());
-		fragments.add(new JoomyungYearPriceFragment());
-		fragments.add(new JoomyungYearEnterpriseAmountFragment());
-		fragments.add(new JoomyungYearEnterprisePriceFragment());
-		fragments.add(new JoomyungYearGraphFragment());
+		fragments.add(new FragmentYearAmount());
+		fragments.add(new FragmentYearPrice());
+		fragments.add(new FragmentYearCustomerAmount());
+		fragments.add(new FragmentYearCustomerPrice());
+		fragments.add(new FragmentYearGraph());
 
 	}
 	
@@ -129,7 +123,7 @@ public class FragmentYearMain extends Fragment
 					@Override
 					public void OnConfirmButton(Dialog dialog, int selectYear) {
 
-						if(AppConfig.LIMIT_YEAR > selectYear || selectYear > currentYear)
+						if(GSConfig.LIMIT_YEAR > selectYear || selectYear > currentYear)
 						{
 							Toast.makeText(getActivity(), getString(R.string.change_date_year_error), Toast.LENGTH_SHORT).show();
 							return;
