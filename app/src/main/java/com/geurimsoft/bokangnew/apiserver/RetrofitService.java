@@ -26,4 +26,12 @@ public interface RetrofitService
     @POST("API")
     Observable<UserInfo> apiLogin(@Body RequestData jsonObject);
 
+    /**
+     * 일별 데이터 (Unit TotolPrice)
+     * @param jsonObject branchID, serchDate, qryContent
+     * @return status, result 결과 정보
+     */
+    @POST("API")
+    Observable<UserInfo> getDay(@Body RequestData jsonObject);
+
 }

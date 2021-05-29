@@ -47,6 +47,7 @@ import com.geurimsoft.bokangnew.apiserver.RetrofitUtil;
 import com.geurimsoft.bokangnew.apiserver.data.RequestData;
 import com.geurimsoft.bokangnew.apiserver.data.UserInfo;
 import com.geurimsoft.bokangnew.apiserver.data.UserRightData;
+import com.geurimsoft.bokangnew.data.GSBranch;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.dialog.ApiLoadingDialog;
 import com.geurimsoft.bokangnew.dialog.ApiReconnectDialog;
@@ -108,6 +109,8 @@ public class AppMain extends Activity
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_layout);
+
+		GSConfig.context = this;
 		
 		AppConfig.activities.add(AppMain.this);
 		
@@ -366,12 +369,10 @@ public class AppMain extends Activity
 
 				Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : which : " + which);
 
-				GSConfig.CURRENT_BRANCH = urData.get(which).getBranID();
-
-				String branName = urData.get(which).getBranShortName();
+				GSConfig.CURRENT_BRANCH = new GSBranch(urData.get(which).getBranID(), urData.get(which).getBranName(), urData.get(which).getBranShortName());
 
 				Intent intent = new Intent(AppMain.this, GSConfig.Activity_LIST[which]);
-				intent.putExtra("branName", branName);
+				intent.putExtra("branName", GSConfig.CURRENT_BRANCH.getBranchShortName());
 
 				startActivity(intent);
 

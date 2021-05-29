@@ -9,6 +9,7 @@
 
 package com.geurimsoft.bokangnew.view.joomyung;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -18,9 +19,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.geurimsoft.bokangnew.R;
+import com.geurimsoft.bokangnew.apiserver.RetrofitService;
+import com.geurimsoft.bokangnew.apiserver.RetrofitUtil;
+import com.geurimsoft.bokangnew.apiserver.data.RequestData;
 import com.geurimsoft.bokangnew.data.GSConfig;
+import com.geurimsoft.bokangnew.dialog.ApiLoadingDialog;
+import com.geurimsoft.bokangnew.dialog.ApiReconnectDialog;
+import com.geurimsoft.bokangnew.dialog.DialogListener;
+import com.geurimsoft.bokangnew.util.GSUtil;
 import com.geurimsoft.bokangnew.view.etc.StatsView;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.XmlConverter;
@@ -28,13 +37,25 @@ import com.geurimsoft.bokangnew.data.GSDailyInOut;
 import com.geurimsoft.bokangnew.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.client.SocketClient;
 
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 public class FragmentDailyAmount extends Fragment
 {
 
+
+	private RetrofitService service = RetrofitUtil.getService();
+	private Disposable disposable;
+	private ApiLoadingDialog loadingDialog;
+	private ApiReconnectDialog reconnectDialog;
+
 	private LinearLayout income_empty_layout, release_empty_layout, petosa_empty_layout;
 	private TextView stats_daily_date, daily_income_title, daily_release_title, daily_petosa_title;
-
-	private int year, month, day;
 
 	private LinearLayout loading_indicator, loading_fail;
 
@@ -106,27 +127,36 @@ public class FragmentDailyAmount extends Fragment
 	public void makeDailyAmountData(int _year, int _monthOfYear, int _dayOfMonth)
 	{
 
-		String str = _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일 입출고 현황";
+		String functionName = "makeDailyAmountData()";
 
-		if(stats_daily_date == null)
-			Log.e(GSConfig.APP_DEBUG, "StatsDailyAmountFragment makeDailyAmountData stats_daily_date is null");
-		
-		this.stats_daily_date.setText(str);
+		reconnectDialog = new ApiReconnectDialog(GSConfig.context);
+		loadingDialog = new ApiLoadingDialog(GSConfig.context);
 
-		String queryDate = _year + ",";
+		try
+		{
 
-		if (_monthOfYear < 10)
-			queryDate += "0" + _monthOfYear + ",";
-		else
-			queryDate += _monthOfYear + ",";
+			String str = _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일 입출고 현황";
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일");
 
-		if (_dayOfMonth < 10)
-			queryDate += "0" + _dayOfMonth;
-		else
-			queryDate += _dayOfMonth;
+//		if(stats_daily_date == null)
+//			Log.e(GSConfig.APP_DEBUG, "StatsDailyAmountFragment makeDailyAmountData stats_daily_date is null");
 
-		dailyAmountTask = new DailyAmountTask(queryDate);
-		dailyAmountTask.execute();
+			this.stats_daily_date.setText(str);
+
+			String queryDate = GSUtil.makeStringFromDate(_year, _monthOfYear, _dayOfMonth);
+			String qryContent = "Unit";
+
+			this.getData(queryDate, qryContent);
+
+//			dailyAmountTask = new DailyAmountTask(queryDate);
+//			dailyAmountTask.execute();
+
+		}
+		catch(Exception ex)
+		{
+			Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + ex.toString());
+			return;
+		}
 
 	}
 	
@@ -166,6 +196,86 @@ public class FragmentDailyAmount extends Fragment
 		if (tempGroup != null)
 			daily_petosa_title.setText(tempGroup.getTitleUnit());
 		
+	}
+
+	private void getData(String serchDate, String qryContent)
+	{
+
+		String functionName = "getData()";
+
+		HashMap<String, String> map = new HashMap<>();
+		map.put("branchID", String.valueOf(GSConfig.CURRENT_BRANCH.getBranchID()));
+		map.put("serchDate", serchDate);
+		map.put("qryContent", qryContent);
+
+		RequestData jData = new RequestData("DAY", map);
+
+		this.disposable = service.apiLogin(jData)
+
+		.retryWhen(throwableObservable -> throwableObservable
+
+				.zipWith(Observable.range(1, 2), (throwable, count) -> count)
+
+				.flatMap(count -> {
+
+					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : connect retry " + count + " times");
+
+					if (count < 2) {
+						Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : server reconnecting...");
+						return Observable.timer(GSConfig.API_RECONNECT, TimeUnit.SECONDS);
+					}
+
+					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : server disconnected...");
+
+					return Observable.error(new Exception());
+
+				})
+		)
+		.subscribeOn(Schedulers.io())
+		.observeOn(AndroidSchedulers.mainThread())
+		.doOnSubscribe(disposable1 -> {
+			loadingDialog.show();
+		})
+		.doOnTerminate(() -> {
+			loadingDialog.dismiss();
+		})
+		.subscribe(
+
+				item -> {
+
+					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : status : " + item.getStatus());
+
+				},
+				e -> {
+
+					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : onError : " + e);
+
+					reconnectDialog.setDialogListener(new DialogListener()
+					{
+
+						@Override
+						public void onPositiveClicked()
+						{
+							getData(serchDate, qryContent);
+						}
+
+						@Override
+						public void onNegativeClicked()
+						{
+							loadingDialog.dismiss();
+						}
+
+					});
+
+					reconnectDialog.show();
+
+				},
+				() -> {
+					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : onComplete");
+				}
+
+		);
+
 	}
 
 	/**

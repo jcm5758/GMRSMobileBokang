@@ -1,5 +1,7 @@
 package com.geurimsoft.bokangnew.data;
 
+import android.content.Context;
+
 import androidx.fragment.app.FragmentActivity;
 
 import com.geurimsoft.bokangnew.apiserver.data.UserInfo;
@@ -28,7 +30,7 @@ public class GSConfig
     public static final int API_RECONNECT = 5;
 
     // 현재 선택한 지점
-    public static int CURRENT_BRANCH = 0;
+    public static GSBranch CURRENT_BRANCH = null;
 
     // 현재 사용자
     public static UserInfo CURRENT_USER = null;
@@ -40,6 +42,8 @@ public class GSConfig
     {
         return className + "." + funcName + " : ";
     }
+
+    public static Context context;
 
     // 현재의 연월일
     public static int DAY_STATS_YEAR = 0;
