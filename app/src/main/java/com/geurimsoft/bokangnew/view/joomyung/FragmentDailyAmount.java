@@ -146,9 +146,6 @@ public class FragmentDailyAmount extends Fragment
 			String str = _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일 입출고 현황";
 			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일");
 
-//		if(stats_daily_date == null)
-//			Log.e(GSConfig.APP_DEBUG, "StatsDailyAmountFragment makeDailyAmountData stats_daily_date is null");
-
 			this.stats_daily_date.setText(str);
 
 			String queryDate = GSUtil.makeStringFromDate(_year, _monthOfYear, _dayOfMonth);
@@ -221,7 +218,7 @@ public class FragmentDailyAmount extends Fragment
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(FragmentDailyAmount.class.getName(), functionName) + "응답 -> " + response);
+						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
 						parseData(response);
 					}
 				},
@@ -229,7 +226,7 @@ public class FragmentDailyAmount extends Fragment
 				new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(FragmentDailyAmount.class.getName(), functionName) + "에러 -> " + error.getMessage());
+						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "에러 -> " + error.getMessage());
 					}
 				}
 		) {
@@ -243,10 +240,9 @@ public class FragmentDailyAmount extends Fragment
 		};
 
 		request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
-		//requestQueue = Volley.newRequestQueue(GSConfig.context); // requestQueue 초기화 필수
 		requestQueue.add(request);
 
-		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(FragmentDailyAmount.class.getName(), functionName) + "요청 보냄.");
+		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "요청 보냄.");
 
 	}
 
@@ -254,6 +250,8 @@ public class FragmentDailyAmount extends Fragment
 	{
 
 		String functionName = "parseData()";
+
+		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
 
 
 	}
