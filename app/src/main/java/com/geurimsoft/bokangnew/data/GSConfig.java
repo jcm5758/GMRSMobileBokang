@@ -9,6 +9,8 @@ import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.view.etc.GwangjuTabActivity;
 import com.geurimsoft.bokangnew.view.etc.JoomyungTabActivity;
 
+import java.text.DecimalFormat;
+
 public class GSConfig
 {
 
@@ -53,5 +55,23 @@ public class GSConfig
     // 통계에서 날짜 변경 시 년, 월 제한 (2020-05-01 추가)
     public static int LIMIT_YEAR = 2020;
     public static int LIMIT_MONTH = 5;
+
+    public static double moneyDivideNum = 1000;
+
+    public static int STATE_AMOUNT = 0;
+    public static int STATE_PRICE = 1;
+
+    public static String changeToCommanString(double value)
+    {
+        //DecimalFormat formatter = new DecimalFormat("#,###.0");
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        return formatter.format(value);
+    }
+
+    public static String changeToCommanStringWOPoint(double value)
+    {
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        return formatter.format(value);
+    }
 
 }

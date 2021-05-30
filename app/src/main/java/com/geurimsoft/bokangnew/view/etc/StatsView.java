@@ -11,11 +11,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.data.GSDailyInOut;
-import com.geurimsoft.bokangnew.data.GSDailyInOutDetail;
-import com.geurimsoft.bokangnew.data.GSDailyInOutGroup;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutDetail;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 
 public class StatsView
 {
@@ -86,6 +85,8 @@ public class StatsView
 	public void makeStockStatsView(LinearLayout _stock_layout)
 	{
 
+		String functionName = "makeStockStatsView()";
+
 		// 입고 리스트 미존재시 패스
 		if(this.inputList == null || this.inputList.size() <= 0)
 		{
@@ -132,6 +133,8 @@ public class StatsView
 			// 거래처명
 			//-------------------------------------------
 
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + diod.customerName);
+
 			if(stock_index == stock_count - 1)
 				stock_item_textview = makeMenuTextView(mContext, diod.customerName, "#000000", gravity);
 			else
@@ -151,9 +154,9 @@ public class StatsView
 				gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
 
 				if(stock_index == stock_count - 1)
-					stock_item_textview = makeMenuTextView(mContext, AppConfig.changeToCommanString(values[i]), "#000000", gravity);
+					stock_item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
 				else
-					stock_item_textview = makeRowTextView(mContext, AppConfig.changeToCommanString(values[i]), gravity);
+					stock_item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
 
 				stock_row_layout.addView(stock_item_textview);
 
@@ -237,9 +240,9 @@ public class StatsView
 				gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
 
 				if(release_index == this.release_count - 1)
-					release_item_textview = makeMenuTextView(mContext, AppConfig.changeToCommanString(values[i]), "#000000", gravity);
+					release_item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
 				else
-					release_item_textview = makeRowTextView(mContext, AppConfig.changeToCommanString(values[i]), gravity);
+					release_item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
 
 				release_row_layout.addView(release_item_textview);
 
@@ -323,9 +326,9 @@ public class StatsView
 				gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
 
 				if(index == this.petosa_count - 1)
-					item_textview = makeMenuTextView(mContext, AppConfig.changeToCommanString(values[i]), "#000000", gravity);
+					item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
 				else
-					item_textview = makeRowTextView(mContext, AppConfig.changeToCommanString(values[i]), gravity);
+					item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
 
 				release_row_layout.addView(item_textview);
 

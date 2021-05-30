@@ -20,8 +20,8 @@ import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.etc.StatsView;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.XmlConverter;
-import com.geurimsoft.bokangnew.data.GSDailyInOut;
-import com.geurimsoft.bokangnew.data.GSDailyInOutGroup;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.client.SocketClient;
 
 public class YonginDailyPriceFragment extends Fragment

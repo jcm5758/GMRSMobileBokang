@@ -29,8 +29,8 @@ import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.data.StAdapter;
 import com.geurimsoft.bokangnew.data.XmlConverter;
-import com.geurimsoft.bokangnew.data.GSDailyInOutDetail;
-import com.geurimsoft.bokangnew.data.GSDailyInOutGroup;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutDetail;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.data.GSMonthInOut;
 import com.geurimsoft.bokangnew.client.SocketClient;
 

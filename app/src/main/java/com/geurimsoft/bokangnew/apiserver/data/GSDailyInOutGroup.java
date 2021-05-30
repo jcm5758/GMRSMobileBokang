@@ -1,8 +1,8 @@
-package com.geurimsoft.bokangnew.data;
+package com.geurimsoft.bokangnew.apiserver.data;
 
 import android.util.Log;
 
-import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.GSConfig;
 
 import java.util.ArrayList;
 
@@ -39,12 +39,12 @@ public class GSDailyInOutGroup
 
     public String getTitleUnit()
     {
-        return this.serviceType + "(" + AppConfig.changeToCommanStringWOPoint(this.totalCount) + "대 : " + AppConfig.changeToCommanString(this.totalUnit) + "루베)";
+        return this.serviceType + "(" + GSConfig.changeToCommanStringWOPoint(this.totalCount) + "대 : " + GSConfig.changeToCommanString(this.totalUnit) + "루베)";
     }
 
     public String getTitleMoney()
     {
-        return this.serviceType + "(" + AppConfig.changeToCommanStringWOPoint(this.totalCount) + "대 : " + AppConfig.changeToCommanStringWOPoint(this.totalUnit / AppConfig.moneyDivideNum) + "천원)";
+        return this.serviceType + "(" + GSConfig.changeToCommanStringWOPoint(this.totalCount) + "대 : " + GSConfig.changeToCommanStringWOPoint(this.totalUnit / GSConfig.moneyDivideNum) + "천원)";
     }
 
     public GSDailyInOutDetail getDataFinal()

@@ -1,8 +1,8 @@
-package com.geurimsoft.bokangnew.data;
+package com.geurimsoft.bokangnew.apiserver.data;
 
 import android.util.Log;
 
-import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.GSConfig;
 
 import java.util.ArrayList;
 

@@ -51,12 +51,12 @@ public class GSUtil {
         try
         {
 
-            String result = iYear + ",";
+            String result = String.valueOf(iYear);
 
             if (iMonth < 10)
-                result += "0" + iMonth + ",";
+                result += "0" + iMonth;
             else
-                result += iMonth + ",";
+                result += iMonth;
 
             if (iDay < 10)
                 result += "0" + iDay;

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -63,6 +64,8 @@ public class DayDatePickerDialog extends Dialog implements OnClickListener{
 	private void setInterface()
 	{
 
+		String functionName = "setInterface()";
+
 		this.confirm_button = (Button)findViewById(R.id.confirm_button);
 		this.confirm_button.setOnClickListener(this);
 
@@ -86,7 +89,9 @@ public class DayDatePickerDialog extends Dialog implements OnClickListener{
 				selectYear = year;
 				selectMonth = month;
 				selectDay = day;
+
 			}
+
 		});
 
 	}

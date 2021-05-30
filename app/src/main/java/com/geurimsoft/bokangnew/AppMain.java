@@ -14,10 +14,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -27,7 +25,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -51,37 +48,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.geurimsoft.bokangnew.apiserver.RetrofitService;
-import com.geurimsoft.bokangnew.apiserver.RetrofitUtil;
-import com.geurimsoft.bokangnew.apiserver.data.RequestData;
 import com.geurimsoft.bokangnew.apiserver.data.UserInfo;
 import com.geurimsoft.bokangnew.apiserver.data.UserRightData;
 import com.geurimsoft.bokangnew.data.GSBranch;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.data.GSDailyInOut;
-import com.geurimsoft.bokangnew.data.GSDailyInOutGroup;
-import com.geurimsoft.bokangnew.dialog.ApiLoadingDialog;
-import com.geurimsoft.bokangnew.dialog.ApiReconnectDialog;
-import com.geurimsoft.bokangnew.dialog.DialogListener;
 import com.geurimsoft.bokangnew.view.BackPressHandler;
-import com.geurimsoft.bokangnew.view.etc.GwangjuTabActivity;
-import com.geurimsoft.bokangnew.view.etc.JoomyungTabActivity;
-import com.geurimsoft.bokangnew.view.etc.TotalTabActivity;
-import com.geurimsoft.bokangnew.view.etc.YonginTabActivity;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.CCTV;
 import com.geurimsoft.bokangnew.data.Place;
-import com.geurimsoft.bokangnew.data.XmlConverter;
-import com.geurimsoft.bokangnew.data.GSUser;
-import com.geurimsoft.bokangnew.client.SocketClient;
-import com.geurimsoft.bokangnew.util.ItemXmlParser;
-import com.geurimsoft.bokangnew.view.joomyung.FragmentDailyAmount;
 import com.google.gson.Gson;
-
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class AppMain extends Activity
 {

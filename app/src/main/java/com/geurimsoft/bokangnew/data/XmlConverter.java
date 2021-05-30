@@ -2,14 +2,11 @@ package com.geurimsoft.bokangnew.data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import android.util.Log;
 
-import com.geurimsoft.bokangnew.conf.AppConfig;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 
 import com.google.gson.Gson;
 

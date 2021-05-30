@@ -1,8 +1,8 @@
-package com.geurimsoft.bokangnew.data;
+package com.geurimsoft.bokangnew.apiserver.data;
 
 import android.util.Log;
 
-import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.data.GSConfig;
 
 public class GSDailyInOutDetail
 {
@@ -28,7 +28,7 @@ public class GSDailyInOutDetail
         double[] result = values;
 
         for(int i = 0; i < result.length; i++)
-            result[i] = (result[i] / AppConfig.moneyDivideNum);
+            result[i] = (result[i] / GSConfig.moneyDivideNum);
 
         return result;
 
@@ -43,10 +43,10 @@ public class GSDailyInOutDetail
         for(int i = 0; i < this.values.length; i++)
         {
 
-            if (iUnitMoneyType == AppConfig.STATE_PRICE)
-                result[i + 1] = AppConfig.changeToCommanString(this.values[i] / AppConfig.moneyDivideNum);
+            if (iUnitMoneyType == GSConfig.STATE_PRICE)
+                result[i + 1] = GSConfig.changeToCommanString(this.values[i] / GSConfig.moneyDivideNum);
             else
-                result[i + 1] = AppConfig.changeToCommanString(this.values[i]);
+                result[i + 1] = GSConfig.changeToCommanString(this.values[i]);
 
         }
 
@@ -58,7 +58,6 @@ public class GSDailyInOutDetail
     {
 
         Log.d(GSConfig.APP_DEBUG, "customerName : " + this.customerName);
-        Log.d(GSConfig.APP_DEBUG, "valueSize : " + this.valueSize);
 
         for(double value : this.values)
         {

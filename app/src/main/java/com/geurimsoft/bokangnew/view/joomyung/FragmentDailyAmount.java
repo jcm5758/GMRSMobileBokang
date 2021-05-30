@@ -9,8 +9,6 @@
 
 package com.geurimsoft.bokangnew.view.joomyung;
 
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
@@ -19,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -29,45 +26,25 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.bokangnew.apiserver.RetrofitService;
-import com.geurimsoft.bokangnew.apiserver.RetrofitUtil;
-import com.geurimsoft.bokangnew.apiserver.data.RequestData;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.dialog.ApiLoadingDialog;
-import com.geurimsoft.bokangnew.dialog.ApiReconnectDialog;
-import com.geurimsoft.bokangnew.dialog.DialogListener;
 import com.geurimsoft.bokangnew.util.GSUtil;
 import com.geurimsoft.bokangnew.view.etc.StatsView;
-import com.geurimsoft.bokangnew.conf.AppConfig;
-import com.geurimsoft.bokangnew.data.XmlConverter;
-import com.geurimsoft.bokangnew.data.GSDailyInOut;
-import com.geurimsoft.bokangnew.data.GSDailyInOutGroup;
-import com.geurimsoft.bokangnew.client.SocketClient;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
+import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class FragmentDailyAmount extends Fragment
 {
-
-
-	private RetrofitService service = RetrofitUtil.getService();
-	private Disposable disposable;
-	private ApiLoadingDialog loadingDialog;
-	private ApiReconnectDialog reconnectDialog;
 
 	private LinearLayout income_empty_layout, release_empty_layout, petosa_empty_layout;
 	private TextView stats_daily_date, daily_income_title, daily_release_title, daily_petosa_title;
 
 	private LinearLayout loading_indicator, loading_fail;
-
-	private DailyAmountTask dailyAmountTask;
 
 	public FragmentDailyAmount() {}
 	
@@ -122,7 +99,6 @@ public class FragmentDailyAmount extends Fragment
 	public void onPause()
 	{
 		super.onPause();
-		dailyAmountTask.cancel(true);
 	}
 
     /**
@@ -137,14 +113,11 @@ public class FragmentDailyAmount extends Fragment
 
 		String functionName = "makeDailyAmountData()";
 
-		reconnectDialog = new ApiReconnectDialog(GSConfig.context);
-		loadingDialog = new ApiLoadingDialog(GSConfig.context);
-
 		try
 		{
 
 			String str = _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일 입출고 현황";
-			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일");
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일");
 
 			this.stats_daily_date.setText(str);
 
@@ -152,9 +125,6 @@ public class FragmentDailyAmount extends Fragment
 			String qryContent = "Unit";
 
 			this.getData(queryDate, qryContent);
-
-//			dailyAmountTask = new DailyAmountTask(queryDate);
-//			dailyAmountTask.execute();
 
 		}
 		catch(Exception ex)
@@ -165,6 +135,69 @@ public class FragmentDailyAmount extends Fragment
 
 	}
 	
+	private void getData(String searchDate, String qryContent)
+	{
+
+		String functionName = "getData()";
+
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "searchDate : " + searchDate + ", qryContent : " + qryContent);
+
+		String url = GSConfig.API_SERVER_ADDR + "API";
+		RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
+
+		StringRequest request = new StringRequest(
+				Request.Method.POST,
+				url,
+				//응답을 잘 받았을 때 이 메소드가 자동으로 호출
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response) {
+//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+						parseData(response);
+					}
+				},
+				//에러 발생시 호출될 리스너 객체
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "에러 -> " + error.getMessage());
+					}
+				}
+		) {
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String,String> params = new HashMap<String,String>();
+				params.put("GSType", "DAY");
+				params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"searchDate\": " + searchDate + ", \"qryContent\" : \"" + qryContent + "\" }");
+				return params;
+			}
+		};
+
+		request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
+		requestQueue.add(request);
+
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "요청 보냄.");
+
+	}
+
+	public void parseData(String msg)
+	{
+
+		String functionName = "parseData()";
+
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
+
+		GSDailyInOut dio = new GSDailyInOut();
+
+		Gson gson = new Gson();
+		GSDailyInOutGroup[] diog = gson.fromJson(msg, GSDailyInOutGroup[].class);
+
+		dio.list = new ArrayList<>(Arrays.asList(diog));
+
+		this.setDisplayData(dio);
+
+	}
+
 	private void setDisplayData(GSDailyInOut dio)
 	{
 
@@ -180,17 +213,19 @@ public class FragmentDailyAmount extends Fragment
 			return;
 		}
 
+//		dio.print();
+
 		income_empty_layout.removeAllViews();
 		release_empty_layout.removeAllViews();
 		petosa_empty_layout.removeAllViews();
-		
+
 		StatsView statsView = new StatsView(getActivity(), dio, 0);
 
 		statsView.makeStockStatsView(income_empty_layout);
 		GSDailyInOutGroup tempGroup = dio.findByServiceType("입고");
 		if (tempGroup != null)
 			daily_income_title.setText(tempGroup.getTitleUnit());
-		
+
 		statsView.makeReleaseStatsView(release_empty_layout);
 		tempGroup = dio.findByServiceType("출고");
 		if (tempGroup != null)
@@ -200,216 +235,6 @@ public class FragmentDailyAmount extends Fragment
 		tempGroup = dio.findByServiceType("토사");
 		if (tempGroup != null)
 			daily_petosa_title.setText(tempGroup.getTitleUnit());
-		
-	}
-
-	private void getData(String serchDate, String qryContent)
-	{
-
-		String functionName = "getData()";
-
-		String url = GSConfig.API_SERVER_ADDR + "API";
-		RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
-
-		StringRequest request = new StringRequest(
-				Request.Method.POST,
-				url,
-				//응답을 잘 받았을 때 이 메소드가 자동으로 호출
-				new Response.Listener<String>() {
-					@Override
-					public void onResponse(String response) {
-						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
-						parseData(response);
-					}
-				},
-				//에러 발생시 호출될 리스너 객체
-				new Response.ErrorListener() {
-					@Override
-					public void onErrorResponse(VolleyError error) {
-						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "에러 -> " + error.getMessage());
-					}
-				}
-		) {
-			@Override
-			protected Map<String, String> getParams() throws AuthFailureError {
-				Map<String,String> params = new HashMap<String,String>();
-				params.put("GSType", "DAY");
-				params.put("GSQuery", "{ \"branchID\" : 3, \"searchDate\": 20210528, \"qryContent\" : \"Unit\" }");
-				return params;
-			}
-		};
-
-		request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
-		requestQueue.add(request);
-
-		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "요청 보냄.");
-
-	}
-
-	public void parseData(String msg)
-	{
-
-		String functionName = "parseData()";
-
-		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
-
-
-	}
-
-//	private void getData(String serchDate, String qryContent)
-//	{
-//
-//		String functionName = "getData()";
-//
-//		HashMap<String, String> map = new HashMap<>();
-//		map.put("branchID", String.valueOf(GSConfig.CURRENT_BRANCH.getBranchID()));
-//		map.put("serchDate", serchDate);
-//		map.put("qryContent", qryContent);
-//
-//		RequestData jData = new RequestData("DAY", map);
-//
-//		this.disposable = service.apiLogin(jData)
-//
-//		.retryWhen(throwableObservable -> throwableObservable
-//
-//				.zipWith(Observable.range(1, 2), (throwable, count) -> count)
-//
-//				.flatMap(count -> {
-//
-//					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : connect retry " + count + " times");
-//
-//					if (count < 2) {
-//						Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : server reconnecting...");
-//						return Observable.timer(GSConfig.API_RECONNECT, TimeUnit.SECONDS);
-//					}
-//
-//					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : server disconnected...");
-//
-//					return Observable.error(new Exception());
-//
-//				})
-//		)
-//		.subscribeOn(Schedulers.io())
-//		.observeOn(AndroidSchedulers.mainThread())
-//		.doOnSubscribe(disposable1 -> {
-//			loadingDialog.show();
-//		})
-//		.doOnTerminate(() -> {
-//			loadingDialog.dismiss();
-//		})
-//		.subscribe(
-//
-//				item -> {
-//
-//					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : status : " + item.getStatus());
-//
-//				},
-//				e -> {
-//
-//					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : onError : " + e);
-//
-//					reconnectDialog.setDialogListener(new DialogListener()
-//					{
-//
-//						@Override
-//						public void onPositiveClicked()
-//						{
-//							getData(serchDate, qryContent);
-//						}
-//
-//						@Override
-//						public void onNegativeClicked()
-//						{
-//							loadingDialog.dismiss();
-//						}
-//
-//					});
-//
-//					reconnectDialog.show();
-//
-//				},
-//				() -> {
-//					Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : onComplete");
-//				}
-//
-//		);
-//
-//	}
-
-	/**
-	 * 일일 입고/출고/토사 수량 조회 태스크
-	 */
-	public class DailyAmountTask extends AsyncTask<String, String, GSDailyInOut>
-	{
-
-		private String queryDate;
-		
-		public DailyAmountTask(String _queryDate)
-		{
-			this.queryDate = _queryDate;
-		}
-
-		@Override
-		protected void onPreExecute()
-		{
-			super.onPreExecute();
-			loading_indicator.setVisibility(View.VISIBLE);
-		}
-
-		@Override
-		protected GSDailyInOut doInBackground(String... params)
-		{
-
-			String branchID = "3,";
-			String messages =  "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>DAILY_UNIT</GCType><GCQuery>" + branchID + queryDate + "</GCQuery></GEURIMSOFT>\n";
-
-			SocketClient sc = new SocketClient(AppConfig.SERVER_IP, AppConfig.SERVER_PORT, messages, AppConfig.SOCKET_KEY);
-
-			try
-			{
-				sc.start();
-				sc.join();
-			}
-			catch (Exception e)
-			{
-				e.printStackTrace();
-			}
-			
-			GSDailyInOut dio = null;
-			
-			String mss = sc.getReturnString();
-
-			if(mss.equals("Fail"))
-			{
-				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Response is Fail.");
-				return null;
-			}
-
-            dio = XmlConverter.parseDaily(mss);
-
-			return dio;
-
-		}
-
-		@Override
-		protected void onPostExecute(GSDailyInOut result)
-		{
-
-			super.onPostExecute(result);
-			
-			if(result.equals("Fail"))
-			{
-				loading_fail.setVisibility(View.VISIBLE);
-			}
-			else
-			{
-				loading_fail.setVisibility(View.GONE);
-				setDisplayData(result);
-			}
-			
-			loading_indicator.setVisibility(View.GONE);
-
-		}
 
 	}
 

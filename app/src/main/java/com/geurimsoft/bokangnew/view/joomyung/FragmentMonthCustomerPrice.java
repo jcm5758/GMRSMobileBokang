@@ -15,8 +15,8 @@ import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.etc.EnterpriseMonthStatsView;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.XmlConverter;
-import com.geurimsoft.bokangnew.data.GSDailyInOut;
-import com.geurimsoft.bokangnew.data.GSDailyInOutGroup;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.client.SocketClient;
 
 public class FragmentMonthCustomerPrice extends Fragment
@@ -112,13 +112,13 @@ public class FragmentMonthCustomerPrice extends Fragment
 		EnterpriseMonthStatsView statsView = new EnterpriseMonthStatsView(getActivity(), AppConfig.SITE_JOOMYUNG, AppConfig.STATE_PRICE, _date);
 
 		statsView.makeStatsView(yi_month_enterprise_price_income_empty_layout, inputGroup, AppConfig.MODE_STOCK, AppConfig.STATE_PRICE);
-		yi_month_enterprise_price_income_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_STOCK] + "(" + AppConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");
+		yi_month_enterprise_price_income_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");
 
 		statsView.makeStatsView(yi_month_enterprise_price_release_empty_layout, outputGroup, AppConfig.MODE_RELEASE, AppConfig.STATE_PRICE);
-		yi_month_enterprise_price_release_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_RELEASE] + "(" + AppConfig.changeToCommanString(outputGroup.totalUnit) + unit + ")");
+		yi_month_enterprise_price_release_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(outputGroup.totalUnit) + unit + ")");
 
 		statsView.makeStatsView(yi_month_enterprise_price_petosa_empty_layout, slugeGroup, AppConfig.MODE_PETOSA, AppConfig.STATE_PRICE);
-		yi_month_enterprise_price_petosa_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_PETOSA] + "(" + AppConfig.changeToCommanString(slugeGroup.totalUnit) + unit + ")");
+		yi_month_enterprise_price_petosa_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(slugeGroup.totalUnit) + unit + ")");
 
 	}
 	
