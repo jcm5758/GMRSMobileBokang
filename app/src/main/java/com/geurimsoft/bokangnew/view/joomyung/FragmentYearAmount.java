@@ -94,10 +94,10 @@ public class FragmentYearAmount extends Fragment
 
 			yi_year_amount_header_container.removeAllViews();
 
-			StatsHeaderAndFooterView statsHeaderAndFooterView = new StatsHeaderAndFooterView(getActivity(), data, AppConfig.STATE_AMOUNT);
+			StatsHeaderAndFooterView statsHeaderAndFooterView = new StatsHeaderAndFooterView(getActivity(), data, GSConfig.STATE_AMOUNT);
 			statsHeaderAndFooterView.makeHeaderView(yi_year_amount_header_container);
 
-			StAdapter adapter = new StAdapter(getActivity(), data, AppConfig.STATE_AMOUNT);
+			StAdapter adapter = new StAdapter(getActivity(), data, GSConfig.STATE_AMOUNT);
 
 			View foot = View.inflate(getActivity(), R.layout.stats_foot, null);
 			LinearLayout footer_layout = (LinearLayout)foot.findViewById(R.id.stats_footer_container);

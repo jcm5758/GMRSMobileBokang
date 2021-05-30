@@ -283,7 +283,7 @@ public class EnterpriseMonthStatsView
 			String query = this.branchID + "," + this.serviceType + "," + queryDate + "," + this.customerName;
 			String message = null;
 
-			if (this.statsType == AppConfig.STATE_AMOUNT)
+			if (this.statsType == GSConfig.STATE_AMOUNT)
 				message = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>MONTH_CUSTOMER_DAY_UNIT</GCType><GCQuery>" + query + "</GCQuery></GEURIMSOFT>\n";
 			else if (this.statsType == AppConfig.STATE_PRICE)
 				message = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>MONTH_CUSTOMER_DAY_MONEY</GCType><GCQuery>" + query + "</GCQuery></GEURIMSOFT>\n";
@@ -408,7 +408,7 @@ public class EnterpriseMonthStatsView
 
 		String statsTypeStr = "";
 
-		if(statsType == AppConfig.STATE_AMOUNT)
+		if(statsType == GSConfig.STATE_AMOUNT)
 		{
 			statsTypeStr = "(단위:루베)";
 		}

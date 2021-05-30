@@ -61,12 +61,6 @@ import com.google.gson.Gson;
 public class AppMain extends Activity
 {
 
-//	private RetrofitService service = RetrofitUtil.getService();
-//	private Disposable disposable;
-
-//	private ApiLoadingDialog loadingDialog;
-//	private ApiReconnectDialog reconnectDialog;
-
 	// User Layout 변수
 	EditText edtLogin, edtPasswd;
 	CheckBox chkAutoLogin;
@@ -76,19 +70,8 @@ public class AppMain extends Activity
 
 	TextView change_site_title;
 	
-	private boolean isLogin = true;
-	public static ArrayList<Place> PLACE_LIST = null;
-	public static int CURRENT_PLACE_INDEX = 0;
-	public static ArrayList<CCTV> CURRENT_CCTV_LIST = null;
-	
-	private Context mContext;
-	
 	private SharedPreferences pref;
 	
-	private long backKeyPressedTime = 0;
-	
-	private Toast appFinishedToast;
-
 	private BackPressHandler backPressHandler;
 	
 	@Override
@@ -119,9 +102,6 @@ public class AppMain extends Activity
 	 */
 	public void setUserInterface()
 	{
-
-//		reconnectDialog = new ApiReconnectDialog(this);
-//		loadingDialog = new ApiLoadingDialog(this);
 
 		pref = getSharedPreferences("user_account", Context.MODE_PRIVATE);
 
@@ -242,7 +222,7 @@ public class AppMain extends Activity
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
 						parseData(userID, userPWD, response);
 					}
 				},
@@ -266,7 +246,7 @@ public class AppMain extends Activity
 		request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
 		requestQueue.add(request);
 
-		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "요청 보냄.");
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "요청 보냄.");
 
 		return true;
 

@@ -1,3 +1,12 @@
+/**
+ * 월별 메인
+ *
+ * 2021. 05. 30 리뉴얼
+ *
+ * Written by jcm5758
+ *
+ */
+
 package com.geurimsoft.bokangnew.view.joomyung;
 
 import android.app.Dialog;
@@ -5,11 +14,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.PagerTabStrip;
-import androidx.viewpager.widget.ViewPager;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,10 +23,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.PagerTabStrip;
+import androidx.viewpager.widget.ViewPager;
+
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.util.MonthDatePickerDialog;
-import com.geurimsoft.bokangnew.conf.AppConfig;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -154,9 +163,12 @@ public class FragmentMonthMain extends Fragment
 
 						if(GSConfig.DAY_STATS_YEAR != selectYear || GSConfig.DAY_STATS_MONTH != selectMonth)
 						{
+
 							GSConfig.DAY_STATS_YEAR = selectYear;
 							GSConfig.DAY_STATS_MONTH = selectMonth;
+
 							statsPagerAdapter.notifyDataSetChanged();
+
 						}
 						
 						dialog.dismiss();

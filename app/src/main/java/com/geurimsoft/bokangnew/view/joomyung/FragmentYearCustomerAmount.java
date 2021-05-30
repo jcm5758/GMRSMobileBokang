@@ -114,23 +114,23 @@ public class FragmentYearCustomerAmount extends Fragment
 			yi_month_enterprise_amount_release_empty_layout.removeAllViews();
 			yi_month_enterprise_amount_petosa_empty_layout.removeAllViews();
 
-			EnterpriseYearStatsView statsView = new EnterpriseYearStatsView(getActivity(), AppConfig.SITE_JOOMYUNG, AppConfig.STATE_AMOUNT, _date);
+			EnterpriseYearStatsView statsView = new EnterpriseYearStatsView(getActivity(), AppConfig.SITE_JOOMYUNG, GSConfig.STATE_AMOUNT, _date);
 
 			if (inputGroup != null)
 			{
-				statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, inputGroup, AppConfig.MODE_STOCK, AppConfig.STATE_AMOUNT);
+				statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, inputGroup, AppConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
 				yi_month_enterprise_amount_income_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");
 			}
 
 			if (outputGroup != null)
 			{
-				statsView.makeStatsView(yi_month_enterprise_amount_release_empty_layout, outputGroup, AppConfig.MODE_RELEASE, AppConfig.STATE_AMOUNT);
+				statsView.makeStatsView(yi_month_enterprise_amount_release_empty_layout, outputGroup, AppConfig.MODE_RELEASE, GSConfig.STATE_AMOUNT);
 				yi_month_enterprise_amount_release_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(outputGroup.totalUnit) + unit + ")");
 			}
 
 			if (slugeGroup != null)
 			{
-				statsView.makeStatsView(yi_month_enterprise_amount_petosa_empty_layout, slugeGroup, AppConfig.MODE_PETOSA, AppConfig.STATE_AMOUNT);
+				statsView.makeStatsView(yi_month_enterprise_amount_petosa_empty_layout, slugeGroup, AppConfig.MODE_PETOSA, GSConfig.STATE_AMOUNT);
 				yi_month_enterprise_amount_petosa_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(slugeGroup.totalUnit) + unit + ")");
 			}
 

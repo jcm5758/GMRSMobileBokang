@@ -21,7 +21,7 @@ public class GSMonthInOutDetail
 
         for(int i = 0; i < this.valueSize; i++)
         {
-            if (statType == AppConfig.STATE_AMOUNT)
+            if (statType == GSConfig.STATE_AMOUNT)
                 result[i + 1] = GSConfig.changeToCommanString(this.values[i]);
             else if (statType == AppConfig.STATE_PRICE)
                 result[i + 1] = GSConfig.changeToCommanString(this.values[i] / AppConfig.moneyDivideNum);

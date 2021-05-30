@@ -95,7 +95,7 @@ public class GwangjuMonthEnterpriseAmountFragment extends Fragment{
 //		gj_month_enterprise_amount_release_empty_layout.removeAllViews();
 //		gj_month_enterprise_amount_petosa_empty_layout.removeAllViews();
 //
-//		EnterpriseStatsView statsView = new EnterpriseStatsView(getActivity(), statsData, AppConfig.SITE_GWANGJU, AppConfig.STATE_AMOUNT, _date);
+//		EnterpriseStatsView statsView = new EnterpriseStatsView(getActivity(), statsData, AppConfig.SITE_GWANGJU, GSConfig.STATE_AMOUNT, _date);
 //		statsView.makeStockStatsView(gj_month_enterprise_amount_income_empty_layout);
 //		gj_month_enterprise_amount_income_title.setText("입고"+"("+statsData.getStock_total()+unit+")");
 //

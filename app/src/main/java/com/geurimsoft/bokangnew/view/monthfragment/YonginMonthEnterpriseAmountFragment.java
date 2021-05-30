@@ -92,7 +92,7 @@ public class YonginMonthEnterpriseAmountFragment extends Fragment{
 //		yi_month_enterprise_amount_release_empty_layout.removeAllViews();
 //		yi_month_enterprise_amount_petosa_empty_layout.removeAllViews();
 //
-//		EnterpriseStatsView statsView = new EnterpriseStatsView(getActivity(), statsData, AppConfig.SITE_YONGIN, AppConfig.STATE_AMOUNT, _date);
+//		EnterpriseStatsView statsView = new EnterpriseStatsView(getActivity(), statsData, AppConfig.SITE_YONGIN, GSConfig.STATE_AMOUNT, _date);
 //		statsView.makeStockStatsView(yi_month_enterprise_amount_income_empty_layout);
 //		yi_month_enterprise_amount_income_title.setText("입고"+"("+statsData.getStock_total()+unit+")");
 //

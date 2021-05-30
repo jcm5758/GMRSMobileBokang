@@ -113,8 +113,8 @@ public class StAdapter extends BaseAdapter
 
 		String[] values = null;
 
-		if (this.requestType == AppConfig.STATE_AMOUNT)
-			values = detail.getStringValues(AppConfig.STATE_AMOUNT);
+		if (this.requestType == GSConfig.STATE_AMOUNT)
+			values = detail.getStringValues(GSConfig.STATE_AMOUNT);
 		else if (this.requestType == AppConfig.STATE_PRICE)
 			values = detail.getStringValues(AppConfig.STATE_PRICE);
 
