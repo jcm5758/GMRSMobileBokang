@@ -76,6 +76,8 @@ public class EnterpriseMonthStatsView
 	public void makeStatsView(LinearLayout _layout, GSDailyInOutGroup group, final int serviceType, final int statsType)
 	{
 
+		String functionName = "makeStatsView()";
+
 		try
 		{
 
@@ -88,6 +90,13 @@ public class EnterpriseMonthStatsView
 			int header_count = group.headerCount;
 			String[] header_titles = group.header;
 			int recordCount = group.recordCount;
+
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " header_count : " + header_count);
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " header_titles.length : " + header_titles.length);
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " recordCount : " + recordCount);
+
+			group.print();
+
 			ArrayList<GSDailyInOutDetail> detailList = group.list;
 
 			if(detailList == null || detailList.size() == 0)
@@ -109,16 +118,23 @@ public class EnterpriseMonthStatsView
 				TextView title_textview = makeMenuTextView(mContext, header_titles[header_index], "#ffffff", Gravity.CENTER);
 				header_layout.addView(title_textview);
 			}
-
+Log.d("Babo" , "----------------------------------------------------------------check001");
 			_layout.addView(header_layout);
 
 			TextView stock_item_textview;
 
+
+Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " detailList.size() : " + detailList.size());
+
 			for(int stock_index = 0; stock_index < detailList.size(); stock_index++)
 			{
 
+				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " stock_index : " + stock_index);
+
 				GSDailyInOutDetail detail = detailList.get(stock_index);
 				String[] stock_items = detail.getStringValues(statsType);
+
+				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " stock_index : 001");
 
 				LinearLayout stock_row_layout = new LinearLayout(mContext);
 
@@ -127,6 +143,8 @@ public class EnterpriseMonthStatsView
 
 				for(int i = 0; i < stock_items.length; i++)
 				{
+
+					Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " i : " + i);
 
 					int gravity = 0;
 
@@ -176,7 +194,7 @@ public class EnterpriseMonthStatsView
 				_layout.addView(stock_row_layout);
 
 			}
-
+Log.d("Babo" , "----------------------------------------------------------------check100");
 			// 레이아웃 지정
 			if (serviceType == GSConfig.MODE_STOCK)
 				this.stock_layout = _layout;

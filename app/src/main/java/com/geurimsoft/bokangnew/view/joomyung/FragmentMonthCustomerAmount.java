@@ -2,13 +2,14 @@ package com.geurimsoft.bokangnew.view.joomyung;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -18,14 +19,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.data.GSMonthInOut;
-import com.geurimsoft.bokangnew.view.etc.EnterpriseMonthStatsView;
-import com.geurimsoft.bokangnew.conf.AppConfig;
-import com.geurimsoft.bokangnew.data.XmlConverter;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
-import com.geurimsoft.bokangnew.client.SocketClient;
+import com.geurimsoft.bokangnew.data.GSConfig;
+import com.geurimsoft.bokangnew.view.etc.EnterpriseMonthStatsView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -206,7 +203,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 			yi_month_enterprise_amount_release_empty_layout.removeAllViews();
 			yi_month_enterprise_amount_petosa_empty_layout.removeAllViews();
 
-			EnterpriseMonthStatsView statsView = new EnterpriseMonthStatsView(getActivity(), AppConfig.SITE_JOOMYUNG, GSConfig.STATE_AMOUNT, _date);
+			EnterpriseMonthStatsView statsView = new EnterpriseMonthStatsView(getActivity(), 3, GSConfig.STATE_AMOUNT, _date);
 
 			statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, inputGroup, GSConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
 			yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");
@@ -250,7 +247,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 		protected GSDailyInOut doInBackground(String... params)
 		{
 
-			String department = AppConfig.SITE_JOOMYUNG + ",";
+			String department = 3 + ",";
 			String message = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>MONTH_CUSTOMER_UNIT</GCType><GCQuery>" + department + queryDate + "</GCQuery></GEURIMSOFT>\n";
 			responseMessage = null;
 

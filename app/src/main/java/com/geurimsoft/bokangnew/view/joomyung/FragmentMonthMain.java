@@ -10,8 +10,6 @@
 package com.geurimsoft.bokangnew.view.joomyung;
 
 import android.app.Dialog;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -48,8 +46,6 @@ public class FragmentMonthMain extends Fragment
 	
 	private ArrayList<Fragment> fragments;
 	
-	private SharedPreferences pref;
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -59,8 +55,6 @@ public class FragmentMonthMain extends Fragment
 		this.currentYear =  calendar.get(Calendar.YEAR);
 		this.currentMonth = calendar.get(Calendar.MONTH) + 1;
 		
-		pref = getActivity().getSharedPreferences("user_account", Context.MODE_PRIVATE);
-	
 	}
 	
 	@Override

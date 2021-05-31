@@ -23,7 +23,6 @@ import com.geurimsoft.bokangnew.view.etc.EnterpriseMonthStatsView;
 import com.geurimsoft.bokangnew.data.XmlConverter;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
-import com.geurimsoft.bokangnew.client.SocketClient;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
