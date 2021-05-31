@@ -11,14 +11,24 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.etc.StatsHeaderAndFooterView;
-import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.StAdapter;
 import com.geurimsoft.bokangnew.data.XmlConverter;
 import com.geurimsoft.bokangnew.data.GSMonthInOut;
 import com.geurimsoft.bokangnew.client.SocketClient;
+import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FragmentMonthPrice extends Fragment
 {
@@ -27,8 +37,6 @@ public class FragmentMonthPrice extends Fragment
 	private TextView yi_month_price_date;
 	private String dateStr;
 	private LinearLayout yi_month_price_header_container, yi_month_price_loading_indicator, yi_month_price_loading_fail;
-
-	private MonthPriceTask monthpriceTask;
 
 	public FragmentMonthPrice() {}
 	
@@ -71,7 +79,6 @@ public class FragmentMonthPrice extends Fragment
 	public void onPause()
 	{
 		super.onPause();
-		monthpriceTask.cancel(true);
 	}
 
 	/**
@@ -82,34 +89,111 @@ public class FragmentMonthPrice extends Fragment
 	private void makeMonthpriceData(int _year, int _monthOfYear)
 	{
 
-		dateStr = _year + "년 " + _monthOfYear + "월  입출고 현황(단위:천원)";
-		yi_month_price_date.setText(dateStr);
+		String functionName = "makeMonthpriceData()";
 
-		String queryDate = _year + ",";
+		try
+		{
 
-		if (_monthOfYear < 10)
-			queryDate += "0" + _monthOfYear;
-		else
-			queryDate += _monthOfYear;
+			dateStr = _year + "년 " + _monthOfYear + "월  입출고 현황(단위:천원)";
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + _year + "년 " + _monthOfYear + "월");
+
+			yi_month_price_date.setText(dateStr);
+
+			String qryContent = "TotalPrice";
+
+			this.getData(_year, _monthOfYear, qryContent);
+
+		}
+		catch(Exception ex)
+		{
+			Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + ex.toString());
+			return;
+		}
 		
-		monthpriceTask = new MonthPriceTask(queryDate);
-		monthpriceTask.execute();
-		
+	}
+
+	private void getData(int searchYear, int searchMonth, String qryContent)
+	{
+
+		String functionName = "getData()";
+
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "searchDate : " + searchDate + ", qryContent : " + qryContent);
+
+		String url = GSConfig.API_SERVER_ADDR + "API";
+		RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
+
+		StringRequest request = new StringRequest(
+				Request.Method.POST,
+				url,
+				//응답을 잘 받았을 때 이 메소드가 자동으로 호출
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response) {
+//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+						parseData(response);
+					}
+				},
+				//에러 발생시 호출될 리스너 객체
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "에러 -> " + error.getMessage());
+					}
+				}
+		) {
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String,String> params = new HashMap<String,String>();
+				params.put("GSType", "MONTH");
+				params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"searchYear\": " + searchYear + ", \"searchMonth\": " + searchMonth + ", \"qryContent\" : \"" + qryContent + "\" }");
+				return params;
+			}
+		};
+
+		request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
+		requestQueue.add(request);
+
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "요청 보냄.");
+
+	}
+
+	public void parseData(String msg)
+	{
+
+		String functionName = "parseData()";
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
+
+		try
+		{
+
+			Gson gson = new Gson();
+
+			GSMonthInOut data = gson.fromJson(msg, GSMonthInOut.class);
+
+			this.setDisplayData(data);
+
+		}
+		catch(Exception ex)
+		{
+			Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + ex.toString());
+			return;
+		}
+
 	}
 
 	/**
 	 * 조회 결과 데이터의 뷰 설정
 	 * @param data
 	 */
-	private void setDisplay(GSMonthInOut data)
+	private void setDisplayData(GSMonthInOut data)
 	{
 		
 		yi_month_price_header_container.removeAllViews();
 
-		StatsHeaderAndFooterView statsHeaderAndFooterView = new StatsHeaderAndFooterView(getActivity(), data, AppConfig.STATE_PRICE);
+		StatsHeaderAndFooterView statsHeaderAndFooterView = new StatsHeaderAndFooterView(getActivity(), data, GSConfig.STATE_PRICE);
 		statsHeaderAndFooterView.makeHeaderView(yi_month_price_header_container);
 
-		StAdapter adapter = new StAdapter(getActivity(), data, AppConfig.STATE_PRICE);
+		StAdapter adapter = new StAdapter(getActivity(), data, GSConfig.STATE_PRICE);
 
 		View foot = View.inflate(getActivity(), R.layout.stats_foot, null);
 		LinearLayout footer_layout = (LinearLayout)foot.findViewById(R.id.stats_footer_container);
@@ -117,95 +201,6 @@ public class FragmentMonthPrice extends Fragment
 		statsHeaderAndFooterView.makeFooterView(footer_layout);
 		yi_month_price_listview.addFooterView(foot);
 		yi_month_price_listview.setAdapter(adapter);
-
-	}
-
-	/**
-	 * 데이터 요청 TASK
-	 */
-	public class MonthPriceTask extends AsyncTask<String, String, GSMonthInOut>
-	{
-
-		private String queryDate;
-		private String responseMessage;
-		
-		public MonthPriceTask(String _queryDate)
-		{
-			this.queryDate = _queryDate;
-		}
-
-		@Override
-		protected void onPreExecute()
-		{
-			super.onPreExecute();
-			yi_month_price_loading_indicator.setVisibility(View.VISIBLE);
-		}
-		
-		@Override
-		protected GSMonthInOut doInBackground(String... params)
-		{
-
-			String department = "3,";
-			String message ="<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>MONTH_MONEY</GCType><GCQuery>" + department + queryDate + "</GCQuery></GEURIMSOFT>\n";
-			responseMessage = null;
-
-			try
-			{
-
-				SocketClient sc = new SocketClient(AppConfig.SERVER_IP, AppConfig.SERVER_PORT, message, AppConfig.SOCKET_KEY);
-
-				sc.start();
-				sc.join();
-
-				responseMessage = sc.getReturnString();
-				
-			}
-			catch (Exception e)
-			{
-				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
-				return null;
-			}
-
-			if (responseMessage == null || responseMessage.equals("Fail"))
-			{
-				Log.d(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Returned xml is null.");
-				return null;
-			}
-
-			GSMonthInOut data = XmlConverter.parseMonth(responseMessage);
-			
-			try
-			{
-				Thread.sleep(10);
-			}
-			catch (Exception e)
-			{
-				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
-			}
-
-			return data;
-
-		}
-
-		@Override
-		protected void onPostExecute(GSMonthInOut result)
-		{
-
-			super.onPostExecute(result);
-			
-			if(result == null)
-			{
-				yi_month_price_loading_fail.setVisibility(View.VISIBLE);
-			}
-			else
-			{
-				yi_month_price_loading_fail.setVisibility(View.GONE);
-				setDisplay(result);
-			}
-			
-			yi_month_price_loading_indicator.setVisibility(View.GONE);
-
-		}
 
 	}
 

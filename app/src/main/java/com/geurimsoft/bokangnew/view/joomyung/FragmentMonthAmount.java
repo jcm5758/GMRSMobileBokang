@@ -90,7 +90,7 @@ public class FragmentMonthAmount extends Fragment
 	private void makeMonthAmountData(int _year, int _monthOfYear)
 	{
 
-		String functionName = "makeDailyAmountData()";
+		String functionName = "makeMonthAmountData()";
 
 		try
 		{
@@ -162,7 +162,7 @@ public class FragmentMonthAmount extends Fragment
 	{
 
 		String functionName = "parseData()";
-		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
 
 		try
 		{
