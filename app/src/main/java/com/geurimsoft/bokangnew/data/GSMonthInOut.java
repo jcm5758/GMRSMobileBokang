@@ -2,8 +2,6 @@ package com.geurimsoft.bokangnew.data;
 
 import android.util.Log;
 
-import com.geurimsoft.bokangnew.conf.AppConfig;
-
 import java.util.ArrayList;
 
 public class GSMonthInOut {
@@ -21,6 +19,18 @@ public class GSMonthInOut {
     public ArrayList<GSMonthInOutDetail> list = new ArrayList<GSMonthInOutDetail>();
 
     public GSMonthInOut() {
+    }
+
+    public int getRecordCount() {
+        return recordCount;
+    }
+
+    public int getHeaderCount() {
+        return headerCount;
+    }
+
+    public String[] getHeader() {
+        return header;
     }
 
     public void add(GSMonthInOutDetail detail) {

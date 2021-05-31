@@ -30,13 +30,13 @@ public class StatsHeaderAndFooterView
 		this.mContext = _context;
 		this.monthData = monthData;
 
-		GSMonthInOutDetail footerData = this.monthData.getFinalData();
+//		GSMonthInOutDetail footerData = this.monthData.getFinalData();
 		
 		this.header_count = this.monthData.headerCount;
 		this.header_titles = this.monthData.header;
 
-		this.footer_count = footerData.valueSize + 1;
-		this.footer_items = footerData.getStringValues(statType);
+//		this.footer_count = footerData.valueSize + 1;
+//		this.footer_items = footerData.getStringValues(statType);
 
 	}
 

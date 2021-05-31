@@ -8,9 +8,7 @@
  */
 package com.geurimsoft.bokangnew.view.joomyung;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -27,20 +27,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
-import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.util.GSUtil;
-import com.geurimsoft.bokangnew.view.etc.StatsHeaderAndFooterView;
-import com.geurimsoft.bokangnew.conf.AppConfig;
-import com.geurimsoft.bokangnew.data.StAdapter;
-import com.geurimsoft.bokangnew.data.XmlConverter;
 import com.geurimsoft.bokangnew.data.GSMonthInOut;
-import com.geurimsoft.bokangnew.client.SocketClient;
+import com.geurimsoft.bokangnew.data.StAdapter;
+import com.geurimsoft.bokangnew.view.etc.StatsHeaderAndFooterView;
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 

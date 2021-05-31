@@ -15,7 +15,7 @@ public class GSDailyInOutDetail
 
     /**
      * 수량일 경우에는 values 반환
-     * 금액일 경우에는 AppConfig.moneyDivideNum로 나누어서 반환
+     * 금액일 경우에는 GSConfig.moneyDivideNum로 나누어서 반환
      * @param iUnitMoneyType
      * @return
      */
