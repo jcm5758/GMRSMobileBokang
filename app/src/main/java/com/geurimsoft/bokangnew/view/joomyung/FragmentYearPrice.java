@@ -91,10 +91,10 @@ public class FragmentYearPrice extends Fragment
 		
 		yi_year_price_header_container.removeAllViews();
 
-		StatsHeaderAndFooterView statsHeaderAndFooterView = new StatsHeaderAndFooterView(getActivity(), data, AppConfig.STATE_PRICE);
+		StatsHeaderAndFooterView statsHeaderAndFooterView = new StatsHeaderAndFooterView(getActivity(), data, GSConfig.STATE_PRICE);
 		statsHeaderAndFooterView.makeHeaderView(yi_year_price_header_container);
 
-		StAdapter adapter = new StAdapter(getActivity(), data, AppConfig.STATE_PRICE);
+		StAdapter adapter = new StAdapter(getActivity(), data, GSConfig.STATE_PRICE);
 
 		View foot = View.inflate(getActivity(), R.layout.stats_foot, null);
 		LinearLayout footer_layout = (LinearLayout)foot.findViewById(R.id.stats_footer_container);
@@ -135,7 +135,7 @@ public class FragmentYearPrice extends Fragment
 			try
 			{
 
-				SocketClient sc = new SocketClient(AppConfig.SERVER_IP, AppConfig.SERVER_PORT, message, AppConfig.SOCKET_KEY);
+				SocketClient sc = new SocketClient(GSConfig.API_SERVER_ADDR, AppConfig.SERVER_PORT, message, AppConfig.SOCKET_KEY);
 
 				sc.start();
 				sc.join();

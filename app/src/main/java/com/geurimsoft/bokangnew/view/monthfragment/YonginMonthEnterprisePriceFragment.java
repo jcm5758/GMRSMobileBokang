@@ -93,7 +93,7 @@ public class YonginMonthEnterprisePriceFragment extends Fragment{
 //		yi_month_enterprise_price_release_empty_layout.removeAllViews();
 //		yi_month_enterprise_price_petosa_empty_layout.removeAllViews();
 //
-//		EnterpriseStatsView statsView = new EnterpriseStatsView(getActivity(), statsData, AppConfig.SITE_YONGIN, AppConfig.STATE_PRICE, _date);
+//		EnterpriseStatsView statsView = new EnterpriseStatsView(getActivity(), statsData, AppConfig.SITE_YONGIN, GSConfig.STATE_PRICE, _date);
 //		statsView.makeStockStatsView(yi_month_enterprise_price_income_empty_layout);
 //		yi_month_enterprise_price_income_title.setText("입고"+"("+statsData.getStock_total()+unit+")");
 //
@@ -131,7 +131,7 @@ public class YonginMonthEnterprisePriceFragment extends Fragment{
 			responseMessage = null;
 
 			try {
-				SocketClient sc = new SocketClient(AppConfig.SERVER_IP,
+				SocketClient sc = new SocketClient(GSConfig.API_SERVER_ADDR,
 						AppConfig.SERVER_PORT, message, AppConfig.SOCKET_KEY);
 				sc.start();
 				sc.join();

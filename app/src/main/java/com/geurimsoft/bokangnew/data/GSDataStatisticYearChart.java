@@ -70,14 +70,14 @@ public class GSDataStatisticYearChart
 //
 //			int[] rainbow = mContext.getResources().getIntArray(R.array.rainbow);
 //
-//			for(int i = 0; i < AppConfig.MODE_NAMES.length; i++)
+//			for(int i = 0; i < GSConfig.MODE_NAMES.length; i++)
 //			{
 //
-//				XYSeries series = new XYSeries(AppConfig.MODE_NAMES[i]);
+//				XYSeries series = new XYSeries(GSConfig.MODE_NAMES[i]);
 //
 //				for(int j = 0; j < itemCount; j++)
 //				{
-//					int itemIndex = i + j * (AppConfig.MODE_NAMES.length);
+//					int itemIndex = i + j * (GSConfig.MODE_NAMES.length);
 //					series.add(j, Max[itemIndex]);
 //				}
 //

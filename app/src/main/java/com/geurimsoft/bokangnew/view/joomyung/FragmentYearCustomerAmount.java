@@ -104,9 +104,9 @@ public class FragmentYearCustomerAmount extends Fragment
 		try
 		{
 
-			GSDailyInOutGroup inputGroup = data.findByServiceType(AppConfig.MODE_NAMES[AppConfig.MODE_STOCK]);
-			GSDailyInOutGroup outputGroup = data.findByServiceType(AppConfig.MODE_NAMES[AppConfig.MODE_RELEASE]);
-			GSDailyInOutGroup slugeGroup = data.findByServiceType(AppConfig.MODE_NAMES[AppConfig.MODE_PETOSA]);
+			GSDailyInOutGroup inputGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK]);
+			GSDailyInOutGroup outputGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE]);
+			GSDailyInOutGroup slugeGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA]);
 
 			String unit = getString(R.string.unit_lube);
 
@@ -118,20 +118,20 @@ public class FragmentYearCustomerAmount extends Fragment
 
 			if (inputGroup != null)
 			{
-				statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, inputGroup, AppConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
-				yi_month_enterprise_amount_income_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");
+				statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, inputGroup, GSConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
+				yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");
 			}
 
 			if (outputGroup != null)
 			{
-				statsView.makeStatsView(yi_month_enterprise_amount_release_empty_layout, outputGroup, AppConfig.MODE_RELEASE, GSConfig.STATE_AMOUNT);
-				yi_month_enterprise_amount_release_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(outputGroup.totalUnit) + unit + ")");
+				statsView.makeStatsView(yi_month_enterprise_amount_release_empty_layout, outputGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_AMOUNT);
+				yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(outputGroup.totalUnit) + unit + ")");
 			}
 
 			if (slugeGroup != null)
 			{
-				statsView.makeStatsView(yi_month_enterprise_amount_petosa_empty_layout, slugeGroup, AppConfig.MODE_PETOSA, GSConfig.STATE_AMOUNT);
-				yi_month_enterprise_amount_petosa_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(slugeGroup.totalUnit) + unit + ")");
+				statsView.makeStatsView(yi_month_enterprise_amount_petosa_empty_layout, slugeGroup, GSConfig.MODE_PETOSA, GSConfig.STATE_AMOUNT);
+				yi_month_enterprise_amount_petosa_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(slugeGroup.totalUnit) + unit + ")");
 			}
 
 		}
@@ -183,7 +183,7 @@ public class FragmentYearCustomerAmount extends Fragment
 			{
 
 				// 소켓 연결
-				soc = new Socket(AppConfig.SERVER_IP, AppConfig.SERVER_PORT);
+				soc = new Socket(GSConfig.API_SERVER_ADDR, AppConfig.SERVER_PORT);
 
 				// 서버로부터의 입력 모드
 				in = new BufferedReader(new InputStreamReader(soc.getInputStream()));

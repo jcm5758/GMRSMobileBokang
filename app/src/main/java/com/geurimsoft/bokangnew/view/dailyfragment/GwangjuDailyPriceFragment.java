@@ -133,7 +133,7 @@ public class GwangjuDailyPriceFragment extends Fragment
 			String department ="1,";
 			String messages =  "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>statistic_day_money</GCType><GCQuery>"+department+queryDate+"</GCQuery></GEURIMSOFT>\n";
 
-			SocketClient sc = new SocketClient(AppConfig.SERVER_IP, AppConfig.SERVER_PORT, messages, AppConfig.SOCKET_KEY);
+			SocketClient sc = new SocketClient(GSConfig.API_SERVER_ADDR, AppConfig.SERVER_PORT, messages, AppConfig.SOCKET_KEY);
 			try {
 				sc.start();
 				sc.join();

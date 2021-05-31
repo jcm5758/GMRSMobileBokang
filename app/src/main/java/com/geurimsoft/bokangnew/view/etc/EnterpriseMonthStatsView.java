@@ -178,11 +178,11 @@ public class EnterpriseMonthStatsView
 			}
 
 			// 레이아웃 지정
-			if (serviceType == AppConfig.MODE_STOCK)
+			if (serviceType == GSConfig.MODE_STOCK)
 				this.stock_layout = _layout;
-			else if (serviceType == AppConfig.MODE_RELEASE)
+			else if (serviceType == GSConfig.MODE_RELEASE)
 				this.release_layout = _layout;
-			else if (serviceType == AppConfig.MODE_PETOSA)
+			else if (serviceType == GSConfig.MODE_PETOSA)
 				this.petosa_layout = _layout;
 
 		}
@@ -285,7 +285,7 @@ public class EnterpriseMonthStatsView
 
 			if (this.statsType == GSConfig.STATE_AMOUNT)
 				message = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>MONTH_CUSTOMER_DAY_UNIT</GCType><GCQuery>" + query + "</GCQuery></GEURIMSOFT>\n";
-			else if (this.statsType == AppConfig.STATE_PRICE)
+			else if (this.statsType == GSConfig.STATE_PRICE)
 				message = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>MONTH_CUSTOMER_DAY_MONEY</GCType><GCQuery>" + query + "</GCQuery></GEURIMSOFT>\n";
 
 			responseMessage = null;
@@ -293,7 +293,7 @@ public class EnterpriseMonthStatsView
 			try
 			{
 
-				SocketClient sc = new SocketClient(AppConfig.SERVER_IP, AppConfig.SERVER_PORT, message, AppConfig.SOCKET_KEY);
+				SocketClient sc = new SocketClient(GSConfig.API_SERVER_ADDR, AppConfig.SERVER_PORT, message, AppConfig.SOCKET_KEY);
 
 				sc.start();
 				sc.join();
@@ -417,7 +417,7 @@ public class EnterpriseMonthStatsView
 			statsTypeStr = "(단위:천원)";
 		}
 
-		String modeStr = AppConfig.MODE_NAMES[serviceType] + " 현황";
+		String modeStr = GSConfig.MODE_NAMES[serviceType] + " 현황";
 
 		String dateStr = dates[0] + "년 " + dates[1] + "월 "+ customerName + "\n" + modeStr + statsTypeStr;
 		popup_date.setText(dateStr);

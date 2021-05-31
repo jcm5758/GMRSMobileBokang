@@ -453,7 +453,7 @@ public class AppMain extends Activity
 			try
 			{
 
-				URL url = new URL("http://" + AppConfig.SERVER_IP + "/bokang_new/app_version.txt");
+				URL url = new URL("http://" + GSConfig.API_SERVER_ADDR + "/bokang_new/app_version.txt");
 				HttpURLConnection conn = (HttpURLConnection)url.openConnection();
 				
 				if (conn != null)

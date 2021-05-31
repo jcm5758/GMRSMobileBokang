@@ -61,6 +61,12 @@ public class GSConfig
     public static int STATE_AMOUNT = 0;
     public static int STATE_PRICE = 1;
 
+    public static String[] MODE_NAMES = new String[]{"입고", "출고", "토사"};
+
+    public static int MODE_STOCK = 0;
+    public static int MODE_RELEASE = 1;
+    public static int MODE_PETOSA = 2;
+
     public static String changeToCommanString(double value)
     {
         //DecimalFormat formatter = new DecimalFormat("#,###.0");

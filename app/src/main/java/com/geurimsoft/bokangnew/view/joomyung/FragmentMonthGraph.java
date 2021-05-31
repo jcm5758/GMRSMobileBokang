@@ -136,7 +136,7 @@ public class FragmentMonthGraph extends Fragment
 			try
 			{
 
-				SocketClient sc = new SocketClient(AppConfig.SERVER_IP, AppConfig.SERVER_PORT, message, AppConfig.SOCKET_KEY);
+				SocketClient sc = new SocketClient(GSConfig.API_SERVER_ADDR, AppConfig.SERVER_PORT, message, AppConfig.SOCKET_KEY);
 
 				sc.start();
 				sc.join();

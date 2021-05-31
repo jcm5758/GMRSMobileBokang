@@ -28,6 +28,8 @@ import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.client.SocketClient;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,8 +40,6 @@ public class FragmentMonthCustomerAmount extends Fragment
 	private LinearLayout yi_month_enterprise_amount_loading_indicator, yi_month_enterprise_amount_loading_fail;
 
 	private TextView yi_month_enterprise_amount_date, yi_month_enterprise_amount_income_title, yi_month_enterprise_amount_release_title, yi_month_enterprise_amount_petosa_title;
-
-	private MonthEnterpriseAmountTask  monthEnterpriseAmountTask;
 
 	public FragmentMonthCustomerAmount() {}
 	
@@ -144,7 +144,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String,String> params = new HashMap<String,String>();
-				params.put("GSType", "MONTH");
+				params.put("GSType", "MONTH_CUSTOMER");
 				params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"searchYear\": " + searchYear + ", \"searchMonth\": " + searchMonth + ", \"qryContent\" : \"" + qryContent + "\" }");
 				return params;
 			}
@@ -166,11 +166,14 @@ public class FragmentMonthCustomerAmount extends Fragment
 		try
 		{
 
+			GSDailyInOut dio = new GSDailyInOut();
+
 			Gson gson = new Gson();
+			GSDailyInOutGroup[] diog = gson.fromJson(msg, GSDailyInOutGroup[].class);
 
-			GSMonthInOut data = gson.fromJson(msg, GSMonthInOut.class);
+			dio.list = new ArrayList<>(Arrays.asList(diog));
 
-			this.setDisplayData(data);
+			this.setDisplayData(dio, "");
 
 		}
 		catch(Exception ex)
@@ -193,9 +196,9 @@ public class FragmentMonthCustomerAmount extends Fragment
 		try
 		{
 
-			GSDailyInOutGroup inputGroup = data.findByServiceType(AppConfig.MODE_NAMES[AppConfig.MODE_STOCK]);
-			GSDailyInOutGroup outputGroup = data.findByServiceType(AppConfig.MODE_NAMES[AppConfig.MODE_RELEASE]);
-			GSDailyInOutGroup slugeGroup = data.findByServiceType(AppConfig.MODE_NAMES[AppConfig.MODE_PETOSA]);
+			GSDailyInOutGroup inputGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK]);
+			GSDailyInOutGroup outputGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE]);
+			GSDailyInOutGroup slugeGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA]);
 
 			String unit = getString(R.string.unit_lube);
 
@@ -205,14 +208,14 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			EnterpriseMonthStatsView statsView = new EnterpriseMonthStatsView(getActivity(), AppConfig.SITE_JOOMYUNG, GSConfig.STATE_AMOUNT, _date);
 
-			statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, inputGroup, AppConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
-			yi_month_enterprise_amount_income_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");
+			statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, inputGroup, GSConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
+			yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");
 
-			statsView.makeStatsView(yi_month_enterprise_amount_release_empty_layout, outputGroup, AppConfig.MODE_RELEASE, GSConfig.STATE_AMOUNT);
-			yi_month_enterprise_amount_release_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(outputGroup.totalUnit) + unit + ")");
+			statsView.makeStatsView(yi_month_enterprise_amount_release_empty_layout, outputGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_AMOUNT);
+			yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(outputGroup.totalUnit) + unit + ")");
 
-			statsView.makeStatsView(yi_month_enterprise_amount_petosa_empty_layout, slugeGroup, AppConfig.MODE_PETOSA, GSConfig.STATE_AMOUNT);
-			yi_month_enterprise_amount_petosa_title.setText(AppConfig.MODE_NAMES[AppConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(slugeGroup.totalUnit) + unit + ")");
+			statsView.makeStatsView(yi_month_enterprise_amount_petosa_empty_layout, slugeGroup, GSConfig.MODE_PETOSA, GSConfig.STATE_AMOUNT);
+			yi_month_enterprise_amount_petosa_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(slugeGroup.totalUnit) + unit + ")");
 
 		}
 		catch(Exception ex)
@@ -251,42 +254,42 @@ public class FragmentMonthCustomerAmount extends Fragment
 			String message = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>MONTH_CUSTOMER_UNIT</GCType><GCQuery>" + department + queryDate + "</GCQuery></GEURIMSOFT>\n";
 			responseMessage = null;
 
-			try
-			{
+//			try
+//			{
+//
+//				SocketClient sc = new SocketClient(GSConfig.API_SERVER_ADDR, AppConfig.SERVER_PORT, message, AppConfig.SOCKET_KEY);
+//
+//				sc.start();
+//				sc.join();
+//
+//				responseMessage = sc.getReturnString();
+//
+//			}
+//			catch (Exception e)
+//			{
+//				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
+//				return null;
+//			}
+//
+//			if (responseMessage == null || responseMessage.equals("Fail"))
+//			{
+//				Log.d(GSConfig.APP_DEBUG, "Returned xml is null.");
+//				return null;
+//			}
+//
+//			GSDailyInOut data = XmlConverter.parseDaily(responseMessage);
+//
+//			try
+//			{
+//				Thread.sleep(10);
+//			}
+//			catch (Exception e)
+//			{
+//				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
+//				return null;
+//			}
 
-				SocketClient sc = new SocketClient(AppConfig.SERVER_IP, AppConfig.SERVER_PORT, message, AppConfig.SOCKET_KEY);
-
-				sc.start();
-				sc.join();
-
-				responseMessage = sc.getReturnString();
-
-			}
-			catch (Exception e)
-			{
-				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
-				return null;
-			}
-
-			if (responseMessage == null || responseMessage.equals("Fail"))
-			{
-				Log.d(GSConfig.APP_DEBUG, "Returned xml is null.");
-				return null;
-			}
-
-			GSDailyInOut data = XmlConverter.parseDaily(responseMessage);
-			
-			try
-			{
-				Thread.sleep(10);
-			}
-			catch (Exception e)
-			{
-				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
-				return null;
-			}
-
-			return data;
+			return null;
 
 		}
 
@@ -303,7 +306,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 			else
 			{
 				yi_month_enterprise_amount_loading_fail.setVisibility(View.GONE);
-				setDisplay(result, queryDate);
+				setDisplayData(result, queryDate);
 			}
 			
 			yi_month_enterprise_amount_loading_indicator.setVisibility(View.GONE);
