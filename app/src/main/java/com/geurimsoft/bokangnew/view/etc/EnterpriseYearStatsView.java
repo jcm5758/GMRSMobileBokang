@@ -76,6 +76,8 @@ public class EnterpriseYearStatsView
 	public void makeStatsView(LinearLayout _layout, GSDailyInOutGroup group, final int serviceType, final int statsType)
 	{
 
+		String functionName = "makeStatsView()";
+
 		try
 		{
 
@@ -93,12 +95,6 @@ public class EnterpriseYearStatsView
 			if (header_titles == null)
 			{
 				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : makeStatsView() : header_titles is null.");
-				return;
-			}
-
-			if (detailList == null)
-			{
-				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : makeStatsView() : detailList is null.");
 				return;
 			}
 
@@ -129,21 +125,27 @@ public class EnterpriseYearStatsView
 			for(int stock_index = 0; stock_index < detailList.size(); stock_index++)
 			{
 
-				GSDailyInOutDetail detail = detailList.get(stock_index);
-				String[] stock_items = detail.getStringValues(statsType);
+//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + stock_index);
 
+				GSDailyInOutDetail detail = detailList.get(stock_index);
+//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + detail.customerName);
+
+				String[] stock_items = detail.getStringValues(statsType);
+//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "001");
 				LinearLayout stock_row_layout = new LinearLayout(mContext);
 
 				stock_row_layout.setLayoutParams(params);
 				stock_row_layout.setOrientation(LinearLayout.HORIZONTAL);
-
+//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "002");
 				for(int i = 0; i < stock_items.length; i++)
 				{
 
 					int gravity = 0;
-
+//					Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "003");
 					if(i == 0)
 					{
+
+//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + stock_items[i]);
 
 						gravity = Gravity.CENTER;
 
@@ -185,6 +187,9 @@ public class EnterpriseYearStatsView
 
 				}
 
+//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "004");
+//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + stock_index);
+
 				_layout.addView(stock_row_layout);
 
 			}
@@ -200,7 +205,7 @@ public class EnterpriseYearStatsView
 		}
 		catch(Exception ex)
 		{
-			Log.d(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplay() : " + ex.toString());
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + ex.toString());
 			return;
 		}
 

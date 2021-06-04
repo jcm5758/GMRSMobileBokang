@@ -40,6 +40,8 @@ public class GSDailyInOutDetail
         String[] result = new String[this.valueSize + 1];
         result[0] = this.customerName;
 
+//        Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "getStringValues()") + this.valueSize);
+
         for(int i = 0; i < this.values.length; i++)
         {
 

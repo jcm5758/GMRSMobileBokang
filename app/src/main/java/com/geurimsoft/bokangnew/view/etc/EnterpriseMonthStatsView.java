@@ -1,6 +1,8 @@
 package com.geurimsoft.bokangnew.view.etc;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,6 +28,13 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.GSConfig;
@@ -35,6 +44,7 @@ import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutDetail;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.data.GSMonthInOut;
 import com.geurimsoft.bokangnew.client.SocketClient;
+import com.google.gson.Gson;
 
 public class EnterpriseMonthStatsView
 {
@@ -91,11 +101,11 @@ public class EnterpriseMonthStatsView
 			String[] header_titles = group.header;
 			int recordCount = group.recordCount;
 
-			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " header_count : " + header_count);
-			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " header_titles.length : " + header_titles.length);
-			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " recordCount : " + recordCount);
-
-			group.print();
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " header_count : " + header_count);
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " header_titles.length : " + header_titles.length);
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " recordCount : " + recordCount);
+//
+//			group.print();
 
 			ArrayList<GSDailyInOutDetail> detailList = group.list;
 
@@ -118,23 +128,23 @@ public class EnterpriseMonthStatsView
 				TextView title_textview = makeMenuTextView(mContext, header_titles[header_index], "#ffffff", Gravity.CENTER);
 				header_layout.addView(title_textview);
 			}
-Log.d("Babo" , "----------------------------------------------------------------check001");
+//Log.d("Babo" , "----------------------------------------------------------------check001");
 			_layout.addView(header_layout);
 
 			TextView stock_item_textview;
 
 
-Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " detailList.size() : " + detailList.size());
+//Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " detailList.size() : " + detailList.size());
 
 			for(int stock_index = 0; stock_index < detailList.size(); stock_index++)
 			{
 
-				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " stock_index : " + stock_index);
+//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " stock_index : " + stock_index);
 
 				GSDailyInOutDetail detail = detailList.get(stock_index);
 				String[] stock_items = detail.getStringValues(statsType);
 
-				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " stock_index : 001");
+//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " stock_index : 001");
 
 				LinearLayout stock_row_layout = new LinearLayout(mContext);
 
@@ -194,7 +204,7 @@ Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionNa
 				_layout.addView(stock_row_layout);
 
 			}
-Log.d("Babo" , "----------------------------------------------------------------check100");
+//Log.d("Babo" , "----------------------------------------------------------------check100");
 			// 레이아웃 지정
 			if (serviceType == GSConfig.MODE_STOCK)
 				this.stock_layout = _layout;
@@ -287,7 +297,7 @@ Log.d("Babo" , "----------------------------------------------------------------
 		{
 
 			super.onPreExecute();
-			
+
 			progressDialog = new CustomProgressDialog(mContext);
 			progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 			progressDialog.show();
@@ -317,7 +327,7 @@ Log.d("Babo" , "----------------------------------------------------------------
 				sc.join();
 
 				responseMessage = sc.getReturnString();
-				
+
 			}
 			catch (Exception e)
 			{
@@ -330,9 +340,9 @@ Log.d("Babo" , "----------------------------------------------------------------
 				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Returned XML is null.");
 				return null;
 			}
-			
+
 			GSMonthInOut data = XmlConverter.parseMonth(responseMessage);
-			
+
 			try
 			{
 				Thread.sleep(10);
@@ -352,13 +362,114 @@ Log.d("Babo" , "----------------------------------------------------------------
 		{
 
 			super.onPostExecute(result);
-			
+
 			if(result == null)
 				showErrorDialog();
 			else
 				showEnterprisePopup(result, this.queryDate, this.customerName, this.statsType, this.serviceType);
-			
+
 			progressDialog.dismiss();
+
+		}
+
+	}
+
+	public class MonthDetailList {
+
+		// 지점 ID
+		private int branchID;
+
+		private int searchYear;
+		private int searchMonth;
+
+		// 거래처 full name
+		private String customerName;
+
+		// 입고 / 출고 / 토사
+		private int serviceType;
+
+		private String qryContent;
+
+		public MonthDetailList(int branchID, int searchYear, int searchMonth, String customerName, int serviceType, String qryContent)
+		{
+
+			this.branchID = branchID;
+			this.searchYear = searchYear;
+			this.searchMonth = searchMonth;
+			this.customerName = customerName;
+			this.serviceType = serviceType;
+			this.qryContent = qryContent;
+
+			this.getData();
+
+		}
+
+		private void getData()
+		{
+
+			String functionName = "getData()";
+
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "searchDate : " + searchDate + ", qryContent : " + qryContent);
+
+			String url = GSConfig.API_SERVER_ADDR + "API";
+			RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
+
+			StringRequest request = new StringRequest(
+					Request.Method.POST,
+					url,
+					//응답을 잘 받았을 때 이 메소드가 자동으로 호출
+					new Response.Listener<String>() {
+						@Override
+						public void onResponse(String response) {
+//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+							parseData(response);
+						}
+					},
+					//에러 발생시 호출될 리스너 객체
+					new Response.ErrorListener() {
+						@Override
+						public void onErrorResponse(VolleyError error) {
+							Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "에러 -> " + error.getMessage());
+						}
+					}
+			) {
+				@Override
+				protected Map<String, String> getParams() throws AuthFailureError {
+					Map<String,String> params = new HashMap<String,String>();
+					params.put("GSType", "MONTH_CUSTOMER_DAY");
+					params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"searchYear\": " + searchYear + ", \"searchMonth\": " + searchMonth + ", \"qryContent\" : \"" + qryContent + "\" }");
+					return params;
+				}
+			};
+
+			request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
+			requestQueue.add(request);
+
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "요청 보냄.");
+
+		}
+
+		public void parseData(String msg)
+		{
+
+			String functionName = "parseData()";
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
+
+			try
+			{
+
+				Gson gson = new Gson();
+
+				GSMonthInOut data = gson.fromJson(msg, GSMonthInOut.class);
+
+				this.setDisplayData(data);
+
+			}
+			catch(Exception ex)
+			{
+				Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + ex.toString());
+				return;
+			}
 
 		}
 
