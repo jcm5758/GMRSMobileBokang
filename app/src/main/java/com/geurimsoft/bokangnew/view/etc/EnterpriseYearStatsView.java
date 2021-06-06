@@ -24,6 +24,13 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.GSConfig;
@@ -33,8 +40,11 @@ import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutDetail;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.data.GSMonthInOut;
 import com.geurimsoft.bokangnew.client.SocketClient;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EnterpriseYearStatsView
 {
@@ -42,7 +52,7 @@ public class EnterpriseYearStatsView
 	private Activity mActivity;
 	private int branchID;
 	private int statsType;
-	private String date;
+	private int iYear;
 
 	private Context mContext;
 
@@ -54,16 +64,15 @@ public class EnterpriseYearStatsView
 	 * @param _activity		Acitivity
 	 * @param branchID		지점 ID
 	 * @param statsType	Unit / Money
-	 * @param _date			검색일
 	 */
-	public EnterpriseYearStatsView(Activity _activity, int branchID, int statsType, String _date)
+	public EnterpriseYearStatsView(Activity _activity, int branchID, int statsType, int iYear)
 	{
 
 		this.mContext = _activity;
 		this.mActivity = _activity;
 		this.branchID = branchID;
 		this.statsType = statsType;
-		this.date = _date;
+		this.iYear = iYear;
 
 	}
 
@@ -162,7 +171,7 @@ public class EnterpriseYearStatsView
 								@Override
 								public void onClick(View v) {
 									String name = (String) v.getTag();
-									new EnterpriseDetailTask(name, branchID, statsType, serviceType, date).execute();
+									new YearDetailList(mContext, name, branchID, statsType, serviceType, iYear);
 								}
 							});
 
@@ -249,10 +258,7 @@ public class EnterpriseYearStatsView
 
 	}
 
-	/**
-	 * 거래처별 상세 조회
-	 */
-	public class EnterpriseDetailTask extends AsyncTask<String, String, GSMonthInOut>
+	public class YearDetailList
 	{
 
 		private String queryDate;
@@ -270,103 +276,110 @@ public class EnterpriseYearStatsView
 		// 입고 / 출고 / 토사
 		private int serviceType;
 
-		private CustomProgressDialog progressDialog;
+		private int iYear;
 
-		public EnterpriseDetailTask(String customerName, int branchID, int statsType, int serviceType, String _queryDate)
+		private String qryContent;
+		private CustomProgressDialog progressDialog;
+		private Context mContext;
+
+		public YearDetailList(Context mContext, String customerName, int branchID, int statsType, int serviceType, int iYear)
 		{
-			this.queryDate = _queryDate;
+
+			this.mContext = mContext;
 			this.customerName = customerName;
 			this.branchID = branchID;
 			this.statsType = statsType;
 			this.serviceType = serviceType;
-		}
+			this.iYear = iYear;
 
-		@Override
-		protected void onPreExecute()
-		{
-
-			super.onPreExecute();
+			if (statsType == GSConfig.STATE_PRICE)
+				this.qryContent = "TotalPrice";
+			else
+				this.qryContent = "Unit";
 
 			progressDialog = new CustomProgressDialog(mContext);
 			progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 			progressDialog.show();
 
+			this.getData();
+
 		}
 
-		@Override
-		protected GSMonthInOut doInBackground(String... params)
+		private void getData()
 		{
 
-			String query = this.branchID + "," + this.serviceType + "," + queryDate + "," + this.customerName;
-			String message = null;
+			String functionName = "getData()";
 
-			if (this.statsType == GSConfig.STATE_AMOUNT)
-				message = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>YEAR_CUSTOMER_MONTH_UNIT</GCType><GCQuery>" + query + "</GCQuery></GEURIMSOFT>\n";
-			else if (this.statsType == GSConfig.STATE_PRICE)
-				message = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>YEAR_CUSTOMER_MONTH_MONEY</GCType><GCQuery>" + query + "</GCQuery></GEURIMSOFT>\n";
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "searchDate : " + searchDate + ", qryContent : " + qryContent);
 
-			responseMessage = null;
+			String url = GSConfig.API_SERVER_ADDR + "API";
+			RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
+
+			StringRequest request = new StringRequest(
+					Request.Method.POST,
+					url,
+					//응답을 잘 받았을 때 이 메소드가 자동으로 호출
+					new Response.Listener<String>() {
+						@Override
+						public void onResponse(String response) {
+//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+							parseData(response);
+						}
+					},
+					//에러 발생시 호출될 리스너 객체
+					new Response.ErrorListener() {
+						@Override
+						public void onErrorResponse(VolleyError error) {
+							Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "에러 -> " + error.getMessage());
+						}
+					}
+			) {
+				@Override
+				protected Map<String, String> getParams() throws AuthFailureError {
+					Map<String,String> params = new HashMap<String,String>();
+					params.put("GSType", "YEAR_CUSTOMER_MONTH");
+					params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"customerFullName\": \"" + customerName + "\", \"serviceType\": " + serviceType + ", \"searchYear\": " + iYear + ", \"qryContent\" : \"" + qryContent + "\" }");
+					return params;
+				}
+			};
+
+			request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
+			requestQueue.add(request);
+
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "요청 보냄.");
+
+		}
+
+		public void parseData(String msg)
+		{
+
+			String functionName = "parseData()";
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
 
 			try
 			{
 
-				SocketClient sc = new SocketClient(GSConfig.API_SERVER_ADDR, AppConfig.SERVER_PORT, message, AppConfig.SOCKET_KEY);
+				Gson gson = new Gson();
 
-				sc.start();
-				sc.join();
+				GSMonthInOut data = gson.fromJson(msg, GSMonthInOut.class);
 
-				responseMessage = sc.getReturnString();
-				
+				showEnterprisePopup(data, this.customerName, statsType, serviceType);
+
 			}
-			catch (Exception e)
+			catch(Exception ex)
 			{
-				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
-				return null;
+				Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + ex.toString());
+				return;
 			}
-
-			if (responseMessage == null || responseMessage.equals("Fail"))
-			{
-				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Returned XML is null.");
-				return null;
-			}
-			
-			GSMonthInOut data = XmlConverter.parseMonth(responseMessage);
-			
-			try
-			{
-				Thread.sleep(10);
-			}
-			catch (Exception e)
-			{
-				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
-				return null;
-			}
-
-			return data;
-
-		}
-
-		@Override
-		protected void onPostExecute(GSMonthInOut result)
-		{
-
-			super.onPostExecute(result);
-			
-			if(result == null)
-				showErrorDialog();
-			else
-				showEnterprisePopup(result, this.queryDate, this.customerName, this.statsType, this.serviceType);
-			
-			progressDialog.dismiss();
 
 		}
 
 	}
-	
+
 	private PopupWindow popupWindow;
-    private int mWidthPixels, mHeightPixels; 
-	
-	private void showEnterprisePopup(GSMonthInOut data, String queryDate, String customerName, int statsType, int serviceType)
+    private int mWidthPixels, mHeightPixels;
+
+	private void showEnterprisePopup(GSMonthInOut data, String customerName, int statsType, int serviceType)
 	{
 
 		WindowManager w = mActivity.getWindowManager();
@@ -440,7 +453,7 @@ public class EnterpriseYearStatsView
 
 			String modeStr = GSConfig.MODE_NAMES[serviceType] + " 현황";
 
-			String dateStr = queryDate + "년 " + customerName + "\n" + modeStr + statsTypeStr;
+			String dateStr = iYear + "년 " + customerName + "\n" + modeStr + statsTypeStr;
 			popup_date.setText(dateStr);
 
 			StatsHeaderAndFooterView statsHeaderAndFooterView = new StatsHeaderAndFooterView(mActivity, data, statsType);

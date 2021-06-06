@@ -37,6 +37,8 @@ public class FragmentYearCustomerAmount extends Fragment
 
 	private TextView yi_month_enterprise_amount_date, yi_month_enterprise_amount_income_title, yi_month_enterprise_amount_release_title, yi_month_enterprise_amount_petosa_title;
 
+	private int iYear;
+
 	public FragmentYearCustomerAmount() {}
 	
 	@Override
@@ -115,6 +117,8 @@ public class FragmentYearCustomerAmount extends Fragment
 
 //		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "searchDate : " + searchDate + ", qryContent : " + qryContent);
 
+		iYear = searchYear;
+
 		String url = GSConfig.API_SERVER_ADDR + "API";
 		RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
 
@@ -172,7 +176,7 @@ public class FragmentYearCustomerAmount extends Fragment
 
 			dio.list = new ArrayList<>(Arrays.asList(diog));
 
-			this.setDisplayData(dio, "");
+			this.setDisplayData(dio);
 
 		}
 		catch(Exception ex)
@@ -183,7 +187,7 @@ public class FragmentYearCustomerAmount extends Fragment
 
 	}
 	
-	private void setDisplayData(GSDailyInOut data, String _date)
+	private void setDisplayData(GSDailyInOut data)
 	{
 
 		if (data == null || data.list == null)
@@ -205,7 +209,7 @@ public class FragmentYearCustomerAmount extends Fragment
 			yi_month_enterprise_amount_release_empty_layout.removeAllViews();
 			yi_month_enterprise_amount_petosa_empty_layout.removeAllViews();
 
-			EnterpriseYearStatsView statsView = new EnterpriseYearStatsView(getActivity(), GSConfig.CURRENT_BRANCH.getBranchID(), GSConfig.STATE_AMOUNT, _date);
+			EnterpriseYearStatsView statsView = new EnterpriseYearStatsView(getActivity(), GSConfig.CURRENT_BRANCH.getBranchID(), GSConfig.STATE_AMOUNT, iYear);
 
 			if (inputGroup != null)
 			{

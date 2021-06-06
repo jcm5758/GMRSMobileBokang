@@ -44,6 +44,8 @@ public class FragmentYearCustomerPrice extends Fragment
 
 	private TextView yi_month_enterprise_price_date, yi_month_enterprise_price_income_title, yi_month_enterprise_price_release_title, yi_month_enterprise_price_petosa_title;
 
+	private int iYear;
+
 	public FragmentYearCustomerPrice() { }
 	
 	@Override
@@ -120,6 +122,8 @@ public class FragmentYearCustomerPrice extends Fragment
 		String functionName = "getData()";
 
 //		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "searchDate : " + searchDate + ", qryContent : " + qryContent);
+
+		iYear = searchYear;
 
 		String url = GSConfig.API_SERVER_ADDR + "API";
 		RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
@@ -207,7 +211,7 @@ public class FragmentYearCustomerPrice extends Fragment
 		yi_month_enterprise_price_release_empty_layout.removeAllViews();
 		yi_month_enterprise_price_petosa_empty_layout.removeAllViews();
 
-		EnterpriseYearStatsView statsView = new EnterpriseYearStatsView(getActivity(), GSConfig.CURRENT_BRANCH.getBranchID(), GSConfig.STATE_PRICE, _date);
+		EnterpriseYearStatsView statsView = new EnterpriseYearStatsView(getActivity(), GSConfig.CURRENT_BRANCH.getBranchID(), GSConfig.STATE_PRICE, iYear);
 
 		statsView.makeStatsView(yi_month_enterprise_price_income_empty_layout, inputGroup, GSConfig.MODE_STOCK, GSConfig.STATE_PRICE);
 		yi_month_enterprise_price_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");
