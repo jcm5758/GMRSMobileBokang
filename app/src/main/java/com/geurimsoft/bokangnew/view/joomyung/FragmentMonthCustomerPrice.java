@@ -38,6 +38,8 @@ public class FragmentMonthCustomerPrice extends Fragment
 
 	private TextView yi_month_enterprise_price_date, yi_month_enterprise_price_income_title, yi_month_enterprise_price_release_title, yi_month_enterprise_price_petosa_title;
 
+	private int iYear, iMonth;
+
 	public FragmentMonthCustomerPrice() { }
 	
 	@Override
@@ -116,6 +118,9 @@ public class FragmentMonthCustomerPrice extends Fragment
 
 //		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "searchDate : " + searchDate + ", qryContent : " + qryContent);
 
+		iYear = searchYear;
+		iMonth = searchMonth;
+
 		String url = GSConfig.API_SERVER_ADDR + "API";
 		RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
 
@@ -170,7 +175,7 @@ public class FragmentMonthCustomerPrice extends Fragment
 
 			dio.list = new ArrayList<>(Arrays.asList(diog));
 
-			this.setDisplayData(dio, "");
+			this.setDisplayData(dio);
 
 		}
 		catch(Exception ex)
@@ -181,7 +186,7 @@ public class FragmentMonthCustomerPrice extends Fragment
 
 	}
 	
-	private void setDisplayData(GSDailyInOut data, String _date)
+	private void setDisplayData(GSDailyInOut data)
 	{
 
 		if (data == null)
@@ -197,7 +202,7 @@ public class FragmentMonthCustomerPrice extends Fragment
 		yi_month_enterprise_price_release_empty_layout.removeAllViews();
 		yi_month_enterprise_price_petosa_empty_layout.removeAllViews();
 
-		EnterpriseMonthStatsView statsView = new EnterpriseMonthStatsView(getActivity(), GSConfig.CURRENT_BRANCH.getBranchID(), GSConfig.STATE_PRICE, _date);
+		EnterpriseMonthStatsView statsView = new EnterpriseMonthStatsView(getActivity(), GSConfig.CURRENT_BRANCH.getBranchID(), GSConfig.STATE_PRICE, iYear, iMonth);
 
 		statsView.makeStatsView(yi_month_enterprise_price_income_empty_layout, inputGroup, GSConfig.MODE_STOCK, GSConfig.STATE_PRICE);
 		yi_month_enterprise_price_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");

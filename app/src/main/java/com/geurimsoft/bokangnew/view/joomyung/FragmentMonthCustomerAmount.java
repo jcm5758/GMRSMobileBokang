@@ -38,7 +38,10 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 	private TextView yi_month_enterprise_amount_date, yi_month_enterprise_amount_income_title, yi_month_enterprise_amount_release_title, yi_month_enterprise_amount_petosa_title;
 
+	private int iYear, iMonth;
+
 	public FragmentMonthCustomerAmount() {}
+
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -116,6 +119,9 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 //		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "searchDate : " + searchDate + ", qryContent : " + qryContent);
 
+		iYear = searchYear;
+		iMonth = searchMonth;
+
 		String url = GSConfig.API_SERVER_ADDR + "API";
 		RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
 
@@ -170,7 +176,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			dio.list = new ArrayList<>(Arrays.asList(diog));
 
-			this.setDisplayData(dio, "");
+			this.setDisplayData(dio);
 
 		}
 		catch(Exception ex)
@@ -181,7 +187,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 	}
 	
-	private void setDisplayData(GSDailyInOut data, String _date)
+	private void setDisplayData(GSDailyInOut data)
 	{
 
 		if (data == null)
@@ -203,7 +209,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 			yi_month_enterprise_amount_release_empty_layout.removeAllViews();
 			yi_month_enterprise_amount_petosa_empty_layout.removeAllViews();
 
-			EnterpriseMonthStatsView statsView = new EnterpriseMonthStatsView(getActivity(), 3, GSConfig.STATE_AMOUNT, _date);
+			EnterpriseMonthStatsView statsView = new EnterpriseMonthStatsView(getActivity(), 3, GSConfig.STATE_AMOUNT, iYear, iMonth);
 
 			statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, inputGroup, GSConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
 			yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");
@@ -219,95 +225,6 @@ public class FragmentMonthCustomerAmount extends Fragment
 		{
 			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplay() : " + ex.toString());
 			return;
-		}
-
-	}
-
-	public class MonthEnterpriseAmountTask extends AsyncTask<String, String, GSDailyInOut>
-	{
-
-		private String queryDate;
-		private String responseMessage;
-		private String dateStr;
-		
-		public MonthEnterpriseAmountTask(String _queryDate, String _dateStr)
-		{
-			this.queryDate = _queryDate;
-			this.dateStr = _dateStr;
-		}
-
-		@Override
-		protected void onPreExecute()
-		{
-			super.onPreExecute();
-			yi_month_enterprise_amount_loading_indicator.setVisibility(View.VISIBLE);
-		}
-		
-		@Override
-		protected GSDailyInOut doInBackground(String... params)
-		{
-
-			String department = 3 + ",";
-			String message = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>MONTH_CUSTOMER_UNIT</GCType><GCQuery>" + department + queryDate + "</GCQuery></GEURIMSOFT>\n";
-			responseMessage = null;
-
-//			try
-//			{
-//
-//				SocketClient sc = new SocketClient(GSConfig.API_SERVER_ADDR, AppConfig.SERVER_PORT, message, AppConfig.SOCKET_KEY);
-//
-//				sc.start();
-//				sc.join();
-//
-//				responseMessage = sc.getReturnString();
-//
-//			}
-//			catch (Exception e)
-//			{
-//				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
-//				return null;
-//			}
-//
-//			if (responseMessage == null || responseMessage.equals("Fail"))
-//			{
-//				Log.d(GSConfig.APP_DEBUG, "Returned xml is null.");
-//				return null;
-//			}
-//
-//			GSDailyInOut data = XmlConverter.parseDaily(responseMessage);
-//
-//			try
-//			{
-//				Thread.sleep(10);
-//			}
-//			catch (Exception e)
-//			{
-//				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
-//				return null;
-//			}
-
-			return null;
-
-		}
-
-		@Override
-		protected void onPostExecute(GSDailyInOut result)
-		{
-
-			super.onPostExecute(result);
-			
-			if(result == null)
-			{
-				yi_month_enterprise_amount_loading_fail.setVisibility(View.VISIBLE);
-			}
-			else
-			{
-				yi_month_enterprise_amount_loading_fail.setVisibility(View.GONE);
-				setDisplayData(result, queryDate);
-			}
-			
-			yi_month_enterprise_amount_loading_indicator.setVisibility(View.GONE);
-
 		}
 
 	}

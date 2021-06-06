@@ -52,7 +52,8 @@ public class EnterpriseMonthStatsView
 	private Activity mActivity;
 	private int branchID;
 	private int statsType;
-	private String date;
+	private int searchYear;
+	private int searchMonth;
 
 	private Context mContext;
 
@@ -64,16 +65,16 @@ public class EnterpriseMonthStatsView
 	 * @param _activity		Acitivity
 	 * @param branchID		지점 ID
 	 * @param statsType	Unit / Money
-	 * @param _date			검색일
 	 */
-	public EnterpriseMonthStatsView(Activity _activity, int branchID, int statsType, String _date)
+	public EnterpriseMonthStatsView(Activity _activity, int branchID, int statsType, int searchYear, int searchMonth)
 	{
 
 		this.mContext = _activity;
 		this.mActivity = _activity;
 		this.branchID = branchID;
 		this.statsType = statsType;
-		this.date = _date;
+		this.searchYear = searchYear;
+		this.searchMonth = searchMonth;
 
 	}
 
@@ -144,7 +145,7 @@ public class EnterpriseMonthStatsView
 				GSDailyInOutDetail detail = detailList.get(stock_index);
 				String[] stock_items = detail.getStringValues(statsType);
 
-//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " stock_index : 001");
+//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " stock_index.length : " + stock_items.length);
 
 				LinearLayout stock_row_layout = new LinearLayout(mContext);
 
@@ -154,7 +155,7 @@ public class EnterpriseMonthStatsView
 				for(int i = 0; i < stock_items.length; i++)
 				{
 
-					Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " i : " + i);
+//					Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " i : " + i);
 
 					int gravity = 0;
 
@@ -176,7 +177,8 @@ public class EnterpriseMonthStatsView
 								@Override
 								public void onClick(View v) {
 									String name = (String) v.getTag();
-									new EnterpriseDetailTask(name, branchID, statsType, serviceType, date).execute();
+//									new EnterpriseDetailTask(name, branchID, statsType, serviceType, date).execute();
+									new MonthDetailList(mContext, branchID, searchYear, searchMonth, name, serviceType, statsType);
 								}
 							});
 
@@ -216,7 +218,7 @@ public class EnterpriseMonthStatsView
 		}
 		catch(Exception ex)
 		{
-			Log.d(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplay() : " + ex.toString());
+			Log.d(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + "." + functionName + " : " + ex.toString());
 			return;
 		}
 
@@ -260,120 +262,6 @@ public class EnterpriseMonthStatsView
 
 	}
 
-	/**
-	 * 거래처별 상세 조회
-	 */
-	public class EnterpriseDetailTask extends AsyncTask<String, String, GSMonthInOut>
-	{
-
-		private String queryDate;
-		private String responseMessage;
-
-		// 거래처 full name
-		private String customerName;
-
-		// 지점 ID
-		private int branchID;
-
-		// Unit / Money
-		private int statsType;
-
-		// 입고 / 출고 / 토사
-		private int serviceType;
-
-		private CustomProgressDialog progressDialog;
-
-		public EnterpriseDetailTask(String customerName, int branchID, int statsType, int serviceType, String _queryDate)
-		{
-			this.queryDate = _queryDate;
-			this.customerName = customerName;
-			this.branchID = branchID;
-			this.statsType = statsType;
-			this.serviceType = serviceType;
-		}
-
-		@Override
-		protected void onPreExecute()
-		{
-
-			super.onPreExecute();
-
-			progressDialog = new CustomProgressDialog(mContext);
-			progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-			progressDialog.show();
-
-		}
-
-		@Override
-		protected GSMonthInOut doInBackground(String... params)
-		{
-
-			String query = this.branchID + "," + this.serviceType + "," + queryDate + "," + this.customerName;
-			String message = null;
-
-			if (this.statsType == GSConfig.STATE_AMOUNT)
-				message = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>MONTH_CUSTOMER_DAY_UNIT</GCType><GCQuery>" + query + "</GCQuery></GEURIMSOFT>\n";
-			else if (this.statsType == GSConfig.STATE_PRICE)
-				message = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><GEURIMSOFT><GCType>MONTH_CUSTOMER_DAY_MONEY</GCType><GCQuery>" + query + "</GCQuery></GEURIMSOFT>\n";
-
-			responseMessage = null;
-
-			try
-			{
-
-				SocketClient sc = new SocketClient(GSConfig.API_SERVER_ADDR, AppConfig.SERVER_PORT, message, AppConfig.SOCKET_KEY);
-
-				sc.start();
-				sc.join();
-
-				responseMessage = sc.getReturnString();
-
-			}
-			catch (Exception e)
-			{
-				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
-				return null;
-			}
-
-			if (responseMessage == null || responseMessage.equals("Fail"))
-			{
-				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : Returned XML is null.");
-				return null;
-			}
-
-			GSMonthInOut data = XmlConverter.parseMonth(responseMessage);
-
-			try
-			{
-				Thread.sleep(10);
-			}
-			catch (Exception e)
-			{
-				Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : doInBackground() : " + e.toString());
-				return null;
-			}
-
-			return data;
-
-		}
-
-		@Override
-		protected void onPostExecute(GSMonthInOut result)
-		{
-
-			super.onPostExecute(result);
-
-			if(result == null)
-				showErrorDialog();
-			else
-				showEnterprisePopup(result, this.queryDate, this.customerName, this.statsType, this.serviceType);
-
-			progressDialog.dismiss();
-
-		}
-
-	}
-
 	public class MonthDetailList {
 
 		// 지점 ID
@@ -387,18 +275,32 @@ public class EnterpriseMonthStatsView
 
 		// 입고 / 출고 / 토사
 		private int serviceType;
+		private int statsType;
 
 		private String qryContent;
+		private CustomProgressDialog progressDialog;
+		private Context mContext;
 
-		public MonthDetailList(int branchID, int searchYear, int searchMonth, String customerName, int serviceType, String qryContent)
+		public MonthDetailList(Context mContext, int branchID, int searchYear, int searchMonth, String customerName, int serviceType, int statsType)
 		{
 
+			this.mContext = mContext;
 			this.branchID = branchID;
 			this.searchYear = searchYear;
 			this.searchMonth = searchMonth;
 			this.customerName = customerName;
 			this.serviceType = serviceType;
-			this.qryContent = qryContent;
+
+			this.statsType = statsType;
+
+			if (statsType == GSConfig.STATE_PRICE)
+				this.qryContent = "TotalPrice";
+			else
+				this.qryContent = "Unit";
+
+			progressDialog = new CustomProgressDialog(mContext);
+			progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+			progressDialog.show();
 
 			this.getData();
 
@@ -437,7 +339,7 @@ public class EnterpriseMonthStatsView
 				protected Map<String, String> getParams() throws AuthFailureError {
 					Map<String,String> params = new HashMap<String,String>();
 					params.put("GSType", "MONTH_CUSTOMER_DAY");
-					params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"searchYear\": " + searchYear + ", \"searchMonth\": " + searchMonth + ", \"qryContent\" : \"" + qryContent + "\" }");
+					params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"customerFullName\": \"" + customerName + "\", \"serviceType\": " + serviceType + ", \"searchYear\": " + searchYear + ", \"searchMonth\": " + searchMonth + ", \"qryContent\" : \"" + qryContent + "\" }");
 					return params;
 				}
 			};
@@ -453,7 +355,7 @@ public class EnterpriseMonthStatsView
 		{
 
 			String functionName = "parseData()";
-//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
 
 			try
 			{
@@ -462,7 +364,7 @@ public class EnterpriseMonthStatsView
 
 				GSMonthInOut data = gson.fromJson(msg, GSMonthInOut.class);
 
-				this.setDisplayData(data);
+				showEnterprisePopup(data, this.customerName, statsType, serviceType);
 
 			}
 			catch(Exception ex)
@@ -474,11 +376,11 @@ public class EnterpriseMonthStatsView
 		}
 
 	}
-	
+
 	private PopupWindow popupWindow;
-    private int mWidthPixels, mHeightPixels; 
-	
-	private void showEnterprisePopup(GSMonthInOut data, String queryDate, String customerName, int statsType, int serviceType)
+	private int mWidthPixels, mHeightPixels;
+
+	private void showEnterprisePopup(GSMonthInOut data, String customerName, int statsType, int serviceType)
 	{
 
 		WindowManager w = mActivity.getWindowManager();
@@ -533,8 +435,6 @@ public class EnterpriseMonthStatsView
 
 		popup_header_container.removeAllViews();
 
-		String[] dates = date.split(",");
-
 		String statsTypeStr = "";
 
 		if(statsType == GSConfig.STATE_AMOUNT)
@@ -548,7 +448,7 @@ public class EnterpriseMonthStatsView
 
 		String modeStr = GSConfig.MODE_NAMES[serviceType] + " 현황";
 
-		String dateStr = dates[0] + "년 " + dates[1] + "월 "+ customerName + "\n" + modeStr + statsTypeStr;
+		String dateStr = searchYear + "년 " + searchMonth + "월 "+ customerName + "\n" + modeStr + statsTypeStr;
 		popup_date.setText(dateStr);
 
 		StatsHeaderAndFooterView statsHeaderAndFooterView = new StatsHeaderAndFooterView(mActivity, data, statsType);
@@ -575,7 +475,7 @@ public class EnterpriseMonthStatsView
 		});
 
 	}
-	
+
 	private void showErrorDialog()
 	{
 
@@ -594,5 +494,4 @@ public class EnterpriseMonthStatsView
 		errorDialog.show();
 
 	}
-
 }
