@@ -1,13 +1,13 @@
 package com.geurimsoft.bokangnew.view.joomyung;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -17,12 +17,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.data.XmlConverter;
 import com.geurimsoft.bokangnew.data.GSDataStatisticYearChart;
 import com.geurimsoft.bokangnew.data.GSMonthInOut;
-import com.geurimsoft.bokangnew.client.SocketClient;
 import com.google.gson.Gson;
 
 import org.achartengine.ChartFactory;

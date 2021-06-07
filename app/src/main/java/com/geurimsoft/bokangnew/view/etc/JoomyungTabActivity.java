@@ -19,7 +19,6 @@ import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.joomyung.FragmentDailyMain;
 import com.geurimsoft.bokangnew.view.joomyung.FragmentMonthMain;
 import com.geurimsoft.bokangnew.view.joomyung.FragmentYearMain;
-import com.geurimsoft.bokangnew.conf.AppConfig;
 
 public class JoomyungTabActivity extends FragmentActivity
 {
@@ -39,7 +38,7 @@ public class JoomyungTabActivity extends FragmentActivity
 
 		setContentView(R.layout.stats_tab_activity);
 		
-		AppConfig.activities.add(JoomyungTabActivity.this);
+		//AppConfig.activities.add(JoomyungTabActivity.this);
 		
 		GSConfig.DAY_STATS_YEAR = 0;
 		GSConfig.DAY_STATS_MONTH = 0;

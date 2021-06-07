@@ -1,4 +1,4 @@
-package com.geurimsoft.bokangnew.view.joomyung;
+package com.geurimsoft.bokangnew.view.util;
 
 import android.app.Dialog;
 import android.content.Context;

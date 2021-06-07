@@ -22,6 +22,7 @@ import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.data.GSMonthInOut;
 import com.geurimsoft.bokangnew.data.StAdapter;
+import com.geurimsoft.bokangnew.view.util.StatsHeaderAndFooterView;
 import com.google.gson.Gson;
 
 import java.util.HashMap;

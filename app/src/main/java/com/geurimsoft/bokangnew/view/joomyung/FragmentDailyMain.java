@@ -28,7 +28,6 @@ import android.widget.Toast;
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.util.DayDatePickerDialog;
-import com.geurimsoft.bokangnew.conf.AppConfig;
 
 import java.util.ArrayList;
 import java.util.Calendar;

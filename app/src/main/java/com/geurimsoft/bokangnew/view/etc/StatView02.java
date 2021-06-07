@@ -11,7 +11,6 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.chart.GChart01;
 import com.geurimsoft.bokangnew.chart.Result;
-import com.geurimsoft.bokangnew.conf.AppConfig;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -56,7 +55,7 @@ public class StatView02 extends Activity
     {
 	
     	super.onCreate(savedInstanceState);
-    	AppConfig.activities.add(StatView02.this);
+    	//AppConfig.activities.add(StatView02.this);
 		setContentView(R.layout.statviewlayout);
 	
 		setUserInterface();

@@ -1,11 +1,5 @@
 package com.geurimsoft.bokangnew.data;
 
-import org.achartengine.chart.PointStyle;
-import org.achartengine.model.XYMultipleSeriesDataset;
-import org.achartengine.model.XYSeries;
-import org.achartengine.renderer.XYMultipleSeriesRenderer;
-import org.achartengine.renderer.XYSeriesRenderer;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint.Align;
@@ -13,7 +7,12 @@ import android.graphics.Typeface;
 import android.util.Log;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.bokangnew.conf.AppConfig;
+
+import org.achartengine.chart.PointStyle;
+import org.achartengine.model.XYMultipleSeriesDataset;
+import org.achartengine.model.XYSeries;
+import org.achartengine.renderer.XYMultipleSeriesRenderer;
+import org.achartengine.renderer.XYSeriesRenderer;
 
 public class GSDataStatisticMonthChart
 {

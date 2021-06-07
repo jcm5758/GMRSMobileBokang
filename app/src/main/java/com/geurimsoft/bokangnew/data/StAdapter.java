@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.bokangnew.conf.AppConfig;
 
 public class StAdapter extends BaseAdapter
 {

@@ -13,10 +13,6 @@ import android.view.MenuItem;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.view.dailyfragment.GwangjuDailyPagerFragment;
-import com.geurimsoft.bokangnew.view.monthfragment.GwangjuMonthPagerFragment;
-import com.geurimsoft.bokangnew.view.yearfragment.GwangjuYearPagerFragment;
-import com.geurimsoft.bokangnew.conf.AppConfig;
 
 public class GwangjuTabActivity extends FragmentActivity {
 
@@ -39,7 +35,7 @@ public class GwangjuTabActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.stats_tab_activity);
 		
-		AppConfig.activities.add(GwangjuTabActivity.this);
+		//AppConfig.activities.add(GwangjuTabActivity.this);
 		
 		GSConfig.DAY_STATS_YEAR = 0;
 		GSConfig.DAY_STATS_MONTH = 0;
@@ -61,14 +57,14 @@ public class GwangjuTabActivity extends FragmentActivity {
 		
 		tabHost.setup(this, getSupportFragmentManager(), R.id.tab_content_layout);
 		
-		if(user_grade >= 2) {
-			tabHost.addTab(tabHost.newTabSpec("day").setIndicator("일보"), GwangjuDailyPagerFragment.class, null);
-			tabHost.addTab(tabHost.newTabSpec("month").setIndicator("월보"), GwangjuMonthPagerFragment.class, null);
-		} else {
-			tabHost.addTab(tabHost.newTabSpec("day").setIndicator("일보"), GwangjuDailyPagerFragment.class, null);
-			tabHost.addTab(tabHost.newTabSpec("month").setIndicator("월보"), GwangjuMonthPagerFragment.class, null);
-			tabHost.addTab(tabHost.newTabSpec("year").setIndicator("연보"), GwangjuYearPagerFragment.class, null);
-		}
+//		if(user_grade >= 2) {
+//			tabHost.addTab(tabHost.newTabSpec("day").setIndicator("일보"), GwangjuDailyPagerFragment.class, null);
+//			tabHost.addTab(tabHost.newTabSpec("month").setIndicator("월보"), GwangjuMonthPagerFragment.class, null);
+//		} else {
+//			tabHost.addTab(tabHost.newTabSpec("day").setIndicator("일보"), GwangjuDailyPagerFragment.class, null);
+//			tabHost.addTab(tabHost.newTabSpec("month").setIndicator("월보"), GwangjuMonthPagerFragment.class, null);
+//			tabHost.addTab(tabHost.newTabSpec("year").setIndicator("연보"), GwangjuYearPagerFragment.class, null);
+//		}
 	
 		tabHost.setCurrentTab(0);
 	}

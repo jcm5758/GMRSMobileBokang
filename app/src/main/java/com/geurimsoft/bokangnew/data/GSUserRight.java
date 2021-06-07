@@ -1,7 +1,5 @@
 package com.geurimsoft.bokangnew.data;
 
-import com.geurimsoft.bokangnew.conf.AppConfig;
-
 public class GSUserRight extends GSData
 {
 
@@ -13,7 +11,7 @@ public class GSUserRight extends GSData
     private int[] auth_day;
     private int[] auth_month;
     private int[] auth_year;
-    private int[] rightArray = new int[AppConfig.USER_RIGHT_SIZE];
+    private int[] rightArray = new int[GSConfig.USER_RIGHT_SIZE];
 
     public GSUserRight()
     {

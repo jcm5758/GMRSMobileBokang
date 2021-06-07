@@ -9,14 +9,6 @@
 
 package com.geurimsoft.bokangnew;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -53,10 +45,15 @@ import com.geurimsoft.bokangnew.apiserver.data.UserRightData;
 import com.geurimsoft.bokangnew.data.GSBranch;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.BackPressHandler;
-import com.geurimsoft.bokangnew.conf.AppConfig;
-import com.geurimsoft.bokangnew.data.CCTV;
-import com.geurimsoft.bokangnew.data.Place;
 import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AppMain extends Activity
 {
@@ -83,7 +80,7 @@ public class AppMain extends Activity
 
 		GSConfig.context = this;
 		
-		AppConfig.activities.add(AppMain.this);
+		//GSConfig.activities.add(AppMain.this);
 		
 		backPressHandler = new BackPressHandler(this);
 		

@@ -2,12 +2,8 @@ package com.geurimsoft.bokangnew.data;
 
 import android.content.Context;
 
-import androidx.fragment.app.FragmentActivity;
-
 import com.geurimsoft.bokangnew.apiserver.data.UserInfo;
-import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.view.etc.GwangjuTabActivity;
-import com.geurimsoft.bokangnew.view.etc.JoomyungTabActivity;
 
 import java.text.DecimalFormat;
 
@@ -66,6 +62,8 @@ public class GSConfig
     public static int MODE_STOCK = 0;
     public static int MODE_RELEASE = 1;
     public static int MODE_PETOSA = 2;
+
+    public static int USER_RIGHT_SIZE = 110;
 
     public static String changeToCommanString(double value)
     {

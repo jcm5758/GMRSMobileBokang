@@ -16,10 +16,6 @@ import android.view.MenuItem;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.view.dailyfragment.YonginDailyPagerFragment;
-import com.geurimsoft.bokangnew.view.monthfragment.YonginMonthPagerFragment;
-import com.geurimsoft.bokangnew.view.yearfragment.YonginYearPagerFragment;
-import com.geurimsoft.bokangnew.conf.AppConfig;
 
 public class YonginTabActivity extends FragmentActivity
 {
@@ -41,7 +37,7 @@ public class YonginTabActivity extends FragmentActivity
 
 		setContentView(R.layout.stats_tab_activity);
 		
-		AppConfig.activities.add(YonginTabActivity.this);
+//		AppConfig.activities.add(YonginTabActivity.this);
 		
 		GSConfig.DAY_STATS_YEAR = 0;
 		GSConfig.DAY_STATS_MONTH = 0;
@@ -61,9 +57,9 @@ public class YonginTabActivity extends FragmentActivity
 
 		this.tabHost.setup(this, getSupportFragmentManager(), R.id.tab_content_layout);
 		
-		tabHost.addTab(tabHost.newTabSpec("day").setIndicator("일보"), YonginDailyPagerFragment.class, null);
-		tabHost.addTab(tabHost.newTabSpec("month").setIndicator("월보"), YonginMonthPagerFragment.class, null);
-		tabHost.addTab(tabHost.newTabSpec("year").setIndicator("연보"), YonginYearPagerFragment.class, null);
+//		tabHost.addTab(tabHost.newTabSpec("day").setIndicator("일보"), YonginDailyPagerFragment.class, null);
+//		tabHost.addTab(tabHost.newTabSpec("month").setIndicator("월보"), YonginMonthPagerFragment.class, null);
+//		tabHost.addTab(tabHost.newTabSpec("year").setIndicator("연보"), YonginYearPagerFragment.class, null);
 
 		tabHost.setCurrentTab(0);
 

@@ -11,7 +11,6 @@ import android.view.Window;
 import android.widget.Button;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.GSConfig;
 
 

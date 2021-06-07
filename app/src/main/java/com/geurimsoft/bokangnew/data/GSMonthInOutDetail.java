@@ -1,7 +1,5 @@
 package com.geurimsoft.bokangnew.data;
 
-import com.geurimsoft.bokangnew.conf.AppConfig;
-
 public class GSMonthInOutDetail
 {
 

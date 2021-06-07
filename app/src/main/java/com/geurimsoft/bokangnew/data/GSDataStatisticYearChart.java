@@ -13,7 +13,6 @@ import android.graphics.Typeface;
 import android.util.Log;
 
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.bokangnew.conf.AppConfig;
 
 public class GSDataStatisticYearChart
 {
