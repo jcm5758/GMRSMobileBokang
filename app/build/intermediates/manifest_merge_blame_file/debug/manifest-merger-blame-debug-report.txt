@@ -18,7 +18,7 @@
 12-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:6:22-76
 13
 14    <application
-14-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:8:5-33:19
+14-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:8:5-30:19
 15        android:allowBackup="true"
 15-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:9:9-35
 16        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -51,23 +51,20 @@
 30            </intent-filter>
 31        </activity>
 32        <activity
-32-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:23:9-27:20
-33            android:name="com.geurimsoft.bokangnew.view.etc.JoomyungTabActivity"
-33-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:24:13-57
-34            android:configChanges="orientation|screenSize|keyboardHidden"
-34-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:26:13-74
-35            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
-35-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:25:13-74
-36        </activity>
-37        <activity
-37-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:28:9-29:76
-38            android:name="com.geurimsoft.bokangnew.view.joomyung.ActivityMain"
-38-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:28:19-61
-39            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
-39-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:29:13-74
-40        <activity android:name="org.achartengine.GraphicalActivity" />
-40-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:31:9-71
-40-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:31:19-68
-41    </application>
-42
-43</manifest>
+32-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:23:9-24:76
+33            android:name="com.geurimsoft.bokangnew.view.joomyung.ActivityMain"
+33-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:23:19-61
+34            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+34-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:24:13-74
+35        <activity
+35-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:25:9-26:76
+36            android:name="com.geurimsoft.bokangnew.view.kwangju.ActivityMain"
+36-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:25:19-60
+37            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+37-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:26:13-74
+38        <activity android:name="org.achartengine.GraphicalActivity" />
+38-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:28:9-71
+38-->D:\sources\GRMS_Inventory_Office\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:28:19-68
+39    </application>
+40
+41</manifest>

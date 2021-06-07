@@ -34,7 +34,7 @@ public class GSConfig
     public static UserInfo CURRENT_USER = null;
 
     // Acitivity 리스트 : 지점 수정할 때 수정해야 함
-    public static Class[] Activity_LIST = new Class[]{ GwangjuTabActivity.class, com.geurimsoft.bokangnew.view.joomyung.ActivityMain.class};
+    public static Class[] Activity_LIST = new Class[]{ com.geurimsoft.bokangnew.view.kwangju.ActivityMain.class, com.geurimsoft.bokangnew.view.joomyung.ActivityMain.class};
 
     public static String LOG_MSG(String className, String funcName)
     {
