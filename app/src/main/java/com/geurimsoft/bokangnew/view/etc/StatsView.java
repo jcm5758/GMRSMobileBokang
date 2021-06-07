@@ -56,6 +56,11 @@ public class StatsView
 			this.stock_header_titles = inputGroup.header;
 			this.stock_count = inputGroup.recordCount;
 			this.inputList = inputGroup.list;
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "") + " : inputList is not null.");
+		}
+		else
+		{
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "") + " : inputList is null.");
 		}
 
 		GSDailyInOutGroup outputGroup = this.dio.findByServiceType("출고");
@@ -65,6 +70,11 @@ public class StatsView
 			this.release_header_titles = outputGroup.header;
 			this.release_count = outputGroup.recordCount;
 			this.outputList = outputGroup.list;
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "") + " : outputList is not null.");
+		}
+		else
+		{
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "") + " : outputList is null.");
 		}
 
 		GSDailyInOutGroup slugeGroup = this.dio.findByServiceType("토사");
@@ -74,6 +84,11 @@ public class StatsView
 			this.petosa_header_titles = slugeGroup.header;
 			this.petosa_count = slugeGroup.recordCount;
 			this.slugeList = slugeGroup.list;
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "") + " : slugeList is not null.");
+		}
+		else
+		{
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "") + " : slugeList is null.");
 		}
 
 	}
