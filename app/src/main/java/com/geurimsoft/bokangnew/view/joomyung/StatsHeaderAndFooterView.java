@@ -1,4 +1,4 @@
-package com.geurimsoft.bokangnew.view.etc;
+package com.geurimsoft.bokangnew.view.joomyung;
 
 import android.content.Context;
 import android.graphics.Color;

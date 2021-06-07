@@ -1,6 +1,5 @@
 package com.geurimsoft.bokangnew.view.joomyung;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
@@ -19,18 +18,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.view.etc.EnterpriseYearStatsView;
-import com.geurimsoft.bokangnew.data.XmlConverter;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
-import com.geurimsoft.bokangnew.client.AES;
 import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -184,7 +175,7 @@ public class FragmentYearCustomerPrice extends Fragment
 
 			this.setDisplayData(dio, "");
 
-			dio.print();
+			//dio.print();
 
 		}
 		catch(Exception ex)

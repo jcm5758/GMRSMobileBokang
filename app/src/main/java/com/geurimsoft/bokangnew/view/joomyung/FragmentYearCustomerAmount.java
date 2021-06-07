@@ -21,7 +21,6 @@ import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.view.etc.EnterpriseYearStatsView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;

@@ -19,7 +19,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.view.etc.EnterpriseMonthStatsView;
 import com.geurimsoft.bokangnew.data.XmlConverter;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;

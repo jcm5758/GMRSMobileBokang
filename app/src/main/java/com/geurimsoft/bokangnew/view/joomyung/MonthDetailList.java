@@ -1,7 +1,5 @@
 package com.geurimsoft.bokangnew.view.joomyung;
 
-import com.geurimsoft.bokangnew.view.etc.CustomProgressDialog;
-
 public class MonthDetailList {
 
     private String queryDate;

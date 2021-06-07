@@ -1,4 +1,4 @@
-package com.geurimsoft.bokangnew.view.etc;;
+package com.geurimsoft.bokangnew.view.joomyung;;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -32,14 +31,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.R;
-import com.geurimsoft.bokangnew.conf.AppConfig;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.data.StAdapter;
-import com.geurimsoft.bokangnew.data.XmlConverter;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutDetail;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.data.GSMonthInOut;
-import com.geurimsoft.bokangnew.client.SocketClient;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;

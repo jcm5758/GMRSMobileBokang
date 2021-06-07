@@ -1,6 +1,5 @@
 package com.geurimsoft.bokangnew.view.joomyung;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +21,6 @@ import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.view.etc.EnterpriseMonthStatsView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;

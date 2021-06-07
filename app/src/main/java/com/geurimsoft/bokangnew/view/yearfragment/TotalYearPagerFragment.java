@@ -22,8 +22,7 @@ import android.widget.Toast;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.view.etc.YearDatePickerDialog;
-import com.geurimsoft.bokangnew.conf.AppConfig;
+import com.geurimsoft.bokangnew.view.joomyung.YearDatePickerDialog;
 
 public class TotalYearPagerFragment extends Fragment {
 	
