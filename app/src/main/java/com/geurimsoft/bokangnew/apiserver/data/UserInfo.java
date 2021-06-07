@@ -10,6 +10,9 @@
 
 package com.geurimsoft.bokangnew.apiserver.data;
 
+import android.util.Log;
+
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -76,7 +79,12 @@ public class UserInfo implements Serializable
 
     }
 
-    public UserRightData getUserRightData(int ind) { return userright.get(ind);}
+    public UserRightData getUserRightData(int ind)
+    {
+        Log.d(GSConfig.APP_DEBUG, "ind : " + ind);
+        Log.d(GSConfig.APP_DEBUG, "size : " + this.userright.size());
+        return userright.get(ind);
+    }
     
     public ArrayList<UserRightData> getUserright() {
         return userright;

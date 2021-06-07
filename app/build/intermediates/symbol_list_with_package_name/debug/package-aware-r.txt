@@ -2351,6 +2351,8 @@ id stata_month_enterprise_petosa
 id stata_month_enterprise_release
 id staticLayout
 id staticPostLayout
+id stats_change_branchjoomyung
+id stats_change_branchkwangju
 id stats_change_date_menu
 id stats_change_month_menu
 id stats_change_year_menu
@@ -2795,6 +2797,7 @@ menu gwangju_menu
 menu main
 menu menu_bottom
 menu stats_menu
+menu stats_menu2
 menu stats_month_menu
 menu stats_year_menu
 menu total_menu

@@ -30,12 +30,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.geurimsoft.bokangnew.view.etc.JoomyungTabActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
-        </activity>
-        <activity
             android:name="com.geurimsoft.bokangnew.view.joomyung.ActivityMain"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+        <activity
+            android:name="com.geurimsoft.bokangnew.view.kwangju.ActivityMain"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <activity android:name="org.achartengine.GraphicalActivity" />
     </application>

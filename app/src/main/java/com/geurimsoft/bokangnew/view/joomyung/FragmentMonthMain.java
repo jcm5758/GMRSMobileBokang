@@ -10,6 +10,8 @@
 package com.geurimsoft.bokangnew.view.joomyung;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -28,6 +30,8 @@ import androidx.viewpager.widget.PagerTabStrip;
 import androidx.viewpager.widget.ViewPager;
 
 import com.geurimsoft.bokangnew.R;
+import com.geurimsoft.bokangnew.apiserver.data.UserRightData;
+import com.geurimsoft.bokangnew.data.GSBranch;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.util.MonthDatePickerDialog;
 
@@ -45,7 +49,10 @@ public class FragmentMonthMain extends Fragment
 	private StatsPagerAdapter statsPagerAdapter;
 	
 	private ArrayList<Fragment> fragments;
-	
+
+	Context context;
+
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -62,6 +69,7 @@ public class FragmentMonthMain extends Fragment
 	{
 
 		View v = inflater.inflate(R.layout.stats_pager_layout, container, false);
+		this.context = container.getContext();
 		
 		if(GSConfig.DAY_STATS_YEAR == 0 || GSConfig.DAY_STATS_MONTH == 0 ||GSConfig.DAY_STATS_DAY == 0)
 		{
@@ -130,7 +138,28 @@ public class FragmentMonthMain extends Fragment
 		 switch (item.getItemId())
 		 {
 
-		 	case R.id.stats_change_date_menu:
+			 case R.id.stats_change_branchkwangju:
+
+				 int which = 0;
+
+				 if (GSConfig.CURRENT_USER.getUserRightData(which).getUr01() != 1)
+				 {
+					 Toast.makeText(context, "지점에 로그인 권한이 없습니다.", Toast.LENGTH_SHORT).show();
+					 return false;
+				 }
+
+				 ArrayList<UserRightData> urData = GSConfig.CURRENT_USER.getUserright();
+
+				 GSConfig.CURRENT_BRANCH = new GSBranch(urData.get(which).getBranID(), urData.get(which).getBranName(), urData.get(which).getBranShortName());
+
+				 Intent intent = new Intent(context, GSConfig.Activity_LIST[which]);
+				 intent.putExtra("branName", GSConfig.CURRENT_BRANCH.getBranchShortName());
+
+				 startActivity(intent);
+
+				 return true;
+
+			 case R.id.stats_change_date_menu:
 		    	   
 		 		MonthDatePickerDialog monthDatePickerDialog = new MonthDatePickerDialog(getActivity(), GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_YEAR+10,  GSConfig.DAY_STATS_MONTH, new MonthDatePickerDialog.DialogListner() {
 					

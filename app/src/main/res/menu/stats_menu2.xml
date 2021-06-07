@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/stats_change_branchjoomyung"
+        android:title="주명(광주)"
+        app:showAsAction="ifRoom">
+    </item>
+    <item
+        android:id="@+id/stats_change_date_menu"
+        android:title="@string/stats_change_date"
+        app:showAsAction="ifRoom">
+    </item>
+</menu>

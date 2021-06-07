@@ -63,7 +63,7 @@ public class GSConfig
     public static int MODE_RELEASE = 1;
     public static int MODE_PETOSA = 2;
 
-    public static int USER_RIGHT_SIZE = 110;
+    public static int USER_RIGHT_SIZE = 102;
 
     public static String changeToCommanString(double value)
     {

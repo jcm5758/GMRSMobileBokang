@@ -315,7 +315,7 @@ public class AppMain extends Activity
 			public void onClick(DialogInterface dialog, int which)
 			{
 
-				Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : which : " + which);
+//				Log.d(GSConfig.APP_DEBUG, this.getClass().getName() + "." + functionName + " : which : " + which);
 
 				if (GSConfig.CURRENT_USER.getUserRightData(which).getUr01() != 1)
 				{

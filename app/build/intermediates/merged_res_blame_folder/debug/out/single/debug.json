@@ -188,6 +188,10 @@
         "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\drawable\\day_selector.xml"
     },
     {
+        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\menu_stats_menu2.xml.flat",
+        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\menu\\stats_menu2.xml"
+    },
+    {
         "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_stats_pager_layout.xml.flat",
         "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\stats_pager_layout.xml"
     },
