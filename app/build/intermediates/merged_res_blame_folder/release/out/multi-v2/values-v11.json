@@ -1,17 +1,17 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\BokangNew\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v11\\values-v11.xml",
+            "outputFile": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v11\\values-v11.xml",
             "map": [
                 {
-                    "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\BokangNew\\app\\src\\main\\res\\values-v11\\styles.xml",
+                    "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\values-v11\\styles.xml",
                     "from": {
                         "startLines": "6",
                         "startColumns": "4",
-                        "startOffsets": "177",
+                        "startOffsets": "183",
                         "endLines": "8",
                         "endColumns": "12",
-                        "endOffsets": "309"
+                        "endOffsets": "317"
                     },
                     "to": {
                         "startLines": "2",
