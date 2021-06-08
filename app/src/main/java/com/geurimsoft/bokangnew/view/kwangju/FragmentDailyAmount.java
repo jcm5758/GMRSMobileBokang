@@ -28,7 +28,6 @@ import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.util.GSUtil;
-import com.geurimsoft.bokangnew.view.etc.StatsView;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 import com.google.gson.Gson;
