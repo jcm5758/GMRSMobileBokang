@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\jcm57\\Documents\\jcm5758\\Projects\\GMRSMobileBokang\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
+            "outputFile": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\jcm57\\Documents\\jcm5758\\Projects\\GMRSMobileBokang\\app\\src\\main\\res\\values-v11\\styles.xml",
+                    "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\values-v11\\styles.xml",
                     "from": {
                         "startLines": "6",
                         "startColumns": "4",

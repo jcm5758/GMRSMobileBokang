@@ -1983,8 +1983,10 @@ id custom
 id customPanel
 id cut
 id daily_income_title
+id daily_income_title_outside
 id daily_petosa_title
 id daily_release_title
+id daily_release_title_outside
 id date_picker_actions
 id datepicker
 id day_datepicker
@@ -2142,6 +2144,7 @@ id imageView1
 id income_account
 id income_arm
 id income_empty_layout
+id income_empty_layout_outside
 id income_poong
 id income_totalTitle
 id income_wara
@@ -2278,6 +2281,7 @@ id release_25mm
 id release_account
 id release_crash_sand
 id release_empty_layout
+id release_empty_layout_outside
 id release_sand
 id reverseSawtooth
 id right
