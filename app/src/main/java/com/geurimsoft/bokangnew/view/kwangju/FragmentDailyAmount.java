@@ -43,6 +43,9 @@ public class FragmentDailyAmount extends Fragment
 	private LinearLayout income_empty_layout, release_empty_layout, petosa_empty_layout;
 	private TextView stats_daily_date, daily_income_title, daily_release_title, daily_petosa_title;
 
+	private LinearLayout income_empty_layout_outside, release_empty_layout_outside;
+	private TextView daily_income_title_outside, daily_release_title_outside;
+
 	private LinearLayout loading_indicator, loading_fail;
 
 	public FragmentDailyAmount() {}
@@ -79,6 +82,9 @@ public class FragmentDailyAmount extends Fragment
 		this.income_empty_layout = (LinearLayout)view.findViewById(R.id.income_empty_layout);
 		this.release_empty_layout = (LinearLayout)view.findViewById(R.id.release_empty_layout);
 		this.petosa_empty_layout = (LinearLayout)view.findViewById(R.id.petosa_empty_layout);
+
+		this.income_empty_layout_outside = (LinearLayout)view.findViewById(R.id.income_empty_layout_outside);
+		this.release_empty_layout_outside = (LinearLayout)view.findViewById(R.id.release_empty_layout_outside);
 		
 		this.loading_indicator = (LinearLayout)view.findViewById(R.id.loading_indicator);
 		this.loading_fail = (LinearLayout)view.findViewById(R.id.loading_fail);
@@ -88,6 +94,9 @@ public class FragmentDailyAmount extends Fragment
 		this.daily_income_title = (TextView) view.findViewById(R.id.daily_income_title);
 		this.daily_release_title = (TextView) view.findViewById(R.id.daily_release_title);
 		this.daily_petosa_title = (TextView) view.findViewById(R.id.daily_petosa_title);
+
+		this.daily_income_title_outside = (TextView) view.findViewById(R.id.daily_income_title_outside);
+		this.daily_release_title_outside = (TextView) view.findViewById(R.id.daily_release_title_outside);
 
 		// 일일 입고/출고/토사 수량 조회
 		makeDailyAmountData(GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_MONTH,GSConfig.DAY_STATS_DAY);
@@ -212,11 +221,14 @@ public class FragmentDailyAmount extends Fragment
 			return;
 		}
 
-//		dio.print();
+		//dio.print();
 
 		income_empty_layout.removeAllViews();
 		release_empty_layout.removeAllViews();
 		petosa_empty_layout.removeAllViews();
+
+		income_empty_layout_outside.removeAllViews();
+		release_empty_layout_outside.removeAllViews();
 
 		StatsView statsView = new StatsView(getActivity(), dio, 0);
 
@@ -234,6 +246,16 @@ public class FragmentDailyAmount extends Fragment
 		tempGroup = dio.findByServiceType("토사");
 		if (tempGroup != null)
 			daily_petosa_title.setText(tempGroup.getTitleUnit());
+
+		statsView.makeStockOutsideStatsView(income_empty_layout_outside);
+		tempGroup = dio.findByServiceType("외부입고");
+		if (tempGroup != null)
+			daily_income_title_outside.setText(tempGroup.getTitleUnit());
+
+		statsView.makeReleaseOutsideStatsView(release_empty_layout_outside);
+		tempGroup = dio.findByServiceType("외부출고");
+		if (tempGroup != null)
+			daily_release_title_outside.setText(tempGroup.getTitleUnit());
 
 	}
 

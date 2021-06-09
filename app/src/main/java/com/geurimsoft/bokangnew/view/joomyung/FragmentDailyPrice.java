@@ -47,12 +47,15 @@ public class FragmentDailyPrice extends Fragment
 	private LinearLayout income_empty_layout, release_empty_layout, petosa_empty_layout;
 	private TextView stats_daily_date, daily_income_title, daily_release_title, daily_petosa_title;
 
+	private LinearLayout income_empty_layout_outside, release_empty_layout_outside;
+	private TextView daily_income_title_outside, daily_release_title_outside;
+
 	private DecimalFormat df = new DecimalFormat("#,###");
 
 	private LinearLayout loading_indicator, loading_fail;
 
 	public FragmentDailyPrice() {}
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -60,37 +63,43 @@ public class FragmentDailyPrice extends Fragment
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		View v = inflater.inflate(R.layout.statviewdetaildaily, container, false);
 		return v;
 	}
-	
+
 	@Override
 	public void onResume()
 	{
 
 		super.onResume();
-		
+
 		View view = this.getView();
-		
+
 		this.income_empty_layout = (LinearLayout)view.findViewById(R.id.income_empty_layout);
 		this.release_empty_layout = (LinearLayout)view.findViewById(R.id.release_empty_layout);
 		this.petosa_empty_layout = (LinearLayout)view.findViewById(R.id.petosa_empty_layout);
-		
+
+		this.income_empty_layout_outside = (LinearLayout)view.findViewById(R.id.income_empty_layout_outside);
+		this.release_empty_layout_outside = (LinearLayout)view.findViewById(R.id.release_empty_layout_outside);
+
 		this.loading_indicator = (LinearLayout)view.findViewById(R.id.loading_indicator);
 		this.loading_fail = (LinearLayout)view.findViewById(R.id.loading_fail);
-		
+
 		this.stats_daily_date = (TextView)view.findViewById(R.id.stats_daily_date);
-		
+
 		this.daily_income_title = (TextView) view.findViewById(R.id.daily_income_title);
 		this.daily_release_title = (TextView) view.findViewById(R.id.daily_release_title);
 		this.daily_petosa_title = (TextView) view.findViewById(R.id.daily_petosa_title);
-		
+
+		this.daily_income_title_outside = (TextView) view.findViewById(R.id.daily_income_title_outside);
+		this.daily_release_title_outside = (TextView) view.findViewById(R.id.daily_release_title_outside);
+
 		makeDailyPriceData(GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_MONTH,GSConfig.DAY_STATS_DAY);
 
 	}
-	
+
 	@Override
 	public void onPause()
 	{
@@ -106,7 +115,7 @@ public class FragmentDailyPrice extends Fragment
 	 */
 	public void makeDailyPriceData(int _year, int _monthOfYear, int _dayOfMonth)
 	{
-		
+
 		String functionName = "makeDailyAmountData()";
 
 		try
@@ -213,11 +222,14 @@ public class FragmentDailyPrice extends Fragment
 			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplayData() : dio is null.");
 			return;
 		}
-		
+
 		income_empty_layout.removeAllViews();
 		release_empty_layout.removeAllViews();
 		petosa_empty_layout.removeAllViews();
-		
+
+		income_empty_layout_outside.removeAllViews();
+		release_empty_layout_outside.removeAllViews();
+
 		StatsView statsView = new StatsView(getActivity(), dio, 1);
 
 		statsView.makeStockStatsView(income_empty_layout);
@@ -235,12 +247,22 @@ public class FragmentDailyPrice extends Fragment
 		if (tempGroup != null)
 			daily_petosa_title.setText(tempGroup.getTitleMoney());
 
+		statsView.makeStockOutsideStatsView(income_empty_layout_outside);
+		tempGroup = dio.findByServiceType("외부입고");
+		if (tempGroup != null)
+			daily_income_title_outside.setText(tempGroup.getTitleMoney());
+
+		statsView.makeReleaseOutsideStatsView(release_empty_layout_outside);
+		tempGroup = dio.findByServiceType("외부출고");
+		if (tempGroup != null)
+			daily_release_title_outside.setText(tempGroup.getTitleMoney());
+
 	}
-	
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
 	{
-		 inflater.inflate(R.menu.stats_menu, menu);
+		inflater.inflate(R.menu.stats_menu, menu);
 	}
 
 }
