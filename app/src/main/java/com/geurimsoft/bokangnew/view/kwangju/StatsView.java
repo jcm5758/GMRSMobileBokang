@@ -18,40 +18,40 @@ import java.util.ArrayList;
 
 public class StatsView
 {
-	
+
 	private LinearLayout stock_layout, release_layout, petosa_layout;
 	private LinearLayout stock_layout_outside, release_layout_outside;
-	
+
 	private Context mContext;
-	
+
 	private GSDailyInOut dio;
 	private int iUnitMoneyType = 0;
-	
+
 	private int stock_header_count;
 	private int release_header_count;
 	private int petosa_header_count;
 
 	private int stock_header_outside_count;
 	private int release_header_outside_count;
-	
+
 	private String[] stock_header_titles;
 	private String[] release_header_titles;
 	private String[] petosa_header_titles;
 	private String[] stock_header_outside_titles;
 	private String[] release_header_outside_titles;
-	
+
 	private int stock_count;
 	private int release_count;
 	private int petosa_count;
 	private int stock_outside_count;
 	private int release_outside_count;
-	
+
 	private ArrayList<GSDailyInOutDetail> inputList;
 	private ArrayList<GSDailyInOutDetail> outputList;
 	private ArrayList<GSDailyInOutDetail> slugeList;
 	private ArrayList<GSDailyInOutDetail> inputOutsideList;
 	private ArrayList<GSDailyInOutDetail> outputOutsideList;
-	
+
 	public StatsView(Context _context, GSDailyInOut dio, int iUnitMoneyType)
 	{
 
@@ -123,7 +123,7 @@ public class StatsView
 		// 입고 리스트 미존재시 패스
 		if(this.inputList == null || this.inputList.size() <= 0)
 		{
-			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : inputList is null.");
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(),functionName) + " : inputList is null.");
 			return;
 		}
 
@@ -142,12 +142,12 @@ public class StatsView
 			TextView stock_title_textview = makeMenuTextView(mContext, this.stock_header_titles[stock_header_index], "#ffffff", Gravity.CENTER);
 			header_layout.addView(stock_title_textview);
 		}
-		
+
 		stock_layout.addView(header_layout);
 
 		// 본문 레이아웃
 		TextView stock_item_textview;
-		
+
 		for(int stock_index = 0; stock_index < this.inputList.size(); stock_index++)
 		{
 
@@ -183,7 +183,7 @@ public class StatsView
 
 			for(int i = 0; i < values.length; i++)
 			{
-				
+
 				gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
 
 				if(stock_index == stock_count - 1)
@@ -198,7 +198,7 @@ public class StatsView
 			stock_layout.addView(stock_row_layout);
 
 		}
-		
+
 	}
 
 	/**
@@ -208,10 +208,12 @@ public class StatsView
 	public void makeReleaseStatsView(LinearLayout _release_layout)
 	{
 
+		String functionName = "makeReleaseStatsView()";
+
 		// 출고 데이터 미존재시 패스
 		if(this.outputList == null || this.outputList.size() <= 0)
 		{
-			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : makeReleaseStatsView : outputList is null.");
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " : outputList is null.");
 			return;
 		}
 
@@ -223,19 +225,19 @@ public class StatsView
 		LinearLayout header_layout = new LinearLayout(mContext);
 		header_layout.setLayoutParams(params);
 		header_layout.setOrientation(LinearLayout.HORIZONTAL);
-		
+
 		// Header Layout
 		for(int release_header_index = 0; release_header_index < this.release_header_count; release_header_index++)
 		{
 			TextView release_title_textview = makeMenuTextView(mContext, this.release_header_titles[release_header_index], "#ffffff", Gravity.CENTER);
 			header_layout.addView(release_title_textview);
 		}
-		
+
 		release_layout.addView(header_layout);
 
 		// 본문 레이아웃
 		TextView release_item_textview;
-		
+
 		for(int release_index = 0; release_index < this.outputList.size(); release_index++)
 		{
 
@@ -284,7 +286,7 @@ public class StatsView
 			release_layout.addView(release_row_layout);
 
 		}
-		
+
 	}
 
 	/**
@@ -294,10 +296,12 @@ public class StatsView
 	public void makePetosaStatsView(LinearLayout _petosa_layout)
 	{
 
+		String functionName = "makeReleaseStatsView()";
+
 		// 토사 데이터 미존재시 패스
 		if(this.slugeList == null || this.slugeList.size() <= 0)
 		{
-			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : makePetosaStatsView : slugeList is null.");
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " : slugeList is null.");
 			return;
 		}
 
@@ -370,7 +374,7 @@ public class StatsView
 			this.petosa_layout.addView(release_row_layout);
 
 		}
-		
+
 	}
 
 	/**
@@ -385,7 +389,7 @@ public class StatsView
 		// 입고 리스트 미존재시 패스
 		if(this.inputOutsideList == null || this.inputOutsideList.size() <= 0)
 		{
-			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : inputList is null.");
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " : inputOutsideList is null.");
 			return;
 		}
 
@@ -475,7 +479,7 @@ public class StatsView
 		// 출고 데이터 미존재시 패스
 		if(this.outputOutsideList == null || this.outputOutsideList.size() <= 0)
 		{
-			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : makeReleaseStatsView : outputList is null.");
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " : outputOutsideList is null.");
 			return;
 		}
 
@@ -550,13 +554,13 @@ public class StatsView
 		}
 
 	}
-	
+
 	private TextView makeMenuTextView(Context context, String str, String color, int gravity)
 	{
-		
+
 		LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT);
 		layout_params.weight = 1.0f;
-		
+
 		TextView tv = new TextView(context);
 		tv.setLayoutParams(layout_params);
 		tv.setGravity(gravity);
@@ -565,18 +569,18 @@ public class StatsView
 		tv.setTextColor(Color.parseColor(color));
 		tv.setTextSize(13);
 		tv.setText(str);
-		
+
 		return tv;
 
 	}
-	
-	
+
+
 	private TextView makeRowTextView(Context context, String str, int gravity)
 	{
-		
+
 		LinearLayout.LayoutParams layout_params = new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT);
 		layout_params.weight = 1.0f;
-		
+
 		TextView tv = new TextView(context);
 		tv.setLayoutParams(layout_params);
 		tv.setGravity(gravity);
@@ -585,8 +589,9 @@ public class StatsView
 		tv.setTextColor(Color.parseColor("#000000"));
 		tv.setTextSize(13);
 		tv.setText(str);
-		
+
 		return tv;
 
 	}
 }
+

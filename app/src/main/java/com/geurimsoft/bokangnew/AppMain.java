@@ -391,35 +391,6 @@ public class AppMain extends Activity
 
 	}
 
-//	/**
-//	 * 뒤로가기 버튼 클릭시
-//	 */
-//	@Override
-//	public void onBackPressed()
-//	{
-//
-//		if(System.currentTimeMillis() > backKeyPressedTime + 2000)
-//		{
-//			backKeyPressedTime = System.currentTimeMillis();
-//			appFinishedToast = Toast.makeText(this, getString(R.string.app_finished_msg), Toast.LENGTH_LONG);
-//			appFinishedToast.show();
-//			return;
-//		}
-//
-//		if(System.currentTimeMillis() <= backKeyPressedTime + 2000)
-//		{
-//
-//			if(AppConfig.activities.size() > 0)
-//			{
-//				for(int actIndex = 0; actIndex < AppConfig.activities.size(); actIndex++)
-//					AppConfig.activities.get(actIndex).finish();
-//			}
-//
-//			appFinishedToast.cancel();
-//
-//		}
-//	}
-
 	/**
 	 * 앱 버전 확인
 	 */
@@ -450,7 +421,9 @@ public class AppMain extends Activity
 			try
 			{
 
-				URL url = new URL("http://" + GSConfig.API_SERVER_ADDR + "/joomyung/app_version.txt");
+				URL url = new URL(GSConfig.WEB_SERVER_ADDR + "joomyung/app_version.txt");
+//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "doInBackground") + " url : " + url.toString());
+
 				HttpURLConnection conn = (HttpURLConnection)url.openConnection();
 				
 				if (conn != null)
@@ -464,6 +437,8 @@ public class AppMain extends Activity
 
 						BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 						newVersionCode = br.readLine();
+
+//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "doInBackground") + " newVersionCode : " + newVersionCode);
 							
 						br.close();
 					}
@@ -491,6 +466,9 @@ public class AppMain extends Activity
 			progress.dismiss();
 			
 			int versionCode = getVersionCode(AppMain.this);
+
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "doInBackground") + " versionCode : " + versionCode);
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "doInBackground") + " result : " + result);
 
 			// 서버 버전보다 오래된 것이면 구글 마켓으로 이동 물어보기
 			if(versionCode < Integer.parseInt(result))

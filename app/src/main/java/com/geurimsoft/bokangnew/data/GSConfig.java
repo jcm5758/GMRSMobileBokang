@@ -24,6 +24,8 @@ public class GSConfig
     // API 서버 주소
     public static final String API_SERVER_ADDR = "http://" + GSConfig.SERVER_ADDR + ":" + GSConfig.API_SERVER_PORT + "/";
 
+    public static final String WEB_SERVER_ADDR = "http://" + GSConfig.SERVER_ADDR + "/";
+
     // Api 재호출 시간
     public static final int API_RECONNECT = 5;
 

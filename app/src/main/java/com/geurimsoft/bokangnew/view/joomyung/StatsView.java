@@ -123,7 +123,7 @@ public class StatsView
 		// 입고 리스트 미존재시 패스
 		if(this.inputList == null || this.inputList.size() <= 0)
 		{
-			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : inputList is null.");
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(),functionName) + " : inputList is null.");
 			return;
 		}
 
@@ -208,10 +208,12 @@ public class StatsView
 	public void makeReleaseStatsView(LinearLayout _release_layout)
 	{
 
+		String functionName = "makeReleaseStatsView()";
+
 		// 출고 데이터 미존재시 패스
 		if(this.outputList == null || this.outputList.size() <= 0)
 		{
-			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : makeReleaseStatsView : outputList is null.");
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " : outputList is null.");
 			return;
 		}
 
@@ -294,10 +296,12 @@ public class StatsView
 	public void makePetosaStatsView(LinearLayout _petosa_layout)
 	{
 
+		String functionName = "makeReleaseStatsView()";
+
 		// 토사 데이터 미존재시 패스
 		if(this.slugeList == null || this.slugeList.size() <= 0)
 		{
-			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : makePetosaStatsView : slugeList is null.");
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " : slugeList is null.");
 			return;
 		}
 
@@ -385,7 +389,7 @@ public class StatsView
 		// 입고 리스트 미존재시 패스
 		if(this.inputOutsideList == null || this.inputOutsideList.size() <= 0)
 		{
-			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : inputList is null.");
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " : inputOutsideList is null.");
 			return;
 		}
 
@@ -475,7 +479,7 @@ public class StatsView
 		// 출고 데이터 미존재시 패스
 		if(this.outputOutsideList == null || this.outputOutsideList.size() <= 0)
 		{
-			Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : makeReleaseStatsView : outputList is null.");
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " : outputOutsideList is null.");
 			return;
 		}
 
