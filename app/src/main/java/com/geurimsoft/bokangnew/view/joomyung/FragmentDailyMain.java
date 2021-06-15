@@ -72,7 +72,7 @@ public class FragmentDailyMain extends Fragment
 		this.currentMonth = calendar.get(Calendar.MONTH) + 1;
 		this.currentDay = calendar.get(Calendar.DATE);
 
-		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(getActivity().getClass().getName(), functionName) + " this.currentYear : " + this.currentYear + ", this.currentMonth : " + this.currentMonth + ", this.currentDay : " + this.currentDay );
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(getActivity().getClass().getName(), functionName) + " this.currentYear : " + this.currentYear + ", this.currentMonth : " + this.currentMonth + ", this.currentDay : " + this.currentDay );
 
 	}
 	
