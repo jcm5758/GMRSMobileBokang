@@ -18,6 +18,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerTabStrip;
 import androidx.viewpager.widget.ViewPager;
+
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -34,8 +36,11 @@ import com.geurimsoft.bokangnew.data.GSBranch;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.view.util.DayDatePickerDialog;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class FragmentDailyMain extends Fragment
 {
@@ -60,11 +65,15 @@ public class FragmentDailyMain extends Fragment
 
 		super.onCreate(savedInstanceState);
 
+		String functionName = "onCreate()";
+
 		// 현재 연월일 찾기
 		this.currentYear =  calendar.get(Calendar.YEAR);
 		this.currentMonth = calendar.get(Calendar.MONTH) + 1;
-		this.currentDay = calendar.get(Calendar.DAY_OF_MONTH);
-		
+		this.currentDay = calendar.get(Calendar.DATE);
+
+		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(getActivity().getClass().getName(), functionName) + " this.currentYear : " + this.currentYear + ", this.currentMonth : " + this.currentMonth + ", this.currentDay : " + this.currentDay );
+
 	}
 	
 	@Override
