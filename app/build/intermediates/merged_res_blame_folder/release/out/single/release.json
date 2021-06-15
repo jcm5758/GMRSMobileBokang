@@ -4,28 +4,28 @@
         "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-hdpi\\main_logo.png"
     },
     {
-        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\menu_stats_menu.xml.flat",
-        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\menu\\stats_menu.xml"
-    },
-    {
         "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi_tab_color_selector.xml.flat",
         "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-xxhdpi\\tab_color_selector.xml"
+    },
+    {
+        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\menu_stats_menu.xml.flat",
+        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\menu\\stats_menu.xml"
     },
     {
         "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_pointbt.png.flat",
         "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-hdpi\\pointbt.png"
     },
     {
-        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\layout_page_layout.xml.flat",
-        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\page_layout.xml"
+        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\layout_statviewlayout.xml.flat",
+        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\statviewlayout.xml"
     },
     {
         "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\layout_yi_month_enterprise_price.xml.flat",
         "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\yi_month_enterprise_price.xml"
     },
     {
-        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\layout_statviewlayout.xml.flat",
-        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\statviewlayout.xml"
+        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\layout_page_layout.xml.flat",
+        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\page_layout.xml"
     },
     {
         "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\layout_total_yongin_release_chart.xml.flat",
@@ -36,12 +36,12 @@
         "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\tt_year_amount.xml"
     },
     {
-        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_setting_bt.png.flat",
-        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-hdpi\\setting_bt.png"
-    },
-    {
         "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\layout_stats_tab_activity.xml.flat",
         "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\stats_tab_activity.xml"
+    },
+    {
+        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_setting_bt.png.flat",
+        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-hdpi\\setting_bt.png"
     },
     {
         "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\drawable_day_selector.xml.flat",
@@ -56,12 +56,12 @@
         "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-hdpi\\setting.png"
     },
     {
-        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_arrow_left_off.jpg.flat",
-        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-hdpi\\arrow_left_off.jpg"
-    },
-    {
         "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\layout_stats_pager_layout.xml.flat",
         "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\stats_pager_layout.xml"
+    },
+    {
+        "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_arrow_left_off.jpg.flat",
+        "source": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-hdpi\\arrow_left_off.jpg"
     },
     {
         "merged": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_btnsetting.png.flat",
