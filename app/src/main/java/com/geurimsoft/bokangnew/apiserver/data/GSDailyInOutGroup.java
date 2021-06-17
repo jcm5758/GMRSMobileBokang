@@ -44,7 +44,7 @@ public class GSDailyInOutGroup
 
     public String getTitleMoney()
     {
-        return this.serviceType + "(" + GSConfig.changeToCommanStringWOPoint(this.totalCount) + "대 : " + GSConfig.changeToCommanStringWOPoint(this.totalUnit / GSConfig.moneyDivideNum) + "천원)";
+        return this.serviceType + "(" + GSConfig.changeToCommanStringWOPoint(this.totalCount) + "대 : " + GSConfig.changeToCommanStringWOPoint(this.totalUnit) + "천원)";
     }
 
     public GSDailyInOutDetail getDataFinal()

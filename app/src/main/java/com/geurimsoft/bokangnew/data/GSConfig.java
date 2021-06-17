@@ -71,6 +71,7 @@ public class GSConfig
     {
         //DecimalFormat formatter = new DecimalFormat("#,###.0");
         DecimalFormat formatter = new DecimalFormat("#,###");
+//        DecimalFormat formatter = new DecimalFormat("0");
         return formatter.format(value);
     }
 

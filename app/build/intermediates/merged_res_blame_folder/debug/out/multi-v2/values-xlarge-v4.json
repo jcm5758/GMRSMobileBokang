@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
+            "outputFile": "C:\\Users\\jcm5758Main\\source\\repos\\GRMSMobile\\GMRSMobileBokang\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xlarge-v4\\values-xlarge-v4.xml",
             "map": [
                 {
                     "source": "C:\\Users\\jcm5758Main\\.gradle\\caches\\transforms-2\\files-2.1\\f9db3af1d4b21c0f8eaed47c1558f861\\appcompat-1.2.0\\res\\values-xlarge-v4\\values-xlarge-v4.xml",

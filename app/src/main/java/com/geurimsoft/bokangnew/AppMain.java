@@ -90,7 +90,7 @@ public class AppMain extends Activity
 		autoCheck();
 
 		// 앱 버전 확인
-		appVersionCheck();
+		//appVersionCheck();
 
 	}
 

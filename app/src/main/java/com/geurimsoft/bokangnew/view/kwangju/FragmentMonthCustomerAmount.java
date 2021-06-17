@@ -23,6 +23,7 @@ import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.google.gson.Gson;
 
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -32,9 +33,11 @@ public class FragmentMonthCustomerAmount extends Fragment
 {
 
 	private LinearLayout yi_month_enterprise_amount_income_empty_layout, yi_month_enterprise_amount_release_empty_layout, yi_month_enterprise_amount_petosa_empty_layout;
+	private LinearLayout yi_month_enterprise_amount_outside_income_empty_layout, yi_month_enterprise_amount_outside_release_empty_layout;
 	private LinearLayout yi_month_enterprise_amount_loading_indicator, yi_month_enterprise_amount_loading_fail;
 
 	private TextView yi_month_enterprise_amount_date, yi_month_enterprise_amount_income_title, yi_month_enterprise_amount_release_title, yi_month_enterprise_amount_petosa_title;
+	private TextView yi_month_enterprise_amount_outside_income_title, yi_month_enterprise_amount_outside_release_title;
 
 	private int iYear, iMonth;
 
@@ -50,7 +53,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		View v = inflater.inflate(R.layout.yi_month_enterprise_amount, container, false);
+		View v = inflater.inflate(R.layout.month_customer_amount, container, false);
 		return v;
 	}
 	
@@ -62,17 +65,21 @@ public class FragmentMonthCustomerAmount extends Fragment
 		
 		View view = this.getView();
 		
-		this.yi_month_enterprise_amount_income_empty_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_amount_income_empty_layout);
-		this.yi_month_enterprise_amount_release_empty_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_amount_release_empty_layout);
-		this.yi_month_enterprise_amount_petosa_empty_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_amount_petosa_empty_layout);
+		this.yi_month_enterprise_amount_income_empty_layout = (LinearLayout)view.findViewById(R.id.month_enterprise_amount_income_empty_layout);
+		this.yi_month_enterprise_amount_release_empty_layout = (LinearLayout)view.findViewById(R.id.month_enterprise_amount_release_empty_layout);
+		this.yi_month_enterprise_amount_outside_income_empty_layout = (LinearLayout)view.findViewById(R.id.month_enterprise_amount_outside_income_empty_layout);
+		this.yi_month_enterprise_amount_outside_release_empty_layout = (LinearLayout)view.findViewById(R.id.month_enterprise_amount_outside_release_empty_layout);
+		this.yi_month_enterprise_amount_petosa_empty_layout = (LinearLayout)view.findViewById(R.id.month_enterprise_amount_petosa_empty_layout);
 		
-		this.yi_month_enterprise_amount_loading_indicator = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_amount_loading_indicator); 
-		this.yi_month_enterprise_amount_loading_fail = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_amount_loading_fail);
+		this.yi_month_enterprise_amount_loading_indicator = (LinearLayout)view.findViewById(R.id.month_enterprise_amount_loading_indicator);
+		this.yi_month_enterprise_amount_loading_fail = (LinearLayout)view.findViewById(R.id.month_enterprise_amount_loading_fail);
 		
-		this.yi_month_enterprise_amount_date = (TextView)view.findViewById(R.id.yi_month_enterprise_amount_date); 
-		this.yi_month_enterprise_amount_income_title = (TextView)view.findViewById(R.id.yi_month_enterprise_amount_income_title); 
-		this.yi_month_enterprise_amount_release_title = (TextView)view.findViewById(R.id.yi_month_enterprise_amount_release_title); 
-		this.yi_month_enterprise_amount_petosa_title = (TextView)view.findViewById(R.id.yi_month_enterprise_amount_petosa_title);
+		this.yi_month_enterprise_amount_date = (TextView)view.findViewById(R.id.month_enterprise_amount_date);
+		this.yi_month_enterprise_amount_income_title = (TextView)view.findViewById(R.id.month_enterprise_amount_income_title);
+		this.yi_month_enterprise_amount_release_title = (TextView)view.findViewById(R.id.month_enterprise_amount_release_title);
+		this.yi_month_enterprise_amount_outside_income_title = (TextView)view.findViewById(R.id.month_enterprise_amount_outside_income_title);
+		this.yi_month_enterprise_amount_outside_release_title = (TextView)view.findViewById(R.id.month_enterprise_amount_outside_release_title);
+		this.yi_month_enterprise_amount_petosa_title = (TextView)view.findViewById(R.id.month_enterprise_amount_petosa_title);
 
 		makeMonthEnterpriseAmountData(GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_MONTH);
 
@@ -199,21 +206,31 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			GSDailyInOutGroup inputGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK]);
 			GSDailyInOutGroup outputGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE]);
+			GSDailyInOutGroup inputOutsideGroup = data.findByServiceType("외부(입고)");
+			GSDailyInOutGroup outputOutsideGroup = data.findByServiceType("외부(출고)");
 			GSDailyInOutGroup slugeGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA]);
 
 			String unit = getString(R.string.unit_lube);
 
 			yi_month_enterprise_amount_income_empty_layout.removeAllViews();
 			yi_month_enterprise_amount_release_empty_layout.removeAllViews();
+			yi_month_enterprise_amount_outside_income_empty_layout.removeAllViews();
+			yi_month_enterprise_amount_outside_release_empty_layout.removeAllViews();
 			yi_month_enterprise_amount_petosa_empty_layout.removeAllViews();
 
-			EnterpriseMonthStatsView statsView = new EnterpriseMonthStatsView(getActivity(), 3, GSConfig.STATE_AMOUNT, iYear, iMonth);
+			MonthCustomerStatsView statsView = new MonthCustomerStatsView(getActivity(), 3, GSConfig.STATE_AMOUNT, iYear, iMonth);
 
 			statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, inputGroup, GSConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
 			yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");
 
 			statsView.makeStatsView(yi_month_enterprise_amount_release_empty_layout, outputGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_AMOUNT);
 			yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(outputGroup.totalUnit) + unit + ")");
+
+			statsView.makeStatsView(yi_month_enterprise_amount_outside_income_empty_layout, inputOutsideGroup, GSConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
+			yi_month_enterprise_amount_outside_income_title.setText( "외부입고(" + GSConfig.changeToCommanString(inputOutsideGroup.totalUnit) + unit + ")");
+
+			statsView.makeStatsView(yi_month_enterprise_amount_outside_release_empty_layout, outputOutsideGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_AMOUNT);
+			yi_month_enterprise_amount_outside_release_title.setText("외부출고(" + GSConfig.changeToCommanString(outputOutsideGroup.totalUnit) + unit + ")");
 
 			statsView.makeStatsView(yi_month_enterprise_amount_petosa_empty_layout, slugeGroup, GSConfig.MODE_PETOSA, GSConfig.STATE_AMOUNT);
 			yi_month_enterprise_amount_petosa_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(slugeGroup.totalUnit) + unit + ")");

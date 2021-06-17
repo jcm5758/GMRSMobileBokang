@@ -22,15 +22,15 @@ public class GSDailyInOutDetail
     public double[] getValues(int iUnitMoneyType)
     {
 
-        if (iUnitMoneyType == 0)
+//        if (iUnitMoneyType == 0)
             return this.values;
 
-        double[] result = values;
+//        double[] result = values;
 
-        for(int i = 0; i < result.length; i++)
-            result[i] = (result[i] / GSConfig.moneyDivideNum);
+//        for(int i = 0; i < result.length; i++)
+//            result[i] = (result[i] / GSConfig.moneyDivideNum);
 
-        return result;
+//        return result;
 
     }
 
@@ -45,9 +45,9 @@ public class GSDailyInOutDetail
         for(int i = 0; i < this.values.length; i++)
         {
 
-            if (iUnitMoneyType == GSConfig.STATE_PRICE)
-                result[i + 1] = GSConfig.changeToCommanString(this.values[i] / GSConfig.moneyDivideNum);
-            else
+//            if (iUnitMoneyType == GSConfig.STATE_PRICE)
+//                result[i + 1] = GSConfig.changeToCommanString(this.values[i] / GSConfig.moneyDivideNum);
+//            else
                 result[i + 1] = GSConfig.changeToCommanString(this.values[i]);
 
         }

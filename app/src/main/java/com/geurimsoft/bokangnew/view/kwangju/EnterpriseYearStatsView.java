@@ -54,7 +54,7 @@ public class EnterpriseYearStatsView
 
 	private Context mContext;
 
-	private LinearLayout stock_layout, release_layout, petosa_layout;
+	private LinearLayout stock_layout, release_layout, stock_outside_layout, release_outside_layout, petosa_layout;
 
 
 	/**

@@ -19,10 +19,13 @@ public class GSMonthInOutDetail
 
         for(int i = 0; i < this.valueSize; i++)
         {
-            if (statType == GSConfig.STATE_AMOUNT)
-                result[i + 1] = GSConfig.changeToCommanString(this.values[i]);
-            else if (statType == GSConfig.STATE_PRICE)
-                result[i + 1] = GSConfig.changeToCommanString(this.values[i] / GSConfig.moneyDivideNum);
+
+            result[i + 1] = GSConfig.changeToCommanString(this.values[i]);
+
+//            if (statType == GSConfig.STATE_AMOUNT)
+//                result[i + 1] = GSConfig.changeToCommanString(this.values[i]);
+//            else if (statType == GSConfig.STATE_PRICE)
+//                result[i + 1] = GSConfig.changeToCommanString(this.values[i] / GSConfig.moneyDivideNum);
         }
 
         return result;
@@ -75,7 +78,8 @@ public class GSMonthInOutDetail
         result[0] = this.day;
 
         for(int i = 0; i < this.valueSize; i++)
-            result[i + 1] = GSConfig.changeToCommanString(this.values[i] / GSConfig.moneyDivideNum);
+//            result[i + 1] = GSConfig.changeToCommanString(this.values[i] / GSConfig.moneyDivideNum);
+            result[i + 1] = GSConfig.changeToCommanString(this.values[i]);
 
         return result;
 
