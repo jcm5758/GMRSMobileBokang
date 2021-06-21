@@ -104,7 +104,7 @@ public class FragmentYearCustomerAmount extends Fragment
 
 			String qryContent = "Unit";
 
-			this.getData(_year, qryContent);
+			this.getData(_year, qryContent, GSConfig.MODE_STOCK);
 
 		}
 		catch(Exception ex)
@@ -115,7 +115,7 @@ public class FragmentYearCustomerAmount extends Fragment
 
 	}
 
-	private void getData(int searchYear, String qryContent)
+	private void getData(int searchYear, String qryContent, int serviceType)
 	{
 
 		String functionName = "getData()";
@@ -150,7 +150,7 @@ public class FragmentYearCustomerAmount extends Fragment
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String,String> params = new HashMap<String,String>();
 				params.put("GSType", "YEAR_CUSTOMER");
-				params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"searchYear\": " + searchYear + ", \"qryContent\" : \"" + qryContent + "\" }");
+				params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"searchYear\": " + searchYear + ", \"qryContent\" : \"" + qryContent + "\",  \"serviceType\" : " + serviceType + " }");
 				return params;
 			}
 		};
@@ -206,8 +206,8 @@ public class FragmentYearCustomerAmount extends Fragment
 
 			GSDailyInOutGroup inputGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK]);
 			GSDailyInOutGroup outputGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE]);
-			GSDailyInOutGroup inputOutsideGroup = data.findByServiceType("외부(입고)");
-			GSDailyInOutGroup outputOutsideGroup = data.findByServiceType("외부(출고)");
+			GSDailyInOutGroup inputOutsideGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK]);
+			GSDailyInOutGroup outputOutsideGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE]);
 			GSDailyInOutGroup slugeGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA]);
 
 			String unit = getString(R.string.unit_lube);

@@ -67,6 +67,8 @@ public class FragmentDailyMain extends Fragment
 
 		String functionName = "onCreate()";
 
+
+
 		// 현재 연월일 찾기
 		this.currentYear =  calendar.get(Calendar.YEAR);
 		this.currentMonth = calendar.get(Calendar.MONTH) + 1;

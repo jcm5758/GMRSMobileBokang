@@ -1,11 +1,13 @@
 package com.geurimsoft.bokangnew.data;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.geurimsoft.bokangnew.apiserver.data.UserInfo;
 import com.geurimsoft.bokangnew.view.etc.GwangjuTabActivity;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class GSConfig
 {
@@ -43,6 +45,8 @@ public class GSConfig
         return className + "." + funcName + " : ";
     }
 
+    public static ArrayList<Activity> activities = new ArrayList<Activity>();
+
     public static Context context;
 
     // 현재의 연월일
@@ -59,11 +63,13 @@ public class GSConfig
     public static int STATE_AMOUNT = 0;
     public static int STATE_PRICE = 1;
 
-    public static String[] MODE_NAMES = new String[]{"입고", "출고", "토사"};
+    public static String[] MODE_NAMES = new String[]{"입고", "출고", "토사", "외부(입고)", "외부(출고)"};
 
     public static int MODE_STOCK = 0;
     public static int MODE_RELEASE = 1;
     public static int MODE_PETOSA = 2;
+    public static int MODE_OUTSIDE_STOCK = 3;
+    public static int MODE_OUTSIDE_RELEASE = 4;
 
     public static int USER_RIGHT_SIZE = 102;
 

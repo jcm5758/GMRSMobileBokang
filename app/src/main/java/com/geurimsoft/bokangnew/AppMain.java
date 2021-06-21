@@ -69,7 +69,8 @@ public class AppMain extends Activity
 	
 	private SharedPreferences pref;
 	
-	private BackPressHandler backPressHandler;
+	private long backKeyPressedTime = 0;
+	private Toast appFinishedToast;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -78,11 +79,9 @@ public class AppMain extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_layout);
 
+		GSConfig.activities.add(AppMain.this);
+
 		GSConfig.context = this;
-		
-		//GSConfig.activities.add(AppMain.this);
-		
-		backPressHandler = new BackPressHandler(this);
 		
 		setUserInterface();
 
@@ -196,6 +195,32 @@ public class AppMain extends Activity
 
 		return LoginCheck(sId, sPass);
 
+	}
+
+	@Override
+	public void onBackPressed()
+	{
+
+		if(System.currentTimeMillis() > backKeyPressedTime + 2000)
+		{
+			backKeyPressedTime = System.currentTimeMillis();
+			appFinishedToast = Toast.makeText(this, getString(R.string.app_finished_msg), Toast.LENGTH_LONG);
+			appFinishedToast.show();
+			return;
+		}
+
+		if(System.currentTimeMillis() <= backKeyPressedTime + 2000)
+		{
+
+			if(GSConfig.activities.size() > 0)
+			{
+				for(int actIndex = 0; actIndex < GSConfig.activities.size(); actIndex++)
+					GSConfig.activities.get(actIndex).finish();
+			}
+
+			appFinishedToast.cancel();
+
+		}
 	}
 
 	/**

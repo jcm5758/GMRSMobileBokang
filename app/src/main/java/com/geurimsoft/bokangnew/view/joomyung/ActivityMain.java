@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.geurimsoft.bokangnew.R;
+import com.geurimsoft.bokangnew.data.GSConfig;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ActivityMain extends AppCompatActivity {
@@ -28,6 +29,8 @@ public class ActivityMain extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.branch_main);
+
+        GSConfig.activities.add(ActivityMain.this);
 
         // 인텐트로 지정명 받아 오기
         Intent intent = getIntent();
