@@ -40,6 +40,15 @@ public class FragmentYearCustomerAmount extends Fragment
 
 	private int iYear;
 
+	GSDailyInOutGroup inputGroup;
+	GSDailyInOutGroup outputGroup;
+	GSDailyInOutGroup inputOutsideGroup;
+	GSDailyInOutGroup outputOutsideGroup;
+	GSDailyInOutGroup slugeGroup;
+
+	EnterpriseYearStatsView statsView;
+	String unit;
+
 	public FragmentYearCustomerAmount() {}
 
 	@Override
@@ -102,9 +111,21 @@ public class FragmentYearCustomerAmount extends Fragment
 
 			yi_month_enterprise_amount_date.setText(dateStr);
 
-			String qryContent = "Unit";
+			yi_month_enterprise_amount_income_empty_layout.removeAllViews();
+			yi_month_enterprise_amount_release_empty_layout.removeAllViews();
+			yi_month_enterprise_amount_income_outside_empty_layout.removeAllViews();
+			yi_month_enterprise_amount_release_outside_empty_layout.removeAllViews();
+			yi_month_enterprise_amount_petosa_empty_layout.removeAllViews();
 
-			this.getData(_year, qryContent, GSConfig.MODE_STOCK);
+			this.statsView = new EnterpriseYearStatsView(getActivity(), GSConfig.CURRENT_BRANCH.getBranchID(), GSConfig.STATE_AMOUNT, iYear);
+
+			this.unit = getString(R.string.unit_lube);
+
+			this.getData(_year, "Unit", GSConfig.MODE_STOCK);
+//			this.getData(_year, "Unit", GSConfig.MODE_RELEASE);
+//			this.getData(_year, "Unit", GSConfig.MODE_PETOSA);
+//			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_STOCK);
+//			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_RELEASE);
 
 		}
 		catch(Exception ex)
@@ -134,9 +155,59 @@ public class FragmentYearCustomerAmount extends Fragment
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
-						parseData(response);
+						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+
+						Gson gson = new Gson();
+						GSDailyInOutGroup dataGroup = null;
+
+						if (serviceType == GSConfig.MODE_STOCK)
+						{
+							dataGroup = gson.fromJson(response, GSDailyInOutGroup.class);
+							if (dataGroup != null)
+							{
+								statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, dataGroup, GSConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
+								yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
+							}
+						}
+						else if (serviceType == GSConfig.MODE_RELEASE)
+						{
+							dataGroup = gson.fromJson(response, GSDailyInOutGroup.class);
+							if (dataGroup != null)
+							{
+								statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, dataGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_AMOUNT);
+								yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
+							}
+						}
+						else if (serviceType == GSConfig.MODE_PETOSA)
+						{
+							dataGroup = gson.fromJson(response, GSDailyInOutGroup.class);
+							if (dataGroup != null)
+							{
+								statsView.makeStatsView(yi_month_enterprise_amount_petosa_empty_layout, dataGroup, GSConfig.MODE_PETOSA, GSConfig.STATE_AMOUNT);
+								yi_month_enterprise_amount_petosa_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
+							}
+						}
+						else if (serviceType == GSConfig.MODE_OUTSIDE_STOCK)
+						{
+							dataGroup = gson.fromJson(response, GSDailyInOutGroup.class);
+							if (dataGroup != null)
+							{
+								statsView.makeStatsView(yi_month_enterprise_amount_income_outside_empty_layout, dataGroup, GSConfig.MODE_OUTSIDE_STOCK, GSConfig.STATE_AMOUNT);
+								yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
+							}
+						}
+						else if (serviceType == GSConfig.MODE_OUTSIDE_RELEASE)
+						{
+							dataGroup = gson.fromJson(response, GSDailyInOutGroup.class);
+							if (dataGroup != null)
+							{
+								statsView.makeStatsView(yi_month_enterprise_amount_release_outside_empty_layout, dataGroup, GSConfig.MODE_OUTSIDE_RELEASE, GSConfig.STATE_AMOUNT);
+								yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
+							}
+						}
+
 					}
+
 				},
 				//에러 발생시 호출될 리스너 객체
 				new Response.ErrorListener() {
@@ -148,10 +219,16 @@ public class FragmentYearCustomerAmount extends Fragment
 		) {
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
+
 				Map<String,String> params = new HashMap<String,String>();
+
 				params.put("GSType", "YEAR_CUSTOMER");
 				params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"searchYear\": " + searchYear + ", \"qryContent\" : \"" + qryContent + "\",  \"serviceType\" : " + serviceType + " }");
+
+				//Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + params.get("GSQuery"));
+
 				return params;
+
 			}
 		};
 
@@ -159,103 +236,6 @@ public class FragmentYearCustomerAmount extends Fragment
 		requestQueue.add(request);
 
 //		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "요청 보냄.");
-
-	}
-
-	public void parseData(String msg)
-	{
-
-		String functionName = "parseData()";
-//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
-
-		try
-		{
-
-			Gson gson = new Gson();
-
-			GSDailyInOut dio = new GSDailyInOut();
-
-			GSDailyInOutGroup[] diog = gson.fromJson(msg, GSDailyInOutGroup[].class);
-
-//		Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + XmlConverter.class.getName() + " : parseDaily() : Length of dio : " + diog.length);
-
-			dio.list = new ArrayList<>(Arrays.asList(diog));
-
-			this.setDisplayData(dio);
-
-		}
-		catch(Exception ex)
-		{
-			Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + ex.toString());
-			return;
-		}
-
-	}
-
-	private void setDisplayData(GSDailyInOut data)
-	{
-
-		if (data == null || data.list == null)
-		{
-			Log.d(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplay() is data is null.");
-			return;
-		}
-
-		try
-		{
-
-			GSDailyInOutGroup inputGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK]);
-			GSDailyInOutGroup outputGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE]);
-			GSDailyInOutGroup inputOutsideGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK]);
-			GSDailyInOutGroup outputOutsideGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE]);
-			GSDailyInOutGroup slugeGroup = data.findByServiceType(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA]);
-
-			String unit = getString(R.string.unit_lube);
-
-			yi_month_enterprise_amount_income_empty_layout.removeAllViews();
-			yi_month_enterprise_amount_release_empty_layout.removeAllViews();
-			yi_month_enterprise_amount_income_outside_empty_layout.removeAllViews();
-			yi_month_enterprise_amount_release_outside_empty_layout.removeAllViews();
-			yi_month_enterprise_amount_petosa_empty_layout.removeAllViews();
-
-			EnterpriseYearStatsView statsView = new EnterpriseYearStatsView(getActivity(), GSConfig.CURRENT_BRANCH.getBranchID(), GSConfig.STATE_AMOUNT, iYear);
-
-			if (inputGroup != null)
-			{
-				statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, inputGroup, GSConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
-				yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");
-			}
-
-			if (outputGroup != null)
-			{
-				statsView.makeStatsView(yi_month_enterprise_amount_release_empty_layout, outputGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_AMOUNT);
-				yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(outputGroup.totalUnit) + unit + ")");
-			}
-
-			if (inputOutsideGroup != null)
-			{
-				statsView.makeStatsView(yi_month_enterprise_amount_income_outside_empty_layout, inputOutsideGroup, GSConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
-				yi_month_enterprise_amount_income_title.setText("외부입고(" + GSConfig.changeToCommanString(inputOutsideGroup.totalUnit) + unit + ")");
-			}
-
-			if (outputOutsideGroup != null)
-			{
-				statsView.makeStatsView(yi_month_enterprise_amount_release_outside_empty_layout, outputOutsideGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_AMOUNT);
-				yi_month_enterprise_amount_release_title.setText("외부출고(" + GSConfig.changeToCommanString(outputOutsideGroup.totalUnit) + unit + ")");
-			}
-
-			if (slugeGroup != null)
-			{
-				statsView.makeStatsView(yi_month_enterprise_amount_petosa_empty_layout, slugeGroup, GSConfig.MODE_PETOSA, GSConfig.STATE_AMOUNT);
-				yi_month_enterprise_amount_petosa_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(slugeGroup.totalUnit) + unit + ")");
-			}
-
-		}
-		catch(Exception ex)
-		{
-			Log.e(GSConfig.APP_DEBUG, "ERROR : " + this.getClass().getName() + " : setDisplay() : " + ex.toString());
-			return;
-		}
 
 	}
 
