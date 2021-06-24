@@ -41,12 +41,6 @@ public class FragmentYearCustomerAmount extends Fragment
 
 	private int iYear;
 
-	GSDailyInOutGroup inputGroup;
-	GSDailyInOutGroup outputGroup;
-	GSDailyInOutGroup inputOutsideGroup;
-	GSDailyInOutGroup outputOutsideGroup;
-	GSDailyInOutGroup slugeGroup;
-
 	EnterpriseYearStatsView statsView;
 	String unit;
 
@@ -157,7 +151,7 @@ public class FragmentYearCustomerAmount extends Fragment
 					@Override
 					public void onResponse(String response) {
 
-						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
 
 						Gson gson = new Gson();
 						GSDailyInOutGroupNew dataGroup = null;
@@ -205,7 +199,7 @@ public class FragmentYearCustomerAmount extends Fragment
 
 							if (dataGroup != null)
 							{
-								statsView.makeStatsView(yi_month_enterprise_amount_income_outside_empty_layout, dataGroup, GSConfig.MODE_PETOSA, GSConfig.MODE_OUTSIDE_STOCK);
+								statsView.makeStatsView(yi_month_enterprise_amount_income_outside_empty_layout, dataGroup, GSConfig.MODE_OUTSIDE_STOCK, GSConfig.STATE_AMOUNT);
 								yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
 							}
 
@@ -217,7 +211,7 @@ public class FragmentYearCustomerAmount extends Fragment
 
 							if (dataGroup != null)
 							{
-								statsView.makeStatsView(yi_month_enterprise_amount_release_outside_empty_layout, dataGroup, GSConfig.MODE_PETOSA, GSConfig.MODE_OUTSIDE_RELEASE);
+								statsView.makeStatsView(yi_month_enterprise_amount_release_outside_empty_layout, dataGroup, GSConfig.MODE_OUTSIDE_RELEASE, GSConfig.STATE_AMOUNT);
 								yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
 							}
 

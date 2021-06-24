@@ -31,6 +31,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.R;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutDetailNew;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroupNew;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.data.StAdapter;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutDetail;
@@ -54,7 +56,7 @@ public class EnterpriseYearStatsView
 
 	private Context mContext;
 
-	private LinearLayout stock_layout, release_layout, stock_outside_layout, release_outside_layout, petosa_layout;
+	private LinearLayout stock_layout, release_layout, petosa_layout;
 
 
 	/**
@@ -80,7 +82,7 @@ public class EnterpriseYearStatsView
 	 * @param group
 	 * @param serviceType
 	 */
-	public void makeStatsView(LinearLayout _layout, GSDailyInOutGroup group, final int serviceType, final int statsType)
+	public void makeStatsView(LinearLayout _layout, GSDailyInOutGroupNew group, final int serviceType, final int statsType)
 	{
 
 		String functionName = "makeStatsView()";
@@ -97,7 +99,7 @@ public class EnterpriseYearStatsView
 			int header_count = group.headerCount;
 			String[] header_titles = group.header;
 			int recordCount = group.recordCount;
-			ArrayList<GSDailyInOutDetail> detailList = group.list;
+			ArrayList<GSDailyInOutDetailNew> detailList = group.list;
 
 			if (header_titles == null)
 			{
@@ -125,6 +127,8 @@ public class EnterpriseYearStatsView
 				header_layout.addView(title_textview);
 			}
 
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + header_count);
+
 			_layout.addView(header_layout);
 
 			TextView stock_item_textview;
@@ -134,10 +138,10 @@ public class EnterpriseYearStatsView
 
 //				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + stock_index);
 
-				GSDailyInOutDetail detail = detailList.get(stock_index);
-//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + detail.customerName);
+				GSDailyInOutDetailNew detail = detailList.get(stock_index);
+//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + detail.customer);
 
-				String[] stock_items = detail.getStringValues(statsType);
+				String[] stock_items = detail.getStringValues();
 //				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "001");
 				LinearLayout stock_row_layout = new LinearLayout(mContext);
 
@@ -149,6 +153,7 @@ public class EnterpriseYearStatsView
 
 					int gravity = 0;
 //					Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "003");
+
 					if(i == 0)
 					{
 
@@ -375,7 +380,7 @@ public class EnterpriseYearStatsView
 	}
 
 	private PopupWindow popupWindow;
-    private int mWidthPixels, mHeightPixels;
+	private int mWidthPixels, mHeightPixels;
 
 	private void showEnterprisePopup(GSMonthInOut data, String customerName, int statsType, int serviceType)
 	{
@@ -485,7 +490,7 @@ public class EnterpriseYearStatsView
 		}
 
 	}
-	
+
 	private void showErrorDialog()
 	{
 
