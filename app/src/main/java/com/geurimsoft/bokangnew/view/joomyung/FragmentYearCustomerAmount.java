@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
+import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroupNew;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.google.gson.Gson;
 
@@ -122,10 +123,10 @@ public class FragmentYearCustomerAmount extends Fragment
 			this.unit = getString(R.string.unit_lube);
 
 			this.getData(_year, "Unit", GSConfig.MODE_STOCK);
-//			this.getData(_year, "Unit", GSConfig.MODE_RELEASE);
-//			this.getData(_year, "Unit", GSConfig.MODE_PETOSA);
-//			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_STOCK);
-//			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_RELEASE);
+			this.getData(_year, "Unit", GSConfig.MODE_RELEASE);
+			this.getData(_year, "Unit", GSConfig.MODE_PETOSA);
+			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_STOCK);
+			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_RELEASE);
 
 		}
 		catch(Exception ex)
@@ -155,55 +156,71 @@ public class FragmentYearCustomerAmount extends Fragment
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
+
 						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
 
 						Gson gson = new Gson();
-						GSDailyInOutGroup dataGroup = null;
+						GSDailyInOutGroupNew dataGroup = null;
 
 						if (serviceType == GSConfig.MODE_STOCK)
 						{
-							dataGroup = gson.fromJson(response, GSDailyInOutGroup.class);
+
+							dataGroup = gson.fromJson(response, GSDailyInOutGroupNew.class);
+
 							if (dataGroup != null)
 							{
 								statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, dataGroup, GSConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
 								yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
 							}
+
 						}
 						else if (serviceType == GSConfig.MODE_RELEASE)
 						{
-							dataGroup = gson.fromJson(response, GSDailyInOutGroup.class);
+
+							dataGroup = gson.fromJson(response, GSDailyInOutGroupNew.class);
+
 							if (dataGroup != null)
 							{
-								statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, dataGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_AMOUNT);
+								statsView.makeStatsView(yi_month_enterprise_amount_release_empty_layout, dataGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_AMOUNT);
 								yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
 							}
+
 						}
 						else if (serviceType == GSConfig.MODE_PETOSA)
 						{
-							dataGroup = gson.fromJson(response, GSDailyInOutGroup.class);
+
+							dataGroup = gson.fromJson(response, GSDailyInOutGroupNew.class);
+
 							if (dataGroup != null)
 							{
 								statsView.makeStatsView(yi_month_enterprise_amount_petosa_empty_layout, dataGroup, GSConfig.MODE_PETOSA, GSConfig.STATE_AMOUNT);
 								yi_month_enterprise_amount_petosa_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
 							}
+
 						}
 						else if (serviceType == GSConfig.MODE_OUTSIDE_STOCK)
 						{
-							dataGroup = gson.fromJson(response, GSDailyInOutGroup.class);
+
+							dataGroup = gson.fromJson(response, GSDailyInOutGroupNew.class);
+
 							if (dataGroup != null)
 							{
-								statsView.makeStatsView(yi_month_enterprise_amount_income_outside_empty_layout, dataGroup, GSConfig.MODE_OUTSIDE_STOCK, GSConfig.STATE_AMOUNT);
+								statsView.makeStatsView(yi_month_enterprise_amount_income_outside_empty_layout, dataGroup, GSConfig.MODE_PETOSA, GSConfig.MODE_OUTSIDE_STOCK);
 								yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
 							}
+
 						}
 						else if (serviceType == GSConfig.MODE_OUTSIDE_RELEASE)
 						{
-							dataGroup = gson.fromJson(response, GSDailyInOutGroup.class);
+
+							dataGroup = gson.fromJson(response, GSDailyInOutGroupNew.class);
+
 							if (dataGroup != null)
 							{
-								statsView.makeStatsView(yi_month_enterprise_amount_release_outside_empty_layout, dataGroup, GSConfig.MODE_OUTSIDE_RELEASE, GSConfig.STATE_AMOUNT);
+								statsView.makeStatsView(yi_month_enterprise_amount_release_outside_empty_layout, dataGroup, GSConfig.MODE_PETOSA, GSConfig.MODE_OUTSIDE_RELEASE);
 								yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
 							}
+
 						}
 
 					}

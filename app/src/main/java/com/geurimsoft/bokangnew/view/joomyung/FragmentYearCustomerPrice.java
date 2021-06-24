@@ -223,37 +223,37 @@ public class FragmentYearCustomerPrice extends Fragment
 			yi_month_enterprise_amount_release_outside_empty_layout.removeAllViews();
 			yi_month_enterprise_amount_petosa_empty_layout.removeAllViews();
 
-			EnterpriseYearStatsView statsView = new EnterpriseYearStatsView(getActivity(), GSConfig.CURRENT_BRANCH.getBranchID(), GSConfig.STATE_PRICE, iYear);
-
-			if (inputGroup != null)
-			{
-				statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, inputGroup, GSConfig.MODE_STOCK, GSConfig.STATE_PRICE);
-				yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");
-			}
-
-			if (outputGroup != null)
-			{
-				statsView.makeStatsView(yi_month_enterprise_amount_release_empty_layout, outputGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_PRICE);
-				yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(outputGroup.totalUnit) + unit + ")");
-			}
-
-			if (inputOutsideGroup != null)
-			{
-				statsView.makeStatsView(yi_month_enterprise_amount_income_outside_empty_layout, inputOutsideGroup, GSConfig.MODE_STOCK, GSConfig.STATE_PRICE);
-				yi_month_enterprise_amount_income_title.setText("외부입고(" + GSConfig.changeToCommanString(inputOutsideGroup.totalUnit) + unit + ")");
-			}
-
-			if (outputOutsideGroup != null)
-			{
-				statsView.makeStatsView(yi_month_enterprise_amount_release_outside_empty_layout, outputOutsideGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_PRICE);
-				yi_month_enterprise_amount_release_title.setText("외부출고(" + GSConfig.changeToCommanString(outputOutsideGroup.totalUnit) + unit + ")");
-			}
-
-			if (slugeGroup != null)
-			{
-				statsView.makeStatsView(yi_month_enterprise_amount_petosa_empty_layout, slugeGroup, GSConfig.MODE_PETOSA, GSConfig.STATE_PRICE);
-				yi_month_enterprise_amount_petosa_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(slugeGroup.totalUnit) + unit + ")");
-			}
+//			EnterpriseYearStatsView statsView = new EnterpriseYearStatsView(getActivity(), GSConfig.CURRENT_BRANCH.getBranchID(), GSConfig.STATE_PRICE, iYear);
+//
+//			if (inputGroup != null)
+//			{
+//				statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, inputGroup, GSConfig.MODE_STOCK, GSConfig.STATE_PRICE);
+//				yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.totalUnit) + unit + ")");
+//			}
+//
+//			if (outputGroup != null)
+//			{
+//				statsView.makeStatsView(yi_month_enterprise_amount_release_empty_layout, outputGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_PRICE);
+//				yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(outputGroup.totalUnit) + unit + ")");
+//			}
+//
+//			if (inputOutsideGroup != null)
+//			{
+//				statsView.makeStatsView(yi_month_enterprise_amount_income_outside_empty_layout, inputOutsideGroup, GSConfig.MODE_STOCK, GSConfig.STATE_PRICE);
+//				yi_month_enterprise_amount_income_title.setText("외부입고(" + GSConfig.changeToCommanString(inputOutsideGroup.totalUnit) + unit + ")");
+//			}
+//
+//			if (outputOutsideGroup != null)
+//			{
+//				statsView.makeStatsView(yi_month_enterprise_amount_release_outside_empty_layout, outputOutsideGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_PRICE);
+//				yi_month_enterprise_amount_release_title.setText("외부출고(" + GSConfig.changeToCommanString(outputOutsideGroup.totalUnit) + unit + ")");
+//			}
+//
+//			if (slugeGroup != null)
+//			{
+//				statsView.makeStatsView(yi_month_enterprise_amount_petosa_empty_layout, slugeGroup, GSConfig.MODE_PETOSA, GSConfig.STATE_PRICE);
+//				yi_month_enterprise_amount_petosa_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(slugeGroup.totalUnit) + unit + ")");
+//			}
 
 		}
 		catch(Exception ex)
