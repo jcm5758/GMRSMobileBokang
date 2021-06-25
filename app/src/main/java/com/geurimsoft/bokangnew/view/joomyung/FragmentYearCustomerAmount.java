@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -118,9 +119,9 @@ public class FragmentYearCustomerAmount extends Fragment
 
 			this.getData(_year, "Unit", GSConfig.MODE_STOCK);
 			this.getData(_year, "Unit", GSConfig.MODE_RELEASE);
-			this.getData(_year, "Unit", GSConfig.MODE_PETOSA);
-			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_STOCK);
-			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_RELEASE);
+//			this.getData(_year, "Unit", GSConfig.MODE_PETOSA);
+//			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_STOCK);
+//			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_RELEASE);
 
 		}
 		catch(Exception ex)
@@ -242,6 +243,12 @@ public class FragmentYearCustomerAmount extends Fragment
 
 			}
 		};
+
+		request.setRetryPolicy(new DefaultRetryPolicy(
+				0,
+				-1,
+				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+		));
 
 		request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
 		requestQueue.add(request);
