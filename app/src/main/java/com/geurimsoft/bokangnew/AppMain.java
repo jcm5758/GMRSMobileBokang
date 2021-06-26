@@ -61,12 +61,8 @@ public class AppMain extends Activity
 	// User Layout 변수
 	EditText edtLogin, edtPasswd;
 	CheckBox chkAutoLogin;
-	LinearLayout layoutlogin, btnlayout;
-	Button btnlogin, change_site_btn; // add etc button
-	ImageView ivMenu01, ivMenu02;
+	Button btnlogin;
 
-	TextView change_site_title;
-	
 	private SharedPreferences pref;
 	
 	private long backKeyPressedTime = 0;
