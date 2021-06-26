@@ -79,6 +79,10 @@ public class AppMain extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_layout);
 
+		GSConfig.DAY_STATS_YEAR = 0;
+		GSConfig.DAY_STATS_MONTH = 0;
+		GSConfig.DAY_STATS_DAY = 0;
+
 		GSConfig.activities.add(AppMain.this);
 
 		GSConfig.context = this;
@@ -89,7 +93,7 @@ public class AppMain extends Activity
 		autoCheck();
 
 		// 앱 버전 확인
-		//appVersionCheck();
+		appVersionCheck();
 
 	}
 
