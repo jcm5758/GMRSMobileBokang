@@ -1,4 +1,4 @@
-#Sat Jun 12 00:07:54 KST 2021
-base.0=D\:\\sources\\GRMS_Inventory_Office\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+#Sat Jun 26 15:00:56 KST 2021
+base.0=C\:\\Users\\jcm5758Main\\source\\repos\\GRMSMobile\\GMRSMobileBokang\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
