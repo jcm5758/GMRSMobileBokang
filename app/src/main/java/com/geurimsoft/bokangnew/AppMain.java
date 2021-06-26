@@ -352,6 +352,7 @@ public class AppMain extends Activity
 
 				Intent intent = new Intent(AppMain.this, GSConfig.Activity_LIST[which]);
 				intent.putExtra("branName", GSConfig.CURRENT_BRANCH.getBranchShortName());
+				intent.putExtra("branID", GSConfig.CURRENT_BRANCH.getBranchID());
 
 				startActivity(intent);
 

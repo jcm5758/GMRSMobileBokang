@@ -35,6 +35,7 @@ public class ActivityMain extends AppCompatActivity {
         // 인텐트로 지정명 받아 오기
         Intent intent = getIntent();
         String branName = intent.getStringExtra("branName");
+        int branID = intent.getIntExtra("branID", 0);
 
         // 액션바 설정 : 제목 타이틀 설정
         ActionBar actionBar = getSupportActionBar();

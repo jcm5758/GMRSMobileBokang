@@ -67,8 +67,6 @@ public class FragmentDailyMain extends Fragment
 
 		String functionName = "onCreate()";
 
-
-
 		// 현재 연월일 찾기
 		this.currentYear =  calendar.get(Calendar.YEAR);
 		this.currentMonth = calendar.get(Calendar.MONTH) + 1;
@@ -174,6 +172,7 @@ public class FragmentDailyMain extends Fragment
 
 				 Intent intent = new Intent(context, GSConfig.Activity_LIST[which]);
 				 intent.putExtra("branName", GSConfig.CURRENT_BRANCH.getBranchShortName());
+				 intent.putExtra("branID", GSConfig.CURRENT_BRANCH.getBranchID());
 
 				 startActivity(intent);
 
