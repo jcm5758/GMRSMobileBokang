@@ -119,9 +119,9 @@ public class FragmentYearCustomerAmount extends Fragment
 
 			this.getData(_year, "Unit", GSConfig.MODE_STOCK);
 			this.getData(_year, "Unit", GSConfig.MODE_RELEASE);
-//			this.getData(_year, "Unit", GSConfig.MODE_PETOSA);
-//			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_STOCK);
-//			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_RELEASE);
+			this.getData(_year, "Unit", GSConfig.MODE_PETOSA);
+			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_STOCK);
+			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_RELEASE);
 
 		}
 		catch(Exception ex)
@@ -243,6 +243,11 @@ public class FragmentYearCustomerAmount extends Fragment
 
 			}
 		};
+
+		request.setRetryPolicy(new DefaultRetryPolicy(
+				0,
+				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 		request.setRetryPolicy(new DefaultRetryPolicy(
 				0,

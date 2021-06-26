@@ -236,6 +236,11 @@ public class FragmentYearCustomerPrice extends Fragment
 			}
 		};
 
+		request.setRetryPolicy(new DefaultRetryPolicy(
+				0,
+				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
 		request.setRetryPolicy(new DefaultRetryPolicy(20000,
 				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
 				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));

@@ -319,7 +319,7 @@ public class AppMain extends Activity
 		if (GSConfig.CURRENT_USER == null || GSConfig.CURRENT_USER.isUserInfoNull() || GSConfig.CURRENT_USER.isUserRightNull())
 			return;
 
-		String functionName = "siteAlert()";
+		String functionName = "showBranch()";
 
 		ArrayList<UserRightData> urData = GSConfig.CURRENT_USER.getUserright();
 
