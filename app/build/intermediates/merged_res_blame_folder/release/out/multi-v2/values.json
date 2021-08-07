@@ -4,6 +4,25 @@
             "outputFile": "C:\\Users\\jcm5758Main\\source\\repos\\GRMSMobile\\GMRSMobileBokang\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\jcm5758Main\\.gradle\\caches\\transforms-2\\files-2.1\\b9204796e7e567996b1d6e9b487b57da\\appcompat-resources-1.2.0\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,29,36,47,74",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,1702,2087,2684,4317",
+                        "endLines": "28,35,46,73,78",
+                        "endColumns": "24,24,24,24,24",
+                        "endOffsets": "1697,2082,2679,4312,4582"
+                    },
+                    "to": {
+                        "startLines": "5180,5207,5214,7578,7605",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "336033,337680,338065,483072,484705",
+                        "endLines": "5206,5213,5224,7604,7609",
+                        "endColumns": "24,24,24,24,24",
+                        "endOffsets": "337675,338060,338657,484700,484970"
+                    }
+                },
+                {
                     "source": "C:\\Users\\jcm5758Main\\.gradle\\caches\\transforms-2\\files-2.1\\c8925b41f4a20a47760feaff8220048e\\recyclerview-1.1.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
@@ -128,25 +147,6 @@
                         "startOffsets": "28145,28188,30937,36735,36793,57117",
                         "endColumns": "42,41,43,57,55,38",
                         "endOffsets": "28183,28225,30976,36788,36844,57151"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\jcm5758Main\\.gradle\\caches\\transforms-2\\files-2.1\\b9204796e7e567996b1d6e9b487b57da\\jetified-appcompat-resources-1.2.0\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,29,36,47,74",
-                        "startColumns": "4,4,4,4,4",
-                        "startOffsets": "55,1702,2087,2684,4317",
-                        "endLines": "28,35,46,73,78",
-                        "endColumns": "24,24,24,24,24",
-                        "endOffsets": "1697,2082,2679,4312,4582"
-                    },
-                    "to": {
-                        "startLines": "5180,5207,5214,7578,7605",
-                        "startColumns": "4,4,4,4,4",
-                        "startOffsets": "336033,337680,338065,483072,484705",
-                        "endLines": "5206,5213,5224,7604,7609",
-                        "endColumns": "24,24,24,24,24",
-                        "endOffsets": "337675,338060,338657,484700,484970"
                     }
                 },
                 {
