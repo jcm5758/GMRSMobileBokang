@@ -448,7 +448,7 @@ public class AppMain extends Activity
 			{
 
 				URL url = new URL(GSConfig.WEB_SERVER_ADDR + "joomyung/app_version.txt");
-//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "doInBackground") + " url : " + url.toString());
+				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "doInBackground") + " url : " + url.toString());
 
 				HttpURLConnection conn = (HttpURLConnection)url.openConnection();
 				
