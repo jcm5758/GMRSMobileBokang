@@ -19,10 +19,10 @@ import com.geurimsoft.bokangnew.widget.adapter.YearNumericWheelAdapter;
  *
  * Custom datepicker based on wheel control.
  */
-public class YearWheelDatePicker extends LinearLayout {
+public class YearWheelDatePicker extends LinearLayout
+{
 
     public static final int DEFAULT_VISIBLE_ITEMS = 3;
-
     public static final int DEFAULT_MIN_YEAR = 1900;
     public static final int DEFAULT_MAX_YEAR = 2050;
 
@@ -38,45 +38,58 @@ public class YearWheelDatePicker extends LinearLayout {
     private WheelView wheelYear;
 
 
-    public static interface IDateChangedListener {
+    public static interface IDateChangedListener
+    {
         void onChanged(YearWheelDatePicker sender, int oldYear, int year);
     }
 
     private List<IDateChangedListener> dateChangedListeners = new ArrayList<IDateChangedListener>(  );
 
-    public void addDateChangedListener( IDateChangedListener listener) {
+    public void addDateChangedListener( IDateChangedListener listener)
+    {
         if (null == listener) throw new IllegalArgumentException( "listener is null" );
         Assert.assertTrue( !dateChangedListeners.contains( listener ));
         dateChangedListeners.add( listener );
     }
 
-    public void removeDateChangedListener( IDateChangedListener listener ) {
+    public void removeDateChangedListener( IDateChangedListener listener )
+    {
         if (null == listener ) throw new IllegalArgumentException( "listener is null" );
         Assert.assertTrue( dateChangedListeners.contains( listener ) );
         dateChangedListeners.remove( listener );
     }
 
-    private void raiseDateChangedEvent(int oldYear, int year) {
-        if (!dateChangedListeners.isEmpty()) {
+    private void raiseDateChangedEvent(int oldYear, int year)
+    {
+
+        if (!dateChangedListeners.isEmpty())
+        {
+
             List<IDateChangedListener > copy = new ArrayList<IDateChangedListener>( dateChangedListeners );
-            for ( IDateChangedListener listener : copy ) {
+
+            for ( IDateChangedListener listener : copy )
+            {
                 listener.onChanged( this, oldYear, year );
             }
 
         }
+
     }
 
-    public YearWheelDatePicker( Context context ) {
+    public YearWheelDatePicker( Context context )
+    {
         super( context );
         init(context );
     }
 
-    public YearWheelDatePicker( Context context, AttributeSet attrs ) {
+    public YearWheelDatePicker( Context context, AttributeSet attrs )
+    {
         super( context, attrs );
         init(context );
     }
 
-    public YearWheelDatePicker( Context context, AttributeSet attrs, int defStyle ) {
+    public YearWheelDatePicker( Context context, AttributeSet attrs, int defStyle )
+    {
         super( context, attrs, defStyle );
         init(context );
     }
@@ -90,24 +103,35 @@ public class YearWheelDatePicker extends LinearLayout {
      * @param minYear
      * @param maxYear
      */
-    public void setMinMaxYears( int minYear, int maxYear ) {
+    public void setMinMaxYears( int minYear, int maxYear )
+    {
+
         if (minYear < 0) throw new IllegalArgumentException( "minYear" );
         if (maxYear < 0) throw new IllegalArgumentException( "maxYear" );
         if (minYear > maxYear) throw new IllegalArgumentException( "minYear should be <= maxYear" );
-        //
-        if (this.minYear != minYear || this.maxYear != maxYear) {
+
+        if (this.minYear != minYear || this.maxYear != maxYear)
+        {
+
             this.minYear = minYear;
             this.maxYear = maxYear;
 
             // reinit wheelYear
             int year = getYear();
+
             wheelYear.setViewAdapter( new YearNumericWheelAdapter( this.getContext(), minYear, maxYear ) );
-            if (year >= minYear && year <= maxYear) {
+
+            if (year >= minYear && year <= maxYear)
+            {
                 setYear( year );
-            } else {
+            }
+            else
+            {
                 setYear(minYear);
             }
+
         }
+
     }
 
     public int getMaxYear() {
@@ -122,9 +146,9 @@ public class YearWheelDatePicker extends LinearLayout {
         return wheelYear.getCurrentItem() + minYear;
     }
 
-    public void setYear( int year ) {
+    public void setYear( int year )
+    {
         if (year < minYear || year > maxYear) throw new IllegalArgumentException( "year should be between minYear and maxYear" );
-        
         wheelYear.setCurrentItem( year - minYear );
     }
 
@@ -133,11 +157,14 @@ public class YearWheelDatePicker extends LinearLayout {
      * Sets the desired count of visible items.
      * @param count
      */
-    public void setVisibleItems( int count ) {
+    public void setVisibleItems( int count )
+    {
+
         wheelYear.setVisibleItems( count );
 
         // trigger remeasuring
         this.requestLayout();
+
     }
 
     /**
@@ -146,7 +173,9 @@ public class YearWheelDatePicker extends LinearLayout {
      * @param locale for example new Locale("ru", "RU");
      */
 
-    private void init( final Context ctx) {
+    private void init( final Context ctx)
+    {
+
         LayoutInflater inflater = ( LayoutInflater ) ctx.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         inflater.inflate( R.layout.wheel_year, this, true );
 
@@ -166,6 +195,7 @@ public class YearWheelDatePicker extends LinearLayout {
                 raiseDateChangedEvent(oldYear, newYear );
             }
         } );
+
     }
 
 }

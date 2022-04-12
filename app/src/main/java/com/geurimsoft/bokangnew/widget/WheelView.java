@@ -37,18 +37,17 @@ import android.widget.LinearLayout;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.widget.adapter.WheelViewAdapter;
-//import org.apache.commons.lang3.time.StopWatch;
 
 /**
  * Numeric wheel view.
  * 
  * @author Yuri Kanivets
  */
-public class WheelView extends View {
+public class WheelView extends View
+{
 
 	/** Top and bottom shadows colors */
-	private static final int[] SHADOWS_COLORS = new int[] { 0xFF111111,
-			0x00AAAAAA, 0x00AAAAAA };
+	private static final int[] SHADOWS_COLORS = new int[] { 0xFF111111, 0x00AAAAAA, 0x00AAAAAA };
 
 	/** Top and bottom items offset (to hide that) */
 	private static final int ITEM_OFFSET_PERCENT = 10;
@@ -133,7 +132,9 @@ public class WheelView extends View {
 	}
 	
 	// Scrolling listener
-	WheelScroller.ScrollingListener scrollingListener = new WheelScroller.ScrollingListener() {
+	WheelScroller.ScrollingListener scrollingListener = new WheelScroller.ScrollingListener()
+	{
+
         @Override
 		public void onStarted() {
             isScrollingPerformed = true;
@@ -171,6 +172,7 @@ public class WheelView extends View {
                 scroller.scroll(scrollingOffset, 0);
             }
         }
+
     };
 	
 	/**
@@ -228,16 +230,23 @@ public class WheelView extends View {
 	 *  
 	 * @param viewAdapter the view adapter
 	 */
-	public void setViewAdapter(WheelViewAdapter viewAdapter) {
-	    if (this.viewAdapter != null) {
+	public void setViewAdapter(WheelViewAdapter viewAdapter)
+	{
+
+	    if (this.viewAdapter != null)
+	    {
 	        this.viewAdapter.unregisterDataSetObserver(dataObserver);
 	    }
-        this.viewAdapter = viewAdapter;
-        if (this.viewAdapter != null) {
+
+	    this.viewAdapter = viewAdapter;
+
+	    if (this.viewAdapter != null)
+	    {
             this.viewAdapter.registerDataSetObserver(dataObserver);
         }
         
         invalidateWheel(true);
+
 	}
 	
 	/**
@@ -387,7 +396,6 @@ public class WheelView extends View {
 	 * @param index the item index
 	 */
 	public void setCurrentItem(int index) {
-		
 		setCurrentItem(index, false);
 	}	
 	
@@ -430,20 +438,26 @@ public class WheelView extends View {
 	/**
 	 * Initializes resources
 	 */
-	private void initResourcesIfNecessary() {
-		if (centerDrawable == null) {
+	private void initResourcesIfNecessary()
+	{
+
+		if (centerDrawable == null)
+		{
 			centerDrawable = getContext().getResources().getDrawable( R.drawable.wheel_val);
 		}
 
-		if (topShadow == null) {
+		if (topShadow == null)
+		{
 			topShadow = new GradientDrawable(Orientation.TOP_BOTTOM, SHADOWS_COLORS);
 		}
 
-		if (bottomShadow == null) {
+		if (bottomShadow == null)
+		{
 			bottomShadow = new GradientDrawable(Orientation.BOTTOM_TOP, SHADOWS_COLORS);
 		}
 
 		setBackgroundResource(R.drawable.wheel_bg);
+
 	}
 	
 	/**
@@ -453,31 +467,40 @@ public class WheelView extends View {
 	 *            the source layout
 	 * @return the desired layout height
 	 */
-	private int getDesiredHeight(LinearLayout layout) {
-		if (layout != null && layout.getChildAt(0) != null) {
+	private int getDesiredHeight(LinearLayout layout)
+	{
+
+		if (layout != null && layout.getChildAt(0) != null)
+		{
 			itemHeight = layout.getChildAt(0).getMeasuredHeight();
 		}
 
 		int desired = itemHeight * visibleItems - itemHeight * ITEM_OFFSET_PERCENT / 50;
 
 		return Math.max(desired, getSuggestedMinimumHeight());
+
 	}
 
 	/**
 	 * Returns height of wheel item
 	 * @return the item height
 	 */
-	private int getItemHeight() {
-		if (itemHeight != 0) {
+	private int getItemHeight()
+	{
+
+		if (itemHeight != 0)
+		{
 			return itemHeight;
 		}
 		
-		if (itemsLayout != null && itemsLayout.getChildAt(0) != null) {
+		if (itemsLayout != null && itemsLayout.getChildAt(0) != null)
+		{
 			itemHeight = itemsLayout.getChildAt(0).getHeight();
 			return itemHeight;
 		}
 		
 		return getHeight() / visibleItems;
+
 	}
 
     // last width measuring memoization

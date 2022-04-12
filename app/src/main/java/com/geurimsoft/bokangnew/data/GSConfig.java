@@ -16,8 +16,8 @@ public class GSConfig
     public static final String APP_DEBUG = "Geurimsoft";
 
     // 서버 주소
-    public static final String SERVER_ADDR = "211.253.8.254";
-//    public static final String SERVER_ADDR = "192.168.0.20";
+//    public static final String SERVER_ADDR = "211.253.8.254";
+    public static final String SERVER_ADDR = "192.168.0.20";
 //    public static final String SERVER_ADDR = "211.221.92.226";
     
     // API 서버 포트

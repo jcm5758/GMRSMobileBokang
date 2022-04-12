@@ -274,7 +274,7 @@ public class DayWheelDatePicker extends LinearLayout {
 	                    wheelDay.setViewAdapter( new YearNumericWheelAdapter( ctx, 1, daysCount ) );
 	                    updateWheelDay( daysCount, daysCountPrev, currentDay, lastSelectedDay );
 	                }
-	                //
+
 	                int newDay = getDay();
 	                raiseDateChangedEvent( oldDay, oldMonth, year, newDay, newMonth, year);
 	            }
@@ -290,7 +290,7 @@ public class DayWheelDatePicker extends LinearLayout {
 				public void onChanged( WheelView wheel, int oldValue, int newValue ) {
 	                if (!dayChangeListenerDisabled) {
 	                    lastSelectedDay = newValue + 1;
-	                    //
+
 	                    int oldDay = oldValue + 1;
 	                    int newDay = newValue + 1;
 	                    int year = getYear();

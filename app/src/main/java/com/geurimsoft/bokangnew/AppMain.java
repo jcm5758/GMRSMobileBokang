@@ -89,7 +89,7 @@ public class AppMain extends Activity
 		autoCheck();
 
 		// 앱 버전 확인
-		appVersionCheck();
+//		appVersionCheck();
 
 	}
 
@@ -244,7 +244,7 @@ public class AppMain extends Activity
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
 						parseData(userID, userPWD, response);
 					}
 				},
@@ -289,12 +289,21 @@ public class AppMain extends Activity
 			return;
 		}
 
-//		Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + userInfo.getUserinfo().get(0).getName());
+		if (userInfo.getUserinfo() == null)
+		{
+			Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "getUserinfo() is null.");
+			return;
+		}
+
+		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + userInfo.getUserinfo().get(0).getName());
 
 		GSConfig.CURRENT_USER = userInfo;
 
 		if (GSConfig.CURRENT_USER.isUserInfoNull() || GSConfig.CURRENT_USER.isUserRightNull())
+		{
+			Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " : UserRight is null");
 			return;
+		}
 
 		SharedPreferences.Editor editor = pref.edit();
 		editor.putString("userID", userID);

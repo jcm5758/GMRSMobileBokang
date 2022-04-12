@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/sources/GRMS/GMRSMobileBokang/app/src/main/res/layout/wheel_day.xml" value="0.28489583333333335" />
+        <entry key="..\:/sources/GRMS/GMRSMobileBokang/app/src/main/res/layout/wheel_year.xml" value="0.28489583333333335" />
+        <entry key="..\:/sources/GRMS/GMRSMobileBokang/app/src/main/res/layout/year_datepicker_dialog.xml" value="0.28489583333333335" />
+      </map>
+    </option>
+  </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />

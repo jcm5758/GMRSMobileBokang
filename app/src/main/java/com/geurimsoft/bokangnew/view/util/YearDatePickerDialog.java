@@ -14,7 +14,8 @@ import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
 
 
-public class YearDatePickerDialog extends Dialog implements OnClickListener{
+public class YearDatePickerDialog extends Dialog implements OnClickListener
+{
 
 	private YearWheelDatePicker yearWheelDatePicker;
 	private int currentYear;
@@ -25,10 +26,11 @@ public class YearDatePickerDialog extends Dialog implements OnClickListener{
 	private int selectYear;
 	private int maxYear;
 	
-	public YearDatePickerDialog(Context context, int _currentYear, int _maxYear, DialogListner _dialogListner) {
+	public YearDatePickerDialog(Context context, int _currentYear, int _maxYear, DialogListner _dialogListner)
+	{
+
 		super(context);
-		// TODO Auto-generated constructor stub
-		
+
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
 		setContentView(R.layout.year_datepicker_dialog);
@@ -49,7 +51,9 @@ public class YearDatePickerDialog extends Dialog implements OnClickListener{
 		
 	}
 	
-	private void setInterface() {
+	private void setInterface()
+	{
+
 		this.confirm_button = (Button)findViewById(R.id.confirm_button);
 		this.confirm_button.setOnClickListener(this);
 		
@@ -63,25 +67,32 @@ public class YearDatePickerDialog extends Dialog implements OnClickListener{
 		this.selectYear = currentYear;
 		
 		this.yearWheelDatePicker.addDateChangedListener(new YearWheelDatePicker.IDateChangedListener() {
+
 			@Override
-			public void onChanged(YearWheelDatePicker sender, int oldYear, int _year) {
+			public void onChanged(YearWheelDatePicker sender, int oldYear, int _year)
+			{
 				selectYear = _year;
 			}
+
 		});
-	}
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		switch(v.getId()) {
-		case R.id.confirm_button :
-			dialogListner.OnConfirmButton(YearDatePickerDialog.this, selectYear);
-			break;
-//			
-		}
-	}
-	
-	public interface DialogListner {
-		public void OnConfirmButton(Dialog dialog, int selectYear);
 
 	}
+	@Override
+	public void onClick(View v)
+	{
+
+		switch(v.getId())
+		{
+			case R.id.confirm_button :
+				dialogListner.OnConfirmButton(YearDatePickerDialog.this, selectYear);
+				break;
+		}
+
+	}
+	
+	public interface DialogListner
+	{
+		public void OnConfirmButton(Dialog dialog, int selectYear);
+	}
+
 }

@@ -168,6 +168,7 @@ public class FragmentYearMain extends Fragment
 						dialog.dismiss();
 
 					}
+
 				});
 
 		 		yearDatePickerDialog.show();

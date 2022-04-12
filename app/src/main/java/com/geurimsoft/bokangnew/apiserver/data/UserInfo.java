@@ -21,58 +21,58 @@ import java.util.ArrayList;
 public class UserInfo implements Serializable
 {
 
-    @SerializedName("status")
-    private String status;
+    @SerializedName("Status")
+    private String Status;
 
-    @SerializedName("message")
-    private String message;
+    @SerializedName("Message")
+    private String Message;
 
-    @SerializedName("userinfo")
-    private ArrayList<UserInfoData> userinfo;
+    @SerializedName("UserInfo")
+    private ArrayList<UserInfoData> UserInfo;
 
-    @SerializedName("userright")
-    private ArrayList<UserRightData> userright;
+    @SerializedName("UserRight")
+    private ArrayList<UserRightData> UserRight;
 
     public UserInfo(String status, String message, ArrayList<UserInfoData> userinfo, ArrayList<UserRightData> userright)
     {
 
-        this.status = status;
-        this.message = message;
-        this.userinfo = userinfo;
-        this.userright = userright;
+        this.Status = status;
+        this.Message = message;
+        this.UserInfo = userinfo;
+        this.UserRight = userright;
 
     }
 
     public String getStatus()
     {
-        return status;
+        return this.Status;
     }
 
     public void setStatus(String status)
     {
-        this.status = status;
+        this.Status = status;
     }
 
     public String getMessage() {
-        return message;
+        return this.Message;
     }
 
     public void setMessage(String message) {
-        this.message = message;
+        this.Message = message;
     }
 
     public void setUserinfo(ArrayList<UserInfoData> userinfo) {
-        this.userinfo = userinfo;
+        this.UserInfo = userinfo;
     }
 
     public ArrayList<UserInfoData> getUserinfo() {
-        return userinfo;
+        return this.UserInfo;
     }
 
     public boolean isUserInfoNull()
     {
 
-        if (this.userinfo == null || this.userinfo.size() == 0)
+        if (this.UserInfo == null || this.UserInfo.size() == 0)
             return true;
         else
             return false;
@@ -82,22 +82,22 @@ public class UserInfo implements Serializable
     public UserRightData getUserRightData(int ind)
     {
         Log.d(GSConfig.APP_DEBUG, "ind : " + ind);
-        Log.d(GSConfig.APP_DEBUG, "size : " + this.userright.size());
-        return userright.get(ind);
+        Log.d(GSConfig.APP_DEBUG, "size : " + this.UserRight.size());
+        return UserRight.get(ind);
     }
     
     public ArrayList<UserRightData> getUserright() {
-        return userright;
+        return UserRight;
     }
 
     public void setUserright(ArrayList<UserRightData> userright) {
-        this.userright = userright;
+        this.UserRight = userright;
     }
 
     public boolean isUserRightNull()
     {
 
-        if (this.userright == null || this.userright.size() == 0)
+        if (this.UserRight == null || this.UserRight.size() == 0)
             return true;
         else
             return false;
