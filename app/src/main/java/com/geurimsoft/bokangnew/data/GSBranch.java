@@ -15,7 +15,7 @@ public class GSBranch
     }
 
     public int getBranchID() {
-        return branchID;
+        return this.branchID;
     }
 
     public void setBranchID(int branchID) {
@@ -23,7 +23,7 @@ public class GSBranch
     }
 
     public String getBranchName() {
-        return branchName;
+        return this.branchName;
     }
 
     public void setBranchName(String branchName) {
@@ -31,7 +31,7 @@ public class GSBranch
     }
 
     public String getBranchShortName() {
-        return branchShortName;
+        return this.branchShortName;
     }
 
     public void setBranchShortName(String branchShortName) {

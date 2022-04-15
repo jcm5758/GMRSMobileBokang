@@ -81,8 +81,8 @@ public class UserInfo implements Serializable
 
     public UserRightData getUserRightData(int ind)
     {
-        Log.d(GSConfig.APP_DEBUG, "ind : " + ind);
-        Log.d(GSConfig.APP_DEBUG, "size : " + this.UserRight.size());
+//        Log.d(GSConfig.APP_DEBUG, "ind : " + ind);
+//        Log.d(GSConfig.APP_DEBUG, "size : " + this.UserRight.size());
         return UserRight.get(ind);
     }
     

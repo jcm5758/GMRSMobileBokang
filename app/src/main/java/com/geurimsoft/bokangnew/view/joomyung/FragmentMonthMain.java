@@ -128,7 +128,16 @@ public class FragmentMonthMain extends Fragment
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
 	{
-		 inflater.inflate(R.menu.stats_menu, menu);
+
+		int menuID = 0;
+
+		if ( GSConfig.CURRENT_BRANCH.getBranchID() == 2)
+			menuID = R.menu.stats_menu2;
+		else
+			menuID = R.menu.stats_menu;
+
+		inflater.inflate(menuID, menu);
+
 	}
 	
 	@Override
@@ -139,25 +148,10 @@ public class FragmentMonthMain extends Fragment
 		 {
 
 			 case R.id.stats_change_branchkwangju:
+				 return menuAction(0);
 
-				 int which = 0;
-
-				 if (GSConfig.CURRENT_USER.getUserRightData(which).getUr01() != 1)
-				 {
-					 Toast.makeText(context, "지점에 로그인 권한이 없습니다.", Toast.LENGTH_SHORT).show();
-					 return false;
-				 }
-
-				 ArrayList<UserRightData> urData = GSConfig.CURRENT_USER.getUserright();
-
-				 GSConfig.CURRENT_BRANCH = new GSBranch(urData.get(which).getBranID(), urData.get(which).getBranName(), urData.get(which).getBranShortName());
-
-				 Intent intent = new Intent(context, GSConfig.Activity_LIST[which]);
-				 intent.putExtra("branName", GSConfig.CURRENT_BRANCH.getBranchShortName());
-
-				 startActivity(intent);
-
-				 return true;
+			 case R.id.stats_change_branchjoomyung:
+				 return menuAction(1);
 
 			 case R.id.stats_change_date_menu:
 		    	   
@@ -207,6 +201,45 @@ public class FragmentMonthMain extends Fragment
 		 		return super.onOptionsItemSelected(item);
 
 		 }
+
+	}
+
+	/**
+	 *
+	 * 메뉴 중 지점 클릭시 이동 처리
+	 *
+	 * @param which 지점 순번(사용자 권한의 순번)
+	 *
+	 * @return
+	 */
+	public boolean menuAction(int which)
+	{
+
+		// 지점 로그인 정보가 없으면 패스
+		if (GSConfig.CURRENT_USER.getUserRightData(which).getUr01() != 1)
+		{
+			Toast.makeText(context, "지점에 로그인 권한이 없습니다.", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+
+		// 사용자 권한 정보 리스트 찾아오기
+		ArrayList<UserRightData> urData = GSConfig.CURRENT_USER.getUserright();
+
+		// 현재 지점으로 설정
+		GSConfig.CURRENT_BRANCH = new GSBranch(urData.get(which).getBranID(), urData.get(which).getBranName(), urData.get(which).getBranShortName());
+
+		// 새로 옮겨갈 프래그먼트 설정
+		Intent intent = new Intent(context, GSConfig.Activity_LIST[0]);
+		intent.putExtra("branName", GSConfig.CURRENT_BRANCH.getBranchShortName());
+		intent.putExtra("branID", GSConfig.CURRENT_BRANCH.getBranchID());
+
+		// 프래그먼트로 이동
+		startActivity(intent);
+
+		// 현재 프래그먼트 종료
+		getActivity().onBackPressed();
+
+		return true;
 
 	}
 	

@@ -174,7 +174,7 @@ public class FragmentDailyPrice extends Fragment
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String,String> params = new HashMap<String,String>();
 				params.put("GSType", "DAY");
-				params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"searchDate\": " + searchDate + ", \"qryContent\" : \"" + qryContent + "\" }");
+				params.put("GSQuery", "{ \"BranchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"SearchDate\": " + searchDate + ", \"QryContent\" : \"" + qryContent + "\" }");
 				return params;
 			}
 		};
