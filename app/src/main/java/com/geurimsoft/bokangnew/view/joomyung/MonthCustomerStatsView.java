@@ -1,3 +1,6 @@
+/**
+ * 월별 거래처별 통계
+ */
 package com.geurimsoft.bokangnew.view.joomyung;
 
 import android.app.Activity;
@@ -47,26 +50,28 @@ import java.util.Map;
 public class MonthCustomerStatsView
 {
 
+    private Context mContext;
     private Activity mActivity;
     private int branchID;
     private int statsType;
     private int searchYear;
     private int searchMonth;
 
-    private Context mContext;
-
     private LinearLayout stock_layout, release_layout, petosa_layout, outside_stock_layout, outside_release_layout;
 
 
     /**
-     * 월별-거래처별-일별 통계
-     * @param _activity		Acitivity
-     * @param branchID		지점 ID
-     * @param statsType	Unit / Money
+     *
+     * 월별 거래처별 통계 생성자
+     *
+     * @param _activity     부모 액티비티
+     * @param branchID      지점 ID
+     * @param statsType     표출 유형 STATE_AMOUNT, STATE_PRICE
+     * @param searchYear    검색 연도
+     * @param searchMonth   검색 월
      */
     public MonthCustomerStatsView(Activity _activity, int branchID, int statsType, int searchYear, int searchMonth)
     {
-
         this.mContext = _activity;
         this.mActivity = _activity;
         this.branchID = branchID;
@@ -74,15 +79,17 @@ public class MonthCustomerStatsView
         this.searchYear = searchYear;
         this.searchMonth = searchMonth;
 
+//        Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : MonthCustomerStatsView() : branchID : " + this.branchID
+//                + ", statsType : " + this.statsType + ", searchYear : " + this.searchYear + ", searchMonth : " + searchMonth);
+
     }
 
     /**
      * 뷰 생성
-     * @param _layout
-     * @param group
-     * @param serviceType
+     * @param _layout       레이아웃
+     * @param group         데이터
      */
-    public void makeStatsView(LinearLayout _layout, GSDailyInOutGroup group, final int serviceType, final int statsType)
+    public void makeStatsView(LinearLayout _layout, GSDailyInOutGroup group, final int serviceType)
     {
 
         String functionName = "makeStatsView()";
@@ -100,11 +107,7 @@ public class MonthCustomerStatsView
             String[] header_titles = group.Header;
             int recordCount = group.List.size();
 
-//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " header_count : " + header_count);
-//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " header_titles.length : " + header_titles.length);
-//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " recordCount : " + recordCount);
-//
-//			group.print();
+//            Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : makeStatsView() : header_count : " + header_count + ", recordCount : " + recordCount);
 
             ArrayList<GSDailyInOutDetail> detailList = group.List;
 
@@ -116,7 +119,6 @@ public class MonthCustomerStatsView
 
             // 레이아웃 파라미터 지정
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-
             LinearLayout header_layout = new LinearLayout(mContext);
             header_layout.setLayoutParams(params);
             header_layout.setOrientation(LinearLayout.HORIZONTAL);
@@ -127,23 +129,16 @@ public class MonthCustomerStatsView
                 TextView title_textview = makeMenuTextView(mContext, header_titles[header_index], "#ffffff", Gravity.CENTER);
                 header_layout.addView(title_textview);
             }
-//Log.d("Babo" , "----------------------------------------------------------------check001");
+
             _layout.addView(header_layout);
 
             TextView stock_item_textview;
 
-
-//Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " detailList.size() : " + detailList.size());
-
             for(int stock_index = 0; stock_index < detailList.size(); stock_index++)
             {
 
-//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " stock_index : " + stock_index);
-
                 GSDailyInOutDetail detail = detailList.get(stock_index);
-                String[] stock_items = detail.getStringValues(statsType);
-
-//				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " stock_index.length : " + stock_items.length);
+                String[] stock_items = detail.getStringValues(this.statsType);
 
                 LinearLayout stock_row_layout = new LinearLayout(mContext);
 
@@ -152,8 +147,6 @@ public class MonthCustomerStatsView
 
                 for(int i = 0; i < stock_items.length; i++)
                 {
-
-//					Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " i : " + i);
 
                     int gravity = 0;
 
@@ -203,7 +196,7 @@ public class MonthCustomerStatsView
                 _layout.addView(stock_row_layout);
 
             }
-//Log.d("Babo" , "----------------------------------------------------------------check100");
+
             // 레이아웃 지정
             if (serviceType == GSConfig.MODE_STOCK)
                 this.stock_layout = _layout;
@@ -290,7 +283,7 @@ public class MonthCustomerStatsView
 
             this.statsType = statsType;
 
-            if (statsType == GSConfig.STATE_PRICE)
+            if (this.statsType == GSConfig.STATE_PRICE)
                 this.qryContent = "TotalPrice";
             else
                 this.qryContent = "Unit";
@@ -308,8 +301,6 @@ public class MonthCustomerStatsView
 
             String functionName = "getData()";
 
-//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "searchDate : " + searchDate + ", qryContent : " + qryContent);
-
             String url = GSConfig.API_SERVER_ADDR + "API";
             RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
 
@@ -320,7 +311,6 @@ public class MonthCustomerStatsView
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
                             parseData(response);
                         }
                     },
@@ -336,7 +326,7 @@ public class MonthCustomerStatsView
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String,String> params = new HashMap<String,String>();
                     params.put("GSType", "MONTH_CUSTOMER_DAY");
-                    params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"customerFullName\": \"" + customerName + "\", \"serviceType\": " + serviceType + ", \"searchYear\": " + searchYear + ", \"searchMonth\": " + searchMonth + ", \"qryContent\" : \"" + qryContent + "\" }");
+                    params.put("GSQuery", "{ \"BranchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"CustomerFullName\": \"" + customerName + "\", \"ServiceType\": " + serviceType + ", \"searchYear\": " + searchYear + ", \"SearchMonth\": " + searchMonth + ", \"QryContent\" : \"" + qryContent + "\" }");
                     return params;
                 }
             };
@@ -344,15 +334,12 @@ public class MonthCustomerStatsView
             request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
             requestQueue.add(request);
 
-//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "요청 보냄.");
-
         }
 
         public void parseData(String msg)
         {
 
             String functionName = "parseData()";
-//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
 
             try
             {
@@ -361,7 +348,7 @@ public class MonthCustomerStatsView
 
                 GSMonthInOut data = gson.fromJson(msg, GSMonthInOut.class);
 
-                showEnterprisePopup(data, this.customerName, statsType, serviceType);
+                showEnterprisePopup(data, this.customerName, this.statsType, serviceType);
 
             }
             catch(Exception ex)
@@ -462,13 +449,11 @@ public class MonthCustomerStatsView
 
         popup_close_btn.setOnClickListener(new OnClickListener()
         {
-
             @Override
             public void onClick(View v)
             {
                 popupWindow.dismiss();
             }
-
         });
 
     }
@@ -480,15 +465,14 @@ public class MonthCustomerStatsView
         errorDialog.setMessage(mContext.getString(R.string.loding_fail_msg));
         errorDialog.setPositiveButton(mContext.getString(R.string.dialog_confirm_button), new DialogInterface.OnClickListener()
         {
-
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
                 dialog.dismiss();
             }
-
         });
         errorDialog.show();
 
     }
+
 }
