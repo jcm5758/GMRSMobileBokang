@@ -120,8 +120,8 @@ public class FragmentYearCustomerAmount extends Fragment
 			this.getData(_year, "Unit", GSConfig.MODE_STOCK);
 			this.getData(_year, "Unit", GSConfig.MODE_RELEASE);
 			this.getData(_year, "Unit", GSConfig.MODE_PETOSA);
-			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_STOCK);
-			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_RELEASE);
+			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_STOCK_SOURCE);
+			this.getData(_year, "Unit", GSConfig.MODE_OUTSIDE_STOCK_PRODUCT);
 
 		}
 		catch(Exception ex)
@@ -193,27 +193,27 @@ public class FragmentYearCustomerAmount extends Fragment
 							}
 
 						}
-						else if (serviceType == GSConfig.MODE_OUTSIDE_STOCK)
+						else if (serviceType == GSConfig.MODE_OUTSIDE_STOCK_SOURCE)
 						{
 
 							dataGroup = gson.fromJson(response, GSDailyInOutGroupNew.class);
 
 							if (dataGroup != null)
 							{
-								statsView.makeStatsView(yi_month_enterprise_amount_income_outside_empty_layout, dataGroup, GSConfig.MODE_OUTSIDE_STOCK, GSConfig.STATE_AMOUNT);
-								yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
+								statsView.makeStatsView(yi_month_enterprise_amount_income_outside_empty_layout, dataGroup, GSConfig.MODE_OUTSIDE_STOCK_SOURCE, GSConfig.STATE_AMOUNT);
+								yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
 							}
 
 						}
-						else if (serviceType == GSConfig.MODE_OUTSIDE_RELEASE)
+						else if (serviceType == GSConfig.MODE_OUTSIDE_STOCK_PRODUCT)
 						{
 
 							dataGroup = gson.fromJson(response, GSDailyInOutGroupNew.class);
 
 							if (dataGroup != null)
 							{
-								statsView.makeStatsView(yi_month_enterprise_amount_release_outside_empty_layout, dataGroup, GSConfig.MODE_OUTSIDE_RELEASE, GSConfig.STATE_AMOUNT);
-								yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
+								statsView.makeStatsView(yi_month_enterprise_amount_release_outside_empty_layout, dataGroup, GSConfig.MODE_OUTSIDE_STOCK_PRODUCT, GSConfig.STATE_AMOUNT);
+								yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
 							}
 
 						}
@@ -235,7 +235,7 @@ public class FragmentYearCustomerAmount extends Fragment
 				Map<String,String> params = new HashMap<String,String>();
 
 				params.put("GSType", "YEAR_CUSTOMER");
-				params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"searchYear\": " + searchYear + ", \"qryContent\" : \"" + qryContent + "\",  \"serviceType\" : " + serviceType + " }");
+				params.put("GSQuery", "{ \"BranchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"SearchYear\": " + searchYear + ", \"QryContent\" : \"" + qryContent + "\",  \"ServiceType\" : " + serviceType + " }");
 
 				//Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + params.get("GSQuery"));
 

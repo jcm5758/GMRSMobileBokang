@@ -41,7 +41,8 @@ public class GSConfig
 
     // Acitivity 리스트 : 지점 수정할 때 수정해야 함
 //    public static Class[] Activity_LIST = new Class[]{ com.geurimsoft.bokangnew.view.kwangju.ActivityMain.class, com.geurimsoft.bokangnew.view.joomyung.ActivityMain.class};
-    public static Class[] Activity_LIST = new Class[]{ com.geurimsoft.bokangnew.view.joomyung.ActivityMain.class, com.geurimsoft.bokangnew.view.joomyung.ActivityMain.class};
+    public static Class[] Activity_LIST = new Class[]{
+            com.geurimsoft.bokangnew.view.joomyung.ActivityMain.class, com.geurimsoft.bokangnew.view.joomyung.ActivityMain.class};
 
     public static String LOG_MSG(String className, String funcName)
     {
@@ -66,13 +67,16 @@ public class GSConfig
     public static int STATE_AMOUNT = 0;
     public static int STATE_PRICE = 1;
 
-    public static String[] MODE_NAMES = new String[]{"입고", "출고", "토사", "외부(입고)", "외부(출고)"};
+    public static String[] MODE_NAMES = new String[]{
+            "입고", "출고", "토사", "외부입고(원석)", "외부입고(제품)", "외부출고(원석)", "외부출고(제품)"};
 
     public static int MODE_STOCK = 0;
     public static int MODE_RELEASE = 1;
     public static int MODE_PETOSA = 2;
-    public static int MODE_OUTSIDE_STOCK = 3;
-    public static int MODE_OUTSIDE_RELEASE = 4;
+    public static int MODE_OUTSIDE_STOCK_SOURCE = 3;
+    public static int MODE_OUTSIDE_STOCK_PRODUCT = 4;
+    public static int MODE_OUTSIDE_RELEASE_SOURCE = 5;
+    public static int MODE_OUTSIDE_RELEASE_PRODUCT = 6;
 
     public static int USER_RIGHT_SIZE = 102;
 

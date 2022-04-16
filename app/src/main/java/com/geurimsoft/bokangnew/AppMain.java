@@ -244,7 +244,7 @@ public class AppMain extends Activity
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
 						parseData(userID, userPWD, response);
 					}
 				},
@@ -295,7 +295,7 @@ public class AppMain extends Activity
 			return;
 		}
 
-		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + userInfo.getUserinfo().get(0).getName());
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + userInfo.getUserinfo().get(0).getName());
 
 		GSConfig.CURRENT_USER = userInfo;
 

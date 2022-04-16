@@ -20,37 +20,29 @@ public class StatsView
 {
 
 	private LinearLayout stock_layout, release_layout, petosa_layout;
-	private LinearLayout stock_layout_outside, release_layout_outside;
+	private LinearLayout stock_layout_outside_source, stock_layout_outside_product;
+	private LinearLayout release_layout_outside_source, release_layout_outside_product;
 
 	private Context mContext;
 
 	private GSDailyInOut dio;
 	private int iUnitMoneyType = 0;
 
-	private int stock_header_count;
-	private int release_header_count;
-	private int petosa_header_count;
-
-	private int stock_header_outside_count;
-	private int release_header_outside_count;
-
-	private String[] stock_header_titles;
-	private String[] release_header_titles;
-	private String[] petosa_header_titles;
-	private String[] stock_header_outside_titles;
-	private String[] release_header_outside_titles;
-
-	private int stock_count;
-	private int release_count;
-	private int petosa_count;
-	private int stock_outside_count;
-	private int release_outside_count;
+	private String[] stock_header;
+	private String[] release_header;
+	private String[] petosa_header;
+	private String[] stock_header_outside_source;
+	private String[] stock_header_outside_product;
+	private String[] release_header_outside_source;
+	private String[] release_header_outside_product;
 
 	private ArrayList<GSDailyInOutDetail> inputList;
 	private ArrayList<GSDailyInOutDetail> outputList;
 	private ArrayList<GSDailyInOutDetail> slugeList;
-	private ArrayList<GSDailyInOutDetail> inputOutsideList;
-	private ArrayList<GSDailyInOutDetail> outputOutsideList;
+	private ArrayList<GSDailyInOutDetail> inputOutsideSourceList;
+	private ArrayList<GSDailyInOutDetail> inputOutsideProductList;
+	private ArrayList<GSDailyInOutDetail> outputOutsideSourceList;
+	private ArrayList<GSDailyInOutDetail> outputOutsideProductList;
 
 	public StatsView(Context _context, GSDailyInOut dio, int iUnitMoneyType)
 	{
@@ -59,76 +51,107 @@ public class StatsView
 		this.dio = dio;
 		this.iUnitMoneyType = iUnitMoneyType;
 
-		GSDailyInOutGroup inputGroup = this.dio.findByServiceType("입고");
-		if (inputGroup != null)
+		GSDailyInOutGroup inoutGroup = null;
+
+		//----------------------------------------
+		// 입고 데이터
+		//----------------------------------------
+
+		inoutGroup = this.dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] );
+		if (inoutGroup != null)
 		{
-			this.stock_header_count = inputGroup.headerCount;
-			this.stock_header_titles = inputGroup.header;
-			this.stock_count = inputGroup.recordCount;
-			this.inputList = inputGroup.list;
-			//Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "") + " : inputList is not null.");
+			this.stock_header = inoutGroup.Header;
+			this.inputList = inoutGroup.List;
 		}
 
-		GSDailyInOutGroup outputGroup = this.dio.findByServiceType("출고");
-		if (outputGroup != null)
+		//----------------------------------------
+		// 출고 데이터
+		//----------------------------------------
+
+		inoutGroup = this.dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] );
+		if (inoutGroup != null)
 		{
-			this.release_header_count = outputGroup.headerCount;
-			this.release_header_titles = outputGroup.header;
-			this.release_count = outputGroup.recordCount;
-			this.outputList = outputGroup.list;
-			//Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "") + " : outputList is not null.");
+			this.release_header = inoutGroup.Header;
+			this.outputList = inoutGroup.List;
 		}
 
-		GSDailyInOutGroup slugeGroup = this.dio.findByServiceType("토사");
-		if (slugeGroup != null)
+		//----------------------------------------
+		// 토사 데이터
+		//----------------------------------------
+
+		inoutGroup = this.dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] );
+		if (inoutGroup != null)
 		{
-			this.petosa_header_count = slugeGroup.headerCount;
-			this.petosa_header_titles = slugeGroup.header;
-			this.petosa_count = slugeGroup.recordCount;
-			this.slugeList = slugeGroup.list;
-			//Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "") + " : slugeList is not null.");
+			this.petosa_header = inoutGroup.Header;
+			this.slugeList = inoutGroup.List;
 		}
 
-		GSDailyInOutGroup inputOutsideGroup = this.dio.findByServiceType("외부입고");
-		if (inputOutsideGroup != null)
+		//----------------------------------------
+		// 외부입고(원석) 데이터
+		//----------------------------------------
+
+		inoutGroup = this.dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] );
+		if (inoutGroup != null)
 		{
-			this.stock_header_outside_count = inputOutsideGroup.headerCount;
-			this.stock_header_outside_titles = inputOutsideGroup.header;
-			this.stock_outside_count = inputOutsideGroup.recordCount;
-			this.inputOutsideList = inputOutsideGroup.list;
-			//Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "") + " : inputList is not null.");
+			this.stock_header_outside_source = inoutGroup.Header;
+			this.inputOutsideSourceList = inoutGroup.List;
 		}
 
-		GSDailyInOutGroup outputOutsideGroup = this.dio.findByServiceType("외부출고");
-		if (outputOutsideGroup != null)
+		//----------------------------------------
+		// 외부입고(제품) 데이터
+		//----------------------------------------
+
+		inoutGroup = this.dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] );
+		if (inoutGroup != null)
 		{
-			this.release_header_outside_count = outputOutsideGroup.headerCount;
-			this.release_header_outside_titles = outputOutsideGroup.header;
-			this.release_outside_count = outputOutsideGroup.recordCount;
-			this.outputOutsideList = outputOutsideGroup.list;
-			//Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "") + " : outputList is not null.");
+			this.stock_header_outside_product = inoutGroup.Header;
+			this.inputOutsideProductList = inoutGroup.List;
+		}
+
+		//----------------------------------------
+		// 외부출고(원석) 데이터
+		//----------------------------------------
+
+		inoutGroup = this.dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE_SOURCE] );
+		if (inoutGroup != null)
+		{
+			this.release_header_outside_source = inoutGroup.Header;
+			this.outputOutsideSourceList = inoutGroup.List;
+		}
+
+		//----------------------------------------
+		// 외부출고(제품) 데이터
+		//----------------------------------------
+
+		inoutGroup = this.dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE_PRODUCT] );
+		if (inoutGroup != null)
+		{
+			this.release_header_outside_product = inoutGroup.Header;
+			this.outputOutsideProductList = inoutGroup.List;
 		}
 
 	}
 
 	/**
 	 * 입고 데이터 테이블로 표출
-	 * @param _stock_layout
+	 * @param _layout
 	 */
-	public void makeStockStatsView(LinearLayout _stock_layout)
+	public void makeStockView(LinearLayout _layout)
 	{
 
-		String functionName = "makeStockStatsView()";
+		String functionName = "makeStockView()";
 
-		// 입고 리스트 미존재시 패스
+		// 리스트 미존재시 패스
 		if(this.inputList == null || this.inputList.size() <= 0)
 		{
-			//Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(),functionName) + " : inputList is null.");
 			return;
 		}
 
-		// 입고 레이아웃 지정
-		this.stock_layout = _stock_layout;
+		// 레이아웃 지정
+		this.stock_layout = _layout;
+
+		ArrayList<GSDailyInOutDetail> list = this.inputList;
+		String[] header = this.stock_header;
 
 		// Layout parameter
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -137,22 +160,22 @@ public class StatsView
 		header_layout.setOrientation(LinearLayout.HORIZONTAL);
 
 		// Header Layout
-		for(int stock_header_index = 0; stock_header_index < this.stock_header_count; stock_header_index++)
+		for(int header_index = 0; header_index < header.length; header_index++)
 		{
-			TextView stock_title_textview = makeMenuTextView(mContext, this.stock_header_titles[stock_header_index], "#ffffff", Gravity.CENTER);
-			header_layout.addView(stock_title_textview);
+			TextView title_textview = makeMenuTextView(mContext, header[header_index], "#ffffff", Gravity.CENTER);
+			header_layout.addView(title_textview);
 		}
 
-		stock_layout.addView(header_layout);
+		this.stock_layout.addView(header_layout);
 
 		// 본문 레이아웃
-		TextView stock_item_textview;
+		TextView item_textview;
 
-		for(int stock_index = 0; stock_index < this.inputList.size(); stock_index++)
+		for(int stock_index = 0; stock_index < list.size(); stock_index++)
 		{
 
 			// 상세 정보
-			GSDailyInOutDetail diod = inputList.get(stock_index);
+			GSDailyInOutDetail diod = list.get(stock_index);
 
 			// 레이아웃
 			LinearLayout stock_row_layout = new LinearLayout(mContext);
@@ -168,12 +191,12 @@ public class StatsView
 
 //			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + diod.customerName);
 
-			if(stock_index == stock_count - 1)
-				stock_item_textview = makeMenuTextView(mContext, diod.customerName, "#000000", gravity);
+			if( stock_index == (list.size() - 1) )
+				item_textview = makeMenuTextView(mContext, diod.customerName, "#000000", gravity);
 			else
-				stock_item_textview = makeRowTextView(mContext, diod.customerName, gravity);
+				item_textview = makeRowTextView(mContext, diod.customerName, gravity);
 
-			stock_row_layout.addView(stock_item_textview);
+			stock_row_layout.addView(item_textview);
 
 			//-------------------------------------------
 			// 입고 데이터 값 채우기
@@ -186,16 +209,16 @@ public class StatsView
 
 				gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
 
-				if(stock_index == stock_count - 1)
-					stock_item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
+				if( stock_index == (list.size() - 1) )
+					item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
 				else
-					stock_item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
+					item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
 
-				stock_row_layout.addView(stock_item_textview);
+				stock_row_layout.addView(item_textview);
 
 			}
 
-			stock_layout.addView(stock_row_layout);
+			this.stock_layout.addView(stock_row_layout);
 
 		}
 
@@ -203,22 +226,24 @@ public class StatsView
 
 	/**
 	 * 출고 데이터 테이블로 표출
-	 * @param _release_layout
+	 * @param _layout
 	 */
-	public void makeReleaseStatsView(LinearLayout _release_layout)
+	public void makeReleaseView(LinearLayout _layout)
 	{
 
-		String functionName = "makeReleaseStatsView()";
+		String functionName = "makeReleaseView()";
 
-		// 출고 데이터 미존재시 패스
+		// 리스트 미존재시 패스
 		if(this.outputList == null || this.outputList.size() <= 0)
 		{
-			//Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " : outputList is null.");
 			return;
 		}
 
-		// 출고 레이아웃 지정
-		this.release_layout = _release_layout;
+		// 레이아웃 지정
+		this.release_layout = _layout;
+
+		ArrayList<GSDailyInOutDetail> list = this.outputList;
+		String[] header = this.release_header;
 
 		// Layout parameter
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -227,27 +252,27 @@ public class StatsView
 		header_layout.setOrientation(LinearLayout.HORIZONTAL);
 
 		// Header Layout
-		for(int release_header_index = 0; release_header_index < this.release_header_count; release_header_index++)
+		for(int header_index = 0; header_index < header.length; header_index++)
 		{
-			TextView release_title_textview = makeMenuTextView(mContext, this.release_header_titles[release_header_index], "#ffffff", Gravity.CENTER);
-			header_layout.addView(release_title_textview);
+			TextView title_textview = makeMenuTextView(mContext, header[header_index], "#ffffff", Gravity.CENTER);
+			header_layout.addView(title_textview);
 		}
 
-		release_layout.addView(header_layout);
+		this.release_layout.addView(header_layout);
 
 		// 본문 레이아웃
-		TextView release_item_textview;
+		TextView item_textview;
 
-		for(int release_index = 0; release_index < this.outputList.size(); release_index++)
+		for(int stock_index = 0; stock_index < list.size(); stock_index++)
 		{
 
 			// 상세 정보
-			GSDailyInOutDetail diod = this.outputList.get(release_index);
+			GSDailyInOutDetail diod = list.get(stock_index);
 
 			// 레이아웃
-			LinearLayout release_row_layout = new LinearLayout(mContext);
-			release_row_layout.setLayoutParams(params);
-			release_row_layout.setOrientation(LinearLayout.HORIZONTAL);
+			LinearLayout stock_row_layout = new LinearLayout(mContext);
+			stock_row_layout.setLayoutParams(params);
+			stock_row_layout.setOrientation(LinearLayout.HORIZONTAL);
 
 			// 가운데 정렬
 			int gravity = Gravity.CENTER;
@@ -256,15 +281,17 @@ public class StatsView
 			// 거래처명
 			//-------------------------------------------
 
-			if(release_index == this.release_count - 1)
-				release_item_textview = makeMenuTextView(mContext, diod.customerName, "#000000", gravity);
-			else
-				release_item_textview = makeRowTextView(mContext, diod.customerName, gravity);
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + diod.customerName);
 
-			release_row_layout.addView(release_item_textview);
+			if( stock_index == (list.size() - 1) )
+				item_textview = makeMenuTextView(mContext, diod.customerName, "#000000", gravity);
+			else
+				item_textview = makeRowTextView(mContext, diod.customerName, gravity);
+
+			stock_row_layout.addView(item_textview);
 
 			//-------------------------------------------
-			// 출고 데이터 값 채우기
+			// 입고 데이터 값 채우기
 			//-------------------------------------------
 
 			double[] values = diod.getValues(this.iUnitMoneyType);
@@ -274,16 +301,16 @@ public class StatsView
 
 				gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
 
-				if(release_index == this.release_count - 1)
-					release_item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
+				if( stock_index == (list.size() - 1) )
+					item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
 				else
-					release_item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
+					item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
 
-				release_row_layout.addView(release_item_textview);
+				stock_row_layout.addView(item_textview);
 
 			}
 
-			release_layout.addView(release_row_layout);
+			this.release_layout.addView(stock_row_layout);
 
 		}
 
@@ -291,22 +318,24 @@ public class StatsView
 
 	/**
 	 * 토사 데이터 테이블로 표출
-	 * @param _petosa_layout
+	 * @param _layout
 	 */
-	public void makePetosaStatsView(LinearLayout _petosa_layout)
+	public void makePetosaView(LinearLayout _layout)
 	{
 
-		String functionName = "makeReleaseStatsView()";
+		String functionName = "makePetosaView()";
 
-		// 토사 데이터 미존재시 패스
+		// 리스트 미존재시 패스
 		if(this.slugeList == null || this.slugeList.size() <= 0)
 		{
-			//Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " : slugeList is null.");
 			return;
 		}
 
-		// 토사 레이아웃 지정
-		this.petosa_layout = _petosa_layout;
+		// 레이아웃 지정
+		this.petosa_layout = _layout;
+
+		ArrayList<GSDailyInOutDetail> list = this.slugeList;
+		String[] header = this.petosa_header;
 
 		// Layout parameter
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -315,10 +344,10 @@ public class StatsView
 		header_layout.setOrientation(LinearLayout.HORIZONTAL);
 
 		// Header Layout
-		for(int header_index = 0; header_index < this.petosa_header_count; header_index++)
+		for(int header_index = 0; header_index < header.length; header_index++)
 		{
-			TextView release_title_textview = makeMenuTextView(mContext, this.petosa_header_titles[header_index], "#ffffff", Gravity.CENTER);
-			header_layout.addView(release_title_textview);
+			TextView title_textview = makeMenuTextView(mContext, header[header_index], "#ffffff", Gravity.CENTER);
+			header_layout.addView(title_textview);
 		}
 
 		this.petosa_layout.addView(header_layout);
@@ -326,99 +355,11 @@ public class StatsView
 		// 본문 레이아웃
 		TextView item_textview;
 
-		for(int index = 0; index < this.slugeList.size(); index++)
+		for(int stock_index = 0; stock_index < list.size(); stock_index++)
 		{
 
 			// 상세 정보
-			GSDailyInOutDetail diod = this.slugeList.get(index);
-
-			// 레이아웃
-			LinearLayout release_row_layout = new LinearLayout(mContext);
-			release_row_layout.setLayoutParams(params);
-			release_row_layout.setOrientation(LinearLayout.HORIZONTAL);
-
-			// 가운데 정렬
-			int gravity = Gravity.CENTER;
-
-			//-------------------------------------------
-			// 거래처명
-			//-------------------------------------------
-
-			if(index == this.petosa_count - 1)
-				item_textview = makeMenuTextView(mContext, diod.customerName, "#000000", gravity);
-			else
-				item_textview = makeRowTextView(mContext, diod.customerName, gravity);
-
-			release_row_layout.addView(item_textview);
-
-			//-------------------------------------------
-			// 출고 데이터 값 채우기
-			//-------------------------------------------
-
-			double[] values = diod.getValues(this.iUnitMoneyType);
-
-			for(int i = 0; i < values.length; i++)
-			{
-
-				gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
-
-				if(index == this.petosa_count - 1)
-					item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
-				else
-					item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
-
-				release_row_layout.addView(item_textview);
-
-			}
-
-			this.petosa_layout.addView(release_row_layout);
-
-		}
-
-	}
-
-	/**
-	 * 입고 데이터 테이블로 표출
-	 * @param _stock_layout
-	 */
-	public void makeStockOutsideStatsView(LinearLayout _stock_layout)
-	{
-
-		String functionName = "makeStockOutsideStatsView()";
-
-		// 입고 리스트 미존재시 패스
-		if(this.inputOutsideList == null || this.inputOutsideList.size() <= 0)
-		{
-			//Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " : inputOutsideList is null.");
-			return;
-		}
-
-		// 입고 레이아웃 지정
-		this.stock_layout_outside = _stock_layout;
-
-		// Layout parameter
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		LinearLayout header_layout = new LinearLayout(mContext);
-		header_layout.setLayoutParams(params);
-		header_layout.setOrientation(LinearLayout.HORIZONTAL);
-
-		// Header Layout
-		for(int stock_header_index = 0; stock_header_index < this.stock_header_outside_count; stock_header_index++)
-		{
-			TextView stock_title_textview = makeMenuTextView(mContext, this.stock_header_outside_titles[stock_header_index], "#ffffff", Gravity.CENTER);
-			header_layout.addView(stock_title_textview);
-		}
-
-		stock_layout_outside.addView(header_layout);
-
-		// 본문 레이아웃
-		TextView stock_item_textview;
-
-		for(int stock_index = 0; stock_index < this.inputOutsideList.size(); stock_index++)
-		{
-
-			// 상세 정보
-			GSDailyInOutDetail diod = inputOutsideList.get(stock_index);
+			GSDailyInOutDetail diod = list.get(stock_index);
 
 			// 레이아웃
 			LinearLayout stock_row_layout = new LinearLayout(mContext);
@@ -434,12 +375,12 @@ public class StatsView
 
 //			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + diod.customerName);
 
-			if(stock_index == stock_outside_count - 1)
-				stock_item_textview = makeMenuTextView(mContext, diod.customerName, "#000000", gravity);
+			if( stock_index == (list.size() - 1) )
+				item_textview = makeMenuTextView(mContext, diod.customerName, "#000000", gravity);
 			else
-				stock_item_textview = makeRowTextView(mContext, diod.customerName, gravity);
+				item_textview = makeRowTextView(mContext, diod.customerName, gravity);
 
-			stock_row_layout.addView(stock_item_textview);
+			stock_row_layout.addView(item_textview);
 
 			//-------------------------------------------
 			// 입고 데이터 값 채우기
@@ -452,39 +393,41 @@ public class StatsView
 
 				gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
 
-				if(stock_index == stock_outside_count - 1)
-					stock_item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
+				if( stock_index == (list.size() - 1) )
+					item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
 				else
-					stock_item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
+					item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
 
-				stock_row_layout.addView(stock_item_textview);
+				stock_row_layout.addView(item_textview);
 
 			}
 
-			stock_layout_outside.addView(stock_row_layout);
+			this.petosa_layout.addView(stock_row_layout);
 
 		}
 
 	}
 
 	/**
-	 * 출고 데이터 테이블로 표출
-	 * @param _release_layout
+	 * 외부입고(원석) 데이터 테이블로 표출
+	 * @param _layout
 	 */
-	public void makeReleaseOutsideStatsView(LinearLayout _release_layout)
+	public void makeStockOutsideSourceView(LinearLayout _layout)
 	{
 
-		String functionName = "makeReleaseOutsideStatsView()";
+		String functionName = "makeStockOutsideSourceView()";
 
-		// 출고 데이터 미존재시 패스
-		if(this.outputOutsideList == null || this.outputOutsideList.size() <= 0)
+		// 리스트 미존재시 패스
+		if(this.inputOutsideSourceList == null || this.inputOutsideSourceList.size() <= 0)
 		{
-			//Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " : outputOutsideList is null.");
 			return;
 		}
 
-		// 출고 레이아웃 지정
-		this.release_layout_outside = _release_layout;
+		// 레이아웃 지정
+		this.stock_layout_outside_source = _layout;
+
+		ArrayList<GSDailyInOutDetail> list = this.inputOutsideSourceList;
+		String[] header = this.stock_header_outside_source;
 
 		// Layout parameter
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
@@ -493,27 +436,27 @@ public class StatsView
 		header_layout.setOrientation(LinearLayout.HORIZONTAL);
 
 		// Header Layout
-		for(int release_header_index = 0; release_header_index < this.release_header_outside_count; release_header_index++)
+		for(int header_index = 0; header_index < header.length; header_index++)
 		{
-			TextView release_title_textview = makeMenuTextView(mContext, this.release_header_outside_titles[release_header_index], "#ffffff", Gravity.CENTER);
-			header_layout.addView(release_title_textview);
+			TextView title_textview = makeMenuTextView(mContext, header[header_index], "#ffffff", Gravity.CENTER);
+			header_layout.addView(title_textview);
 		}
 
-		release_layout_outside.addView(header_layout);
+		this.stock_layout_outside_source.addView(header_layout);
 
 		// 본문 레이아웃
-		TextView release_item_textview;
+		TextView item_textview;
 
-		for(int release_index = 0; release_index < this.outputOutsideList.size(); release_index++)
+		for(int stock_index = 0; stock_index < list.size(); stock_index++)
 		{
 
 			// 상세 정보
-			GSDailyInOutDetail diod = this.outputOutsideList.get(release_index);
+			GSDailyInOutDetail diod = list.get(stock_index);
 
 			// 레이아웃
-			LinearLayout release_row_layout = new LinearLayout(mContext);
-			release_row_layout.setLayoutParams(params);
-			release_row_layout.setOrientation(LinearLayout.HORIZONTAL);
+			LinearLayout stock_row_layout = new LinearLayout(mContext);
+			stock_row_layout.setLayoutParams(params);
+			stock_row_layout.setOrientation(LinearLayout.HORIZONTAL);
 
 			// 가운데 정렬
 			int gravity = Gravity.CENTER;
@@ -522,15 +465,17 @@ public class StatsView
 			// 거래처명
 			//-------------------------------------------
 
-			if(release_index == this.release_outside_count - 1)
-				release_item_textview = makeMenuTextView(mContext, diod.customerName, "#000000", gravity);
-			else
-				release_item_textview = makeRowTextView(mContext, diod.customerName, gravity);
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + diod.customerName);
 
-			release_row_layout.addView(release_item_textview);
+			if( stock_index == (list.size() - 1) )
+				item_textview = makeMenuTextView(mContext, diod.customerName, "#000000", gravity);
+			else
+				item_textview = makeRowTextView(mContext, diod.customerName, gravity);
+
+			stock_row_layout.addView(item_textview);
 
 			//-------------------------------------------
-			// 출고 데이터 값 채우기
+			// 입고 데이터 값 채우기
 			//-------------------------------------------
 
 			double[] values = diod.getValues(this.iUnitMoneyType);
@@ -540,16 +485,292 @@ public class StatsView
 
 				gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
 
-				if(release_index == this.release_outside_count - 1)
-					release_item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
+				if( stock_index == (list.size() - 1) )
+					item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
 				else
-					release_item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
+					item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
 
-				release_row_layout.addView(release_item_textview);
+				stock_row_layout.addView(item_textview);
 
 			}
 
-			release_layout_outside.addView(release_row_layout);
+			this.stock_layout_outside_source.addView(stock_row_layout);
+
+		}
+
+	}
+
+	/**
+	 * 외부입고(제품) 데이터 테이블로 표출
+	 * @param _layout
+	 */
+	public void makeStockOutsideProductView(LinearLayout _layout)
+	{
+
+		String functionName = "makeStockOutsideProductView()";
+
+		// 리스트 미존재시 패스
+		if(this.inputOutsideProductList == null || this.inputOutsideProductList.size() <= 0)
+		{
+			return;
+		}
+
+		// 레이아웃 지정
+		this.stock_layout_outside_product = _layout;
+
+		ArrayList<GSDailyInOutDetail> list = this.inputOutsideProductList;
+		String[] header = this.stock_header_outside_product;
+
+		// Layout parameter
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		LinearLayout header_layout = new LinearLayout(mContext);
+		header_layout.setLayoutParams(params);
+		header_layout.setOrientation(LinearLayout.HORIZONTAL);
+
+		// Header Layout
+		for(int header_index = 0; header_index < header.length; header_index++)
+		{
+			TextView title_textview = makeMenuTextView(mContext, header[header_index], "#ffffff", Gravity.CENTER);
+			header_layout.addView(title_textview);
+		}
+
+		this.stock_layout_outside_product.addView(header_layout);
+
+		// 본문 레이아웃
+		TextView item_textview;
+
+		for(int stock_index = 0; stock_index < list.size(); stock_index++)
+		{
+
+			// 상세 정보
+			GSDailyInOutDetail diod = list.get(stock_index);
+
+			// 레이아웃
+			LinearLayout stock_row_layout = new LinearLayout(mContext);
+			stock_row_layout.setLayoutParams(params);
+			stock_row_layout.setOrientation(LinearLayout.HORIZONTAL);
+
+			// 가운데 정렬
+			int gravity = Gravity.CENTER;
+
+			//-------------------------------------------
+			// 거래처명
+			//-------------------------------------------
+
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + diod.customerName);
+
+			if( stock_index == (list.size() - 1) )
+				item_textview = makeMenuTextView(mContext, diod.customerName, "#000000", gravity);
+			else
+				item_textview = makeRowTextView(mContext, diod.customerName, gravity);
+
+			stock_row_layout.addView(item_textview);
+
+			//-------------------------------------------
+			// 입고 데이터 값 채우기
+			//-------------------------------------------
+
+			double[] values = diod.getValues(this.iUnitMoneyType);
+
+			for(int i = 0; i < values.length; i++)
+			{
+
+				gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
+
+				if( stock_index == (list.size() - 1) )
+					item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
+				else
+					item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
+
+				stock_row_layout.addView(item_textview);
+
+			}
+
+			this.stock_layout_outside_product.addView(stock_row_layout);
+
+		}
+
+	}
+
+	/**
+	 * 외부출고(원석) 데이터 테이블로 표출
+	 * @param _layout
+	 */
+	public void makeReleaseOutsideSourceView(LinearLayout _layout)
+	{
+
+		String functionName = "makeReleaseOutsideSourceView()";
+
+		// 리스트 미존재시 패스
+		if(this.outputOutsideSourceList == null || this.outputOutsideSourceList.size() <= 0)
+		{
+			return;
+		}
+
+		// 레이아웃 지정
+		this.release_layout_outside_source = _layout;
+
+		ArrayList<GSDailyInOutDetail> list = this.outputOutsideSourceList;
+		String[] header = this.release_header_outside_source;
+
+		// Layout parameter
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		LinearLayout header_layout = new LinearLayout(mContext);
+		header_layout.setLayoutParams(params);
+		header_layout.setOrientation(LinearLayout.HORIZONTAL);
+
+		// Header Layout
+		for(int header_index = 0; header_index < header.length; header_index++)
+		{
+			TextView title_textview = makeMenuTextView(mContext, header[header_index], "#ffffff", Gravity.CENTER);
+			header_layout.addView(title_textview);
+		}
+
+		this.release_layout_outside_source.addView(header_layout);
+
+		// 본문 레이아웃
+		TextView item_textview;
+
+		for(int stock_index = 0; stock_index < list.size(); stock_index++)
+		{
+
+			// 상세 정보
+			GSDailyInOutDetail diod = list.get(stock_index);
+
+			// 레이아웃
+			LinearLayout stock_row_layout = new LinearLayout(mContext);
+			stock_row_layout.setLayoutParams(params);
+			stock_row_layout.setOrientation(LinearLayout.HORIZONTAL);
+
+			// 가운데 정렬
+			int gravity = Gravity.CENTER;
+
+			//-------------------------------------------
+			// 거래처명
+			//-------------------------------------------
+
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + diod.customerName);
+
+			if( stock_index == (list.size() - 1) )
+				item_textview = makeMenuTextView(mContext, diod.customerName, "#000000", gravity);
+			else
+				item_textview = makeRowTextView(mContext, diod.customerName, gravity);
+
+			stock_row_layout.addView(item_textview);
+
+			//-------------------------------------------
+			// 입고 데이터 값 채우기
+			//-------------------------------------------
+
+			double[] values = diod.getValues(this.iUnitMoneyType);
+
+			for(int i = 0; i < values.length; i++)
+			{
+
+				gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
+
+				if( stock_index == (list.size() - 1) )
+					item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
+				else
+					item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
+
+				stock_row_layout.addView(item_textview);
+
+			}
+
+			this.release_layout_outside_source.addView(stock_row_layout);
+
+		}
+
+	}
+
+	/**
+	 * 외부출고(제품) 데이터 테이블로 표출
+	 * @param _layout
+	 */
+	public void makeReleaseOutsideProductView(LinearLayout _layout)
+	{
+
+		String functionName = "makeReleaseOutsideProductView()";
+
+		// 리스트 미존재시 패스
+		if(this.outputOutsideProductList == null || this.outputOutsideProductList.size() <= 0)
+		{
+			return;
+		}
+
+		// 레이아웃 지정
+		this.release_layout_outside_product = _layout;
+
+		ArrayList<GSDailyInOutDetail> list = this.outputOutsideProductList;
+		String[] header = this.release_header_outside_product;
+
+		// Layout parameter
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		LinearLayout header_layout = new LinearLayout(mContext);
+		header_layout.setLayoutParams(params);
+		header_layout.setOrientation(LinearLayout.HORIZONTAL);
+
+		// Header Layout
+		for(int header_index = 0; header_index < header.length; header_index++)
+		{
+			TextView title_textview = makeMenuTextView(mContext, header[header_index], "#ffffff", Gravity.CENTER);
+			header_layout.addView(title_textview);
+		}
+
+		this.release_layout_outside_product.addView(header_layout);
+
+		// 본문 레이아웃
+		TextView item_textview;
+
+		for(int stock_index = 0; stock_index < list.size(); stock_index++)
+		{
+
+			// 상세 정보
+			GSDailyInOutDetail diod = list.get(stock_index);
+
+			// 레이아웃
+			LinearLayout stock_row_layout = new LinearLayout(mContext);
+			stock_row_layout.setLayoutParams(params);
+			stock_row_layout.setOrientation(LinearLayout.HORIZONTAL);
+
+			// 가운데 정렬
+			int gravity = Gravity.CENTER;
+
+			//-------------------------------------------
+			// 거래처명
+			//-------------------------------------------
+
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + diod.customerName);
+
+			if( stock_index == (list.size() - 1) )
+				item_textview = makeMenuTextView(mContext, diod.customerName, "#000000", gravity);
+			else
+				item_textview = makeRowTextView(mContext, diod.customerName, gravity);
+
+			stock_row_layout.addView(item_textview);
+
+			//-------------------------------------------
+			// 입고 데이터 값 채우기
+			//-------------------------------------------
+
+			double[] values = diod.getValues(this.iUnitMoneyType);
+
+			for(int i = 0; i < values.length; i++)
+			{
+
+				gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
+
+				if( stock_index == (list.size() - 1) )
+					item_textview = makeMenuTextView(mContext, GSConfig.changeToCommanString(values[i]), "#000000", gravity);
+				else
+					item_textview = makeRowTextView(mContext, GSConfig.changeToCommanString(values[i]), gravity);
+
+				stock_row_layout.addView(item_textview);
+
+			}
+
+			this.release_layout_outside_product.addView(stock_row_layout);
 
 		}
 

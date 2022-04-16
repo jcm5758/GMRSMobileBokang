@@ -27,23 +27,11 @@ public class GSDailyInOut
 
         for(GSDailyInOutGroup diog : this.list)
         {
-            if (diog.serviceType.equals(serviceType))
+            if (diog.ServiceType.equals(serviceType))
                 return diog;
         }
 
         return null;
-
-    }
-
-    public void print()
-    {
-
-        Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : Size of list : " + this.list.size());
-
-        for(GSDailyInOutGroup group : this.list)
-        {
-            group.print();
-        }
 
     }
 

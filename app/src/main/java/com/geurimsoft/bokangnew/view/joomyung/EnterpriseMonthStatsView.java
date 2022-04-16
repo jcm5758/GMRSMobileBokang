@@ -96,9 +96,9 @@ public class EnterpriseMonthStatsView
 				return;
 			}
 
-			int header_count = group.headerCount;
-			String[] header_titles = group.header;
-			int recordCount = group.recordCount;
+			int header_count = group.Header.length;
+			String[] header_titles = group.Header;
+			int recordCount = group.List.size();
 
 //			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " header_count : " + header_count);
 //			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " header_titles.length : " + header_titles.length);
@@ -106,7 +106,7 @@ public class EnterpriseMonthStatsView
 //
 //			group.print();
 
-			ArrayList<GSDailyInOutDetail> detailList = group.list;
+			ArrayList<GSDailyInOutDetail> detailList = group.List;
 
 			if(detailList == null || detailList.size() == 0)
 			{

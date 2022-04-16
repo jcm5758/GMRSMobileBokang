@@ -46,10 +46,12 @@ public class FragmentDailyPrice extends Fragment
 {
 
 	private LinearLayout income_empty_layout, release_empty_layout, petosa_empty_layout;
-	private TextView stats_daily_date, daily_income_title, daily_release_title, daily_petosa_title;
+	private LinearLayout income_empty_layout_outside_source, income_empty_layout_outside_product;
+	private LinearLayout release_empty_layout_outside_source, release_empty_layout_outside_product;
 
-	private LinearLayout income_empty_layout_outside, release_empty_layout_outside;
-	private TextView daily_income_title_outside, daily_release_title_outside;
+	private TextView stats_daily_date, daily_income_title, daily_release_title, daily_petosa_title;
+	private TextView daily_income_title_outside_source, daily_income_title_outside_product;
+	private TextView daily_release_title_outside_source, daily_release_title_outside_product;
 
 	private DecimalFormat df = new DecimalFormat("#,###");
 
@@ -78,25 +80,55 @@ public class FragmentDailyPrice extends Fragment
 
 		View view = this.getView();
 
-		this.income_empty_layout = (LinearLayout)view.findViewById(R.id.income_empty_layout);
-		this.release_empty_layout = (LinearLayout)view.findViewById(R.id.release_empty_layout);
-		this.petosa_empty_layout = (LinearLayout)view.findViewById(R.id.petosa_empty_layout);
-
-		this.income_empty_layout_outside = (LinearLayout)view.findViewById(R.id.income_empty_layout_outside);
-		this.release_empty_layout_outside = (LinearLayout)view.findViewById(R.id.release_empty_layout_outside);
-
 		this.loading_indicator = (LinearLayout)view.findViewById(R.id.loading_indicator);
 		this.loading_fail = (LinearLayout)view.findViewById(R.id.loading_fail);
 
+		// 입고 빈 레이아웃
+		this.income_empty_layout = (LinearLayout)view.findViewById(R.id.income_empty_layout);
+
+		// 출고 빈 레이아웃
+		this.release_empty_layout = (LinearLayout)view.findViewById(R.id.release_empty_layout);
+
+		// 토사 빈 레이아웃
+		this.petosa_empty_layout = (LinearLayout)view.findViewById(R.id.petosa_empty_layout);
+
+		// 외부입고(원석) 빈 레이아웃
+		this.income_empty_layout_outside_source = (LinearLayout)view.findViewById(R.id.income_empty_layout_outside_source);
+
+		// 외부입고(제품) 빈 레이아웃
+		this.income_empty_layout_outside_product = (LinearLayout)view.findViewById(R.id.income_empty_layout_outside_product);
+
+		// 외부출고(원석) 빈 레이아웃
+		this.release_empty_layout_outside_source = (LinearLayout)view.findViewById(R.id.release_empty_layout_outside_source);
+
+		// 외부출고(제품) 빈 레이아웃
+		this.release_empty_layout_outside_product = (LinearLayout)view.findViewById(R.id.release_empty_layout_outside_product);
+
+		// 제목 텍스트 뷰
 		this.stats_daily_date = (TextView)view.findViewById(R.id.stats_daily_date);
 
+		// 입고 텍스트 뷰
 		this.daily_income_title = (TextView) view.findViewById(R.id.daily_income_title);
+
+		// 출고 텍스트 뷰
 		this.daily_release_title = (TextView) view.findViewById(R.id.daily_release_title);
+
+		// 토사 텍스트 뷰
 		this.daily_petosa_title = (TextView) view.findViewById(R.id.daily_petosa_title);
 
-		this.daily_income_title_outside = (TextView) view.findViewById(R.id.daily_income_title_outside);
-		this.daily_release_title_outside = (TextView) view.findViewById(R.id.daily_release_title_outside);
+		// 외부입고(원석) 텍스트 뷰
+		this.daily_income_title_outside_source = (TextView) view.findViewById(R.id.daily_income_title_outside_source);
 
+		// 외부입고(제품) 텍스트 뷰
+		this.daily_income_title_outside_product = (TextView) view.findViewById(R.id.daily_income_title_outside_product);
+
+		// 외부출고(원석) 텍스트 뷰
+		this.daily_release_title_outside_source = (TextView) view.findViewById(R.id.daily_release_title_outside_source);
+
+		// 외부출고(제품) 텍스트 뷰
+		this.daily_release_title_outside_product = (TextView) view.findViewById(R.id.daily_release_title_outside_product);
+
+		// 일일 입고/출고/토사 금액 조회
 		makeDailyPriceData(GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_MONTH,GSConfig.DAY_STATS_DAY);
 
 	}
@@ -229,39 +261,121 @@ public class FragmentDailyPrice extends Fragment
 			return;
 		}
 
+		// 레이아웃 초기화
 		income_empty_layout.removeAllViews();
 		release_empty_layout.removeAllViews();
 		petosa_empty_layout.removeAllViews();
-
-		income_empty_layout_outside.removeAllViews();
-		release_empty_layout_outside.removeAllViews();
+		income_empty_layout_outside_source.removeAllViews();
+		income_empty_layout_outside_product.removeAllViews();
+		release_empty_layout_outside_source.removeAllViews();
+		release_empty_layout_outside_product.removeAllViews();
 
 		StatsView statsView = new StatsView(getActivity(), dio, 1);
 
-		statsView.makeStockStatsView(income_empty_layout);
-		GSDailyInOutGroup tempGroup = dio.findByServiceType("입고");
-		if (tempGroup != null)
+		//---------------------------------------------------------------------------------
+		// 입고 데이터 표출
+		//---------------------------------------------------------------------------------
+
+		GSDailyInOutGroup tempGroup = dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] );
+		if (tempGroup != null && tempGroup.List.size() > 0)
+		{
+			statsView.makeStockView(income_empty_layout);
 			daily_income_title.setText(tempGroup.getTitleMoney());
+		}
+		else
+		{
+			daily_income_title.setVisibility(View.GONE);
+		}
 
-		statsView.makeReleaseStatsView(release_empty_layout);
-		tempGroup = dio.findByServiceType("출고");
-		if (tempGroup != null)
+		//---------------------------------------------------------------------------------
+		// 출고 데이터 표출
+		//---------------------------------------------------------------------------------
+
+		tempGroup = dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] );
+		if (tempGroup != null && tempGroup.List.size() > 0)
+		{
+			statsView.makeReleaseView(release_empty_layout);
 			daily_release_title.setText(tempGroup.getTitleMoney());
+		}
+		else
+		{
+			daily_release_title.setVisibility(View.GONE);
+		}
 
-		statsView.makePetosaStatsView(petosa_empty_layout);
-		tempGroup = dio.findByServiceType("토사");
-		if (tempGroup != null)
+		//---------------------------------------------------------------------------------
+		// 토사 데이터 표출
+		//---------------------------------------------------------------------------------
+
+		tempGroup = dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] );
+		if (tempGroup != null && tempGroup.List.size() > 0)
+		{
+			statsView.makePetosaView(petosa_empty_layout);
 			daily_petosa_title.setText(tempGroup.getTitleMoney());
+		}
+		else
+		{
+			daily_petosa_title.setVisibility(View.GONE);
+		}
 
-		statsView.makeStockOutsideStatsView(income_empty_layout_outside);
-		tempGroup = dio.findByServiceType("외부입고");
-		if (tempGroup != null)
-			daily_income_title_outside.setText(tempGroup.getTitleMoney());
+		//---------------------------------------------------------------------------------
+		// 외부입고(원석) 데이터 표출
+		//---------------------------------------------------------------------------------
 
-		statsView.makeReleaseOutsideStatsView(release_empty_layout_outside);
-		tempGroup = dio.findByServiceType("외부출고");
-		if (tempGroup != null)
-			daily_release_title_outside.setText(tempGroup.getTitleMoney());
+		tempGroup = dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] );
+		if (tempGroup != null && tempGroup.List.size() > 0)
+		{
+			statsView.makeStockOutsideSourceView(income_empty_layout_outside_source);
+			daily_income_title_outside_source.setText(tempGroup.getTitleMoney());
+		}
+		else
+		{
+			daily_income_title_outside_source.setVisibility(View.GONE);
+		}
+
+		//---------------------------------------------------------------------------------
+		// 외부입고(제품) 데이터 표출
+		//---------------------------------------------------------------------------------
+
+		tempGroup = dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] );
+		if (tempGroup != null && tempGroup.List.size() > 0)
+		{
+			statsView.makeStockOutsideProductView(income_empty_layout_outside_product);
+			daily_income_title_outside_product.setText(tempGroup.getTitleMoney());
+		}
+		else
+		{
+			daily_income_title_outside_product.setVisibility(View.GONE);
+		}
+
+		//---------------------------------------------------------------------------------
+		// 외부출고(원석) 데이터 표출
+		//---------------------------------------------------------------------------------
+
+		tempGroup = dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE_SOURCE] );
+		if (tempGroup != null && tempGroup.List.size() > 0)
+		{
+			statsView.makeReleaseOutsideSourceView(release_empty_layout_outside_source);
+			daily_release_title_outside_source.setText(tempGroup.getTitleMoney());
+		}
+		else
+		{
+			daily_release_title_outside_source.setVisibility(View.GONE);
+		}
+
+		//---------------------------------------------------------------------------------
+		// 외부출고(제품) 데이터 표출
+		//---------------------------------------------------------------------------------
+
+		tempGroup = dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE_PRODUCT] );
+		if (tempGroup != null && tempGroup.List.size() > 0)
+		{
+			statsView.makeReleaseOutsideProductView(release_empty_layout_outside_product);
+			daily_release_title_outside_product.setText(tempGroup.getTitleMoney());
+		}
+		else
+		{
+			daily_release_title_outside_product.setVisibility(View.GONE);
+		}
 
 	}
 

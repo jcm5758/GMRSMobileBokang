@@ -10,83 +10,59 @@ public class GSDailyInOutGroup
 {
 
     // 서비스 구분 : 입고, 출고, 토사
-    public String serviceType;
-
-    // list 데이터의 수
-    public int recordCount;
-
-    // 헤더의 수
-    public int headerCount;
+    public String ServiceType;
 
     // 전체 대수
-    public int totalCount;
+    public int TotalCount;
 
     // 전체 수량
-    public double totalUnit;
+    public double TotalUnit;
 
     // 헤더
-    public String[] header;
+    public String[] Header;
 
     // 리스트
-    public ArrayList<GSDailyInOutDetail> list = new ArrayList<GSDailyInOutDetail>();
+    public ArrayList<GSDailyInOutDetail> List = new ArrayList<GSDailyInOutDetail>();
 
     public GSDailyInOutGroup() {}
 
     public void add(GSDailyInOutDetail detail)
     {
-        this.list.add(detail);
+        this.List.add(detail);
     }
 
     public String getTitleUnit()
     {
-        return this.serviceType + "(" + GSConfig.changeToCommanStringWOPoint(this.totalCount) + "대 : " + GSConfig.changeToCommanString(this.totalUnit) + "루베)";
+        return this.ServiceType + "(" + GSConfig.changeToCommanStringWOPoint(this.TotalCount) + "대 : " + GSConfig.changeToCommanString(this.TotalUnit) + "루베)";
     }
 
     public String getTitleMoney()
     {
-        return this.serviceType + "(" + GSConfig.changeToCommanStringWOPoint(this.totalCount) + "대 : " + GSConfig.changeToCommanStringWOPoint(this.totalUnit) + "천원)";
+        return this.ServiceType + "(" + GSConfig.changeToCommanStringWOPoint(this.TotalCount) + "대 : " + GSConfig.changeToCommanStringWOPoint(this.TotalUnit) + "천원)";
     }
 
     public GSDailyInOutDetail getDataFinal()
     {
 
-        if (this.list.isEmpty())
+        if (this.List.isEmpty())
             return null;
 
-        return this.list.get(this.list.size() - 1);
+        return this.List.get(this.List.size() - 1);
 
     }
 
     public ArrayList<GSDailyInOutDetail> getDataWOFinal()
     {
 
-        if (this.list.isEmpty())
+        if (this.List.isEmpty())
             return null;
 
         ArrayList<GSDailyInOutDetail> result = new ArrayList<GSDailyInOutDetail>();
 
-        for(int i = 0; i < this.list.size() - 1; i++)
-            result.add(this.list.get(i));
+        for(int i = 0; i < this.List.size() - 1; i++)
+            result.add(this.List.get(i));
 
         return result;
-
-    }
-
-    public void print()
-    {
-
-        Log.d(GSConfig.APP_DEBUG, "ServiceType : " + this.serviceType);
-        Log.d(GSConfig.APP_DEBUG, "recordCount : " + this.recordCount);
-        Log.d(GSConfig.APP_DEBUG, "headerCount : " + this.headerCount);
-        Log.d(GSConfig.APP_DEBUG, "totalCount : " + this.totalCount);
-        Log.d(GSConfig.APP_DEBUG, "totalUnit : " + this.totalUnit);
-
-        Log.d(GSConfig.APP_DEBUG, "Size of list : " + this.list.size());
-
-        for(GSDailyInOutDetail detail : this.list)
-        {
-            detail.print();
-        }
 
     }
 
