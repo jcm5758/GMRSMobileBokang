@@ -96,10 +96,10 @@ public class EnterpriseYearStatsView
 				return;
 			}
 
-			int header_count = group.headerCount;
-			String[] header_titles = group.header;
-			int recordCount = group.recordCount;
-			ArrayList<GSDailyInOutDetailNew> detailList = group.list;
+			int header_count = group.HeaderCount;
+			String[] header_titles = group.Header;
+			int recordCount = group.RecordCount;
+			ArrayList<GSDailyInOutDetailNew> detailList = group.List;
 
 			if (header_titles == null)
 			{

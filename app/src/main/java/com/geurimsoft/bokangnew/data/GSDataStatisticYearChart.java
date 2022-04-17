@@ -58,7 +58,7 @@ public class GSDataStatisticYearChart
 					Maxnode = Max[i];
 			}
 
-			int itemCount = this.data.recordCount - 1;
+			int itemCount = this.data.RecordCount - 1;
 			dataset = new XYMultipleSeriesDataset();
 
 			multiRenderer = new XYMultipleSeriesRenderer();

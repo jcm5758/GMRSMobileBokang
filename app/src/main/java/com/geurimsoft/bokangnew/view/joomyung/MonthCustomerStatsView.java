@@ -326,7 +326,7 @@ public class MonthCustomerStatsView
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String,String> params = new HashMap<String,String>();
                     params.put("GSType", "MONTH_CUSTOMER_DAY");
-                    params.put("GSQuery", "{ \"BranchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"CustomerFullName\": \"" + customerName + "\", \"ServiceType\": " + serviceType + ", \"searchYear\": " + searchYear + ", \"SearchMonth\": " + searchMonth + ", \"QryContent\" : \"" + qryContent + "\" }");
+                    params.put("GSQuery", "{ \"BranchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"CustomerFullName\": \"" + customerName + "\", \"ServiceType\": " + serviceType + ", \"SearchYear\": " + searchYear + ", \"SearchMonth\": " + searchMonth + ", \"QryContent\" : \"" + qryContent + "\" }");
                     return params;
                 }
             };
@@ -340,6 +340,8 @@ public class MonthCustomerStatsView
         {
 
             String functionName = "parseData()";
+
+//            Log.d(GSConfig.APP_DEBUG, "DEBUGGING : " + this.getClass().getName() + " : makeStatsView() : msg : " + msg);
 
             try
             {

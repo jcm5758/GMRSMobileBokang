@@ -159,7 +159,7 @@ public class FragmentYearAmount extends Fragment
 	{
 
 		String functionName = "parseData()";
-		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
+//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
 
 		try
 		{

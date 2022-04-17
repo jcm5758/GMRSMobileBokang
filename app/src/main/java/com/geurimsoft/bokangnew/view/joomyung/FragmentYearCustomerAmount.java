@@ -165,7 +165,7 @@ public class FragmentYearCustomerAmount extends Fragment
 							if (dataGroup != null)
 							{
 								statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, dataGroup, GSConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
-								yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
+								yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
 							}
 
 						}
@@ -177,7 +177,7 @@ public class FragmentYearCustomerAmount extends Fragment
 							if (dataGroup != null)
 							{
 								statsView.makeStatsView(yi_month_enterprise_amount_release_empty_layout, dataGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_AMOUNT);
-								yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
+								yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
 							}
 
 						}
@@ -189,7 +189,7 @@ public class FragmentYearCustomerAmount extends Fragment
 							if (dataGroup != null)
 							{
 								statsView.makeStatsView(yi_month_enterprise_amount_petosa_empty_layout, dataGroup, GSConfig.MODE_PETOSA, GSConfig.STATE_AMOUNT);
-								yi_month_enterprise_amount_petosa_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
+								yi_month_enterprise_amount_petosa_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
 							}
 
 						}
@@ -201,7 +201,7 @@ public class FragmentYearCustomerAmount extends Fragment
 							if (dataGroup != null)
 							{
 								statsView.makeStatsView(yi_month_enterprise_amount_income_outside_empty_layout, dataGroup, GSConfig.MODE_OUTSIDE_STOCK_SOURCE, GSConfig.STATE_AMOUNT);
-								yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
+								yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
 							}
 
 						}
@@ -213,7 +213,7 @@ public class FragmentYearCustomerAmount extends Fragment
 							if (dataGroup != null)
 							{
 								statsView.makeStatsView(yi_month_enterprise_amount_release_outside_empty_layout, dataGroup, GSConfig.MODE_OUTSIDE_STOCK_PRODUCT, GSConfig.STATE_AMOUNT);
-								yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] + "(" + GSConfig.changeToCommanString(dataGroup.totalUnit) + unit + ")");
+								yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
 							}
 
 						}

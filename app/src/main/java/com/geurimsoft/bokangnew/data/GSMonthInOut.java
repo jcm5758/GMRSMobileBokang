@@ -7,34 +7,34 @@ import java.util.ArrayList;
 public class GSMonthInOut {
 
     // list 데이터의 수
-    public int recordCount;
+    public int RecordCount;
 
     // 헤더의 수
-    public int headerCount;
+    public int HeaderCount;
 
     // 헤더
-    public String[] header;
+    public String[] Header;
 
     // 리스트
-    public ArrayList<GSMonthInOutDetail> list = new ArrayList<GSMonthInOutDetail>();
+    public ArrayList<GSMonthInOutDetail> List = new ArrayList<GSMonthInOutDetail>();
 
     public GSMonthInOut() {
     }
 
     public int getRecordCount() {
-        return recordCount;
+        return this.RecordCount;
     }
 
     public int getHeaderCount() {
-        return headerCount;
+        return this.HeaderCount;
     }
 
     public String[] getHeader() {
-        return header;
+        return this.Header;
     }
 
     public void add(GSMonthInOutDetail detail) {
-        this.list.add(detail);
+        this.List.add(detail);
     }
 
     /**
@@ -44,10 +44,10 @@ public class GSMonthInOut {
      */
     public GSMonthInOutDetail getFinalData() {
 
-        if (this.list.size() == 0)
+        if (this.List.size() == 0)
             return null;
 
-        return this.list.get(this.list.size() - 1);
+        return this.List.get(this.List.size() - 1);
 
     }
 
@@ -59,13 +59,13 @@ public class GSMonthInOut {
     public ArrayList<GSMonthInOutDetail> getDataWOFinal()
     {
 
-        if (this.list.size() == 0)
+        if (this.List.size() == 0)
             return null;
 
         ArrayList<GSMonthInOutDetail> result = new ArrayList<GSMonthInOutDetail>();
 
-        for (int i = 0; i < this.list.size() - 1; i++)
-            result.add(this.list.get(i));
+        for (int i = 0; i < this.List.size() - 1; i++)
+            result.add(this.List.get(i));
 
         return result;
 
@@ -78,15 +78,15 @@ public class GSMonthInOut {
         {
 
 
-            int doubleArraySize = (this.headerCount - 2) * (this.recordCount - 1);
+            int doubleArraySize = (this.HeaderCount - 2) * (this.RecordCount - 1);
             double[] result = new double[doubleArraySize];
 
             int max_index = 0;
 
-            for(int i = 0; i < this.recordCount - 1; i++)
+            for(int i = 0; i < this.RecordCount - 1; i++)
             {
 
-                double[] items = this.list.get(i).getDoubleValuesForChart();
+                double[] items = this.List.get(i).getDoubleValuesForChart();
 
                 for(int j = 0; j < items.length; j++)
                 {

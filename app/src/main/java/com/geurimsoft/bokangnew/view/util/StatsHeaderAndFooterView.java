@@ -32,8 +32,8 @@ public class StatsHeaderAndFooterView
 
 		GSMonthInOutDetail footerData = this.monthData.getFinalData();
 		
-		this.header_count = this.monthData.headerCount;
-		this.header_titles = this.monthData.header;
+		this.header_count = this.monthData.HeaderCount;
+		this.header_titles = this.monthData.Header;
 
 		this.footer_count = footerData.valueSize + 1;
 		this.footer_items = footerData.getStringValues(statType);
