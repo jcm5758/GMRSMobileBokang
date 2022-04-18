@@ -18,7 +18,7 @@
 12-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:6:22-76
 13
 14    <application
-14-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:8:5-31:19
+14-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:8:5-29:19
 15        android:allowBackup="true"
 15-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:10:9-35
 16        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
@@ -54,19 +54,13 @@
 32        </activity>
 33        <activity
 33-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:24:9-25:76
-34            android:name="com.geurimsoft.bokangnew.view.joomyung.ActivityMain"
-34-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:24:19-61
+34            android:name="com.geurimsoft.bokangnew.view.ActivityMain"
+34-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:24:19-52
 35            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
 35-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:25:13-74
-36        <activity
-36-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:26:9-27:76
-37            android:name="com.geurimsoft.bokangnew.view.kwangju.ActivityMain"
-37-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:26:19-60
-38            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
-38-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:27:13-74
-39        <activity android:name="org.achartengine.GraphicalActivity" />
-39-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:29:9-71
-39-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:29:19-68
-40    </application>
-41
-42</manifest>
+36        <activity android:name="org.achartengine.GraphicalActivity" />
+36-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:27:9-71
+36-->D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:27:19-68
+37    </application>
+38
+39</manifest>

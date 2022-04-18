@@ -31,10 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.geurimsoft.bokangnew.view.joomyung.ActivityMain"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
-        <activity
-            android:name="com.geurimsoft.bokangnew.view.kwangju.ActivityMain"
+            android:name="com.geurimsoft.bokangnew.view.ActivityMain"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <activity android:name="org.achartengine.GraphicalActivity" />
     </application>

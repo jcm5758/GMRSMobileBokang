@@ -21,9 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.joomyung.ActivityMain"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"/>
-        <activity android:name=".view.kwangju.ActivityMain"
+        <activity android:name=".view.ActivityMain"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"/>
 
         <activity android:name="org.achartengine.GraphicalActivity" />

@@ -40,12 +40,12 @@
         "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\statviewnewlayout.xml"
     },
     {
-        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_close_bt.png.flat",
-        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-hdpi\\close_bt.png"
-    },
-    {
         "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\drawable_btn_gradient_yellow.xml.flat",
         "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\drawable\\btn_gradient_yellow.xml"
+    },
+    {
+        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_close_bt.png.flat",
+        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-hdpi\\close_bt.png"
     },
     {
         "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_statlistitem.xml.flat",
@@ -68,12 +68,12 @@
         "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\drawable\\ic_setting_grey.png"
     },
     {
-        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_setting_01bt.png.flat",
-        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-hdpi\\setting_01bt.png"
-    },
-    {
         "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi__ic_launcher.png.flat",
         "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-hdpi\\_ic_launcher.png"
+    },
+    {
+        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_setting_01bt.png.flat",
+        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-hdpi\\setting_01bt.png"
     },
     {
         "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_month_graph.xml.flat",

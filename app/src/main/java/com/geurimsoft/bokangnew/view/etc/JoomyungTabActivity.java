@@ -16,9 +16,9 @@ import android.view.MenuItem;
 
 import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.data.GSConfig;
-import com.geurimsoft.bokangnew.view.joomyung.FragmentDailyMain;
-import com.geurimsoft.bokangnew.view.joomyung.FragmentMonthMain;
-import com.geurimsoft.bokangnew.view.joomyung.FragmentYearMain;
+import com.geurimsoft.bokangnew.view.FragmentDailyMain;
+import com.geurimsoft.bokangnew.view.FragmentMonthMain;
+import com.geurimsoft.bokangnew.view.FragmentYearMain;
 
 public class JoomyungTabActivity extends FragmentActivity
 {

@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/sources/GRMS/GMRSMobileBokang/app/src/main/res/drawable/enterprise_popup_background.xml" value="0.177" />
+        <entry key="..\:/sources/GRMS/GMRSMobileBokang/app/src/main/res/layout/custom_progress_dialog.xml" value="0.2484375" />
         <entry key="..\:/sources/GRMS/GMRSMobileBokang/app/src/main/res/layout/enterprise_popup.xml" value="0.2807971014492754" />
         <entry key="..\:/sources/GRMS/GMRSMobileBokang/app/src/main/res/layout/month_customer_amount.xml" value="0.20652173913043478" />
         <entry key="..\:/sources/GRMS/GMRSMobileBokang/app/src/main/res/layout/stats_pager_layout.xml" value="0.2515625" />
