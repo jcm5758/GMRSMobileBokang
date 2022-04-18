@@ -33,7 +33,7 @@ public class StAdapter extends BaseAdapter
 		this.monthData = monthData;
 		this.requestType = requestType;
 
-		this.header_count = this.monthData.HeaderCount;
+		this.header_count = this.monthData.Header.length;
 		this.item_list = this.monthData.getDataWOFinal();
 
 		mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

@@ -33,12 +33,16 @@ import java.util.Map;
 public class FragmentYearCustomerPrice extends Fragment
 {
 
-	private LinearLayout yi_month_enterprise_amount_income_empty_layout, yi_month_enterprise_amount_release_empty_layout, yi_month_enterprise_amount_petosa_empty_layout;
-	private LinearLayout yi_month_enterprise_amount_income_outside_empty_layout, yi_month_enterprise_amount_release_outside_empty_layout;
-	private LinearLayout yi_month_enterprise_amount_loading_indicator, yi_month_enterprise_amount_loading_fail;
+	private LinearLayout yi_month_enterprise_loading_indicator, yi_month_enterprise_loading_fail;
 
-	private TextView yi_month_enterprise_amount_date, yi_month_enterprise_amount_income_title, yi_month_enterprise_amount_release_title, yi_month_enterprise_amount_petosa_title;
-	private TextView yi_month_enterprise_amount_income_outside_title, yi_month_enterprise_amount_release_outside_title;
+	private LinearLayout yi_month_enterprise_income_layout, yi_month_enterprise_release_layout, yi_month_enterprise_petosa_layout;
+	private LinearLayout yi_month_enterprise_income_outside_source_layout, yi_month_enterprise_income_outside_product_layout;
+	private LinearLayout yi_month_enterprise_release_outside_source_layout, yi_month_enterprise_release_outside_product_layout;
+
+	private TextView yi_month_enterprise_date;
+	private TextView yi_month_enterprise_income_title, yi_month_enterprise_release_title, yi_month_enterprise_petosa_title;
+	private TextView yi_month_enterprise_income_outside_source_title, yi_month_enterprise_income_outside_product_title;
+	private TextView yi_month_enterprise_release_outside_source_title, yi_month_enterprise_release_outside_product_title;
 
 	private int iYear;
 
@@ -68,23 +72,28 @@ public class FragmentYearCustomerPrice extends Fragment
 
 		View view = this.getView();
 
-		this.yi_month_enterprise_amount_income_empty_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_amount_income_empty_layout);
-		this.yi_month_enterprise_amount_release_empty_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_amount_release_empty_layout);
-		this.yi_month_enterprise_amount_income_outside_empty_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_amount_income_outside_empty_layout);
-		this.yi_month_enterprise_amount_release_outside_empty_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_amount_release_outside_empty_layout);
-		this.yi_month_enterprise_amount_petosa_empty_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_amount_petosa_empty_layout);
+		this.yi_month_enterprise_loading_indicator = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_loading_indicator);
+		this.yi_month_enterprise_loading_fail = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_loading_fail);
 
-		this.yi_month_enterprise_amount_loading_indicator = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_amount_loading_indicator);
-		this.yi_month_enterprise_amount_loading_fail = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_amount_loading_fail);
+		this.yi_month_enterprise_income_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_income_layout);
+		this.yi_month_enterprise_release_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_release_layout);
+		this.yi_month_enterprise_petosa_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_petosa_layout);
+		this.yi_month_enterprise_income_outside_source_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_income_outside_source_layout);
+		this.yi_month_enterprise_income_outside_product_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_income_outside_product_layout);
+		this.yi_month_enterprise_release_outside_source_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_release_outside_source_layout);
+		this.yi_month_enterprise_release_outside_product_layout = (LinearLayout)view.findViewById(R.id.yi_month_enterprise_release_outside_product_layout);
 
-		this.yi_month_enterprise_amount_date = (TextView)view.findViewById(R.id.yi_month_enterprise_amount_date);
-		this.yi_month_enterprise_amount_income_title = (TextView)view.findViewById(R.id.yi_month_enterprise_amount_income_title);
-		this.yi_month_enterprise_amount_release_title = (TextView)view.findViewById(R.id.yi_month_enterprise_amount_release_title);
-		this.yi_month_enterprise_amount_income_outside_title = (TextView)view.findViewById(R.id.yi_month_enterprise_amount_income_outside_title);
-		this.yi_month_enterprise_amount_release_outside_title = (TextView)view.findViewById(R.id.yi_month_enterprise_amount_release_outside_title);
-		this.yi_month_enterprise_amount_petosa_title = (TextView)view.findViewById(R.id.yi_month_enterprise_amount_petosa_title);
+		this.yi_month_enterprise_date = (TextView)view.findViewById(R.id.yi_month_enterprise_date);
 
-		makeMonthEnterpriseAmountData(GSConfig.DAY_STATS_YEAR);
+		this.yi_month_enterprise_income_title = (TextView)view.findViewById(R.id.yi_month_enterprise_income_title);
+		this.yi_month_enterprise_release_title = (TextView)view.findViewById(R.id.yi_month_enterprise_release_title);
+		this.yi_month_enterprise_petosa_title = (TextView)view.findViewById(R.id.yi_month_enterprise_petosa_title);
+		this.yi_month_enterprise_income_outside_source_title = (TextView)view.findViewById(R.id.yi_month_enterprise_income_outside_source_title);
+		this.yi_month_enterprise_income_outside_product_title = (TextView)view.findViewById(R.id.yi_month_enterprise_income_outside_product_title);
+		this.yi_month_enterprise_release_outside_source_title = (TextView)view.findViewById(R.id.yi_month_enterprise_release_outside_source_title);
+		this.yi_month_enterprise_release_outside_product_title = (TextView)view.findViewById(R.id.yi_month_enterprise_release_outside_product_title);
+
+		this.makeData(GSConfig.DAY_STATS_YEAR);
 
 	}
 
@@ -94,29 +103,32 @@ public class FragmentYearCustomerPrice extends Fragment
 		super.onPause();
 	}
 
-	private void makeMonthEnterpriseAmountData(int _year)
+	private void makeData(int _year)
 	{
 
-		String functionName = "makeYearAmountData()";
+		String functionName = "makeData()";
 
 		try
 		{
 
 			String dateStr = _year + "년  입출고 현황";
 
-			yi_month_enterprise_amount_date.setText(dateStr);
-
-			String unit = getString(R.string.unit_won);
-
-			yi_month_enterprise_amount_income_empty_layout.removeAllViews();
-			yi_month_enterprise_amount_release_empty_layout.removeAllViews();
-			yi_month_enterprise_amount_income_outside_empty_layout.removeAllViews();
-			yi_month_enterprise_amount_release_outside_empty_layout.removeAllViews();
-			yi_month_enterprise_amount_petosa_empty_layout.removeAllViews();
-
-			this.statsView = new EnterpriseYearStatsView(getActivity(), GSConfig.CURRENT_BRANCH.getBranchID(), GSConfig.STATE_PRICE, iYear);
-
 			this.unit = getString(R.string.unit_won);
+
+			// 날짜 표시 텍스트뷰 설정
+			this.yi_month_enterprise_date.setText(dateStr);
+
+			// 레이아웃 초기화
+			this.yi_month_enterprise_income_layout.removeAllViews();
+			this.yi_month_enterprise_release_layout.removeAllViews();
+			this.yi_month_enterprise_petosa_layout.removeAllViews();
+			this.yi_month_enterprise_income_outside_source_layout.removeAllViews();
+			this.yi_month_enterprise_income_outside_product_layout.removeAllViews();
+			this.yi_month_enterprise_release_outside_source_layout.removeAllViews();
+			this.yi_month_enterprise_release_outside_product_layout.removeAllViews();
+
+			// 데이터 표 만들기
+			this.statsView = new EnterpriseYearStatsView(getActivity(), GSConfig.CURRENT_BRANCH.getBranchID(), GSConfig.STATE_PRICE, iYear);
 
 			this.getData(_year, "TotalPrice", GSConfig.MODE_STOCK);
 			this.getData(_year, "TotalPrice", GSConfig.MODE_RELEASE);
@@ -151,11 +163,12 @@ public class FragmentYearCustomerPrice extends Fragment
 					@Override
 					public void onResponse(String response) {
 
-						//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
 
 						Gson gson = new Gson();
 						GSDailyInOutGroupNew dataGroup = null;
 
+						// 입고
 						if (serviceType == GSConfig.MODE_STOCK)
 						{
 
@@ -163,11 +176,16 @@ public class FragmentYearCustomerPrice extends Fragment
 
 							if (dataGroup != null)
 							{
-								statsView.makeStatsView(yi_month_enterprise_amount_income_empty_layout, dataGroup, GSConfig.MODE_STOCK, GSConfig.STATE_PRICE);
-								yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
+								statsView.makeStatsView(yi_month_enterprise_income_layout, dataGroup, GSConfig.MODE_STOCK, GSConfig.STATE_AMOUNT);
+								yi_month_enterprise_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
+							}
+							else
+							{
+								yi_month_enterprise_income_title.setVisibility(View.GONE);
 							}
 
 						}
+						// 출고
 						else if (serviceType == GSConfig.MODE_RELEASE)
 						{
 
@@ -175,11 +193,16 @@ public class FragmentYearCustomerPrice extends Fragment
 
 							if (dataGroup != null)
 							{
-								statsView.makeStatsView(yi_month_enterprise_amount_release_empty_layout, dataGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_PRICE);
-								yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
+								statsView.makeStatsView(yi_month_enterprise_release_layout, dataGroup, GSConfig.MODE_RELEASE, GSConfig.STATE_AMOUNT);
+								yi_month_enterprise_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
+							}
+							else
+							{
+								yi_month_enterprise_release_title.setVisibility(View.GONE);
 							}
 
 						}
+						// 토사
 						else if (serviceType == GSConfig.MODE_PETOSA)
 						{
 
@@ -187,11 +210,16 @@ public class FragmentYearCustomerPrice extends Fragment
 
 							if (dataGroup != null)
 							{
-								statsView.makeStatsView(yi_month_enterprise_amount_petosa_empty_layout, dataGroup, GSConfig.MODE_PETOSA, GSConfig.STATE_PRICE);
-								yi_month_enterprise_amount_petosa_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
+								statsView.makeStatsView(yi_month_enterprise_petosa_layout, dataGroup, GSConfig.MODE_PETOSA, GSConfig.STATE_AMOUNT);
+								yi_month_enterprise_petosa_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
+							}
+							else
+							{
+								yi_month_enterprise_petosa_title.setVisibility(View.GONE);
 							}
 
 						}
+						// 외부입고(원석)
 						else if (serviceType == GSConfig.MODE_OUTSIDE_STOCK_SOURCE)
 						{
 
@@ -199,11 +227,16 @@ public class FragmentYearCustomerPrice extends Fragment
 
 							if (dataGroup != null)
 							{
-								statsView.makeStatsView(yi_month_enterprise_amount_income_outside_empty_layout, dataGroup, GSConfig.MODE_OUTSIDE_STOCK_SOURCE, GSConfig.STATE_PRICE);
-								yi_month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
+								statsView.makeStatsView(yi_month_enterprise_income_outside_source_layout, dataGroup, GSConfig.MODE_OUTSIDE_STOCK_SOURCE, GSConfig.STATE_AMOUNT);
+								yi_month_enterprise_income_outside_source_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
+							}
+							else
+							{
+								yi_month_enterprise_income_outside_source_title.setVisibility(View.GONE);
 							}
 
 						}
+						// 외부입고(제품)
 						else if (serviceType == GSConfig.MODE_OUTSIDE_STOCK_PRODUCT)
 						{
 
@@ -211,13 +244,52 @@ public class FragmentYearCustomerPrice extends Fragment
 
 							if (dataGroup != null)
 							{
-								statsView.makeStatsView(yi_month_enterprise_amount_release_outside_empty_layout, dataGroup, GSConfig.MODE_OUTSIDE_STOCK_PRODUCT, GSConfig.STATE_PRICE);
-								yi_month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
+								statsView.makeStatsView(yi_month_enterprise_income_outside_product_layout, dataGroup, GSConfig.MODE_OUTSIDE_STOCK_PRODUCT, GSConfig.STATE_AMOUNT);
+								yi_month_enterprise_income_outside_product_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
+							}
+							else
+							{
+								yi_month_enterprise_income_outside_product_title.setVisibility(View.GONE);
+							}
+
+						}
+						// 외부출고(원석)
+						else if (serviceType == GSConfig.MODE_OUTSIDE_RELEASE_SOURCE)
+						{
+
+							dataGroup = gson.fromJson(response, GSDailyInOutGroupNew.class);
+
+							if (dataGroup != null)
+							{
+								statsView.makeStatsView(yi_month_enterprise_release_outside_source_layout, dataGroup, GSConfig.MODE_OUTSIDE_RELEASE_SOURCE, GSConfig.STATE_AMOUNT);
+								yi_month_enterprise_release_outside_source_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE_SOURCE] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
+							}
+							else
+							{
+								yi_month_enterprise_release_outside_source_title.setVisibility(View.GONE);
+							}
+
+						}
+						// 외부출고(제품)
+						else if (serviceType == GSConfig.MODE_OUTSIDE_RELEASE_PRODUCT)
+						{
+
+							dataGroup = gson.fromJson(response, GSDailyInOutGroupNew.class);
+
+							if (dataGroup != null)
+							{
+								statsView.makeStatsView(yi_month_enterprise_release_outside_product_layout, dataGroup, GSConfig.MODE_OUTSIDE_RELEASE_PRODUCT, GSConfig.STATE_AMOUNT);
+								yi_month_enterprise_release_outside_product_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE_PRODUCT] + "(" + GSConfig.changeToCommanString(dataGroup.TotalUnit) + unit + ")");
+							}
+							else
+							{
+								yi_month_enterprise_release_outside_product_title.setVisibility(View.GONE);
 							}
 
 						}
 
 					}
+
 				},
 				//에러 발생시 호출될 리스너 객체
 				new Response.ErrorListener() {
@@ -241,9 +313,9 @@ public class FragmentYearCustomerPrice extends Fragment
 				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
 				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
-		request.setRetryPolicy(new DefaultRetryPolicy(20000,
-				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//		request.setRetryPolicy(new DefaultRetryPolicy(20000,
+//				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 		request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
 		requestQueue.add(request);

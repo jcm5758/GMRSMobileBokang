@@ -12,12 +12,6 @@ public class GSDailyInOutGroupNew
     // 서비스 구분 : 입고, 출고, 토사
     public String ServiceType;
 
-    // list 데이터의 수
-    public int RecordCount;
-
-    // 헤더의 수
-    public int HeaderCount;
-
     // 전체 대수
     public int TotalCount;
 
@@ -72,23 +66,6 @@ public class GSDailyInOutGroupNew
 
     }
 
-    public void print()
-    {
-
-        Log.d(GSConfig.APP_DEBUG, "ServiceType : " + this.ServiceType);
-        Log.d(GSConfig.APP_DEBUG, "recordCount : " + this.RecordCount);
-        Log.d(GSConfig.APP_DEBUG, "headerCount : " + this.HeaderCount);
-        Log.d(GSConfig.APP_DEBUG, "totalCount : " + this.TotalCount);
-        Log.d(GSConfig.APP_DEBUG, "totalUnit : " + this.TotalUnit);
-
-        Log.d(GSConfig.APP_DEBUG, "Size of list : " + this.List.size());
-
-        for(GSDailyInOutDetailNew detail : this.List)
-        {
-            detail.print();
-        }
-
-    }
 
 }
 

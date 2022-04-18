@@ -6,36 +6,14 @@ import java.util.ArrayList;
 
 public class GSMonthInOut {
 
-    // list 데이터의 수
-    public int RecordCount;
-
-    // 헤더의 수
-    public int HeaderCount;
-
     // 헤더
     public String[] Header;
 
     // 리스트
     public ArrayList<GSMonthInOutDetail> List = new ArrayList<GSMonthInOutDetail>();
 
-    public GSMonthInOut() {
-    }
+    public GSMonthInOut() {}
 
-    public int getRecordCount() {
-        return this.RecordCount;
-    }
-
-    public int getHeaderCount() {
-        return this.HeaderCount;
-    }
-
-    public String[] getHeader() {
-        return this.Header;
-    }
-
-    public void add(GSMonthInOutDetail detail) {
-        this.List.add(detail);
-    }
 
     /**
      * 합계 부분만
@@ -78,12 +56,12 @@ public class GSMonthInOut {
         {
 
 
-            int doubleArraySize = (this.HeaderCount - 2) * (this.RecordCount - 1);
+            int doubleArraySize = (this.Header.length - 2) * (this.List.size() - 1);
             double[] result = new double[doubleArraySize];
 
             int max_index = 0;
 
-            for(int i = 0; i < this.RecordCount - 1; i++)
+            for(int i = 0; i < this.List.size() - 1; i++)
             {
 
                 double[] items = this.List.get(i).getDoubleValuesForChart();

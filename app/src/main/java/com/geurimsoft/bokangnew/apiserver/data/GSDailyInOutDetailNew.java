@@ -7,8 +7,8 @@ import com.geurimsoft.bokangnew.data.GSConfig;
 public class GSDailyInOutDetailNew
 {
 
-    public String customer;
-    private int count;
+    public String CustomerName;
+    private int Count;
     private double[] values = new double[10];
 
     public GSDailyInOutDetailNew() {}
@@ -22,7 +22,7 @@ public class GSDailyInOutDetailNew
     {
 
         String[] result = new String[ values.length + 1 ];
-        result[0] = customer;
+        result[0] = CustomerName;
 
         for(int i = 0; i < this.values.length; i++)
         {

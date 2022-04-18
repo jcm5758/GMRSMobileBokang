@@ -24,6 +24,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -96,9 +97,9 @@ public class EnterpriseYearStatsView
 				return;
 			}
 
-			int header_count = group.HeaderCount;
+			int header_count = group.Header.length;
 			String[] header_titles = group.Header;
-			int recordCount = group.RecordCount;
+			int recordCount = group.List.size();
 			ArrayList<GSDailyInOutDetailNew> detailList = group.List;
 
 			if (header_titles == null)
@@ -341,10 +342,15 @@ public class EnterpriseYearStatsView
 				protected Map<String, String> getParams() throws AuthFailureError {
 					Map<String,String> params = new HashMap<String,String>();
 					params.put("GSType", "YEAR_CUSTOMER_MONTH");
-					params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"customerFullName\": \"" + customerName + "\", \"serviceType\": " + serviceType + ", \"searchYear\": " + iYear + ", \"qryContent\" : \"" + qryContent + "\" }");
+					params.put("GSQuery", "{ \"BranchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"CustomerFullName\": \"" + customerName + "\", \"ServiceType\": " + serviceType + ", \"SearchYear\": " + iYear + ", \"QryContent\" : \"" + qryContent + "\" }");
 					return params;
 				}
 			};
+
+			request.setRetryPolicy(new DefaultRetryPolicy(
+					0,
+					DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+					DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 			request.setShouldCache(false); //이전 결과 있어도 새로 요청하여 응답을 보여준다.
 			requestQueue.add(request);
@@ -473,13 +479,11 @@ public class EnterpriseYearStatsView
 
 			popup_close_btn.setOnClickListener(new OnClickListener()
 			{
-
 				@Override
 				public void onClick(View v)
 				{
 					popupWindow.dismiss();
 				}
-
 			});
 
 		}

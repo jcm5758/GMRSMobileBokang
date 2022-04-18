@@ -270,7 +270,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			if (inputGroup != null && inputGroup.List.size() > 0)
 			{
-				statsView.makeStatsView(month_enterprise_amount_outside_income_empty_layout_source, inputGroup, GSConfig.MODE_STOCK);
+				statsView.makeStatsView(month_enterprise_amount_outside_income_empty_layout_source, inputGroup, GSConfig.MODE_OUTSIDE_STOCK_SOURCE);
 				month_enterprise_amount_outside_income_title_source.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + unit + ")");
 			}
 			else
@@ -286,7 +286,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			if (inputGroup != null && inputGroup.List.size() > 0)
 			{
-				statsView.makeStatsView(month_enterprise_amount_outside_income_empty_layout_product, inputGroup, GSConfig.MODE_STOCK);
+				statsView.makeStatsView(month_enterprise_amount_outside_income_empty_layout_product, inputGroup, GSConfig.MODE_OUTSIDE_STOCK_PRODUCT);
 				month_enterprise_amount_outside_income_title_product.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + unit + ")");
 			}
 			else
@@ -302,7 +302,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			if (inputGroup != null && inputGroup.List.size() > 0)
 			{
-				statsView.makeStatsView(month_enterprise_amount_outside_release_empty_layout_source, inputGroup, GSConfig.MODE_RELEASE);
+				statsView.makeStatsView(month_enterprise_amount_outside_release_empty_layout_source, inputGroup, GSConfig.MODE_OUTSIDE_RELEASE_SOURCE);
 				month_enterprise_amount_outside_release_title_source.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + unit + ")");
 			}
 			else
@@ -318,7 +318,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			if (inputGroup != null && inputGroup.List.size() > 0)
 			{
-				statsView.makeStatsView(month_enterprise_amount_outside_release_empty_layout_product, inputGroup, GSConfig.MODE_RELEASE);
+				statsView.makeStatsView(month_enterprise_amount_outside_release_empty_layout_product, inputGroup, GSConfig.MODE_OUTSIDE_RELEASE_PRODUCT);
 				month_enterprise_amount_outside_release_title_product.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + unit + ")");
 			}
 			else

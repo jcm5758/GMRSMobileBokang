@@ -12,7 +12,7 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/yi_month_enterprise_amount_date"
+            android:id="@+id/yi_month_enterprise_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -31,7 +31,7 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/yi_month_enterprise_amount_income_title"
+                    android:id="@+id/yi_month_enterprise_income_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -41,14 +41,14 @@
                     android:textColor="#000000" />
 
                 <LinearLayout
-                    android:id="@+id/yi_month_enterprise_amount_income_empty_layout"
+                    android:id="@+id/yi_month_enterprise_income_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/yi_month_enterprise_amount_release_title"
+                    android:id="@+id/yi_month_enterprise_release_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -58,48 +58,82 @@
                     android:textColor="#000000" />
 
                 <LinearLayout
-                    android:id="@+id/yi_month_enterprise_amount_release_empty_layout"
+                    android:id="@+id/yi_month_enterprise_release_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/yi_month_enterprise_amount_income_outside_title"
+                    android:id="@+id/yi_month_enterprise_income_outside_source_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginTop="5dp"
-                    android:text="외부(입고)"
+                    android:text="외부입고(원석)"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#000000" />
 
                 <LinearLayout
-                    android:id="@+id/yi_month_enterprise_amount_income_outside_empty_layout"
+                    android:id="@+id/yi_month_enterprise_income_outside_source_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/yi_month_enterprise_amount_release_outside_title"
+                    android:id="@+id/yi_month_enterprise_income_outside_product_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:layout_marginTop="10dp"
-                    android:text="외부(출고)"
+                    android:layout_marginTop="5dp"
+                    android:text="외부입고(제품)"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="#000000" />
 
                 <LinearLayout
-                    android:id="@+id/yi_month_enterprise_amount_release_outside_empty_layout"
+                    android:id="@+id/yi_month_enterprise_income_outside_product_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/yi_month_enterprise_amount_petosa_title"
+                    android:id="@+id/yi_month_enterprise_release_outside_source_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="5dp"
+                    android:text="외부출고(원석)"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#000000" />
+
+                <LinearLayout
+                    android:id="@+id/yi_month_enterprise_release_outside_source_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/yi_month_enterprise_release_outside_product_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="5dp"
+                    android:text="외부출고(제품)"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#000000" />
+
+                <LinearLayout
+                    android:id="@+id/yi_month_enterprise_release_outside_product_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/yi_month_enterprise_petosa_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -109,7 +143,7 @@
                     android:textColor="#000000" />
 
                 <LinearLayout
-                    android:id="@+id/yi_month_enterprise_amount_petosa_empty_layout"
+                    android:id="@+id/yi_month_enterprise_petosa_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
@@ -137,7 +171,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/yi_month_enterprise_amount_loading_indicator"
+        android:id="@+id/yi_month_enterprise_loading_indicator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff"
@@ -153,7 +187,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/yi_month_enterprise_amount_loading_fail"
+        android:id="@+id/yi_month_enterprise_loading_fail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff"

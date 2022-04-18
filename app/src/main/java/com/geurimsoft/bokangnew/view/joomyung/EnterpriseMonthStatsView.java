@@ -337,7 +337,7 @@ public class EnterpriseMonthStatsView
 				protected Map<String, String> getParams() throws AuthFailureError {
 					Map<String,String> params = new HashMap<String,String>();
 					params.put("GSType", "MONTH_CUSTOMER_DAY");
-					params.put("GSQuery", "{ \"branchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"customerFullName\": \"" + customerName + "\", \"serviceType\": " + serviceType + ", \"searchYear\": " + searchYear + ", \"searchMonth\": " + searchMonth + ", \"qryContent\" : \"" + qryContent + "\" }");
+					params.put("GSQuery", "{ \"BranchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"CustomerFullName\": \"" + customerName + "\", \"ServiceType\": " + serviceType + ", \"SearchYear\": " + searchYear + ", \"SearchMonth\": " + searchMonth + ", \"QryContent\" : \"" + qryContent + "\" }");
 					return params;
 				}
 			};
