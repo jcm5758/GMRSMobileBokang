@@ -38,21 +38,29 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FragmentMonthCustomerAmount extends Fragment
+public class FragmentMonthCustomer extends Fragment
 {
 
-	private LinearLayout month_enterprise_amount_income_empty_layout, month_enterprise_amount_release_empty_layout, month_enterprise_amount_petosa_empty_layout;
-	private LinearLayout month_enterprise_amount_outside_income_empty_layout_source, month_enterprise_amount_outside_income_empty_layout_product;
-	private LinearLayout month_enterprise_amount_outside_release_empty_layout_source, month_enterprise_amount_outside_release_empty_layout_product;
+	private LinearLayout layoutMonthCustomerInput, layoutMonthCustomerOutput, layoutMonthCustomerSluge;
+	private LinearLayout layoutMonthCustomerInputOutsideSource, layoutMonthCustomerInputOutsideProduct;
+	private LinearLayout layoutMonthCustomerOutputOutsideSource, layoutMonthCustomerOutputOutsideProduct;
 
-	private TextView month_enterprise_amount_date;
-	private TextView month_enterprise_amount_income_title, month_enterprise_amount_release_title, month_enterprise_amount_petosa_title;
-	private TextView month_enterprise_amount_outside_income_title_source, month_enterprise_amount_outside_income_title_product;
-	private TextView month_enterprise_amount_outside_release_title_source, month_enterprise_amount_outside_release_title_product;
+	private TextView tvMonthCustomerDate;
+	private TextView tvMonthCustomerInput, tvMonthCustomerOutput, tvMonthCustomerSluge;
+	private TextView tvMonthCustomerInputOutsideSource, tvMonthCustomerInputOutsideProduct;
+	private TextView tvMonthCustomerOutputOutsideSource, tvMonthCustomerOutputOutsideProduct;
 
-	private int iYear, iMonth;
+	// 수량, 금액 타입
+	private int stateType = GSConfig.STATE_AMOUNT;
 
-	public FragmentMonthCustomerAmount() {}
+	// 질의 내용
+	private String qryContent = "Unit";
+
+	public FragmentMonthCustomer(int stateType, String qryContent)
+	{
+		this.stateType = stateType;
+		this.qryContent = qryContent;
+	}
 
 
 	@Override
@@ -64,7 +72,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		View v = inflater.inflate(R.layout.month_customer_amount, container, false);
+		View v = inflater.inflate(R.layout.month_customer, container, false);
 		return v;
 	}
 
@@ -76,23 +84,23 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 		View view = this.getView();
 
-		this.month_enterprise_amount_income_empty_layout = (LinearLayout)view.findViewById(R.id.month_enterprise_amount_income_empty_layout);
-		this.month_enterprise_amount_release_empty_layout = (LinearLayout)view.findViewById(R.id.month_enterprise_amount_release_empty_layout);
-		this.month_enterprise_amount_petosa_empty_layout = (LinearLayout)view.findViewById(R.id.month_enterprise_amount_petosa_empty_layout);
-		this.month_enterprise_amount_outside_income_empty_layout_source = (LinearLayout)view.findViewById(R.id.month_enterprise_amount_outside_income_empty_layout_source);
-		this.month_enterprise_amount_outside_income_empty_layout_product = (LinearLayout)view.findViewById(R.id.month_enterprise_amount_outside_income_empty_layout_product);
-		this.month_enterprise_amount_outside_release_empty_layout_source = (LinearLayout)view.findViewById(R.id.month_enterprise_amount_outside_release_empty_layout_source);
-		this.month_enterprise_amount_outside_release_empty_layout_product = (LinearLayout)view.findViewById(R.id.month_enterprise_amount_outside_release_empty_layout_product);
+		this.layoutMonthCustomerInput = (LinearLayout)view.findViewById(R.id.layoutMonthCustomerInput);
+		this.layoutMonthCustomerOutput = (LinearLayout)view.findViewById(R.id.layoutMonthCustomerOutput);
+		this.layoutMonthCustomerSluge = (LinearLayout)view.findViewById(R.id.layoutMonthCustomerSluge);
+		this.layoutMonthCustomerInputOutsideSource = (LinearLayout)view.findViewById(R.id.layoutMonthCustomerInputOutsideSource);
+		this.layoutMonthCustomerInputOutsideProduct = (LinearLayout)view.findViewById(R.id.layoutMonthCustomerInputOutsideProduct);
+		this.layoutMonthCustomerOutputOutsideSource = (LinearLayout)view.findViewById(R.id.layoutMonthCustomerOutputOutsideSource);
+		this.layoutMonthCustomerOutputOutsideProduct = (LinearLayout)view.findViewById(R.id.layoutMonthCustomerOutputOutsideProduct);
 
-		this.month_enterprise_amount_date = (TextView)view.findViewById(R.id.month_enterprise_amount_date);
+		this.tvMonthCustomerDate = (TextView)view.findViewById(R.id.tvMonthCustomerDate);
 
-		this.month_enterprise_amount_income_title = (TextView)view.findViewById(R.id.month_enterprise_amount_income_title);
-		this.month_enterprise_amount_release_title = (TextView)view.findViewById(R.id.month_enterprise_amount_release_title);
-		this.month_enterprise_amount_petosa_title = (TextView)view.findViewById(R.id.month_enterprise_amount_petosa_title);
-		this.month_enterprise_amount_outside_income_title_source = (TextView)view.findViewById(R.id.month_enterprise_amount_outside_income_title_source);
-		this.month_enterprise_amount_outside_income_title_product = (TextView)view.findViewById(R.id.month_enterprise_amount_outside_income_title_product);
-		this.month_enterprise_amount_outside_release_title_source = (TextView)view.findViewById(R.id.month_enterprise_amount_outside_release_title_source);
-		this.month_enterprise_amount_outside_release_title_product = (TextView)view.findViewById(R.id.month_enterprise_amount_outside_release_title_product);
+		this.tvMonthCustomerInput = (TextView)view.findViewById(R.id.tvMonthCustomerInput);
+		this.tvMonthCustomerOutput = (TextView)view.findViewById(R.id.tvMonthCustomerOutput);
+		this.tvMonthCustomerSluge = (TextView)view.findViewById(R.id.tvMonthCustomerSluge);
+		this.tvMonthCustomerInputOutsideSource = (TextView)view.findViewById(R.id.tvMonthCustomerInputOutsideSource);
+		this.tvMonthCustomerInputOutsideProduct = (TextView)view.findViewById(R.id.tvMonthCustomerInputOutsideProduct);
+		this.tvMonthCustomerOutputOutsideSource = (TextView)view.findViewById(R.id.tvMonthCustomerOutputOutsideSource);
+		this.tvMonthCustomerOutputOutsideProduct = (TextView)view.findViewById(R.id.tvMonthCustomerOutputOutsideProduct);
 
 		makeMonthEnterpriseAmountData(GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_MONTH);
 
@@ -112,14 +120,12 @@ public class FragmentMonthCustomerAmount extends Fragment
 		try
 		{
 
-			String dateStr = _year + "년 " + _monthOfYear + "월  입출고 현황";
-//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + _year + "년 " + _monthOfYear + "월");
+			String dateStr = _year + "년 " + _monthOfYear + "월 입출고 현황(단위:" + GSConfig.AMOUNT_NAMES[this.stateType] + ")";
+//			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "dateStr : " + dateStr);
 
-			this.month_enterprise_amount_date.setText(dateStr);
+			this.tvMonthCustomerDate.setText(dateStr);
 
-			String qryContent = "Unit";
-
-			this.getData(_year, _monthOfYear, qryContent);
+			this.getData(_year, _monthOfYear);
 
 		}
 		catch(Exception ex)
@@ -130,15 +136,12 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 	}
 
-	private void getData(int searchYear, int searchMonth, String qryContent)
+	private void getData(int searchYear, int searchMonth)
 	{
 
 		String functionName = "getData()";
 
 //		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "searchDate : " + searchDate + ", qryContent : " + qryContent);
-
-		iYear = searchYear;
-		iMonth = searchMonth;
 
 		String url = GSConfig.API_SERVER_ADDR + "API";
 		RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
@@ -151,7 +154,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 					@Override
 					public void onResponse(String response) {
 //						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
-						parseData(response);
+						parseData(searchYear, searchMonth, response);
 					}
 				},
 				//에러 발생시 호출될 리스너 객체
@@ -183,7 +186,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 	}
 
-	public void parseData(String msg)
+	public void parseData(int searchYear, int searchMonth, String msg)
 	{
 
 		String functionName = "parseData()";
@@ -199,7 +202,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			dio.list = new ArrayList<>(Arrays.asList(diog));
 
-			this.setDisplayData(dio);
+			this.setDisplayData(searchYear, searchMonth, dio);
 
 		}
 		catch(Exception ex)
@@ -210,7 +213,7 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 	}
 
-	private void setDisplayData(GSDailyInOut data)
+	private void setDisplayData(int searchYear, int searchMonth, GSDailyInOut data)
 	{
 
 		if (data == null)
@@ -224,17 +227,17 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			String unit = getString(R.string.unit_lube);
 
-			this.month_enterprise_amount_income_empty_layout.removeAllViews();
-			this.month_enterprise_amount_release_empty_layout.removeAllViews();
-			this.month_enterprise_amount_petosa_empty_layout.removeAllViews();
-			this.month_enterprise_amount_outside_income_empty_layout_source.removeAllViews();
-			this.month_enterprise_amount_outside_income_empty_layout_product.removeAllViews();
-			this.month_enterprise_amount_outside_release_empty_layout_source.removeAllViews();
-			this.month_enterprise_amount_outside_release_empty_layout_product.removeAllViews();
+			this.layoutMonthCustomerInput.removeAllViews();
+			this.layoutMonthCustomerOutput.removeAllViews();
+			this.layoutMonthCustomerSluge.removeAllViews();
+			this.layoutMonthCustomerInputOutsideSource.removeAllViews();
+			this.layoutMonthCustomerInputOutsideProduct.removeAllViews();
+			this.layoutMonthCustomerOutputOutsideSource.removeAllViews();
+			this.layoutMonthCustomerOutputOutsideProduct.removeAllViews();
 
 			GSDailyInOutGroup inputGroup = null;
 
-			MonthCustomerStatsView statsView = new MonthCustomerStatsView(getActivity(), GSConfig.CURRENT_BRANCH.getBranchID(), GSConfig.STATE_AMOUNT, iYear, iMonth);
+			MonthCustomerStatsView statsView = new MonthCustomerStatsView(getActivity(), GSConfig.CURRENT_BRANCH.getBranchID(), this.stateType, searchYear, searchMonth);
 
 			//-----------------------------------------------------------------------------------------------------------
 			// 입고
@@ -244,12 +247,12 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			if (inputGroup != null && inputGroup.List.size() > 0)
 			{
-				statsView.makeStatsView(month_enterprise_amount_income_empty_layout, inputGroup, GSConfig.MODE_STOCK);
-				month_enterprise_amount_income_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + unit + ")");
+				statsView.makeStatsView(this.layoutMonthCustomerInput, inputGroup, GSConfig.MODE_STOCK);
+				this.tvMonthCustomerInput.setText(GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + GSConfig.AMOUNT_NAMES[this.stateType] + ")");
 			}
 			else
 			{
-				month_enterprise_amount_income_title.setVisibility(View.GONE);
+				this.tvMonthCustomerInput.setVisibility(View.GONE);
 			}
 
 			//-----------------------------------------------------------------------------------------------------------
@@ -260,12 +263,12 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			if (inputGroup != null && inputGroup.List.size() > 0)
 			{
-				statsView.makeStatsView(month_enterprise_amount_release_empty_layout, inputGroup, GSConfig.MODE_RELEASE);
-				month_enterprise_amount_release_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + unit + ")");
+				statsView.makeStatsView(this.layoutMonthCustomerOutput, inputGroup, GSConfig.MODE_RELEASE);
+				this.tvMonthCustomerOutput.setText(GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + GSConfig.AMOUNT_NAMES[this.stateType] + ")");
 			}
 			else
 			{
-				month_enterprise_amount_release_title.setVisibility(View.GONE);
+				this.tvMonthCustomerOutput.setVisibility(View.GONE);
 			}
 
 			//-----------------------------------------------------------------------------------------------------------
@@ -276,12 +279,12 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			if (inputGroup != null && inputGroup.List.size() > 0)
 			{
-				statsView.makeStatsView(month_enterprise_amount_outside_income_empty_layout_source, inputGroup, GSConfig.MODE_OUTSIDE_STOCK_SOURCE);
-				month_enterprise_amount_outside_income_title_source.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + unit + ")");
+				statsView.makeStatsView(this.layoutMonthCustomerInputOutsideSource, inputGroup, GSConfig.MODE_OUTSIDE_STOCK_SOURCE);
+				this.tvMonthCustomerInputOutsideSource.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + GSConfig.AMOUNT_NAMES[this.stateType] + ")");
 			}
 			else
 			{
-				month_enterprise_amount_outside_income_title_source.setVisibility(View.GONE);
+				this.tvMonthCustomerInputOutsideSource.setVisibility(View.GONE);
 			}
 
 			//-----------------------------------------------------------------------------------------------------------
@@ -292,12 +295,12 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			if (inputGroup != null && inputGroup.List.size() > 0)
 			{
-				statsView.makeStatsView(month_enterprise_amount_outside_income_empty_layout_product, inputGroup, GSConfig.MODE_OUTSIDE_STOCK_PRODUCT);
-				month_enterprise_amount_outside_income_title_product.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + unit + ")");
+				statsView.makeStatsView(this.layoutMonthCustomerInputOutsideProduct, inputGroup, GSConfig.MODE_OUTSIDE_STOCK_PRODUCT);
+				this.tvMonthCustomerInputOutsideProduct.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + GSConfig.AMOUNT_NAMES[this.stateType] + ")");
 			}
 			else
 			{
-				month_enterprise_amount_outside_income_title_product.setVisibility(View.GONE);
+				this.tvMonthCustomerInputOutsideProduct.setVisibility(View.GONE);
 			}
 
 			//-----------------------------------------------------------------------------------------------------------
@@ -308,12 +311,12 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			if (inputGroup != null && inputGroup.List.size() > 0)
 			{
-				statsView.makeStatsView(month_enterprise_amount_outside_release_empty_layout_source, inputGroup, GSConfig.MODE_OUTSIDE_RELEASE_SOURCE);
-				month_enterprise_amount_outside_release_title_source.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + unit + ")");
+				statsView.makeStatsView(this.layoutMonthCustomerOutputOutsideSource, inputGroup, GSConfig.MODE_OUTSIDE_RELEASE_SOURCE);
+				this.tvMonthCustomerOutputOutsideSource.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + GSConfig.AMOUNT_NAMES[this.stateType] + ")");
 			}
 			else
 			{
-				month_enterprise_amount_outside_release_title_source.setVisibility(View.GONE);
+				this.tvMonthCustomerOutputOutsideSource.setVisibility(View.GONE);
 			}
 
 			//-----------------------------------------------------------------------------------------------------------
@@ -324,12 +327,12 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			if (inputGroup != null && inputGroup.List.size() > 0)
 			{
-				statsView.makeStatsView(month_enterprise_amount_outside_release_empty_layout_product, inputGroup, GSConfig.MODE_OUTSIDE_RELEASE_PRODUCT);
-				month_enterprise_amount_outside_release_title_product.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + unit + ")");
+				statsView.makeStatsView(this.layoutMonthCustomerOutputOutsideProduct, inputGroup, GSConfig.MODE_OUTSIDE_RELEASE_PRODUCT);
+				this.tvMonthCustomerOutputOutsideProduct.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + GSConfig.AMOUNT_NAMES[this.stateType] + ")");
 			}
 			else
 			{
-				month_enterprise_amount_outside_release_title_product.setVisibility(View.GONE);
+				this.tvMonthCustomerOutputOutsideProduct.setVisibility(View.GONE);
 			}
 
 			//-----------------------------------------------------------------------------------------------------------
@@ -340,12 +343,12 @@ public class FragmentMonthCustomerAmount extends Fragment
 
 			if (inputGroup != null && inputGroup.List.size() > 0)
 			{
-				statsView.makeStatsView(month_enterprise_amount_petosa_empty_layout, inputGroup, GSConfig.MODE_PETOSA);
-				month_enterprise_amount_petosa_title.setText(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + unit + ")");
+				statsView.makeStatsView(this.layoutMonthCustomerSluge, inputGroup, GSConfig.MODE_PETOSA);
+				this.tvMonthCustomerSluge.setText(GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + GSConfig.AMOUNT_NAMES[this.stateType] + ")");
 			}
 			else
 			{
-				month_enterprise_amount_petosa_title.setVisibility(View.GONE);
+				this.tvMonthCustomerSluge.setVisibility(View.GONE);
 			}
 
 		}

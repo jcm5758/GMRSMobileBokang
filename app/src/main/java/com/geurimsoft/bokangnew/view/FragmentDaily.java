@@ -137,7 +137,7 @@ public class FragmentDaily extends Fragment
 		try
 		{
 
-			String str = _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일 입출고 현황";
+			String str = _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일 입출고 현황(단위:" + GSConfig.AMOUNT_NAMES[this.stateType] + ")";
 //			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일");
 
 			this.tvDailyDate.setText(str);

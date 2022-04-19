@@ -20,18 +20,8 @@ com/geurimsoft/bokangnew/view/BackPressHandler.java
  com.geurimsoft.bokangnew.view.BackPressHandler
 com/geurimsoft/bokangnew/widget/adapter/DayNumericWheelAdapter.java
  com.geurimsoft.bokangnew.widget.adapter.DayNumericWheelAdapter
-com/geurimsoft/bokangnew/view/FragmentMonthCustomerPrice.java
- com.geurimsoft.bokangnew.view.FragmentMonthCustomerPrice
- com.geurimsoft.bokangnew.view.FragmentMonthCustomerPrice$1
- com.geurimsoft.bokangnew.view.FragmentMonthCustomerPrice$2
- com.geurimsoft.bokangnew.view.FragmentMonthCustomerPrice$3
 com/geurimsoft/bokangnew/apiserver/data/GSDailyInOut.java
  com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut
-com/geurimsoft/bokangnew/view/FragmentMonthCustomerAmount.java
- com.geurimsoft.bokangnew.view.FragmentMonthCustomerAmount
- com.geurimsoft.bokangnew.view.FragmentMonthCustomerAmount$1
- com.geurimsoft.bokangnew.view.FragmentMonthCustomerAmount$2
- com.geurimsoft.bokangnew.view.FragmentMonthCustomerAmount$3
 com/geurimsoft/bokangnew/view/DailyStatsView.java
  com.geurimsoft.bokangnew.view.DailyStatsView
 com/geurimsoft/bokangnew/widget/WheelRecycle.java
@@ -146,6 +136,11 @@ com/geurimsoft/bokangnew/data/GSDataStatisticMonthChart.java
  com.geurimsoft.bokangnew.data.GSDataStatisticMonthChart
 com/geurimsoft/bokangnew/widget/OnWheelChangedListener.java
  com.geurimsoft.bokangnew.widget.OnWheelChangedListener
+com/geurimsoft/bokangnew/view/FragmentMonthCustomer.java
+ com.geurimsoft.bokangnew.view.FragmentMonthCustomer
+ com.geurimsoft.bokangnew.view.FragmentMonthCustomer$1
+ com.geurimsoft.bokangnew.view.FragmentMonthCustomer$2
+ com.geurimsoft.bokangnew.view.FragmentMonthCustomer$3
 com/geurimsoft/bokangnew/data/GSData.java
  com.geurimsoft.bokangnew.data.GSData
 com/geurimsoft/bokangnew/view/FragmentYearGraph.java
