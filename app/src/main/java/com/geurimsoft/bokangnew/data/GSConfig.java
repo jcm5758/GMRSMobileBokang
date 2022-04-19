@@ -27,9 +27,6 @@ public class GSConfig
 
     public static final String WEB_SERVER_ADDR = "http://" + GSConfig.SERVER_ADDR + "/";
 
-    // Api 재호출 시간
-    public static final int API_RECONNECT = 5;
-
     // 현재 선택한 지점
     public static GSBranch CURRENT_BRANCH = null;
 
