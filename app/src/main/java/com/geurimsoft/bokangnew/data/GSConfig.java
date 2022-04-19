@@ -2,11 +2,8 @@ package com.geurimsoft.bokangnew.data;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 
 import com.geurimsoft.bokangnew.apiserver.data.UserInfo;
-import com.geurimsoft.bokangnew.apiserver.data.UserRightData;
-import com.geurimsoft.bokangnew.view.etc.GwangjuTabActivity;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
