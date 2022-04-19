@@ -117,8 +117,8 @@ public class FragmentMonthMain extends Fragment
 		
 		fragments = new ArrayList<Fragment>();
 		
-		fragments.add(new FragmentMonthAmount());
-		fragments.add(new FragmentMonthPrice());
+		fragments.add(new FragmentMonth(GSConfig.STATE_AMOUNT, "Unit"));
+		fragments.add(new FragmentMonth(GSConfig.STATE_PRICE, "TotalPrice"));
 		fragments.add(new FragmentMonthCustomerAmount());
 		fragments.add(new FragmentMonthCustomerPrice());
 		fragments.add(new FragmentMonthGraph());

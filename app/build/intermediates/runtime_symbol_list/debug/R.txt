@@ -1981,13 +1981,6 @@ int id counterclockwise 0x7f0900ab
 int id custom 0x7f0900ac
 int id customPanel 0x7f0900ad
 int id cut 0x7f0900ae
-int id daily_income_title 0x7f0900af
-int id daily_income_title_outside_product 0x7f0900b0
-int id daily_income_title_outside_source 0x7f0900b1
-int id daily_petosa_title 0x7f0900b2
-int id daily_release_title 0x7f0900b3
-int id daily_release_title_outside_product 0x7f0900b4
-int id daily_release_title_outside_source 0x7f0900b5
 int id date_picker_actions 0x7f0900b6
 int id datepicker 0x7f0900b7
 int id day_datepicker 0x7f0900b8
@@ -2144,9 +2137,6 @@ int id imageButton1 0x7f09014e
 int id imageView1 0x7f09014f
 int id income_account 0x7f090150
 int id income_arm 0x7f090151
-int id income_empty_layout 0x7f090152
-int id income_empty_layout_outside_product 0x7f090153
-int id income_empty_layout_outside_source 0x7f090154
 int id income_poong 0x7f090155
 int id income_totalTitle 0x7f090156
 int id income_wara 0x7f090157
@@ -2163,6 +2153,14 @@ int id labelGroup 0x7f090161
 int id labeled 0x7f090162
 int id largeLabel 0x7f090163
 int id layout 0x7f090164
+int id layoutDailyInput 0x7f09031e
+int id layoutDailyInputOutsideProduct 0x7f09031f
+int id layoutDailyInputOutsideSource 0x7f090320
+int id layoutDailyOutput 0x7f090321
+int id layoutDailyOutputOutsideProduct 0x7f090322
+int id layoutDailyOutputOutsideSource 0x7f090323
+int id layoutDailySluge 0x7f090324
+int id layoutMonthHeader 0x7f09032d
 int id layoutlogin 0x7f090165
 int id left 0x7f090166
 int id leftToRight 0x7f090167
@@ -2175,9 +2173,8 @@ int id list_item 0x7f09016d
 int id list_loading_fail 0x7f09016e
 int id list_loading_indicator 0x7f09016f
 int id ll_fragment 0x7f090170
-int id loading_fail 0x7f090171
-int id loading_indicator 0x7f090172
 int id lvListResult 0x7f090173
+int id lvMonthList 0x7f09032e
 int id masked 0x7f090174
 int id material_clock_display 0x7f090175
 int id material_clock_face 0x7f090176
@@ -2277,7 +2274,6 @@ int id pbLoading 0x7f0901d3
 int id peekHeight 0x7f0901d4
 int id percent 0x7f0901d5
 int id petosa_account 0x7f0901d6
-int id petosa_empty_layout 0x7f0901d7
 int id petosa_petosa 0x7f0901d8
 int id pin 0x7f0901d9
 int id popcloselayout 0x7f0901da
@@ -2299,9 +2295,6 @@ int id release_19mm 0x7f0901e9
 int id release_25mm 0x7f0901ea
 int id release_account 0x7f0901eb
 int id release_crash_sand 0x7f0901ec
-int id release_empty_layout 0x7f0901ed
-int id release_empty_layout_outside_product 0x7f0901ee
-int id release_empty_layout_outside_source 0x7f0901ef
 int id release_sand 0x7f0901f0
 int id reverseSawtooth 0x7f0901f1
 int id right 0x7f0901f2
@@ -2380,8 +2373,6 @@ int id stats_change_branchkwangju 0x7f09023a
 int id stats_change_date_menu 0x7f09023b
 int id stats_change_month_menu 0x7f09023c
 int id stats_change_year_menu 0x7f09023d
-int id stats_daily_date 0x7f09023e
-int id stats_daily_progressBar 0x7f09023f
 int id stats_footer_container 0x7f090240
 int id stats_list_date 0x7f090241
 int id stats_list_header_container 0x7f090242
@@ -2516,6 +2507,14 @@ int id tt_year_price_header_container 0x7f0902c2
 int id tt_year_price_listview 0x7f0902c3
 int id tt_year_price_loading_fail 0x7f0902c4
 int id tt_year_price_loading_indicator 0x7f0902c5
+int id tvDailyDate 0x7f090325
+int id tvDailyInput 0x7f090326
+int id tvDailyInputOutsideProduct 0x7f090327
+int id tvDailyInputOutsideSource 0x7f090328
+int id tvDailyOutput 0x7f090329
+int id tvDailyOutputOutsideProduct 0x7f09032a
+int id tvDailyOutputOutsideSource 0x7f09032b
+int id tvDailySluge 0x7f09032c
 int id tvL4Title01 0x7f0902c6
 int id tvL4Title02 0x7f0902c7
 int id tvL4Title03 0x7f0902c8
@@ -2523,6 +2522,7 @@ int id tvL4Title04 0x7f0902c9
 int id tvListCustomer 0x7f0902ca
 int id tvListId 0x7f0902cb
 int id tvLoading 0x7f0902cc
+int id tvMonthDate 0x7f09032f
 int id tvProduct 0x7f0902cd
 int id tvReconnect 0x7f0902ce
 int id tvServiceDate 0x7f0902cf
@@ -2556,11 +2556,6 @@ int id withinBounds 0x7f0902ea
 int id wrap 0x7f0902eb
 int id wrap_content 0x7f0902ec
 int id year_datepicker 0x7f0902ed
-int id yi_month_amount_date 0x7f0902ee
-int id yi_month_amount_header_container 0x7f0902ef
-int id yi_month_amount_listview 0x7f0902f0
-int id yi_month_amount_loading_fail 0x7f0902f1
-int id yi_month_amount_loading_indicator 0x7f0902f2
 int id yi_month_enterprise_date 0x7f0902f3
 int id yi_month_enterprise_income_layout 0x7f0902f4
 int id yi_month_enterprise_income_outside_product_layout 0x7f0902f5
@@ -2670,6 +2665,7 @@ int layout cctv_layout4 0x7f0c001e
 int layout cctv_view_layout 0x7f0c001f
 int layout custom_dialog 0x7f0c0020
 int layout custom_progress_dialog 0x7f0c0021
+int layout daily_basic 0x7f0c00be
 int layout datepicker_dailog 0x7f0c0022
 int layout day_datepicker_dialog 0x7f0c0023
 int layout design_bottom_navigation_item 0x7f0c0024
@@ -2718,6 +2714,7 @@ int layout material_time_input 0x7f0c004e
 int layout material_timepicker 0x7f0c004f
 int layout material_timepicker_dialog 0x7f0c0050
 int layout material_timepicker_textinput_display 0x7f0c0051
+int layout month_basic 0x7f0c00bd
 int layout month_customer_amount 0x7f0c0052
 int layout month_datepicker_dialog 0x7f0c0053
 int layout month_graph 0x7f0c0054
@@ -2785,7 +2782,6 @@ int layout stats_list_row 0x7f0c0091
 int layout stats_month_enterprise 0x7f0c0092
 int layout stats_pager_layout 0x7f0c0093
 int layout stats_tab_activity 0x7f0c0094
-int layout statviewdetaildaily 0x7f0c0095
 int layout statviewdetailyear 0x7f0c0096
 int layout statviewlayout 0x7f0c0097
 int layout statviewnewlayout 0x7f0c0098
@@ -2819,7 +2815,6 @@ int layout wheel_month 0x7f0c00b3
 int layout wheel_year 0x7f0c00b4
 int layout year_datepicker_dialog 0x7f0c00b5
 int layout year_graph 0x7f0c00b6
-int layout yi_month_amount 0x7f0c00b7
 int layout yi_month_enterprise_amount 0x7f0c00b8
 int layout yi_month_enterprise_price 0x7f0c00b9
 int layout yi_month_price 0x7f0c00ba

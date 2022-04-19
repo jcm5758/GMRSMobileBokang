@@ -91,11 +91,6 @@ com/geurimsoft/bokangnew/widget/WheelView.java
  com.geurimsoft.bokangnew.widget.WheelView
  com.geurimsoft.bokangnew.widget.WheelView$1
  com.geurimsoft.bokangnew.widget.WheelView$2
-com/geurimsoft/bokangnew/view/FragmentMonthAmount.java
- com.geurimsoft.bokangnew.view.FragmentMonthAmount
- com.geurimsoft.bokangnew.view.FragmentMonthAmount$1
- com.geurimsoft.bokangnew.view.FragmentMonthAmount$2
- com.geurimsoft.bokangnew.view.FragmentMonthAmount$3
 com/geurimsoft/bokangnew/apiserver/data/ResultStatus.java
  com.geurimsoft.bokangnew.apiserver.data.ResultStatus
 com/geurimsoft/bokangnew/view/FragmentMonthMain.java
@@ -109,8 +104,6 @@ com/geurimsoft/bokangnew/data/StatsData.java
 com/geurimsoft/bokangnew/data/StAdapter.java
  com.geurimsoft.bokangnew.data.StAdapter
  com.geurimsoft.bokangnew.data.StAdapter$ViewHolder
-com/geurimsoft/bokangnew/apiserver/data/GSDailyInOutDetailNew.java
- com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutDetailNew
 com/geurimsoft/bokangnew/widget/OnWheelClickedListener.java
  com.geurimsoft.bokangnew.widget.OnWheelClickedListener
 com/geurimsoft/bokangnew/apiserver/data/GSDailyInOutDetail.java
@@ -184,11 +177,6 @@ com/geurimsoft/bokangnew/widget/adapter/ArrayWheelAdapter.java
  com.geurimsoft.bokangnew.widget.adapter.ArrayWheelAdapter
 com/geurimsoft/bokangnew/data/DownloadInterface.java
  com.geurimsoft.bokangnew.data.DownloadInterface
-com/geurimsoft/bokangnew/view/FragmentMonthPrice.java
- com.geurimsoft.bokangnew.view.FragmentMonthPrice
- com.geurimsoft.bokangnew.view.FragmentMonthPrice$1
- com.geurimsoft.bokangnew.view.FragmentMonthPrice$2
- com.geurimsoft.bokangnew.view.FragmentMonthPrice$3
 com/geurimsoft/bokangnew/view/ViewPagerAdapter.java
  com.geurimsoft.bokangnew.view.ViewPagerAdapter
 com/geurimsoft/bokangnew/view/FragmentYearPrice.java
@@ -224,11 +212,18 @@ com/geurimsoft/bokangnew/apiserver/data/GSDailyInOutGroupNew.java
  com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroupNew
 com/geurimsoft/bokangnew/widget/WheelAdapter.java
  com.geurimsoft.bokangnew.widget.WheelAdapter
-com/geurimsoft/bokangnew/data/StatsTotalData.java
- com.geurimsoft.bokangnew.data.StatsTotalData
+com/geurimsoft/bokangnew/view/FragmentDailyMain.java
+ com.geurimsoft.bokangnew.view.FragmentDailyMain
+ com.geurimsoft.bokangnew.view.FragmentDailyMain$1
+ com.geurimsoft.bokangnew.view.FragmentDailyMain$StatsPagerAdapter
 com/geurimsoft/bokangnew/view/ActivityMain.java
  com.geurimsoft.bokangnew.view.ActivityMain
  com.geurimsoft.bokangnew.view.ActivityMain$1
+com/geurimsoft/bokangnew/view/FragmentMonth.java
+ com.geurimsoft.bokangnew.view.FragmentMonth
+ com.geurimsoft.bokangnew.view.FragmentMonth$1
+ com.geurimsoft.bokangnew.view.FragmentMonth$2
+ com.geurimsoft.bokangnew.view.FragmentMonth$3
 com/geurimsoft/bokangnew/chart/GChart01.java
  com.geurimsoft.bokangnew.chart.GChart01
 com/geurimsoft/bokangnew/view/YearCustomerStatsView.java
@@ -261,6 +256,11 @@ com/geurimsoft/bokangnew/view/etc/StatsTotalView.java
  com.geurimsoft.bokangnew.view.etc.StatsTotalView
 com/geurimsoft/bokangnew/data/GSConfig.java
  com.geurimsoft.bokangnew.data.GSConfig
+com/geurimsoft/bokangnew/view/FragmentDaily.java
+ com.geurimsoft.bokangnew.view.FragmentDaily
+ com.geurimsoft.bokangnew.view.FragmentDaily$1
+ com.geurimsoft.bokangnew.view.FragmentDaily$2
+ com.geurimsoft.bokangnew.view.FragmentDaily$3
 com/geurimsoft/bokangnew/data/PetosaData.java
  com.geurimsoft.bokangnew.data.PetosaData
 com/geurimsoft/bokangnew/view/etc/TestStatistic.java
@@ -279,12 +279,7 @@ com/geurimsoft/bokangnew/data/IncomeData.java
  com.geurimsoft.bokangnew.data.IncomeData
 com/geurimsoft/bokangnew/data/Vehicle.java
  com.geurimsoft.bokangnew.data.Vehicle
-com/geurimsoft/bokangnew/view/FragmentDailyAmount.java
- com.geurimsoft.bokangnew.view.FragmentDailyAmount
- com.geurimsoft.bokangnew.view.FragmentDailyAmount$1
- com.geurimsoft.bokangnew.view.FragmentDailyAmount$2
- com.geurimsoft.bokangnew.view.FragmentDailyAmount$3
-com/geurimsoft/bokangnew/view/FragmentDailyMain.java
- com.geurimsoft.bokangnew.view.FragmentDailyMain
- com.geurimsoft.bokangnew.view.FragmentDailyMain$1
- com.geurimsoft.bokangnew.view.FragmentDailyMain$StatsPagerAdapter
+com/geurimsoft/bokangnew/data/StatsTotalData.java
+ com.geurimsoft.bokangnew.data.StatsTotalData
+com/geurimsoft/bokangnew/apiserver/data/GSDailyInOutDetailNew.java
+ com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutDetailNew

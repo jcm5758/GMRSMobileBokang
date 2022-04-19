@@ -1982,13 +1982,6 @@ id counterclockwise
 id custom
 id customPanel
 id cut
-id daily_income_title
-id daily_income_title_outside_product
-id daily_income_title_outside_source
-id daily_petosa_title
-id daily_release_title
-id daily_release_title_outside_product
-id daily_release_title_outside_source
 id date_picker_actions
 id datepicker
 id day_datepicker
@@ -2145,9 +2138,6 @@ id imageButton1
 id imageView1
 id income_account
 id income_arm
-id income_empty_layout
-id income_empty_layout_outside_product
-id income_empty_layout_outside_source
 id income_poong
 id income_totalTitle
 id income_wara
@@ -2164,6 +2154,14 @@ id labelGroup
 id labeled
 id largeLabel
 id layout
+id layoutDailyInput
+id layoutDailyInputOutsideProduct
+id layoutDailyInputOutsideSource
+id layoutDailyOutput
+id layoutDailyOutputOutsideProduct
+id layoutDailyOutputOutsideSource
+id layoutDailySluge
+id layoutMonthHeader
 id layoutlogin
 id left
 id leftToRight
@@ -2176,9 +2174,8 @@ id list_item
 id list_loading_fail
 id list_loading_indicator
 id ll_fragment
-id loading_fail
-id loading_indicator
 id lvListResult
+id lvMonthList
 id masked
 id material_clock_display
 id material_clock_face
@@ -2278,7 +2275,6 @@ id pbLoading
 id peekHeight
 id percent
 id petosa_account
-id petosa_empty_layout
 id petosa_petosa
 id pin
 id popcloselayout
@@ -2300,9 +2296,6 @@ id release_19mm
 id release_25mm
 id release_account
 id release_crash_sand
-id release_empty_layout
-id release_empty_layout_outside_product
-id release_empty_layout_outside_source
 id release_sand
 id reverseSawtooth
 id right
@@ -2381,8 +2374,6 @@ id stats_change_branchkwangju
 id stats_change_date_menu
 id stats_change_month_menu
 id stats_change_year_menu
-id stats_daily_date
-id stats_daily_progressBar
 id stats_footer_container
 id stats_list_date
 id stats_list_header_container
@@ -2517,6 +2508,14 @@ id tt_year_price_header_container
 id tt_year_price_listview
 id tt_year_price_loading_fail
 id tt_year_price_loading_indicator
+id tvDailyDate
+id tvDailyInput
+id tvDailyInputOutsideProduct
+id tvDailyInputOutsideSource
+id tvDailyOutput
+id tvDailyOutputOutsideProduct
+id tvDailyOutputOutsideSource
+id tvDailySluge
 id tvL4Title01
 id tvL4Title02
 id tvL4Title03
@@ -2524,6 +2523,7 @@ id tvL4Title04
 id tvListCustomer
 id tvListId
 id tvLoading
+id tvMonthDate
 id tvProduct
 id tvReconnect
 id tvServiceDate
@@ -2557,11 +2557,6 @@ id withinBounds
 id wrap
 id wrap_content
 id year_datepicker
-id yi_month_amount_date
-id yi_month_amount_header_container
-id yi_month_amount_listview
-id yi_month_amount_loading_fail
-id yi_month_amount_loading_indicator
 id yi_month_enterprise_date
 id yi_month_enterprise_income_layout
 id yi_month_enterprise_income_outside_product_layout
@@ -2671,6 +2666,7 @@ layout cctv_layout4
 layout cctv_view_layout
 layout custom_dialog
 layout custom_progress_dialog
+layout daily_basic
 layout datepicker_dailog
 layout day_datepicker_dialog
 layout design_bottom_navigation_item
@@ -2719,6 +2715,7 @@ layout material_time_input
 layout material_timepicker
 layout material_timepicker_dialog
 layout material_timepicker_textinput_display
+layout month_basic
 layout month_customer_amount
 layout month_datepicker_dialog
 layout month_graph
@@ -2786,7 +2783,6 @@ layout stats_list_row
 layout stats_month_enterprise
 layout stats_pager_layout
 layout stats_tab_activity
-layout statviewdetaildaily
 layout statviewdetailyear
 layout statviewlayout
 layout statviewnewlayout
@@ -2820,7 +2816,6 @@ layout wheel_month
 layout wheel_year
 layout year_datepicker_dialog
 layout year_graph
-layout yi_month_amount
 layout yi_month_enterprise_amount
 layout yi_month_enterprise_price
 layout yi_month_price

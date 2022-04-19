@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tvDailyDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="입고"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#000000" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffff"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tvDailyInput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="5dp"
+                    android:text="입고"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#000000" />
+
+                <LinearLayout
+                    android:id="@+id/layoutDailyInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvDailyOutput"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="10dp"
+                    android:text="출고"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#000000" />
+
+                <LinearLayout
+                    android:id="@+id/layoutDailyOutput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvDailyInputOutsideSource"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="5dp"
+                    android:text="외부입고(원석)"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#000000" />
+
+                <LinearLayout
+                    android:id="@+id/layoutDailyInputOutsideSource"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvDailyInputOutsideProduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="5dp"
+                    android:text="외부입고(제품)"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#000000" />
+
+                <LinearLayout
+                    android:id="@+id/layoutDailyInputOutsideProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvDailyOutputOutsideSource"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="10dp"
+                    android:text="외부출고(원석)"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#000000" />
+
+                <LinearLayout
+                    android:id="@+id/layoutDailyOutputOutsideSource"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvDailyOutputOutsideProduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="10dp"
+                    android:text="외부출고(제품)"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#000000" />
+
+                <LinearLayout
+                    android:id="@+id/layoutDailyOutputOutsideProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvDailySluge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="10dp"
+                    android:text="폐토사"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="#000000" />
+
+                <LinearLayout
+                    android:id="@+id/layoutDailySluge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>

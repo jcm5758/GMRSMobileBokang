@@ -41,17 +41,20 @@ import java.util.Map;
 public class FragmentDaily extends Fragment
 {
 
-	private LinearLayout income_empty_layout, release_empty_layout, petosa_empty_layout;
-	private LinearLayout income_empty_layout_outside_source, income_empty_layout_outside_product;
-	private LinearLayout release_empty_layout_outside_source, release_empty_layout_outside_product;
+	private LinearLayout layoutDailyInput, layoutDailyOutput, layoutDailySluge;
+	private LinearLayout layoutDailyInputOutsideSource, layoutDailyInputOutsideProduct;
+	private LinearLayout layoutDailyOutputOutsideSource, layoutDailyOutputOutsideProduct;
 
-	private TextView stats_daily_date, daily_income_title, daily_release_title, daily_petosa_title;
-	private TextView daily_income_title_outside_source, daily_income_title_outside_product;
-	private TextView daily_release_title_outside_source, daily_release_title_outside_product;
+	private TextView tvDailyDate;
+
+	private TextView tvDailyInput, tvDailyOutput, tvDailySluge;
+	private TextView tvDailyInputOutsideSource, tvDailyInputOutsideProduct;
+	private TextView tvDailyOutputOutsideSource, tvDailyOutputOutsideProduct;
 
 	// 수량, 금액 타입
 	private int stateType = GSConfig.STATE_AMOUNT;
 
+	// 질의 내용
 	private String qryContent = "Unit";
 
 	public FragmentDaily(int stateType, String qryContent)
@@ -69,7 +72,7 @@ public class FragmentDaily extends Fragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
 	{
-		View v = inflater.inflate(R.layout.statviewdetaildaily, container, false);
+		View v = inflater.inflate(R.layout.daily_basic, container, false);
 		return v;
 	}
 	
@@ -89,50 +92,24 @@ public class FragmentDaily extends Fragment
 			return;
 		}
 
-		// 입고 빈 레이아웃
-		this.income_empty_layout = (LinearLayout)view.findViewById(R.id.income_empty_layout);
-
-		// 출고 빈 레이아웃
-		this.release_empty_layout = (LinearLayout)view.findViewById(R.id.release_empty_layout);
-
-		// 토사 빈 레이아웃
-		this.petosa_empty_layout = (LinearLayout)view.findViewById(R.id.petosa_empty_layout);
-
-		// 외부입고(원석) 빈 레이아웃
-		this.income_empty_layout_outside_source = (LinearLayout)view.findViewById(R.id.income_empty_layout_outside_source);
-
-		// 외부입고(제품) 빈 레이아웃
-		this.income_empty_layout_outside_product = (LinearLayout)view.findViewById(R.id.income_empty_layout_outside_product);
-
-		// 외부출고(원석) 빈 레이아웃
-		this.release_empty_layout_outside_source = (LinearLayout)view.findViewById(R.id.release_empty_layout_outside_source);
-
-		// 외부출고(제품) 빈 레이아웃
-		this.release_empty_layout_outside_product = (LinearLayout)view.findViewById(R.id.release_empty_layout_outside_product);
+		this.layoutDailyInput = (LinearLayout)view.findViewById(R.id.layoutDailyInput);
+		this.layoutDailyOutput = (LinearLayout)view.findViewById(R.id.layoutDailyOutput);
+		this.layoutDailySluge = (LinearLayout)view.findViewById(R.id.layoutDailySluge);
+		this.layoutDailyInputOutsideSource = (LinearLayout)view.findViewById(R.id.layoutDailyInputOutsideSource);
+		this.layoutDailyInputOutsideProduct = (LinearLayout)view.findViewById(R.id.layoutDailyInputOutsideProduct);
+		this.layoutDailyOutputOutsideSource = (LinearLayout)view.findViewById(R.id.layoutDailyOutputOutsideSource);
+		this.layoutDailyOutputOutsideProduct = (LinearLayout)view.findViewById(R.id.layoutDailyOutputOutsideProduct);
 
 		// 제목 텍스트 뷰
-		this.stats_daily_date = (TextView)view.findViewById(R.id.stats_daily_date);
+		this.tvDailyDate = (TextView)view.findViewById(R.id.tvDailyDate);
 
-		// 입고 텍스트 뷰
-		this.daily_income_title = (TextView) view.findViewById(R.id.daily_income_title);
-
-		// 출고 텍스트 뷰
-		this.daily_release_title = (TextView) view.findViewById(R.id.daily_release_title);
-
-		// 토사 텍스트 뷰
-		this.daily_petosa_title = (TextView) view.findViewById(R.id.daily_petosa_title);
-
-		// 외부입고(원석) 텍스트 뷰
-		this.daily_income_title_outside_source = (TextView) view.findViewById(R.id.daily_income_title_outside_source);
-
-		// 외부입고(제품) 텍스트 뷰
-		this.daily_income_title_outside_product = (TextView) view.findViewById(R.id.daily_income_title_outside_product);
-
-		// 외부출고(원석) 텍스트 뷰
-		this.daily_release_title_outside_source = (TextView) view.findViewById(R.id.daily_release_title_outside_source);
-
-		// 외부출고(제품) 텍스트 뷰
-		this.daily_release_title_outside_product = (TextView) view.findViewById(R.id.daily_release_title_outside_product);
+		this.tvDailyInput = (TextView) view.findViewById(R.id.tvDailyInput);
+		this.tvDailyOutput = (TextView) view.findViewById(R.id.tvDailyOutput);
+		this.tvDailySluge = (TextView) view.findViewById(R.id.tvDailySluge);
+		this.tvDailyInputOutsideSource = (TextView) view.findViewById(R.id.tvDailyInputOutsideSource);
+		this.tvDailyInputOutsideProduct = (TextView) view.findViewById(R.id.tvDailyInputOutsideProduct);
+		this.tvDailyOutputOutsideSource = (TextView) view.findViewById(R.id.tvDailyOutputOutsideSource);
+		this.tvDailyOutputOutsideProduct = (TextView) view.findViewById(R.id.tvDailyOutputOutsideProduct);
 
 		// 일일 입고/출고/토사 수량 조회
 		makeData(GSConfig.DAY_STATS_YEAR, GSConfig.DAY_STATS_MONTH,GSConfig.DAY_STATS_DAY);
@@ -163,7 +140,7 @@ public class FragmentDaily extends Fragment
 			String str = _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일 입출고 현황";
 //			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + _year + "년 " + _monthOfYear + "월 " + _dayOfMonth + "일");
 
-			this.stats_daily_date.setText(str);
+			this.tvDailyDate.setText(str);
 
 			String queryDate = GSUtil.makeStringFromDate(_year, _monthOfYear, _dayOfMonth);
 
@@ -275,13 +252,13 @@ public class FragmentDaily extends Fragment
 		// 레이아웃 초기화
 		//--------------------------------------------------
 
-		income_empty_layout.removeAllViews();
-		release_empty_layout.removeAllViews();
-		petosa_empty_layout.removeAllViews();
-		income_empty_layout_outside_source.removeAllViews();
-		income_empty_layout_outside_product.removeAllViews();
-		release_empty_layout_outside_source.removeAllViews();
-		release_empty_layout_outside_product.removeAllViews();
+		layoutDailyInput.removeAllViews();
+		layoutDailyOutput.removeAllViews();
+		layoutDailySluge.removeAllViews();
+		layoutDailyInputOutsideSource.removeAllViews();
+		layoutDailyInputOutsideProduct.removeAllViews();
+		layoutDailyOutputOutsideSource.removeAllViews();
+		layoutDailyOutputOutsideProduct.removeAllViews();
 
 		//---------------------------------------------------------------------------------
 		// 표 생성 클래스 초기화
@@ -296,12 +273,12 @@ public class FragmentDaily extends Fragment
 		tempGroup = dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_STOCK] );
 		if (tempGroup != null && tempGroup.List.size() > 0)
 		{
-			statsView.makeView(income_empty_layout, tempGroup);
-			daily_income_title.setText(tempGroup.getTitle(this.stateType));
+			statsView.makeView(layoutDailyInput, tempGroup);
+			tvDailyInput.setText(tempGroup.getTitle(this.stateType));
 		}
 		else
 		{
-			daily_income_title.setVisibility(View.GONE);
+			tvDailyInput.setVisibility(View.GONE);
 		}
 
 		//---------------------------------------------------------------------------------
@@ -311,12 +288,12 @@ public class FragmentDaily extends Fragment
 		tempGroup = dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_RELEASE] );
 		if (tempGroup != null && tempGroup.List.size() > 0)
 		{
-			statsView.makeView(release_empty_layout, tempGroup);
-			daily_release_title.setText(tempGroup.getTitle(this.stateType));
+			statsView.makeView(layoutDailyOutput, tempGroup);
+			tvDailyOutput.setText(tempGroup.getTitle(this.stateType));
 		}
 		else
 		{
-			daily_release_title.setVisibility(View.GONE);
+			tvDailyOutput.setVisibility(View.GONE);
 		}
 
 		//---------------------------------------------------------------------------------
@@ -326,12 +303,12 @@ public class FragmentDaily extends Fragment
 		tempGroup = dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_PETOSA] );
 		if (tempGroup != null && tempGroup.List.size() > 0)
 		{
-			statsView.makeView(petosa_empty_layout, tempGroup);
-			daily_petosa_title.setText(tempGroup.getTitle(this.stateType));
+			statsView.makeView(layoutDailySluge, tempGroup);
+			tvDailySluge.setText(tempGroup.getTitle(this.stateType));
 		}
 		else
 		{
-			daily_petosa_title.setVisibility(View.GONE);
+			tvDailySluge.setVisibility(View.GONE);
 		}
 
 		//---------------------------------------------------------------------------------
@@ -341,12 +318,12 @@ public class FragmentDaily extends Fragment
 		tempGroup = dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] );
 		if (tempGroup != null && tempGroup.List.size() > 0)
 		{
-			statsView.makeView(income_empty_layout_outside_source, tempGroup);
-			daily_income_title_outside_source.setText(tempGroup.getTitle(this.stateType));
+			statsView.makeView(layoutDailyInputOutsideSource, tempGroup);
+			tvDailyInputOutsideSource.setText(tempGroup.getTitle(this.stateType));
 		}
 		else
 		{
-			daily_income_title_outside_source.setVisibility(View.GONE);
+			tvDailyInputOutsideSource.setVisibility(View.GONE);
 		}
 
 		//---------------------------------------------------------------------------------
@@ -356,12 +333,12 @@ public class FragmentDaily extends Fragment
 		tempGroup = dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] );
 		if (tempGroup != null && tempGroup.List.size() > 0)
 		{
-			statsView.makeView(income_empty_layout_outside_product, tempGroup);
-			daily_income_title_outside_product.setText(tempGroup.getTitle(this.stateType));
+			statsView.makeView(layoutDailyInputOutsideProduct, tempGroup);
+			tvDailyInputOutsideProduct.setText(tempGroup.getTitle(this.stateType));
 		}
 		else
 		{
-			daily_income_title_outside_product.setVisibility(View.GONE);
+			tvDailyInputOutsideProduct.setVisibility(View.GONE);
 		}
 
 		//---------------------------------------------------------------------------------
@@ -371,12 +348,12 @@ public class FragmentDaily extends Fragment
 		tempGroup = dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE_SOURCE] );
 		if (tempGroup != null && tempGroup.List.size() > 0)
 		{
-			statsView.makeView(release_empty_layout_outside_source, tempGroup);
-			daily_release_title_outside_source.setText(tempGroup.getTitle(this.stateType));
+			statsView.makeView(layoutDailyOutputOutsideSource, tempGroup);
+			tvDailyOutputOutsideSource.setText(tempGroup.getTitle(this.stateType));
 		}
 		else
 		{
-			daily_release_title_outside_source.setVisibility(View.GONE);
+			tvDailyOutputOutsideSource.setVisibility(View.GONE);
 		}
 
 		//---------------------------------------------------------------------------------
@@ -386,12 +363,12 @@ public class FragmentDaily extends Fragment
 		tempGroup = dio.findByServiceType( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE_PRODUCT] );
 		if (tempGroup != null && tempGroup.List.size() > 0)
 		{
-			statsView.makeView(release_empty_layout_outside_product, tempGroup);
-			daily_release_title_outside_product.setText(tempGroup.getTitle(this.stateType));
+			statsView.makeView(layoutDailyOutputOutsideProduct, tempGroup);
+			tvDailyOutputOutsideProduct.setText(tempGroup.getTitle(this.stateType));
 		}
 		else
 		{
-			daily_release_title_outside_product.setVisibility(View.GONE);
+			tvDailyOutputOutsideProduct.setVisibility(View.GONE);
 		}
 
 	}

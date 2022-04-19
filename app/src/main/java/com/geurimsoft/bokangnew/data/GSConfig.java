@@ -69,6 +69,8 @@ public class GSConfig
     public static String[] MODE_NAMES = new String[]{
             "입고", "출고", "토사", "외부입고(원석)", "외부입고(제품)", "외부출고(원석)", "외부출고(제품)"};
 
+    public static String[] AMOUNT_NAMES = new String[]{ "루베", "천원" };
+
     public static int MODE_STOCK = 0;
     public static int MODE_RELEASE = 1;
     public static int MODE_PETOSA = 2;
