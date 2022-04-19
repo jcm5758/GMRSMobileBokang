@@ -24,6 +24,8 @@ com/geurimsoft/bokangnew/widget/OnWheelScrollListener.java
  com.geurimsoft.bokangnew.widget.OnWheelScrollListener
 com/geurimsoft/bokangnew/chart/IDemoChart.java
  com.geurimsoft.bokangnew.chart.IDemoChart
+com/geurimsoft/bokangnew/apiserver/data/GSDailyInOutDetailNew.java
+ com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutDetailNew
 com/geurimsoft/bokangnew/widget/ItemsRange.java
  com.geurimsoft.bokangnew.widget.ItemsRange
 com/geurimsoft/bokangnew/view/FragmentMonthGraph.java
@@ -115,10 +117,8 @@ com/geurimsoft/bokangnew/widget/WheelAdapter.java
  com.geurimsoft.bokangnew.widget.WheelAdapter
 com/geurimsoft/bokangnew/apiserver/RetrofitService.java
  com.geurimsoft.bokangnew.apiserver.RetrofitService
-com/geurimsoft/bokangnew/view/FragmentDailyMain.java
- com.geurimsoft.bokangnew.view.FragmentDailyMain
- com.geurimsoft.bokangnew.view.FragmentDailyMain$1
- com.geurimsoft.bokangnew.view.FragmentDailyMain$StatsPagerAdapter
+com/geurimsoft/bokangnew/data/StatsTotalData.java
+ com.geurimsoft.bokangnew.data.StatsTotalData
 com/geurimsoft/bokangnew/view/util/StatsHeaderAndFooterView.java
  com.geurimsoft.bokangnew.view.util.StatsHeaderAndFooterView
 com/geurimsoft/bokangnew/data/SearchResult.java
@@ -245,7 +245,19 @@ com/geurimsoft/bokangnew/widget/WheelScroller.java
  com.geurimsoft.bokangnew.widget.WheelScroller$1
  com.geurimsoft.bokangnew.widget.WheelScroller$2
  com.geurimsoft.bokangnew.widget.WheelScroller$ScrollingListener
-com/geurimsoft/bokangnew/data/StatsTotalData.java
- com.geurimsoft.bokangnew.data.StatsTotalData
-com/geurimsoft/bokangnew/apiserver/data/GSDailyInOutDetailNew.java
- com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutDetailNew
+com/geurimsoft/bokangnew/view/FragmentDailySearch.java
+ com.geurimsoft.bokangnew.view.FragmentDailySearch
+ com.geurimsoft.bokangnew.view.FragmentDailySearch$1
+ com.geurimsoft.bokangnew.view.FragmentDailySearch$10
+ com.geurimsoft.bokangnew.view.FragmentDailySearch$2
+ com.geurimsoft.bokangnew.view.FragmentDailySearch$3
+ com.geurimsoft.bokangnew.view.FragmentDailySearch$4
+ com.geurimsoft.bokangnew.view.FragmentDailySearch$5
+ com.geurimsoft.bokangnew.view.FragmentDailySearch$6
+ com.geurimsoft.bokangnew.view.FragmentDailySearch$7
+ com.geurimsoft.bokangnew.view.FragmentDailySearch$8
+ com.geurimsoft.bokangnew.view.FragmentDailySearch$9
+com/geurimsoft/bokangnew/view/FragmentDailyMain.java
+ com.geurimsoft.bokangnew.view.FragmentDailyMain
+ com.geurimsoft.bokangnew.view.FragmentDailyMain$1
+ com.geurimsoft.bokangnew.view.FragmentDailyMain$StatsPagerAdapter

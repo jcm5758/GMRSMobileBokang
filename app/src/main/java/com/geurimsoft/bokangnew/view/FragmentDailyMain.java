@@ -136,6 +136,7 @@ public class FragmentDailyMain extends Fragment
 		
 		fragments.add(new FragmentDaily(GSConfig.STATE_AMOUNT, "Unit"));
 		fragments.add(new FragmentDaily(GSConfig.STATE_PRICE, "TotalPrice"));
+		fragments.add(new FragmentDailySearch());
 
 	}
 	
@@ -251,7 +252,7 @@ public class FragmentDailyMain extends Fragment
 		GSConfig.CURRENT_BRANCH = new GSBranch(urData.get(which).getBranID(), urData.get(which).getBranName(), urData.get(which).getBranShortName());
 
 		// 새로 옮겨갈 프래그먼트 설정
-		Intent intent = new Intent(context, GSConfig.Activity_LIST[0]);
+		Intent intent = new Intent(context, GSConfig.Activity_CLASS);
 		intent.putExtra("branName", GSConfig.CURRENT_BRANCH.getBranchShortName());
 		intent.putExtra("branID", GSConfig.CURRENT_BRANCH.getBranchID());
 

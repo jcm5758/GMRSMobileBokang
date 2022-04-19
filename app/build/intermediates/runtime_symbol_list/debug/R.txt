@@ -1896,6 +1896,7 @@ int id blocking 0x7f090056
 int id bottom 0x7f090057
 int id bottom_navigation 0x7f090058
 int id bounce 0x7f090059
+int id btSearch 0x7f090202
 int id btYearCustomerMonthClose 0x7f09005a
 int id btnCancel 0x7f09005b
 int id btnOk 0x7f09005c
@@ -2054,6 +2055,7 @@ int id line3 0x7f0900f4
 int id linear 0x7f0900f5
 int id listMode 0x7f0900f6
 int id list_item 0x7f0900f7
+int id lvCustomerListView 0x7f090203
 int id lvMonthList 0x7f0900f8
 int id lvYearCustomerMonthListView 0x7f0900f9
 int id lvYearListView 0x7f0900fa
@@ -2187,6 +2189,9 @@ int id snackbar_action 0x7f090179
 int id snackbar_text 0x7f09017a
 int id snap 0x7f09017b
 int id snapMargins 0x7f09017c
+int id spCustomerName 0x7f090204
+int id spCustomerSiteName 0x7f090205
+int id spProduct 0x7f090206
 int id spacer 0x7f09017d
 int id spline 0x7f09017e
 int id split_action_bar 0x7f09017f
@@ -2279,6 +2284,7 @@ int id tvDailyInputOutsideSource 0x7f0901d5
 int id tvDailyOutput 0x7f0901d6
 int id tvDailyOutputOutsideProduct 0x7f0901d7
 int id tvDailyOutputOutsideSource 0x7f0901d8
+int id tvDailySearchTitle 0x7f090207
 int id tvDailySluge 0x7f0901d9
 int id tvLoading 0x7f0901da
 int id tvMonthCustomerDate 0x7f0901db
@@ -2383,6 +2389,7 @@ int layout branch_main 0x7f0c001c
 int layout custom_dialog 0x7f0c001d
 int layout custom_progress_dialog 0x7f0c001e
 int layout daily_basic 0x7f0c001f
+int layout daily_search 0x7f0c008e
 int layout day_datepicker_dialog 0x7f0c0020
 int layout design_bottom_navigation_item 0x7f0c0021
 int layout design_bottom_sheet_dialog 0x7f0c0022

@@ -1897,6 +1897,7 @@ id blocking
 id bottom
 id bottom_navigation
 id bounce
+id btSearch
 id btYearCustomerMonthClose
 id btnCancel
 id btnOk
@@ -2055,6 +2056,7 @@ id line3
 id linear
 id listMode
 id list_item
+id lvCustomerListView
 id lvMonthList
 id lvYearCustomerMonthListView
 id lvYearListView
@@ -2188,6 +2190,9 @@ id snackbar_action
 id snackbar_text
 id snap
 id snapMargins
+id spCustomerName
+id spCustomerSiteName
+id spProduct
 id spacer
 id spline
 id split_action_bar
@@ -2280,6 +2285,7 @@ id tvDailyInputOutsideSource
 id tvDailyOutput
 id tvDailyOutputOutsideProduct
 id tvDailyOutputOutsideSource
+id tvDailySearchTitle
 id tvDailySluge
 id tvLoading
 id tvMonthCustomerDate
@@ -2384,6 +2390,7 @@ layout branch_main
 layout custom_dialog
 layout custom_progress_dialog
 layout daily_basic
+layout daily_search
 layout day_datepicker_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
