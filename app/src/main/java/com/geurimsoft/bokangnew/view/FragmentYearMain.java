@@ -112,10 +112,10 @@ public class FragmentYearMain extends Fragment
 		
 		fragments = new ArrayList<Fragment>();
 		
-		fragments.add(new FragmentYearAmount());
-		fragments.add(new FragmentYearPrice());
-		fragments.add(new FragmentYearCustomerAmount());
-		fragments.add(new FragmentYearCustomerPrice());
+		fragments.add(new FragmentYear(GSConfig.STATE_AMOUNT, "Unit"));
+		fragments.add(new FragmentYear(GSConfig.STATE_PRICE, "TotalPrice"));
+		fragments.add(new FragmentYearCustomer(GSConfig.STATE_AMOUNT, "Unit"));
+		fragments.add(new FragmentYearCustomer(GSConfig.STATE_PRICE, "TotalPrice"));
 		fragments.add(new FragmentYearGraph());
 
 	}

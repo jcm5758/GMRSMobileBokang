@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -40,7 +39,6 @@ import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.data.GSConfig;
 import com.geurimsoft.bokangnew.data.GSMonthInOut;
 import com.geurimsoft.bokangnew.data.StAdapter;
-import com.geurimsoft.bokangnew.view.util.CustomProgressDialog;
 import com.geurimsoft.bokangnew.view.util.StatsHeaderAndFooterView;
 import com.google.gson.Gson;
 
@@ -408,20 +406,20 @@ public class MonthCustomerStatsView
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View layout = inflater.inflate(R.layout.enterprise_popup, null);
+        View layout = inflater.inflate(R.layout.year_customer_month, null);
 
         popupWindow = new PopupWindow(layout, mWidthPixels-20, LayoutParams.MATCH_PARENT, true);
         popupWindow.showAtLocation(layout, Gravity.CENTER, 0, 0);
 
-        TextView popup_date = (TextView)layout.findViewById(R.id.popup_date);
-        LinearLayout popup_header_container = (LinearLayout)layout.findViewById(R.id.popup_header_container);
+        TextView tvYearCustomerMonthDate = (TextView)layout.findViewById(R.id.tvYearCustomerMonthDate);
+        LinearLayout layoutYearCustomerMonthHeader = (LinearLayout)layout.findViewById(R.id.layoutYearCustomerMonthHeader);
 
-        ListView popup_listview = (ListView)layout.findViewById(R.id.popup_listview);
-        popup_listview.setDividerHeight(0);
+        ListView lvYearCustomerMonthListView = (ListView)layout.findViewById(R.id.lvYearCustomerMonthListView);
+        lvYearCustomerMonthListView.setDividerHeight(0);
 
-        Button popup_close_btn = (Button)layout.findViewById(R.id.popup_close_btn);
+        Button btYearCustomerMonthClose = (Button)layout.findViewById(R.id.btYearCustomerMonthClose);
 
-        popup_header_container.removeAllViews();
+        layoutYearCustomerMonthHeader.removeAllViews();
 
         String statsTypeStr = "";
 
@@ -437,10 +435,10 @@ public class MonthCustomerStatsView
         String modeStr = GSConfig.MODE_NAMES[serviceType] + " 현황";
 
         String dateStr = searchYear + "년 " + searchMonth + "월 "+ customerName + "\n" + modeStr + statsTypeStr;
-        popup_date.setText(dateStr);
+        tvYearCustomerMonthDate.setText(dateStr);
 
         StatsHeaderAndFooterView statsHeaderAndFooterView = new StatsHeaderAndFooterView(mActivity, data, statsType);
-        statsHeaderAndFooterView.makeHeaderView(popup_header_container);
+        statsHeaderAndFooterView.makeHeaderView(layoutYearCustomerMonthHeader);
 
         StAdapter adapter = new StAdapter(mActivity, data, statsType);
 
@@ -448,10 +446,10 @@ public class MonthCustomerStatsView
         LinearLayout footer_layout = (LinearLayout)foot.findViewById(R.id.stats_footer_container);
 
         statsHeaderAndFooterView.makeFooterView(footer_layout);
-        popup_listview.addFooterView(foot);
-        popup_listview.setAdapter(adapter);
+        lvYearCustomerMonthListView.addFooterView(foot);
+        lvYearCustomerMonthListView.setAdapter(adapter);
 
-        popup_close_btn.setOnClickListener(new OnClickListener()
+        btYearCustomerMonthClose.setOnClickListener(new OnClickListener()
         {
             @Override
             public void onClick(View v)

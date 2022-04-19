@@ -12,10 +12,6 @@
         "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\wheel_year.xml"
     },
     {
-        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_yi_year_amount.xml.flat",
-        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\yi_year_amount.xml"
-    },
-    {
         "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_page5_2list.xml.flat",
         "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\page5_2list.xml"
     },
@@ -36,24 +32,24 @@
         "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\year_graph.xml"
     },
     {
-        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_statviewnewlayout.xml.flat",
-        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\statviewnewlayout.xml"
+        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_year_basic.xml.flat",
+        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\year_basic.xml"
     },
     {
-        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\drawable_btn_gradient_yellow.xml.flat",
-        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\drawable\\btn_gradient_yellow.xml"
+        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_statviewnewlayout.xml.flat",
+        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\statviewnewlayout.xml"
     },
     {
         "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_close_bt.png.flat",
         "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-hdpi\\close_bt.png"
     },
     {
-        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_statlistitem.xml.flat",
-        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\statlistitem.xml"
+        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\drawable_btn_gradient_yellow.xml.flat",
+        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\drawable\\btn_gradient_yellow.xml"
     },
     {
-        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_enterprise_popup.xml.flat",
-        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\enterprise_popup.xml"
+        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_statlistitem.xml.flat",
+        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\statlistitem.xml"
     },
     {
         "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_gj_month_price.xml.flat",
@@ -460,6 +456,10 @@
         "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\drawable-hdpi\\btntopcctv.png"
     },
     {
+        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_year_customer.xml.flat",
+        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\year_customer.xml"
+    },
+    {
         "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_gj_month_enterprise_amount.xml.flat",
         "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\gj_month_enterprise_amount.xml"
     },
@@ -482,10 +482,6 @@
     {
         "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_yi_month_price.xml.flat",
         "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\yi_month_price.xml"
-    },
-    {
-        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_yi_month_enterprise_amount.xml.flat",
-        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\yi_month_enterprise_amount.xml"
     },
     {
         "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_tt_month_price.xml.flat",
@@ -530,6 +526,10 @@
     {
         "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\menu_menu_bottom.xml.flat",
         "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\menu\\menu_bottom.xml"
+    },
+    {
+        "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\layout_year_customer_month.xml.flat",
+        "source": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\src\\main\\res\\layout\\year_customer_month.xml"
     },
     {
         "merged": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_setting.png.flat",
