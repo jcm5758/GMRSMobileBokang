@@ -31,6 +31,15 @@ public class GSDailyInOutGroup
         this.List.add(detail);
     }
 
+    public String getTitle(int stateType)
+    {
+        if (stateType == GSConfig.STATE_AMOUNT)
+            return this.getTitleUnit();
+        else
+            return this.getTitleMoney();
+
+    }
+
     public String getTitleUnit()
     {
         return this.ServiceType + "(" + GSConfig.changeToCommanStringWOPoint(this.TotalCount) + "대 : " + GSConfig.changeToCommanString(this.TotalUnit) + "루베)";
