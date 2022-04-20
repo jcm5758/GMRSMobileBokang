@@ -52,6 +52,12 @@ public class FragmentDailySearch extends Fragment
 	private Button btSearch;
 
 	private ArrayList customerList = new ArrayList();
+	private ArrayList customerSiteList = new ArrayList();
+	private ArrayList productList = new ArrayList();
+
+	private String currentCustomerName = "";
+	private String currentCustomerSiteName = "";
+	private String currentProduct = "";
 
 	public FragmentDailySearch() { }
 	
@@ -96,11 +102,21 @@ public class FragmentDailySearch extends Fragment
 		this.spProduct = (Spinner) view.findViewById(R.id.spProduct);
 		this.btSearch = (Button) view.findViewById(R.id.btSearch);
 
+		// 거래처명 선택 시
 		this.spCustomerName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
 			@Override
-			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "spCustomerName().onItemSelected()") + "응답 -> " + customerList.get(i));
+			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
+			{
+
+				// 선택한 거래처명 찾기
+				currentCustomerName = (String)customerList.get(i);
+				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "spCustomerName().onItemSelected()") + currentCustomerName);
+
+				// 현장명 리스트 채우기
+				if (!currentCustomerName.equals("거래처명을 선택하세요"))
+					initCustomerSiteData(currentCustomerName);
+
 			}
 
 			@Override
@@ -108,8 +124,52 @@ public class FragmentDailySearch extends Fragment
 
 		});
 
+		// 현장명 선택 시
+		this.spCustomerSiteName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
+			{
+				currentCustomerSiteName = (String)customerSiteList.get(i);
+				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "spCustomerSiteName().onItemSelected()") + currentCustomerSiteName);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> adapterView) {}
+
+		});
+
+		// 품명 선택 시
+		this.spProduct.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
+			{
+				currentProduct = (String)productList.get(i);
+				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "spCustomerSiteName().onItemSelected()") + currentProduct);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> adapterView) {}
+
+		});
+
+		// 검색 버튼 선택시
+		this.btSearch.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View view)
+			{
+				getData(currentCustomerName, currentCustomerSiteName, currentProduct);
+			}
+
+		});
+
 		// 거래처명 조회
 		initCustomerData();
+
+		// 품명 조회
+		initProductData();
 
 	}
 
@@ -123,6 +183,9 @@ public class FragmentDailySearch extends Fragment
 
 	}
 
+	/**
+	 * 거래처명 리스트 조회하고 스피너 채우기
+	 */
 	public void initCustomerData()
 	{
 
@@ -136,9 +199,10 @@ public class FragmentDailySearch extends Fragment
 				url,
 				new Response.Listener<String>() {
 					@Override
-					public void onResponse(String response) {
+					public void onResponse(String response)
+					{
 
-						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
 
 						Gson gson = new Gson();
 						String[] customerNames = gson.fromJson(response, String[].class);
@@ -172,16 +236,20 @@ public class FragmentDailySearch extends Fragment
 			}
 		};
 
-		request.setRetryPolicy(new DefaultRetryPolicy(
-				0,
-				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//		request.setRetryPolicy(new DefaultRetryPolicy(
+//				0,
+//				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 		request.setShouldCache(false);
 		requestQueue.add(request);
 
 	}
 
+	/**
+	 * 입력받은 거래처명으로 현장명 조회하고 스피너 채우기
+	 * @param customerName	거래처명
+	 */
 	public void initCustomerSiteData(String customerName)
 	{
 
@@ -195,8 +263,24 @@ public class FragmentDailySearch extends Fragment
 				url,
 				new Response.Listener<String>() {
 					@Override
-					public void onResponse(String response) {
+					public void onResponse(String response)
+					{
+
 						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+
+						Gson gson = new Gson();
+						String[] customerSiteNames = gson.fromJson(response, String[].class);
+
+						customerSiteList = new ArrayList();
+
+						for(String s : customerSiteNames)
+						{
+							customerSiteList.add(s);
+						}
+
+						ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, customerSiteList);
+						spCustomerSiteName.setAdapter(adapter);
+
 					}
 				},
 				//에러 발생시 호출될 리스너 객체
@@ -210,28 +294,100 @@ public class FragmentDailySearch extends Fragment
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String,String> params = new HashMap<String,String>();
-				params.put("GSType", "SEARCH_CUSTOMER");
-				params.put("GSQuery", "{ \"BranchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"CustomerName\": " + customerName + " }");
+				params.put("GSType", "SEARCH_CUSTOMERSITE");
+				params.put("GSQuery", "{ \"BranchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"CustomerName\": \"" + customerName + "\" }");
 				return params;
 			}
 		};
 
-		request.setRetryPolicy(new DefaultRetryPolicy(
-				0,
-				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//		request.setRetryPolicy(new DefaultRetryPolicy(
+//				0,
+//				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 		request.setShouldCache(false);
 		requestQueue.add(request);
 
 	}
 
-	private void getData(String searchDate)
+	/**
+	 * 품명 조회하고 스피너 채우기
+	 */
+	public void initProductData()
+	{
+
+		String functionName = "initProductData()";
+
+		String url = GSConfig.API_SERVER_ADDR + "API";
+		RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
+
+		StringRequest request = new StringRequest(
+				Request.Method.POST,
+				url,
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response)
+					{
+
+						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+
+						Gson gson = new Gson();
+						String[] products = gson.fromJson(response, String[].class);
+
+						productList = new ArrayList();
+
+						for(String s : products)
+						{
+							productList.add(s);
+						}
+
+						ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, productList);
+						spProduct.setAdapter(adapter);
+
+					}
+				},
+				//에러 발생시 호출될 리스너 객체
+				new Response.ErrorListener() {
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "에러 -> " + error.getMessage());
+					}
+				}
+		) {
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String,String> params = new HashMap<String,String>();
+				params.put("GSType", "SEARCH_PRODUCT");
+				params.put("GSQuery", "{ \"BranchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + " }");
+				return params;
+			}
+		};
+
+//		request.setRetryPolicy(new DefaultRetryPolicy(
+//				0,
+//				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+		request.setShouldCache(false);
+		requestQueue.add(request);
+
+	}
+
+	/**
+	 *
+	 * 거래처 단가 조회 하기
+	 *
+	 * @param customerName			거래처명
+	 * @param customerSiteName		현장명
+	 * @param product				품명
+	 */
+	private void getData(String customerName, String customerSiteName, String product)
 	{
 
 		String functionName = "getData()";
 
-//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "searchDate : " + searchDate + ", qryContent : " + qryContent);
+		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "customerName : "
+				+ customerName + ", customerSiteName : " + customerSiteName+ ", product : " + product);
 
 		String url = GSConfig.API_SERVER_ADDR + "API";
 		RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
@@ -243,8 +399,8 @@ public class FragmentDailySearch extends Fragment
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
-						parseData(response);
+						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+//						parseData(response);
 					}
 				},
 				//에러 발생시 호출될 리스너 객체
@@ -258,24 +414,21 @@ public class FragmentDailySearch extends Fragment
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
 				Map<String,String> params = new HashMap<String,String>();
-				params.put("GSType", "DAY");
-//				params.put("GSQuery", "{ \"BranchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID() + ", \"SearchDate\": " + searchDate + ", \"QryContent\" : \"" + qryContent + "\" }");
+				params.put("GSType", "SEARCH_CUSTOMERPRICE");
+				params.put("GSQuery", "{ \"BranchID\" : " + GSConfig.CURRENT_BRANCH.getBranchID()
+						+ ", \"CustomerName\": \"" + customerName + "\", \"CustomerSiteName\" : \"" + customerSiteName + "\", \"Product\" : \"" + product + "\" }");
 				return params;
 			}
 		};
 
-		request.setRetryPolicy(new DefaultRetryPolicy(
-				0,
-				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//		request.setRetryPolicy(new DefaultRetryPolicy(
+//				0,
+//				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 		request.setShouldCache(false);
 		requestQueue.add(request);
 
-//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "요청 보냄.");
-
 	}
-
-
 
 }
