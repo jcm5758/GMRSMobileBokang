@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerTabStrip;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -54,6 +55,8 @@ public class FragmentDailyMain extends Fragment
 	private ArrayList<Fragment> fragments;
 
 	Context context;
+
+	public FragmentDailyMain(){}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -265,7 +268,7 @@ public class FragmentDailyMain extends Fragment
 		return true;
 
 	}
-	
+
 	public class StatsPagerAdapter extends FragmentPagerAdapter
 	{
 

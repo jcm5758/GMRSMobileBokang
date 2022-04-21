@@ -62,8 +62,6 @@ public class DayDatePickerDialog extends Dialog implements OnClickListener{
 	private void setInterface()
 	{
 
-		String functionName = "setInterface()";
-
 		this.confirm_button = (Button)findViewById(R.id.confirm_button);
 		this.confirm_button.setOnClickListener(this);
 

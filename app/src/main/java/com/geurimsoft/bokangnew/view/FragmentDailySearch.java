@@ -9,6 +9,7 @@
 
 package com.geurimsoft.bokangnew.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +38,8 @@ import com.geurimsoft.bokangnew.R;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOut;
 import com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutGroup;
 import com.geurimsoft.bokangnew.data.GSConfig;
+import com.geurimsoft.bokangnew.data.GSCustomerPriceGroup;
+import com.geurimsoft.bokangnew.data.GSSimpleArray;
 import com.geurimsoft.bokangnew.util.GSUtil;
 import com.google.gson.Gson;
 
@@ -50,16 +54,20 @@ public class FragmentDailySearch extends Fragment
 	private TextView tvDailySearchTitle;
 	private Spinner spCustomerName, spCustomerSiteName, spProduct;
 	private Button btSearch;
+	private ListView lvCustomerListView;
 
 	private ArrayList customerList = new ArrayList();
 	private ArrayList customerSiteList = new ArrayList();
 	private ArrayList productList = new ArrayList();
+	private ArrayList customerPriceList = new ArrayList();
 
 	private String currentCustomerName = "";
 	private String currentCustomerSiteName = "";
 	private String currentProduct = "";
 
-	public FragmentDailySearch() { }
+	private boolean isDebugging = false;
+
+	public FragmentDailySearch() {}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -70,37 +78,17 @@ public class FragmentDailySearch extends Fragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
 	{
-		View v = inflater.inflate(R.layout.daily_search, container, false);
-		return v;
-	}
 
-	@Override
-	public void onPause()
-	{
-		super.onPause();
-	}
-	
-	@Override
-	public void onResume()
-	{
+		String functionName = "onCreateView()";
 
-		super.onResume();
-
-		String functionName = "onResume()";
-		
-		View view = this.getView();
-
-		if(view == null)
-		{
-			Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + " View is null");
-			return;
-		}
+		View view = inflater.inflate(R.layout.daily_search, container, false);
 
 		this.tvDailySearchTitle = (TextView)view.findViewById(R.id.tvDailySearchTitle);
 		this.spCustomerName = (Spinner) view.findViewById(R.id.spCustomerName);
 		this.spCustomerSiteName = (Spinner) view.findViewById(R.id.spCustomerSiteName);
 		this.spProduct = (Spinner) view.findViewById(R.id.spProduct);
 		this.btSearch = (Button) view.findViewById(R.id.btSearch);
+		this.lvCustomerListView = (ListView) view.findViewById(R.id.lvCustomerListView);
 
 		// 거래처명 선택 시
 		this.spCustomerName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -111,7 +99,9 @@ public class FragmentDailySearch extends Fragment
 
 				// 선택한 거래처명 찾기
 				currentCustomerName = (String)customerList.get(i);
-				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "spCustomerName().onItemSelected()") + currentCustomerName);
+
+				if (isDebugging)
+					Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "spCustomerName().onItemSelected()") + currentCustomerName);
 
 				// 현장명 리스트 채우기
 				if (!currentCustomerName.equals("거래처명을 선택하세요"))
@@ -130,8 +120,12 @@ public class FragmentDailySearch extends Fragment
 			@Override
 			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
 			{
+
 				currentCustomerSiteName = (String)customerSiteList.get(i);
-				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "spCustomerSiteName().onItemSelected()") + currentCustomerSiteName);
+
+				if (isDebugging)
+					Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "spCustomerSiteName().onItemSelected()") + currentCustomerSiteName);
+
 			}
 
 			@Override
@@ -145,8 +139,12 @@ public class FragmentDailySearch extends Fragment
 			@Override
 			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
 			{
+
 				currentProduct = (String)productList.get(i);
-				Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "spCustomerSiteName().onItemSelected()") + currentProduct);
+
+				if (isDebugging)
+					Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), "spCustomerSiteName().onItemSelected()") + currentProduct);
+
 			}
 
 			@Override
@@ -160,7 +158,30 @@ public class FragmentDailySearch extends Fragment
 			@Override
 			public void onClick(View view)
 			{
-				getData(currentCustomerName, currentCustomerSiteName, currentProduct);
+
+				String customerSite = currentCustomerSiteName;
+				String product = currentProduct;
+
+				if (isDebugging)
+					Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName)
+							+ "currentCustomerName : " + currentCustomerName
+							+ ", currentCustomerSiteName : " + currentCustomerSiteName
+							+ ", currentProduct : " + currentProduct);
+
+				if (currentCustomerName.equals("거래처명을 선택하세요"))
+				{
+					Toast.makeText(getActivity(), "거래처명을 선택하세요", Toast.LENGTH_SHORT).show();
+					return;
+				}
+
+				if (currentCustomerSiteName.equals("현장명을 선택하세요"))
+					customerSite = "";
+
+				if (currentProduct.equals("품명을 선택하세요"))
+					product = "";
+
+				getData(currentCustomerName, customerSite, product);
+
 			}
 
 		});
@@ -171,17 +192,18 @@ public class FragmentDailySearch extends Fragment
 		// 품명 조회
 		initProductData();
 
+		return view;
+
 	}
 
-	public void parseData(String msg)
+	@Override
+	public void onPause()
 	{
-
-		String functionName = "parseData()";
-
-//		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
-
-
+		super.onPause();
 	}
+	
+	@Override
+	public void onResume() { super.onResume(); }
 
 	/**
 	 * 거래처명 리스트 조회하고 스피너 채우기
@@ -198,26 +220,33 @@ public class FragmentDailySearch extends Fragment
 				Request.Method.POST,
 				url,
 				new Response.Listener<String>() {
+
 					@Override
 					public void onResponse(String response)
 					{
 
-//						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+						if (isDebugging)
+							Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
 
 						Gson gson = new Gson();
-						String[] customerNames = gson.fromJson(response, String[].class);
 
-						customerList = new ArrayList();
+						GSSimpleArray simpleArray = gson.fromJson(response, GSSimpleArray.class);
 
-						for(String s : customerNames)
+						if (isDebugging)
+							Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "Status : " + simpleArray.Status);
+
+						if (simpleArray.Status.equals("OK"))
 						{
-							customerList.add(s);
+
+							customerList = simpleArray.getArrayList();
+
+							ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, customerList);
+							spCustomerName.setAdapter(adapter);
+
 						}
 
-						ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, customerList);
-						spCustomerName.setAdapter(adapter);
-
 					}
+
 				},
 				//에러 발생시 호출될 리스너 객체
 				new Response.ErrorListener() {
@@ -235,11 +264,6 @@ public class FragmentDailySearch extends Fragment
 				return params;
 			}
 		};
-
-//		request.setRetryPolicy(new DefaultRetryPolicy(
-//				0,
-//				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-//				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 		request.setShouldCache(false);
 		requestQueue.add(request);
@@ -262,26 +286,33 @@ public class FragmentDailySearch extends Fragment
 				Request.Method.POST,
 				url,
 				new Response.Listener<String>() {
+
 					@Override
 					public void onResponse(String response)
 					{
 
-						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+						if (isDebugging)
+							Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
 
 						Gson gson = new Gson();
-						String[] customerSiteNames = gson.fromJson(response, String[].class);
 
-						customerSiteList = new ArrayList();
+						GSSimpleArray simpleArray = gson.fromJson(response, GSSimpleArray.class);
 
-						for(String s : customerSiteNames)
+						if (isDebugging)
+							Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "Status : " + simpleArray.Status);
+
+						if (simpleArray.Status.equals("OK"))
 						{
-							customerSiteList.add(s);
+
+							customerSiteList = simpleArray.getArrayList();
+
+							ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, customerSiteList);
+							spCustomerSiteName.setAdapter(adapter);
+
 						}
 
-						ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, customerSiteList);
-						spCustomerSiteName.setAdapter(adapter);
-
 					}
+
 				},
 				//에러 발생시 호출될 리스너 객체
 				new Response.ErrorListener() {
@@ -299,11 +330,6 @@ public class FragmentDailySearch extends Fragment
 				return params;
 			}
 		};
-
-//		request.setRetryPolicy(new DefaultRetryPolicy(
-//				0,
-//				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-//				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 		request.setShouldCache(false);
 		requestQueue.add(request);
@@ -325,26 +351,33 @@ public class FragmentDailySearch extends Fragment
 				Request.Method.POST,
 				url,
 				new Response.Listener<String>() {
+
 					@Override
 					public void onResponse(String response)
 					{
 
-						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+						if (isDebugging)
+							Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
 
 						Gson gson = new Gson();
-						String[] products = gson.fromJson(response, String[].class);
 
-						productList = new ArrayList();
+						GSSimpleArray simpleArray = gson.fromJson(response, GSSimpleArray.class);
 
-						for(String s : products)
+						if (isDebugging)
+							Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "Status : " + simpleArray.Status);
+
+						if (simpleArray.Status.equals("OK"))
 						{
-							productList.add(s);
+
+							productList = simpleArray.getArrayList();
+
+							ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, productList);
+							spProduct.setAdapter(adapter);
+
 						}
 
-						ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, productList);
-						spProduct.setAdapter(adapter);
-
 					}
+
 				},
 				//에러 발생시 호출될 리스너 객체
 				new Response.ErrorListener() {
@@ -362,11 +395,6 @@ public class FragmentDailySearch extends Fragment
 				return params;
 			}
 		};
-
-//		request.setRetryPolicy(new DefaultRetryPolicy(
-//				0,
-//				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-//				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 		request.setShouldCache(false);
 		requestQueue.add(request);
@@ -386,8 +414,8 @@ public class FragmentDailySearch extends Fragment
 
 		String functionName = "getData()";
 
-		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "customerName : "
-				+ customerName + ", customerSiteName : " + customerSiteName+ ", product : " + product);
+		if (isDebugging)
+			Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "customerName : " + customerName + ", customerSiteName : " + customerSiteName+ ", product : " + product);
 
 		String url = GSConfig.API_SERVER_ADDR + "API";
 		RequestQueue requestQueue = Volley.newRequestQueue(GSConfig.context);
@@ -397,11 +425,37 @@ public class FragmentDailySearch extends Fragment
 				url,
 				//응답을 잘 받았을 때 이 메소드가 자동으로 호출
 				new Response.Listener<String>() {
+
 					@Override
 					public void onResponse(String response) {
-						Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
-//						parseData(response);
+
+						if (isDebugging)
+							Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "응답 -> " + response);
+
+						Gson gson = new Gson();
+
+						GSCustomerPriceGroup customerPriceGroup = gson.fromJson(response, GSCustomerPriceGroup.class);
+
+						if (isDebugging)
+							Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "Status : " + customerPriceGroup.Status);
+
+						if (customerPriceGroup.Status.equals("OK"))
+						{
+
+							customerPriceList = customerPriceGroup.List;
+
+							ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, customerPriceList);
+							lvCustomerListView.setAdapter(adapter);
+
+						}
+						else
+						{
+							Log.e(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + "Status : " + customerPriceGroup.Message);
+							return;
+						}
+
 					}
+
 				},
 				//에러 발생시 호출될 리스너 객체
 				new Response.ErrorListener() {
@@ -420,11 +474,6 @@ public class FragmentDailySearch extends Fragment
 				return params;
 			}
 		};
-
-//		request.setRetryPolicy(new DefaultRetryPolicy(
-//				0,
-//				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-//				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 		request.setShouldCache(false);
 		requestQueue.add(request);

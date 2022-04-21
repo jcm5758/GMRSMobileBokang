@@ -31,6 +31,7 @@
                 android:id="@+id/spCustomerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:spinnerMode="dropdown" />
 
         </LinearLayout>
@@ -45,6 +46,7 @@
                 android:id="@+id/spCustomerSiteName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:spinnerMode="dropdown" />
 
         </LinearLayout>
@@ -59,6 +61,7 @@
                 android:id="@+id/spProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:spinnerMode="dropdown" />
 
         </LinearLayout>
@@ -74,6 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_margin="5dp"
                 android:text="검색"
                 android:textColor="#000000" />
 
@@ -88,7 +92,8 @@
             <ListView
                 android:id="@+id/lvCustomerListView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" />
 
         </LinearLayout>
 
