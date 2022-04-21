@@ -26,11 +26,12 @@ com/geurimsoft/bokangnew/widget/OnWheelScrollListener.java
  com.geurimsoft.bokangnew.widget.OnWheelScrollListener
 com/geurimsoft/bokangnew/chart/IDemoChart.java
  com.geurimsoft.bokangnew.chart.IDemoChart
-com/geurimsoft/bokangnew/widget/WheelScroller.java
- com.geurimsoft.bokangnew.widget.WheelScroller
- com.geurimsoft.bokangnew.widget.WheelScroller$1
- com.geurimsoft.bokangnew.widget.WheelScroller$2
- com.geurimsoft.bokangnew.widget.WheelScroller$ScrollingListener
+com/geurimsoft/bokangnew/view/FragmentDailySearch.java
+ com.geurimsoft.bokangnew.view.FragmentDailySearch
+ com.geurimsoft.bokangnew.view.FragmentDailySearch$1
+ com.geurimsoft.bokangnew.view.FragmentDailySearch$2
+ com.geurimsoft.bokangnew.view.FragmentDailySearch$3
+ com.geurimsoft.bokangnew.view.FragmentDailySearch$4
 com/geurimsoft/bokangnew/widget/ItemsRange.java
  com.geurimsoft.bokangnew.widget.ItemsRange
 com/geurimsoft/bokangnew/view/FragmentMonthGraph.java
@@ -121,8 +122,10 @@ com/geurimsoft/bokangnew/widget/WheelAdapter.java
  com.geurimsoft.bokangnew.widget.WheelAdapter
 com/geurimsoft/bokangnew/apiserver/RetrofitService.java
  com.geurimsoft.bokangnew.apiserver.RetrofitService
-com/geurimsoft/bokangnew/data/GSUserRight.java
- com.geurimsoft.bokangnew.data.GSUserRight
+com/geurimsoft/bokangnew/view/FragmentDailyMain.java
+ com.geurimsoft.bokangnew.view.FragmentDailyMain
+ com.geurimsoft.bokangnew.view.FragmentDailyMain$1
+ com.geurimsoft.bokangnew.view.FragmentDailyMain$StatsPagerAdapter
 com/geurimsoft/bokangnew/view/util/StatsHeaderAndFooterView.java
  com.geurimsoft.bokangnew.view.util.StatsHeaderAndFooterView
 com/geurimsoft/bokangnew/data/SearchResult.java
@@ -131,8 +134,9 @@ com/geurimsoft/bokangnew/widget/adapter/AbstractWheelAdapter.java
  com.geurimsoft.bokangnew.widget.adapter.AbstractWheelAdapter
 com/geurimsoft/bokangnew/chart/Result.java
  com.geurimsoft.bokangnew.chart.Result
-com/geurimsoft/bokangnew/apiserver/data/GSDailyInOutDetailNew.java
- com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutDetailNew
+com/geurimsoft/bokangnew/view/ActivityMain.java
+ com.geurimsoft.bokangnew.view.ActivityMain
+ com.geurimsoft.bokangnew.view.ActivityMain$1
 com/geurimsoft/bokangnew/data/Product.java
  com.geurimsoft.bokangnew.data.Product
 com/geurimsoft/bokangnew/data/toDay.java
@@ -171,6 +175,8 @@ com/geurimsoft/bokangnew/view/util/DayDatePickerDialog.java
  com.geurimsoft.bokangnew.view.util.DayDatePickerDialog
  com.geurimsoft.bokangnew.view.util.DayDatePickerDialog$1
  com.geurimsoft.bokangnew.view.util.DayDatePickerDialog$DialogListner
+com/geurimsoft/bokangnew/view/util/GSAutoCompleteTextView.java
+ com.geurimsoft.bokangnew.view.util.GSAutoCompleteTextView
 com/geurimsoft/bokangnew/apiserver/data/ResultStatus.java
  com.geurimsoft.bokangnew.apiserver.data.ResultStatus
 com/geurimsoft/bokangnew/widget/adapter/YearNumericWheelAdapter.java
@@ -197,8 +203,8 @@ com/geurimsoft/bokangnew/view/FragmentYearCustomer.java
  com.geurimsoft.bokangnew.view.FragmentYearCustomer$3
 com/geurimsoft/bokangnew/widget/OnWheelClickedListener.java
  com.geurimsoft.bokangnew.widget.OnWheelClickedListener
-com/geurimsoft/bokangnew/data/StatsTotalData.java
- com.geurimsoft.bokangnew.data.StatsTotalData
+com/geurimsoft/bokangnew/data/GSConfig.java
+ com.geurimsoft.bokangnew.data.GSConfig
 com/geurimsoft/bokangnew/apiserver/data/GSDailyInOutDetail.java
  com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutDetail
 com/geurimsoft/bokangnew/data/GSDataStatisticYearChart.java
@@ -236,38 +242,24 @@ com/geurimsoft/bokangnew/BuildConfig.java
  com.geurimsoft.bokangnew.BuildConfig
 com/geurimsoft/bokangnew/widget/adapter/WheelViewAdapter.java
  com.geurimsoft.bokangnew.widget.adapter.WheelViewAdapter
-com/geurimsoft/bokangnew/data/Vehicle.java
- com.geurimsoft.bokangnew.data.Vehicle
 com/geurimsoft/bokangnew/view/util/YearDatePickerDialog.java
  com.geurimsoft.bokangnew.view.util.YearDatePickerDialog
  com.geurimsoft.bokangnew.view.util.YearDatePickerDialog$1
  com.geurimsoft.bokangnew.view.util.YearDatePickerDialog$DialogListner
 com/geurimsoft/bokangnew/data/IncomeData.java
  com.geurimsoft.bokangnew.data.IncomeData
-com/geurimsoft/bokangnew/view/ActivityMain.java
- com.geurimsoft.bokangnew.view.ActivityMain
- com.geurimsoft.bokangnew.view.ActivityMain$1
-com/geurimsoft/bokangnew/data/GSConfig.java
- com.geurimsoft.bokangnew.data.GSConfig
-com/geurimsoft/bokangnew/view/FragmentDailySearch.java
- com.geurimsoft.bokangnew.view.FragmentDailySearch
- com.geurimsoft.bokangnew.view.FragmentDailySearch$1
- com.geurimsoft.bokangnew.view.FragmentDailySearch$10
- com.geurimsoft.bokangnew.view.FragmentDailySearch$11
- com.geurimsoft.bokangnew.view.FragmentDailySearch$12
- com.geurimsoft.bokangnew.view.FragmentDailySearch$13
- com.geurimsoft.bokangnew.view.FragmentDailySearch$14
- com.geurimsoft.bokangnew.view.FragmentDailySearch$15
- com.geurimsoft.bokangnew.view.FragmentDailySearch$16
- com.geurimsoft.bokangnew.view.FragmentDailySearch$2
- com.geurimsoft.bokangnew.view.FragmentDailySearch$3
- com.geurimsoft.bokangnew.view.FragmentDailySearch$4
- com.geurimsoft.bokangnew.view.FragmentDailySearch$5
- com.geurimsoft.bokangnew.view.FragmentDailySearch$6
- com.geurimsoft.bokangnew.view.FragmentDailySearch$7
- com.geurimsoft.bokangnew.view.FragmentDailySearch$8
- com.geurimsoft.bokangnew.view.FragmentDailySearch$9
-com/geurimsoft/bokangnew/view/FragmentDailyMain.java
- com.geurimsoft.bokangnew.view.FragmentDailyMain
- com.geurimsoft.bokangnew.view.FragmentDailyMain$1
- com.geurimsoft.bokangnew.view.FragmentDailyMain$StatsPagerAdapter
+com/geurimsoft/bokangnew/data/Vehicle.java
+ com.geurimsoft.bokangnew.data.Vehicle
+com/geurimsoft/bokangnew/data/GSUserRight.java
+ com.geurimsoft.bokangnew.data.GSUserRight
+com/geurimsoft/bokangnew/widget/WheelScroller.java
+ com.geurimsoft.bokangnew.widget.WheelScroller
+ com.geurimsoft.bokangnew.widget.WheelScroller$1
+ com.geurimsoft.bokangnew.widget.WheelScroller$2
+ com.geurimsoft.bokangnew.widget.WheelScroller$ScrollingListener
+com/geurimsoft/bokangnew/data/StatsTotalData.java
+ com.geurimsoft.bokangnew.data.StatsTotalData
+com/geurimsoft/bokangnew/apiserver/data/GSDailyInOutDetailNew.java
+ com.geurimsoft.bokangnew.apiserver.data.GSDailyInOutDetailNew
+com/geurimsoft/bokangnew/view/util/HangulUtils.java
+ com.geurimsoft.bokangnew.view.util.HangulUtils
