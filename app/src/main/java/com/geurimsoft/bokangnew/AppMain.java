@@ -85,7 +85,7 @@ public class AppMain extends Activity
 		autoCheck();
 
 		// 앱 버전 확인
-//		appVersionCheck();
+		appVersionCheck();
 
 	}
 
@@ -332,7 +332,10 @@ public class AppMain extends Activity
 
 		for(int i = 0; i < urData.size(); i++)
 		{
-			commandArray[i] = urData.get(i).getBranName();
+
+			if (urData.get(i).getUr01() == 1)
+				commandArray[i] = urData.get(i).getBranName();
+
 		}
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);

@@ -13,58 +13,98 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class UserRightData implements Serializable {
+public class UserRightData implements Serializable
+{
 
+    // 로그인-로그인-모바일 로그인
+    // public static int USER_RIGHT_LOGIN_LOGIN_MOBILE = 65;
     @SerializedName("ur01")
     private int ur01;
 
+    // 모바일-입고 현황-입고현황 조회
+    // public static int USER_RIGHT_MOBILE_INPUT_LIST = 66;
     @SerializedName("ur02")
     private int ur02;
 
+    // 모바일-입고 현황-입고현황 조회(가격포함)
+    // public static int USER_RIGHT_MOBILE_INPUT_LIST_PRICE = 67;
     @SerializedName("ur03")
     private int ur03;
 
+    // 모바일-입고 현황-입고현황 승인
+    // public static int USER_RIGHT_MOBILE_INPUT_AUTH = 68;
     @SerializedName("ur04")
     private int ur04;
 
+    // 모바일-입고 현황-출고현황 조회
+    // public static int USER_RIGHT_MOBILE_OUTPUT_LIST = 69;
     @SerializedName("ur05")
     private int ur05;
 
+    // 모바일-입고 현황-출고현황 조회(가격포함)
+    // public static int USER_RIGHT_MOBILE_OUTPUT_LIST_PRICE = 70;
     @SerializedName("ur06")
     private int ur06;
 
+    // 모바일-입고 현황-출고현황 승인
+    // public static int USER_RIGHT_MOBILE_OUTPUT_AUTH = 71;
     @SerializedName("ur07")
     private int ur07;
 
+    // 모바일-입고 현황-매출현황 조회
+    // public static int USER_RIGHT_MOBILE_SALES_LIST = 72;
     @SerializedName("ur08")
     private int ur08;
 
+    // 모바일-입고 현황-매출현황 승인
+    // public static int USER_RIGHT_MOBILE_SALES_AUTH = 73
     @SerializedName("ur09")
     private int ur09;
 
+    // 모바일-입고 현황-매입현황 조회
+    // public static int USER_RIGHT_MOBILE_BUYS_LIST = 84;
     @SerializedName("ur10")
     private int ur10;
 
+    // 모바일-입고 현황-매입현황 승인
+    // public static int USER_RIGHT_MOBILE_BUYS_AUTH = 85;
     @SerializedName("ur11")
     private int ur11;
 
+    // 모바일-월보 입고-조회
+    // public static int USER_RIGHT_MOBILE_MONTH_INPUT_LIST = 86;
     @SerializedName("ur12")
     private int ur12;
 
+    // 모바일-월보 입고-조회 가격
+    // public static int USER_RIGHT_MOBILE_MONTH_INPUT_LIST_PRICE = 87;
     @SerializedName("ur13")
     private int ur13;
 
+    // 모바일-월보 출고-조회
+    // public static int USER_RIGHT_MOBILE_MONTH_OUTPUT_LIST = 88;
     @SerializedName("ur14")
     private int ur14;
 
+    // 모바일-월보 출고-조회 가격
+    // public static int USER_RIGHT_MOBILE_MONTH_OUTPUT_LIST_PRICE = 89;
     @SerializedName("ur15")
     private int ur15;
 
+    // 모바일-월보 일별-조회
+    // public static int USER_RIGHT_MOBILE_MONTH_DAY_LIST = 90;
     @SerializedName("ur16")
     private int ur16;
 
+    // 모바일-연보 월별-조회
+    // public static int USER_RIGHT_MOBILE_YEAR_MONTH_LIST = 91;
     @SerializedName("ur17")
     private int ur17;
+
+    // 모바일 단가 조회
+    // 102
+    @SerializedName("ur18")
+    private int ur18;
 
     @SerializedName("branID")
     private int branID;
@@ -77,7 +117,8 @@ public class UserRightData implements Serializable {
 
     public UserRightData(int ur01, int ur02, int ur03, int ur04, int ur05, int ur06,
                          int ur07, int ur08, int ur09, int ur10, int ur11, int ur12,
-                         int ur13, int ur14, int ur15, int ur16, int ur17, int branID, String branName, String branShortName)
+                         int ur13, int ur14, int ur15, int ur16, int ur17, int ur18,
+                         int branID, String branName, String branShortName)
     {
 
         this.ur01 = ur01;
@@ -97,6 +138,7 @@ public class UserRightData implements Serializable {
         this.ur15 = ur15;
         this.ur16 = ur16;
         this.ur17 = ur17;
+        this.ur18 = ur18;
         this.branID = branID;
         this.branName = branName;
         this.branShortName = branShortName;
@@ -237,6 +279,14 @@ public class UserRightData implements Serializable {
 
     public void setUr17(int ur17) {
         this.ur17 = ur17;
+    }
+
+    public int getUr18() {
+        return ur18;
+    }
+
+    public void setUr18(int ur18) {
+        this.ur18 = ur18;
     }
 
     public int getBranID() {

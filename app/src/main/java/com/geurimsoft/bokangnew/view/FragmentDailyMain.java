@@ -46,6 +46,9 @@ public class FragmentDailyMain extends Fragment
 	private Calendar calendar = Calendar.getInstance();
 	private int currentYear, currentMonth, currentDay;
 
+	private UserRightData urd = null;
+	private boolean isEnableSearch = false;
+
 	// 슬라이딩 구현용
 	private PagerTabStrip statsTabStrip;
 	private ViewPager statsPager;
@@ -59,19 +62,23 @@ public class FragmentDailyMain extends Fragment
 	public FragmentDailyMain(){}
 
 	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
+	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 
 		String functionName = "onCreate()";
 
 		// 현재 연월일 찾기
-		this.currentYear =  calendar.get(Calendar.YEAR);
+		this.currentYear = calendar.get(Calendar.YEAR);
 		this.currentMonth = calendar.get(Calendar.MONTH) + 1;
 		this.currentDay = calendar.get(Calendar.DATE);
 
 //		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(getActivity().getClass().getName(), functionName) + " this.currentYear : " + this.currentYear + ", this.currentMonth : " + this.currentMonth + ", this.currentDay : " + this.currentDay );
+
+		this.urd = GSConfig.CURRENT_USER.getUserRightDataByID(GSConfig.CURRENT_BRANCH.getBranchID());
+
+		if (this.urd != null && this.urd.getUr18() == 1)
+			isEnableSearch = true;
 
 	}
 	
@@ -123,7 +130,7 @@ public class FragmentDailyMain extends Fragment
 		this.statsTabStrip.setTextColor(Color.WHITE);
 		this.statsTabStrip.setPadding(5, 5, 5, 5);
 
-		this.statsPagerAdapter = new StatsPagerAdapter(getChildFragmentManager());
+		this.statsPagerAdapter = new StatsPagerAdapter(getChildFragmentManager(), isEnableSearch);
 		this.statsPager.setAdapter(statsPagerAdapter);
 
 	}
@@ -139,7 +146,9 @@ public class FragmentDailyMain extends Fragment
 		
 		fragments.add(new FragmentDaily(GSConfig.STATE_AMOUNT, "Unit"));
 		fragments.add(new FragmentDaily(GSConfig.STATE_PRICE, "TotalPrice"));
-		fragments.add(new FragmentDailySearch());
+
+		if (this.isEnableSearch)
+			fragments.add(new FragmentDailySearch());
 
 	}
 	
@@ -274,10 +283,15 @@ public class FragmentDailyMain extends Fragment
 
 		private final String[] TITLES;
 
-		public StatsPagerAdapter(FragmentManager fm)
+		public StatsPagerAdapter(FragmentManager fm, boolean isEnableSearch)
 		{
 			super(fm);
-			TITLES = getResources().getStringArray(R.array.stats_day_tab_array1);
+
+			if (isEnableSearch)
+				TITLES = new String[] { "수량", "금액", "검색" };
+			else
+				TITLES = new String[] { "수량", "금액" };
+
 		}
 
 		@Override
