@@ -309,4 +309,37 @@ public class UserRightData implements Serializable
         return branShortName;
     }
 
+    public boolean isShowDayAmount()
+    {
+
+        if ( this.ur02 == 1 && this.ur05 == 1 )
+            return true;
+
+        if ( this.ur03 == 1 && this.ur06 == 1 )
+            return true;
+
+        return false;
+
+    }
+
+    public boolean isShowDayPrice()
+    {
+
+        if ( this.ur03 == 1 && this.ur06 == 1 )
+            return true;
+
+        return false;
+
+    }
+
+    public boolean isShowDaySearch()
+    {
+
+        if ( this.ur18 == 1)
+            return true;
+
+        return false;
+
+    }
+
 }

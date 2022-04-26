@@ -275,6 +275,8 @@ public class AppMain extends Activity
 
 		String functionName = "parseData()";
 
+		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(this.getClass().getName(), functionName) + msg);
+
 		Gson gson = new Gson();
 
 		UserInfo userInfo = gson.fromJson(msg, UserInfo.class);

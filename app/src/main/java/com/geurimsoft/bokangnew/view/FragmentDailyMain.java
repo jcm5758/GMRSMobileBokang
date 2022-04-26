@@ -46,8 +46,8 @@ public class FragmentDailyMain extends Fragment
 	private Calendar calendar = Calendar.getInstance();
 	private int currentYear, currentMonth, currentDay;
 
+	// 사용자 권한
 	private UserRightData urd = null;
-	private boolean isEnableSearch = false;
 
 	// 슬라이딩 구현용
 	private PagerTabStrip statsTabStrip;
@@ -76,9 +76,6 @@ public class FragmentDailyMain extends Fragment
 //		Log.d(GSConfig.APP_DEBUG, GSConfig.LOG_MSG(getActivity().getClass().getName(), functionName) + " this.currentYear : " + this.currentYear + ", this.currentMonth : " + this.currentMonth + ", this.currentDay : " + this.currentDay );
 
 		this.urd = GSConfig.CURRENT_USER.getUserRightDataByID(GSConfig.CURRENT_BRANCH.getBranchID());
-
-		if (this.urd != null && this.urd.getUr18() == 1)
-			isEnableSearch = true;
 
 	}
 	
@@ -130,7 +127,7 @@ public class FragmentDailyMain extends Fragment
 		this.statsTabStrip.setTextColor(Color.WHITE);
 		this.statsTabStrip.setPadding(5, 5, 5, 5);
 
-		this.statsPagerAdapter = new StatsPagerAdapter(getChildFragmentManager(), isEnableSearch);
+		this.statsPagerAdapter = new StatsPagerAdapter(getChildFragmentManager());
 		this.statsPager.setAdapter(statsPagerAdapter);
 
 	}
@@ -143,11 +140,14 @@ public class FragmentDailyMain extends Fragment
 	{
 		
 		fragments = new ArrayList<Fragment>();
-		
-		fragments.add(new FragmentDaily(GSConfig.STATE_AMOUNT, "Unit"));
-		fragments.add(new FragmentDaily(GSConfig.STATE_PRICE, "TotalPrice"));
 
-		if (this.isEnableSearch)
+		if (this.urd.isShowDayAmount())
+			fragments.add(new FragmentDaily(GSConfig.STATE_AMOUNT, "Unit"));
+
+		if (this.urd.isShowDayPrice())
+			fragments.add(new FragmentDaily(GSConfig.STATE_PRICE, "TotalPrice"));
+
+		if (this.urd.isShowDaySearch())
 			fragments.add(new FragmentDailySearch());
 
 	}
@@ -281,16 +281,19 @@ public class FragmentDailyMain extends Fragment
 	public class StatsPagerAdapter extends FragmentPagerAdapter
 	{
 
-		private final String[] TITLES;
+		private String[] TITLES;
 
-		public StatsPagerAdapter(FragmentManager fm, boolean isEnableSearch)
+		public StatsPagerAdapter(FragmentManager fm)
 		{
+
 			super(fm);
 
-			if (isEnableSearch)
+			if (urd.isShowDayAmount() && urd.isShowDayPrice() && urd.isShowDaySearch())
 				TITLES = new String[] { "수량", "금액", "검색" };
-			else
+			else if (urd.isShowDayAmount() && urd.isShowDayPrice() && !urd.isShowDaySearch())
 				TITLES = new String[] { "수량", "금액" };
+			else if (urd.isShowDayAmount() && !urd.isShowDayPrice() && !urd.isShowDaySearch())
+				TITLES = new String[] { "수량" };
 
 		}
 
