@@ -26,7 +26,7 @@ public class GSConfig
     // API 서버 주소
     public static final String API_SERVER_ADDR = "http://" + GSConfig.SERVER_ADDR + ":" + GSConfig.API_SERVER_PORT + "/";
 
-    public static final String WEB_SERVER_ADDR = "http://" + GSConfig.SERVER_ADDR + "/";
+    public static final String WEB_SERVER_ADDR = "http://211.253.8.254/";
 
     // 현재 선택한 지점
     public static GSBranch CURRENT_BRANCH = null;

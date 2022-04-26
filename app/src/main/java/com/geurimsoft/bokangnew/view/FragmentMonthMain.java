@@ -43,12 +43,17 @@ public class FragmentMonthMain extends Fragment
 	
 	private Calendar calendar = Calendar.getInstance();
 	private int currentYear, currentMonth;
+
+	// 사용자 권한
+	private UserRightData urd = null;
 	
 	private PagerTabStrip statsTabStrip;
 	private ViewPager statsPager;
 	private StatsPagerAdapter statsPagerAdapter;
 	
 	private ArrayList<Fragment> fragments;
+
+	private ArrayList<String> menuTops;
 
 	Context context;
 
@@ -61,6 +66,8 @@ public class FragmentMonthMain extends Fragment
 		
 		this.currentYear =  calendar.get(Calendar.YEAR);
 		this.currentMonth = calendar.get(Calendar.MONTH) + 1;
+
+		this.urd = GSConfig.CURRENT_USER.getUserRightDataByID(GSConfig.CURRENT_BRANCH.getBranchID());
 		
 	}
 	
@@ -115,13 +122,38 @@ public class FragmentMonthMain extends Fragment
 	private void makeFragmentList()
 	{
 		
-		fragments = new ArrayList<Fragment>();
-		
-		fragments.add(new FragmentMonth(GSConfig.STATE_AMOUNT, "Unit"));
-		fragments.add(new FragmentMonth(GSConfig.STATE_PRICE, "TotalPrice"));
-		fragments.add(new FragmentMonthCustomer(GSConfig.STATE_AMOUNT, "Unit"));
-		fragments.add(new FragmentMonthCustomer(GSConfig.STATE_PRICE, "TotalPrice"));
-		fragments.add(new FragmentMonthGraph());
+		this.fragments = new ArrayList<Fragment>();
+		this.menuTops = new ArrayList<String>();
+
+		if (this.urd.isShowMonthAmount())
+		{
+			this.fragments.add(new FragmentMonth(GSConfig.STATE_AMOUNT, "Unit"));
+			this.menuTops.add("수량");
+		}
+
+		if (this.urd.isShowMonthPrice())
+		{
+			this.fragments.add(new FragmentMonth(GSConfig.STATE_PRICE, "TotalPrice"));
+			this.menuTops.add("금액");
+		}
+
+		if (this.urd.isShowMonthCustomerAmount())
+		{
+			this.fragments.add(new FragmentMonthCustomer(GSConfig.STATE_AMOUNT, "Unit"));
+			this.menuTops.add("수량(업체별)");
+		}
+
+		if (this.urd.isShowMonthCustomerPrice())
+		{
+			this.fragments.add(new FragmentMonthCustomer(GSConfig.STATE_PRICE, "TotalPrice"));
+			this.menuTops.add("금액(업체별)");
+		}
+
+		if (this.urd.isShowMonthChart())
+		{
+			this.fragments.add(new FragmentMonthGraph());
+			this.menuTops.add("그래프");
+		}
 
 	}
 	
@@ -246,38 +278,33 @@ public class FragmentMonthMain extends Fragment
 	public class StatsPagerAdapter extends FragmentPagerAdapter
 	{
 
-		private final String[] TITLES;
+		private String[] menu_top;
 		
 		public StatsPagerAdapter(FragmentManager fm)
 		{
 			super(fm);
-			TITLES = getResources().getStringArray(R.array.stats_month_tab_array1);
+			menu_top = menuTops.toArray( new String[ menuTops.size() ] );
 		}
 
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object)
 		{
-			if (position != TITLES.length)
+			if (position != menu_top.length)
 				super.destroyItem(container, position, object);
 		}
 
 		@Override
 		public CharSequence getPageTitle(int position) {
-			return TITLES[position];
+			return menu_top[position];
 		}
 
 		@Override
 		public int getCount() {
-			return TITLES.length;
+			return menu_top.length;
 		}
 
 		@Override
-		public Fragment getItem(int position)
-		{
-			Fragment newFragment = null;
-			newFragment =  fragments.get(position);
-			return newFragment;
-		}
+		public Fragment getItem(int position) { return fragments.get(position); }
 
 		@Override
 		public int getItemPosition(Object object)

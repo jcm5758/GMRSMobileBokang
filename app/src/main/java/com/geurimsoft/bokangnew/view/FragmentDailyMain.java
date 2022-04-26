@@ -57,6 +57,8 @@ public class FragmentDailyMain extends Fragment
 	// 세부 프로그먼트
 	private ArrayList<Fragment> fragments;
 
+	private ArrayList<String> menuTops;
+
 	Context context;
 
 	public FragmentDailyMain(){}
@@ -139,16 +141,26 @@ public class FragmentDailyMain extends Fragment
 	private void makeFragmentList()
 	{
 		
-		fragments = new ArrayList<Fragment>();
+		this.fragments = new ArrayList<Fragment>();
+		this.menuTops = new ArrayList<String>();
 
 		if (this.urd.isShowDayAmount())
-			fragments.add(new FragmentDaily(GSConfig.STATE_AMOUNT, "Unit"));
+		{
+			this.fragments.add(new FragmentDaily(GSConfig.STATE_AMOUNT, "Unit"));
+			this.menuTops.add("수량");
+		}
 
 		if (this.urd.isShowDayPrice())
-			fragments.add(new FragmentDaily(GSConfig.STATE_PRICE, "TotalPrice"));
+		{
+			this.fragments.add(new FragmentDaily(GSConfig.STATE_PRICE, "TotalPrice"));
+			this.menuTops.add("금액");
+		}
 
 		if (this.urd.isShowDaySearch())
-			fragments.add(new FragmentDailySearch());
+		{
+			this.fragments.add(new FragmentDailySearch());
+			this.menuTops.add("검색");
+		}
 
 	}
 	
@@ -281,37 +293,32 @@ public class FragmentDailyMain extends Fragment
 	public class StatsPagerAdapter extends FragmentPagerAdapter
 	{
 
-		private String[] TITLES;
+		private String[] menu_top;
 
 		public StatsPagerAdapter(FragmentManager fm)
 		{
 
 			super(fm);
 
-			if (urd.isShowDayAmount() && urd.isShowDayPrice() && urd.isShowDaySearch())
-				TITLES = new String[] { "수량", "금액", "검색" };
-			else if (urd.isShowDayAmount() && urd.isShowDayPrice() && !urd.isShowDaySearch())
-				TITLES = new String[] { "수량", "금액" };
-			else if (urd.isShowDayAmount() && !urd.isShowDayPrice() && !urd.isShowDaySearch())
-				TITLES = new String[] { "수량" };
+			menu_top = menuTops.toArray( new String[ menuTops.size() ] );
 
 		}
 
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object)
 		{
-			if (position != TITLES.length)
+			if (position != menu_top.length)
 				super.destroyItem(container, position, object);
 		}
 
 		@Override
 		public CharSequence getPageTitle(int position) {
-			return TITLES[position];
+			return menu_top[position];
 		}
 
 		@Override
 		public int getCount() {
-			return TITLES.length;
+			return menu_top.length;
 		}
 
 		@Override

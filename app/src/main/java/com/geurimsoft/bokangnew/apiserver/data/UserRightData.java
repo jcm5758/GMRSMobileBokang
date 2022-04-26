@@ -16,95 +16,61 @@ import java.io.Serializable;
 public class UserRightData implements Serializable
 {
 
-    // 로그인-로그인-모바일 로그인
-    // public static int USER_RIGHT_LOGIN_LOGIN_MOBILE = 65;
+    // 로그인 					: 65 	ur01
     @SerializedName("ur01")
     private int ur01;
 
-    // 모바일-입고 현황-입고현황 조회
-    // public static int USER_RIGHT_MOBILE_INPUT_LIST = 66;
+    // 일보 수량 조회 			: 66	ur02
     @SerializedName("ur02")
     private int ur02;
 
-    // 모바일-입고 현황-입고현황 조회(가격포함)
-    // public static int USER_RIGHT_MOBILE_INPUT_LIST_PRICE = 67;
+    // 일보 금액 조회 			: 67	ur03
     @SerializedName("ur03")
     private int ur03;
 
-    // 모바일-입고 현황-입고현황 승인
-    // public static int USER_RIGHT_MOBILE_INPUT_AUTH = 68;
+    // 단가 조회 				: 68	ur04
     @SerializedName("ur04")
     private int ur04;
 
-    // 모바일-입고 현황-출고현황 조회
-    // public static int USER_RIGHT_MOBILE_OUTPUT_LIST = 69;
+    // 월보 수량 조회 			: 71	ur05
     @SerializedName("ur05")
     private int ur05;
 
-    // 모바일-입고 현황-출고현황 조회(가격포함)
-    // public static int USER_RIGHT_MOBILE_OUTPUT_LIST_PRICE = 70;
+    // 월보 금액 조회 			: 72	ur06
     @SerializedName("ur06")
     private int ur06;
 
-    // 모바일-입고 현황-출고현황 승인
-    // public static int USER_RIGHT_MOBILE_OUTPUT_AUTH = 71;
+    // 월보 수량(거래처별) 조회 : 73	ur07
     @SerializedName("ur07")
     private int ur07;
 
-    // 모바일-입고 현황-매출현황 조회
-    // public static int USER_RIGHT_MOBILE_SALES_LIST = 72;
+    // 월보 금액(거래처별) 조회 : 84	ur08
     @SerializedName("ur08")
     private int ur08;
 
-    // 모바일-입고 현황-매출현황 승인
-    // public static int USER_RIGHT_MOBILE_SALES_AUTH = 73
+    // 월보 그래프				: 85	ur09
     @SerializedName("ur09")
     private int ur09;
 
-    // 모바일-입고 현황-매입현황 조회
-    // public static int USER_RIGHT_MOBILE_BUYS_LIST = 84;
+    // 연보 수량 조회 			: 86	ur10
     @SerializedName("ur10")
     private int ur10;
 
-    // 모바일-입고 현황-매입현황 승인
-    // public static int USER_RIGHT_MOBILE_BUYS_AUTH = 85;
+    // 연보 금액 조회 			: 87	ur11
     @SerializedName("ur11")
     private int ur11;
 
-    // 모바일-월보 입고-조회
-    // public static int USER_RIGHT_MOBILE_MONTH_INPUT_LIST = 86;
+    // 연보 수량(거래처별) 조회 : 88	ur12
     @SerializedName("ur12")
     private int ur12;
 
-    // 모바일-월보 입고-조회 가격
-    // public static int USER_RIGHT_MOBILE_MONTH_INPUT_LIST_PRICE = 87;
+    // 연보 금액(거래처별) 조회 : 89	ur13
     @SerializedName("ur13")
     private int ur13;
 
-    // 모바일-월보 출고-조회
-    // public static int USER_RIGHT_MOBILE_MONTH_OUTPUT_LIST = 88;
+    // 연보 그래프 			: 90	ur14
     @SerializedName("ur14")
     private int ur14;
-
-    // 모바일-월보 출고-조회 가격
-    // public static int USER_RIGHT_MOBILE_MONTH_OUTPUT_LIST_PRICE = 89;
-    @SerializedName("ur15")
-    private int ur15;
-
-    // 모바일-월보 일별-조회
-    // public static int USER_RIGHT_MOBILE_MONTH_DAY_LIST = 90;
-    @SerializedName("ur16")
-    private int ur16;
-
-    // 모바일-연보 월별-조회
-    // public static int USER_RIGHT_MOBILE_YEAR_MONTH_LIST = 91;
-    @SerializedName("ur17")
-    private int ur17;
-
-    // 모바일 단가 조회
-    // 102
-    @SerializedName("ur18")
-    private int ur18;
 
     @SerializedName("branID")
     private int branID;
@@ -115,9 +81,9 @@ public class UserRightData implements Serializable
     @SerializedName("branShortName")
     private String branShortName;
 
-    public UserRightData(int ur01, int ur02, int ur03, int ur04, int ur05, int ur06,
-                         int ur07, int ur08, int ur09, int ur10, int ur11, int ur12,
-                         int ur13, int ur14, int ur15, int ur16, int ur17, int ur18,
+    public UserRightData(int ur01, int ur02, int ur03, int ur04, int ur05,
+                         int ur06, int ur07, int ur08, int ur09, int ur10,
+                         int ur11, int ur12, int ur13, int ur14,
                          int branID, String branName, String branShortName)
     {
 
@@ -135,10 +101,6 @@ public class UserRightData implements Serializable
         this.ur12 = ur12;
         this.ur13 = ur13;
         this.ur14 = ur14;
-        this.ur15 = ur15;
-        this.ur16 = ur16;
-        this.ur17 = ur17;
-        this.ur18 = ur18;
         this.branID = branID;
         this.branName = branName;
         this.branShortName = branShortName;
@@ -257,38 +219,6 @@ public class UserRightData implements Serializable
         this.ur14 = ur14;
     }
 
-    public int getUr15() {
-        return ur15;
-    }
-
-    public void setUr15(int ur15) {
-        this.ur15 = ur15;
-    }
-
-    public int getUr16() {
-        return ur16;
-    }
-
-    public void setUr16(int ur16) {
-        this.ur16 = ur16;
-    }
-
-    public int getUr17() {
-        return ur17;
-    }
-
-    public void setUr17(int ur17) {
-        this.ur17 = ur17;
-    }
-
-    public int getUr18() {
-        return ur18;
-    }
-
-    public void setUr18(int ur18) {
-        this.ur18 = ur18;
-    }
-
     public int getBranID() {
         return branID;
     }
@@ -312,10 +242,7 @@ public class UserRightData implements Serializable
     public boolean isShowDayAmount()
     {
 
-        if ( this.ur02 == 1 && this.ur05 == 1 )
-            return true;
-
-        if ( this.ur03 == 1 && this.ur06 == 1 )
+        if ( this.ur02 == 1)
             return true;
 
         return false;
@@ -325,7 +252,7 @@ public class UserRightData implements Serializable
     public boolean isShowDayPrice()
     {
 
-        if ( this.ur03 == 1 && this.ur06 == 1 )
+        if ( this.ur03 == 1 )
             return true;
 
         return false;
@@ -335,7 +262,107 @@ public class UserRightData implements Serializable
     public boolean isShowDaySearch()
     {
 
-        if ( this.ur18 == 1)
+        if ( this.ur04 == 1)
+            return true;
+
+        return false;
+
+    }
+
+    public boolean isShowMonthAmount()
+    {
+
+        if ( this.ur05 == 1 )
+            return true;
+
+        return false;
+
+    }
+
+    public boolean isShowMonthPrice()
+    {
+
+        if ( this.ur06 == 1 )
+            return true;
+
+        return false;
+
+    }
+
+    public boolean isShowMonthCustomerAmount()
+    {
+
+        if ( this.ur07 == 1 )
+            return true;
+
+        return false;
+
+    }
+
+    public boolean isShowMonthCustomerPrice()
+    {
+
+        if ( this.ur08 == 1 )
+            return true;
+
+        return false;
+
+    }
+
+    public boolean isShowMonthChart()
+    {
+
+        if ( this.ur09 == 1 )
+            return true;
+
+        return false;
+
+    }
+
+    public boolean isShowYearAmount()
+    {
+
+        if ( this.ur10 == 1 )
+            return true;
+
+        return false;
+
+    }
+
+    public boolean isShowYearPrice()
+    {
+
+        if ( this.ur11 == 1 )
+            return true;
+
+        return false;
+
+    }
+
+    public boolean isShowYearCustomerAmount()
+    {
+
+        if ( this.ur12 == 1 )
+            return true;
+
+        return false;
+
+    }
+
+    public boolean isShowYearCustomerPrice()
+    {
+
+        if ( this.ur13 == 1 )
+            return true;
+
+        return false;
+
+    }
+
+    public boolean isShowYearChart()
+    {
+
+        if ( this.ur14 == 1 )
             return true;
 
         return false;

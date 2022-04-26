@@ -43,6 +43,9 @@ public class FragmentYearMain extends Fragment
 	
 	private Calendar calendar = Calendar.getInstance();
 	private int currentYear;
+
+	// 사용자 권한
+	private UserRightData urd = null;
 	
 	private PagerTabStrip statsTabStrip;
 	private ViewPager statsPager;
@@ -50,14 +53,21 @@ public class FragmentYearMain extends Fragment
 	
 	private ArrayList<Fragment> fragments;
 
+	private ArrayList<String> menuTops;
+
 	Context context;
 
 
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
+
 		super.onCreate(savedInstanceState);
+
 		this.currentYear =  calendar.get(Calendar.YEAR);
+
+		this.urd = GSConfig.CURRENT_USER.getUserRightDataByID(GSConfig.CURRENT_BRANCH.getBranchID());
+
 	}
 	
 	@Override
@@ -109,14 +119,40 @@ public class FragmentYearMain extends Fragment
 	
 	private void makeFragmentList()
 	{
-		
-		fragments = new ArrayList<Fragment>();
-		
-		fragments.add(new FragmentYear(GSConfig.STATE_AMOUNT, "Unit"));
-		fragments.add(new FragmentYear(GSConfig.STATE_PRICE, "TotalPrice"));
-		fragments.add(new FragmentYearCustomer(GSConfig.STATE_AMOUNT, "Unit"));
-		fragments.add(new FragmentYearCustomer(GSConfig.STATE_PRICE, "TotalPrice"));
-		fragments.add(new FragmentYearGraph());
+
+		this.fragments = new ArrayList<Fragment>();
+		this.menuTops = new ArrayList<String>();
+
+		if (this.urd.isShowYearAmount())
+		{
+			this.fragments.add(new FragmentYear(GSConfig.STATE_AMOUNT, "Unit"));
+			this.menuTops.add("수량");
+		}
+
+		if (this.urd.isShowYearPrice())
+		{
+			this.fragments.add(new FragmentYear(GSConfig.STATE_PRICE, "TotalPrice"));
+			this.menuTops.add("금액");
+		}
+
+		if (this.urd.isShowYearCustomerAmount())
+		{
+			this.fragments.add(new FragmentYearCustomer(GSConfig.STATE_AMOUNT, "Unit"));
+			this.menuTops.add("수량(업체별)");
+		}
+
+		if (this.urd.isShowYearCustomerPrice())
+		{
+			this.fragments.add(new FragmentYearCustomer(GSConfig.STATE_PRICE, "TotalPrice"));
+			this.menuTops.add("금액(업체별)");
+		}
+
+		if (this.urd.isShowYearChart())
+		{
+			this.fragments.add(new FragmentYearGraph());
+			this.menuTops.add("그래프");
+		}
+
 
 	}
 	
@@ -226,29 +262,29 @@ public class FragmentYearMain extends Fragment
 	public class StatsPagerAdapter extends FragmentPagerAdapter
 	{
 
-		private final String[] TITLES;
+		private String[] menu_top;
 
 		public StatsPagerAdapter(FragmentManager fm)
 		{
 			super(fm);
-			TITLES = getResources().getStringArray(R.array.stats_year_tab_array1);
+			menu_top = menuTops.toArray( new String[ menuTops.size() ] );
 		}
 
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object)
 		{
-			if (position != TITLES.length)
+			if (position != menu_top.length)
 				super.destroyItem(container, position, object);
 		}
 
 		@Override
 		public CharSequence getPageTitle(int position) {
-			return TITLES[position];
+			return menu_top[position];
 		}
 
 		@Override
 		public int getCount() {
-			return TITLES.length;
+			return menu_top.length;
 		}
 
 		@Override
