@@ -1,4 +1,4 @@
-#Tue Apr 26 18:43:53 KST 2022
-base.0=D\:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Thu Apr 28 11:48:09 KST 2022
+base.0=D\:\\sources\\GRMS\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

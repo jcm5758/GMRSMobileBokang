@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
+ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\4eb2fc21ccc2dce4da190845bc3482ac\material-1.5.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\753e3fab65deb59527b8392ce093b022\constraintlayout-2.0.1\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\f9db3af1d4b21c0f8eaed47c1558f861\appcompat-1.2.0\AndroidManifest.xml:17:1-24:12
@@ -45,33 +45,33 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\jcm5758\.grad
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\db70915db5482881b82db5efafd295dc\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\e8a9ba95fcf0cc98ab87a4d17d4050b7\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\8d11d86b037c681c007c37e744e988c0\annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
-INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
 	package
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:3:5-39
-		INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
-		INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:3:5-39
+		INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+		INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
-		INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+		INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
+		INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
-		INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+		INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:1-31:12
+		INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:5:5-67
+ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:5:5-67
 	android:name
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:5:22-64
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:5:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:6:5-79
+ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:6:5-79
 	android:name
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:6:22-76
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:6:22-76
 application
-ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:8:5-29:19
+ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:8:5-29:19
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\4eb2fc21ccc2dce4da190845bc3482ac\material-1.5.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\4eb2fc21ccc2dce4da190845bc3482ac\material-1.5.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\753e3fab65deb59527b8392ce093b022\constraintlayout-2.0.1\AndroidManifest.xml:9:5-20
@@ -83,47 +83,47 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jc
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.5.0] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\07adfc08fe16d3453ab9291511ec05fe\core-1.5.0\AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:9:9-33
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:9:9-33
 	android:icon
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:11:9-45
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:11:9-45
 	android:allowBackup
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:10:9-35
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:10:9-35
 	android:theme
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:12:9-73
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:12:9-73
 	android:networkSecurityConfig
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:13:9-69
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:13:9-69
 	android:usesCleartextTraffic
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:14:9-44
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:14:9-44
 activity#com.geurimsoft.bokangnew.AppMain
-ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:16:9-23:20
+ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:16:9-23:20
 	android:screenOrientation
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:18:13-49
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:18:13-49
 	android:name
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:17:13-36
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:17:13-36
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:19:13-22:29
+ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:19:13-22:29
 action#android.intent.action.MAIN
-ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:20:17-69
+ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:20:17-69
 	android:name
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:20:25-66
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:20:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:21:17-77
+ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:21:17-77
 	android:name
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:21:27-74
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:21:27-74
 activity#com.geurimsoft.bokangnew.view.ActivityMain
-ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:24:9-25:76
+ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:24:9-25:76
 	android:theme
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:25:13-74
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:25:13-74
 	android:name
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:24:19-52
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:24:19-52
 activity#org.achartengine.GraphicalActivity
-ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:27:9-71
+ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:27:9-71
 	android:name
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml:27:19-68
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml:27:19-68
 uses-sdk
-INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
-INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\4eb2fc21ccc2dce4da190845bc3482ac\material-1.5.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\4eb2fc21ccc2dce4da190845bc3482ac\material-1.5.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\753e3fab65deb59527b8392ce093b022\constraintlayout-2.0.1\AndroidManifest.xml:5:5-7:41
@@ -206,13 +206,13 @@ MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\jcm5758\.gradle\cac
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\e8a9ba95fcf0cc98ab87a4d17d4050b7\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\8d11d86b037c681c007c37e744e988c0\annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\jcm5758\.gradle\caches\transforms-2\files-2.1\8d11d86b037c681c007c37e744e988c0\annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
-INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
-INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
-		INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+		INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+		INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
-		ADDED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
-		INJECTED from D:\sources\GRMS\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+		INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+		ADDED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml
+		INJECTED from D:\sources\GRMS\MobileApp\GMRSMobileBokang\app\src\main\AndroidManifest.xml

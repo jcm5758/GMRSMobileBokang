@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\sources\\GRMS\\GMRSMobileBokang\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-el\\values-el.xml",
+            "outputFile": "D:\\sources\\GRMS\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-el\\values-el.xml",
             "map": [
                 {
                     "source": "C:\\Users\\jcm5758\\.gradle\\caches\\transforms-2\\files-2.1\\07adfc08fe16d3453ab9291511ec05fe\\core-1.5.0\\res\\values-el\\values-el.xml",

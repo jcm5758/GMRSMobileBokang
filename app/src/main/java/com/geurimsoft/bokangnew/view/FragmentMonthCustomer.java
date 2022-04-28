@@ -312,7 +312,7 @@ public class FragmentMonthCustomer extends Fragment
 			if (inputGroup != null && inputGroup.List.size() > 0)
 			{
 				statsView.makeStatsView(this.layoutMonthCustomerOutputOutsideSource, inputGroup, GSConfig.MODE_OUTSIDE_RELEASE_SOURCE);
-				this.tvMonthCustomerOutputOutsideSource.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_SOURCE] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + GSConfig.AMOUNT_NAMES[this.stateType] + ")");
+				this.tvMonthCustomerOutputOutsideSource.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE_SOURCE] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + GSConfig.AMOUNT_NAMES[this.stateType] + ")");
 			}
 			else
 			{
@@ -328,7 +328,7 @@ public class FragmentMonthCustomer extends Fragment
 			if (inputGroup != null && inputGroup.List.size() > 0)
 			{
 				statsView.makeStatsView(this.layoutMonthCustomerOutputOutsideProduct, inputGroup, GSConfig.MODE_OUTSIDE_RELEASE_PRODUCT);
-				this.tvMonthCustomerOutputOutsideProduct.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_STOCK_PRODUCT] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + GSConfig.AMOUNT_NAMES[this.stateType] + ")");
+				this.tvMonthCustomerOutputOutsideProduct.setText( GSConfig.MODE_NAMES[GSConfig.MODE_OUTSIDE_RELEASE_PRODUCT] + "(" + GSConfig.changeToCommanString(inputGroup.TotalUnit) + GSConfig.AMOUNT_NAMES[this.stateType] + ")");
 			}
 			else
 			{
