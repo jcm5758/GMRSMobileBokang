@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/GMRSMobileBokang.iml" filepath="$PROJECT_DIR$/.idea/modules/GMRSMobileBokang.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GMRSMobileBokang.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GMRSMobileBokang.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GMRSMobileBokang.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GMRSMobileBokang.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GMRSMobileBokang.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GMRSMobileBokang.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GMRSMobileBokang.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GMRSMobileBokang.app.unitTest.iml" />
     </modules>
   </component>
 </project>

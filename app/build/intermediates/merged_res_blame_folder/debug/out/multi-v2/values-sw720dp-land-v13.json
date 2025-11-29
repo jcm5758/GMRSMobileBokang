@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\sources\\GRMS\\MobileApp\\GMRSMobileBokang\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw720dp-land-v13\\values-sw720dp-land-v13.xml",
+            "outputFile": "com.geurimsoft.bokangnew.app-mergeDebugResources-14:/values-sw720dp-land-v13/values-sw720dp-land-v13.xml",
             "map": [
                 {
                     "source": "D:\\sources\\GRMS\\MobileApp\\GMRSMobileBokang\\app\\src\\main\\res\\values-sw720dp-land\\dimens.xml",
