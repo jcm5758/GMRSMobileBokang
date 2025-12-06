@@ -12,7 +12,7 @@
         <androidx.viewpager.widget.PagerTabStrip
             android:id="@+id/stats_tab"
             android:layout_width="match_parent"
-            android:layout_height="60dp" />
+            android:layout_height="70dp" />
         
     </androidx.viewpager.widget.ViewPager>
 
