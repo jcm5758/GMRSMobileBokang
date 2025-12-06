@@ -2753,6 +2753,9 @@ int id layoutDailyOutput 0x7f0900dc
 int id layoutDailyOutputOutsideProduct 0x7f0900dd
 int id layoutDailyOutputOutsideSource 0x7f0900de
 int id layoutDailySluge 0x7f0900df
+int id layoutEmptySpace 0x7f09020e
+int id layoutEmptySpaceMC 0x7f090212
+int id layoutEmptySpaceYC 0x7f090214
 int id layoutMonthCustomerInput 0x7f0900e0
 int id layoutMonthCustomerInputOutsideProduct 0x7f0900e1
 int id layoutMonthCustomerInputOutsideSource 0x7f0900e2
@@ -3016,6 +3019,9 @@ int id tvDailyOutputOutsideProduct 0x7f0901e3
 int id tvDailyOutputOutsideSource 0x7f0901e4
 int id tvDailySearchTitle 0x7f0901e5
 int id tvDailySluge 0x7f0901e6
+int id tvEmptySpace 0x7f09020f
+int id tvEmptySpaceMC 0x7f090213
+int id tvEmptySpaceYC 0x7f090215
 int id tvLoading 0x7f0901e7
 int id tvMonthCustomerDate 0x7f0901e8
 int id tvMonthCustomerInput 0x7f0901e9

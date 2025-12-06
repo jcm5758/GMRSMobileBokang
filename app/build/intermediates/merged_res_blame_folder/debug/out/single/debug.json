@@ -8,28 +8,28 @@
         "source": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-main-18:\\menu\\stats_year_menu.xml"
     },
     {
-        "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\drawable-hdpi_arrow_right_on.jpg.flat",
-        "source": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-main-18:\\drawable-hdpi\\arrow_right_on.jpg"
-    },
-    {
         "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\drawable-hdpi_home_bt.png.flat",
         "source": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-main-18:\\drawable-hdpi\\home_bt.png"
+    },
+    {
+        "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\drawable-hdpi_arrow_right_on.jpg.flat",
+        "source": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-main-18:\\drawable-hdpi\\arrow_right_on.jpg"
     },
     {
         "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\drawable-hdpi_listbar.png.flat",
         "source": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-main-18:\\drawable-hdpi\\listbar.png"
     },
     {
-        "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\layout_month_basic.xml.flat",
-        "source": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-main-18:\\layout\\month_basic.xml"
+        "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\layout_month_graph.xml.flat",
+        "source": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-main-18:\\layout\\month_graph.xml"
     },
     {
         "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\layout_stats_foot.xml.flat",
         "source": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-main-18:\\layout\\stats_foot.xml"
     },
     {
-        "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\layout_month_graph.xml.flat",
-        "source": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-main-18:\\layout\\month_graph.xml"
+        "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\layout_month_basic.xml.flat",
+        "source": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-main-18:\\layout\\month_basic.xml"
     },
     {
         "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\drawable-hdpi_btnstatbg.png.flat",
@@ -50,6 +50,10 @@
     {
         "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\menu_gwangju_menu.xml.flat",
         "source": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-main-18:\\menu\\gwangju_menu.xml"
+    },
+    {
+        "merged": "com.geurimsoft.bokangnew.app-merged_res-16:/layout_year_customer.xml.flat",
+        "source": "com.geurimsoft.bokangnew.app-main-18:/layout/year_customer.xml"
     },
     {
         "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\layout_month_datepicker_dialog.xml.flat",
@@ -122,6 +126,10 @@
     {
         "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\drawable_ic_setting_grey.png.flat",
         "source": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-main-18:\\drawable\\ic_setting_grey.png"
+    },
+    {
+        "merged": "com.geurimsoft.bokangnew.app-merged_res-16:/layout_year_basic.xml.flat",
+        "source": "com.geurimsoft.bokangnew.app-main-18:/layout/year_basic.xml"
     },
     {
         "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\drawable_menu_border.xml.flat",
@@ -322,10 +330,6 @@
     {
         "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\drawable-hdpi_btnselcctv.png.flat",
         "source": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-main-18:\\drawable-hdpi\\btnselcctv.png"
-    },
-    {
-        "merged": "com.geurimsoft.bokangnew.app-merged_res-16:/layout_stats_pager_layout.xml.flat",
-        "source": "com.geurimsoft.bokangnew.app-main-18:/layout/stats_pager_layout.xml"
     },
     {
         "merged": "C:\\Users\\jcm57\\.gradle\\daemon\\8.0\\com.geurimsoft.bokangnew.app-merged_res-16:\\drawable-hdpi_setting_bt.png.flat",

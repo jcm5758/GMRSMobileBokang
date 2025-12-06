@@ -2754,6 +2754,9 @@ id layoutDailyOutput
 id layoutDailyOutputOutsideProduct
 id layoutDailyOutputOutsideSource
 id layoutDailySluge
+id layoutEmptySpace
+id layoutEmptySpaceMC
+id layoutEmptySpaceYC
 id layoutMonthCustomerInput
 id layoutMonthCustomerInputOutsideProduct
 id layoutMonthCustomerInputOutsideSource
@@ -3017,6 +3020,9 @@ id tvDailyOutputOutsideProduct
 id tvDailyOutputOutsideSource
 id tvDailySearchTitle
 id tvDailySluge
+id tvEmptySpace
+id tvEmptySpaceMC
+id tvEmptySpaceYC
 id tvLoading
 id tvMonthCustomerDate
 id tvMonthCustomerInput
